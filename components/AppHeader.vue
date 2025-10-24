@@ -12,20 +12,23 @@
         <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">CONTACT</NuxtLink>
       </nav>
 
-      <div class="md:hidden">
-        <button
-            @click="toggleMobileMenu"
-            :class="['menu-toggle-button', { 'is-open': isMobileMenuOpen }, hamburgerButtonClasses]"
-            aria-label="메뉴 열기/닫기"
-            aria-expanded="isMobileMenuOpen"
-        >
-          <!-- ❗ SVG 아이콘: 2개의 동일한 가로선만 사용 -->
-          <svg class="hamburger-icon w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line class="line line1" x1="4" y1="12" x2="20" y2="12"></line>
-            <line class="line line2" x1="4" y1="12" x2="20" y2="12"></line>
-          </svg>
-        </button>
-      </div>
+      <button
+          @click="toggleMobileMenu"
+          class="md:hidden z-50 relative flex justify-center items-center w-8 h-8"
+          aria-label="메뉴 토글"
+      >
+        <span
+            ref="lineHorizontal"
+            class="block absolute w-6 h-0.5 transition-colors duration-300 ease-in-out"
+            :class="lineClasses"
+        ></span>
+        <span
+            ref="lineVertical"
+            class="block absolute w-0.5 h-6 transition-colors duration-300 ease-in-out"
+            :class="lineClasses"
+        ></span>
+      </button>
+
     </div>
 
     <transition name="slide-down">
@@ -67,11 +70,29 @@ const effectiveTheme = computed(() => {
   return headerTheme.value;
 });
 
-// --- 모바일 메뉴 로직 ---
+// --- 모바일 메뉴 로직 (수정됨) ---
 const isMobileMenuOpen = ref(false)
+const lineHorizontal = ref<HTMLElement | null>(null) // 가로선 ref
+const lineVertical = ref<HTMLElement | null>(null)   // 세로선 ref
+const menuTimeline = ref<gsap.core.Timeline | null>(null)
+
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+
+// 버튼 라인 색상
+const lineClasses = computed(() => [
+  effectiveTheme.value === 'dark' ? 'bg-gray-800' : 'bg-white'
+])
+
+// GSAP 애니메이션 Watcher
+watch(isMobileMenuOpen, (isOpen) => {
+  if (isOpen) {
+    menuTimeline.value?.play()
+  } else {
+    menuTimeline.value?.reverse()
+  }
+})
 
 // --- Tailwind 클래스 바인딩 로직 ---
 const headerClasses = computed(() => {
@@ -99,12 +120,6 @@ const headerClasses = computed(() => {
   ];
 });
 
-const hamburgerButtonClasses = computed(() => [
-  effectiveTheme.value === 'dark'
-      ? 'focus:ring-gray-800'
-      : 'focus:ring-white'
-]);
-
 const setupScrollTrigger = () => {
   scrollTriggerInstance?.kill();
   if (isHomePage.value) {
@@ -122,8 +137,17 @@ const setupScrollTrigger = () => {
   }
 };
 
-// --- 생명주기 로직 ---
+// --- 생명주기 로직 (수정됨) ---
 onMounted(() => {
+  // GSAP +/X 타임라인 초기화 (수정됨)
+  if (process.client && lineHorizontal.value && lineVertical.value) {
+    menuTimeline.value = gsap.timeline({ paused: true, defaults: { duration: 0.3, ease: 'power2.inOut' } })
+        // 두 선을 동시에 45도 회전
+        .to(lineHorizontal.value, { rotate: 45 }, 0)
+        .to(lineVertical.value, { rotate: 45 }, 0);
+  }
+
+  // --- (기존 onMounted 로직) ---
   if (isHomePage.value) {
     isScrolled.value = window.scrollY > 10;
     headerTheme.value = isScrolled.value ? 'dark' : 'light';
@@ -134,7 +158,7 @@ onMounted(() => {
   }
 
   watch(() => route.path, (newPath) => {
-    isMobileMenuOpen.value = false;
+    isMobileMenuOpen.value = false; // 페이지 이동 시 메뉴 닫기
 
     if (newPath === '/') {
       isScrolled.value = window.scrollY > 10;
@@ -159,51 +183,7 @@ defineExpose({
 </script>
 
 <style scoped>
-/* 모바일 메뉴 토글 버튼 스타일 */
-.menu-toggle-button {
-  padding: 0.5rem; /* 버튼 영역 확보 */
-  border-radius: 9999px; /* 원형 */
-  transition: background-color 0.2s ease-in-out;
-}
-.menu-toggle-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px currentColor; /* 포커스 링 */
-}
-
-/* ❗ SVG 아이콘 전체 (컨테이너 회전 불필요) */
-.hamburger-icon {
-  transform-origin: center center;
-}
-
-/* ❗ SVG 아이콘 및 선 스타일 */
-.hamburger-icon .line {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform-origin: center center; /* ❗ 회전 중심을 명시적으로 중앙 설정 */
-}
-
-/* ❗ 초기 '+' 모양 설정 (2줄 사용) */
-.hamburger-icon .line1 {
-  transform: rotate(0deg);
-  opacity: 1; /* 가로선 */
-}
-.hamburger-icon .line2 {
-  transform: rotate(90deg); /* ❗ line2를 90도 회전시켜 세로선 만듦 */
-  opacity: 1;
-}
-
-/* ❗ 메뉴 열렸을 때 'X' 모양으로 전환 (2줄 사용) */
-.is-open .hamburger-icon .line1 {
-  /* ❗ line1을 45도 회전 */
-  transform: rotate(45deg);
-  opacity: 1;
-}
-.is-open .hamburger-icon .line2 {
-  /* ❗ line2를 -45도 회전 */
-  transform: rotate(-45deg);
-  opacity: 1;
-}
-
-/* 모바일 메뉴 드롭다운 트랜지션 (기존 유지) */
+/* 모바일 메뉴 패널 트랜지션 */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -213,10 +193,4 @@ defineExpose({
   transform: translateY(-20px);
   opacity: 0;
 }
-.slide-down-enter-to,
-.slide-down-leave-from {
-  transform: translateY(0);
-  opacity: 1;
-}
 </style>
-
