@@ -45,7 +45,6 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
-  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,5 +76,11 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+button span { /* 또는 .lineHorizontal, .lineVertical */
+  transform: translateZ(0);
+  /* 또는 */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 </style>

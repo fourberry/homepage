@@ -21,7 +21,7 @@
             class="w-72 h-72 mx-auto mb-10 flex items-center justify-center rounded-full
                          bg-white/40 backdrop-blur-md shadow-xl"
           >
-            <img
+            <NuxtImg
               :src="item.iconUrl"
               :alt="item.title + ' 아이콘'"
               class="w-full h-full object-cover rounded-full p-0"

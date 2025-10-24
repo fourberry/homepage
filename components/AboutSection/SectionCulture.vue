@@ -36,7 +36,7 @@
           <div
             class="w-full aspect-square bg-gray-100 overflow-hidden border border-gray-200"
           >
-            <img
+            <NuxtImg
               :src="item.img"
               :alt="item.title + ' 이미지'"
               class="w-full h-full object-cover object-center"

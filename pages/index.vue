@@ -74,6 +74,7 @@ const gotoSection = (toIndex: number, direction: number) => {
   const dFactor = direction;
 
   panelTls[fromIndex]?.seek(0).pause();
+  gsap.set(panels[fromIndex], { zIndex: 1 });
 
   const tl = gsap.timeline({
     defaults: { duration: 0.5, ease: "power1.inOut" },
@@ -83,7 +84,7 @@ const gotoSection = (toIndex: number, direction: number) => {
     }
   });
 
-  gsap.set(panels[toIndex], { yPercent: 100 * dFactor, autoAlpha: 1 });
+  gsap.set(panels[toIndex], { yPercent: 100 * dFactor, autoAlpha: 1, zIndex: 2 });
   tl.to(panels[fromIndex], { yPercent: -100 * dFactor })
       .to(panels[toIndex], { yPercent: 0 }, 0);
 
@@ -152,8 +153,8 @@ const setupPanelsAndAnimations = () => {
 
   // 패널 초기화
   gsap.set(mainContainer.value, { position: 'relative', height: '100dvh', overflow: 'hidden' });
-  gsap.set(panels, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', autoAlpha: 0 }); // ✨ 모든 패널 일단 숨김
-  gsap.set(panels[0], { autoAlpha: 1, yPercent: 0 }); // ✨ 첫 패널만 보이게
+  gsap.set(panels, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', autoAlpha: 0, zIndex: 1 });
+  gsap.set(panels[0], { autoAlpha: 1, yPercent: 0, zIndex: 2 });
   gsap.set(panels.slice(1), { yPercent: 100 }); // 나머지 패널은 아래에
 
   // 내부 애니메이션 타임라인 생성
