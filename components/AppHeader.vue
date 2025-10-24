@@ -12,16 +12,23 @@
         <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">CONTACT</NuxtLink>
       </nav>
 
-      <div class="md:hidden">
-        <button @click="toggleMobileMenu" :class="hamburgerButtonClasses" aria-label="메뉴 열기/닫기">
-          <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-          </svg>
-          <svg v-if="isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
+      <button
+          @click="toggleMobileMenu"
+          class="md:hidden z-50 relative flex justify-center items-center w-8 h-8"
+          aria-label="메뉴 토글"
+      >
+        <span
+            ref="lineHorizontal"
+            class="block absolute w-6 h-0.5 transition-colors duration-300 ease-in-out"
+            :class="lineClasses"
+        ></span>
+        <span
+            ref="lineVertical"
+            class="block absolute w-0.5 h-6 transition-colors duration-300 ease-in-out"
+            :class="lineClasses"
+        ></span>
+      </button>
+
     </div>
 
     <transition name="slide-down">
@@ -49,63 +56,58 @@ gsap.registerPlugin(ScrollTrigger)
 // --- 상태 로직 ---
 const isScrolled = ref(false)
 const route = useRoute()
-// const isHeaderHidden = useHeaderVisibility() // 더 이상 사용하지 않음
 const isHomePage = computed(() => route.path === '/')
-
 let scrollTriggerInstance: ScrollTrigger | null = null;
-
-// ❗ 2. 헤더 테마 상태 가져오기
 const headerTheme = useHeaderTheme()
-
-// 스크롤되었거나, 홈이 아니면 true (스타일 변경 기준)
-// ❗ (이 변수는 이제 배경색/위치 결정에만 사용)
 const shouldApplyScrolledClass = computed(() => isScrolled.value || !isHomePage.value)
-
-// ❗ 3. 최종 테마 결정 (스크롤 상태 + 홈화면 패널 상태)
 const effectiveTheme = computed(() => {
   if (!isHomePage.value) {
-    return 'dark'; // 홈이 아닌 페이지는 무조건 'dark' (흰 배경, 검은 글씨)
+    return 'dark';
   }
   if (isScrolled.value) {
-    return 'dark'; // 홈이지만 10px 이상 스크롤되면 'dark' (GSAP Observer에서는 거의 발생 안함)
+    return 'dark';
   }
-  return headerTheme.value; // 홈이고 스크롤 안됐으면, index.vue가 정해준 테마 사용
+  return headerTheme.value;
 });
 
-// --- 모바일 메뉴 로직 ---
+// --- 모바일 메뉴 로직 (수정됨) ---
 const isMobileMenuOpen = ref(false)
+const lineHorizontal = ref<HTMLElement | null>(null) // 가로선 ref
+const lineVertical = ref<HTMLElement | null>(null)   // 세로선 ref
+const menuTimeline = ref<gsap.core.Timeline | null>(null)
+
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
+// 버튼 라인 색상
+const lineClasses = computed(() => [
+  effectiveTheme.value === 'dark' ? 'bg-gray-800' : 'bg-white'
+])
+
+// GSAP 애니메이션 Watcher
+watch(isMobileMenuOpen, (isOpen) => {
+  if (isOpen) {
+    menuTimeline.value?.play()
+  } else {
+    menuTimeline.value?.reverse()
+  }
+})
+
 // --- Tailwind 클래스 바인딩 로직 ---
-
-// ❗ headerClasses 로직 수정 (구분선 색상 포함)
 const headerClasses = computed(() => {
-  // 홈 페이지이고, 스크롤되지 않은 초기 상태인지 확인 (Observer 환경에서는 거의 false)
-  // Observer 방식에서는 isScrolled 보다는 headerTheme을 신뢰하는 것이 좋습니다.
-  // 홈 페이지의 초기 상태 (Hero 섹션)는 투명 배경
   const isInitialTransparentState = isHomePage.value && headerTheme.value === 'light';
-
-  const theme = effectiveTheme.value; // 현재 유효한 테마 ('light' or 'dark')
-
-  // 배경/위치: 초기 투명 상태일 때만 absolute + 투명, 나머지는 fixed + 흰색 배경
+  const theme = effectiveTheme.value;
   const backgroundAndPosition = isInitialTransparentState
       ? 'absolute bg-transparent'
-      : 'fixed bg-white shadow-md';
-
-  // 글자색: 테마에 따라 결정
+      : 'fixed bg-white';
   const textColor = theme === 'dark' ? 'text-gray-800' : 'text-white';
-
-  // 구분선 색상:
   let borderColor;
   if (isInitialTransparentState) {
-
+    // 투명 상태일 땐 구분선 없음
   } else if (theme === 'dark' && isHomePage.value) {
-    // ✨ 홈 페이지이고 다크 테마(ABOUT US 섹션 등): 검은색 구분선
-    borderColor = 'border-b border-gray-800'; // 또는 border-black
+    borderColor = 'border-b border-gray-800';
   } else {
-    // 스크롤되었거나 홈 아닌 페이지 (흰색 배경): 회색 구분선
     borderColor = 'border-b border-gray-200';
   }
 
@@ -114,22 +116,12 @@ const headerClasses = computed(() => {
     'transition-all', 'duration-300', 'ease-in-out',
     backgroundAndPosition,
     textColor,
-    borderColor // 결정된 구분선 클래스 적용
+    borderColor
   ];
 });
 
-// ❗ 5. 햄버거 버튼 클래스 수정
-// 햄버거 버튼 링 색상도 effectiveTheme을 따르도록 변경
-const hamburgerButtonClasses = computed(() => [
-
-  effectiveTheme.value === 'dark'
-      ? 'focus:ring-gray-800'
-      : 'focus:ring-white'
-]);
-
-// ❗ 6. 스크롤 트리거 설정 함수 (중복 제거용)
 const setupScrollTrigger = () => {
-  scrollTriggerInstance?.kill(); // 기존 인스턴스 제거
+  scrollTriggerInstance?.kill();
   if (isHomePage.value) {
     scrollTriggerInstance = ScrollTrigger.create({
       trigger: 'body',
@@ -137,7 +129,6 @@ const setupScrollTrigger = () => {
       end: '+=10',
       onUpdate: self => {
         isScrolled.value = self.scroll() > 10;
-        // 스크롤이 발생하면(e.g., 사용자가 강제로) 테마도 업데이트
         if (isHomePage.value) {
           headerTheme.value = isScrolled.value ? 'dark' : 'light';
         }
@@ -146,33 +137,37 @@ const setupScrollTrigger = () => {
   }
 };
 
-// --- 생명주기 로직 ---
+// --- 생명주기 로직 (수정됨) ---
 onMounted(() => {
-  if (isHomePage.value) {
-    // ❗ 홈 페이지: 초기 스크롤 상태 확인 및 테마 설정, 트리거 생성
-    isScrolled.value = window.scrollY > 10;
-    headerTheme.value = isScrolled.value ? 'dark' : 'light'; // (index.vue의 onMounted가 덮어쓰지만 안전장치)
-    setupScrollTrigger();
-  } else {
-    // ❗ 홈 아님: 스크롤된 상태(흰색 배경)로 강제
-    isScrolled.value = true;
-    headerTheme.value = 'dark'; // (effectiveTheme이 어차피 'dark'로 함)
+  // GSAP +/X 타임라인 초기화 (수정됨)
+  if (process.client && lineHorizontal.value && lineVertical.value) {
+    menuTimeline.value = gsap.timeline({ paused: true, defaults: { duration: 0.3, ease: 'power2.inOut' } })
+        // 두 선을 동시에 45도 회전
+        .to(lineHorizontal.value, { rotate: 45 }, 0)
+        .to(lineVertical.value, { rotate: 45 }, 0);
   }
 
-  // 라우트 변경 감지
+  // --- (기존 onMounted 로직) ---
+  if (isHomePage.value) {
+    isScrolled.value = window.scrollY > 10;
+    headerTheme.value = isScrolled.value ? 'dark' : 'light';
+    setupScrollTrigger();
+  } else {
+    isScrolled.value = true;
+    headerTheme.value = 'dark';
+  }
+
   watch(() => route.path, (newPath) => {
-    isMobileMenuOpen.value = false; // 페이지 이동 시 모바일 메뉴 닫기
+    isMobileMenuOpen.value = false; // 페이지 이동 시 메뉴 닫기
 
     if (newPath === '/') {
-      // ❗ 메인 페이지로 복귀
       isScrolled.value = window.scrollY > 10;
-      headerTheme.value = isScrolled.value ? 'dark' : 'light'; // 현재 스크롤에 맞춰 테마 리셋
-      setupScrollTrigger(); // 스크롤 트리거 (재)활성화
+      headerTheme.value = isScrolled.value ? 'dark' : 'light';
+      setupScrollTrigger();
     } else {
-      // ❗ 다른 페이지로 이동
       isScrolled.value = true;
-      headerTheme.value = 'dark'; // 다른 페이지는 무조건 'dark'
-      scrollTriggerInstance?.disable(); // 홈이 아니면 트리거 비활성화
+      headerTheme.value = 'dark';
+      scrollTriggerInstance?.disable();
     }
   });
 
@@ -188,7 +183,7 @@ defineExpose({
 </script>
 
 <style scoped>
-/* 모바일 메뉴 드롭다운 트랜지션 (변경 없음) */
+/* 모바일 메뉴 패널 트랜지션 */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -198,12 +193,4 @@ defineExpose({
   transform: translateY(-20px);
   opacity: 0;
 }
-.slide-down-enter-to,
-.slide-down-leave-from {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Tailwind 클래스로 스타일을 관리하므로 추가적인 CSS는 거의 필요 없을 수 있습니다. */
-/* 필요한 경우 여기에 추가 스타일을 정의하세요. */
 </style>
