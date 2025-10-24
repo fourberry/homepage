@@ -7,24 +7,24 @@
 
       <ul class="grid sm:grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-24 mt-16">
         <li
-            v-for="(item, i) in coreValuesWithIcons"
-            :key="i"
+          v-for="(item, i) in coreValuesWithIcons"
+          :key="i"
 
-            class="pt-0 text-center relative"
-            v-motion
-            :initial="{ opacity: 0, y: 20 }"
-            :visible="{
+          class="pt-0 text-center relative"
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{
             opacity: 1,
             y: 0,
             transition: { duration: 500 }
           }"
 
-            :delay="i * 200"
-            :once="true"
-            :threshold="0.5"
+          :delay="i * 200"
+          :once="true"
+          :threshold="0.5"
         >
           <div
-              class="w-72 h-72 mx-auto mb-8 flex items-center justify-center rounded-full
+            class="w-72 h-72 mx-auto mb-8 flex items-center justify-center rounded-full
                    bg-white/30 backdrop-blur-sm border border-gray-50 shadow-xl"
           >
             <NuxtImg
