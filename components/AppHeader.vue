@@ -3,7 +3,7 @@
 
     <div class="max-w-screen-xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
 
-      <NuxtLink to="/" class="font-bold text-2xl no-underline">FOURBERRY</NuxtLink>
+      <NuxtLink id="header-logo-text" to="/" class="font-bold text-2xl no-underline">FOURBERRY</NuxtLink>
 
       <nav class="hidden md:flex items-center space-x-6">
         <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">회사소개</NuxtLink>
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
+import { ref, onMounted, computed, onUnmounted, watch, defineExpose } from 'vue'
 import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -181,6 +181,10 @@ onMounted(() => {
 
 onUnmounted(() => {
   scrollTriggerInstance?.kill();
+})
+
+defineExpose({
+  // ref를 직접 노출하기보다 $el 접근을 염두에 둠
 })
 </script>
 

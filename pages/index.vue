@@ -5,6 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Observer } from 'gsap/Observer'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
 import type SectionAbout from "~/components/HomeSection/SectionAbout.vue";
+import AppHeader from "~/components/AppHeader.vue";
+import { Flip } from 'gsap/Flip';
+
+// ✨ Flip 플러그인 등록
+gsap.registerPlugin(Flip, ScrollTrigger, Observer);
 
 // 페이지 메타 정의: home 레이아웃 사용
 definePageMeta({
@@ -22,14 +27,21 @@ const sectionAboutRef = ref<InstanceType<typeof SectionAbout> & SectionAboutExpo
 // businessAreas ref (computed로 변경)
 const businessAreas = computed(() => sectionAboutRef.value?.businessAreas);
 
+const appHeaderRef = ref<InstanceType<typeof AppHeader> | null>(null);
+const introTextRef = ref<HTMLElement | null>(null); // ✨ Intro 텍스트 ref
+const homeHeroRef = ref<HTMLElement | null>(null);
+
 // 헤더 테마 상태 변수 선언
 const headerTheme = useHeaderTheme()
 
-// GSAP 타임라인, Observer 인스턴스, 패널 배열
+// --- GSAP/Observer 관련 변수 ---
 let heroTl: gsap.core.Timeline | null = null;
 let panelTls: (gsap.core.Timeline | null)[] = [];
 let observer: Observer | null = null;
 let panels: HTMLElement[] = [];
+let currentIndex = 0;
+let animating = false;
+let numPanels = 0;
 
 // 옵저버 토글 함수 정의
 const disableObserver = () => observer?.disable();
@@ -37,11 +49,8 @@ const enableObserver = () => observer?.enable();
 
 // 모바일 환경 여부 ref
 const isMobile = ref(false);
+const isLoadingIntro = ref(true);
 
-// 상태 변수 (onMounted 밖으로 이동)
-let currentIndex = 0;
-let animating = false;
-let numPanels = 0;
 
 // --- 섹션 전환 함수 (gotoSection) 정의 ---
 const gotoSection = (toIndex: number, direction: number) => {
@@ -84,123 +93,169 @@ const gotoSection = (toIndex: number, direction: number) => {
   // }
 };
 
-// --- 웹/데스크탑용 스크롤 핸들러 ---
-const handleWebScrollDown = () => {
-  if (currentIndex < numPanels - 1) {
-    if (!animating) gotoSection(currentIndex + 1, 1); // 다음 섹션
-  }
+// 스크롤 핸들러 (웹/모바일 분리)
+const handleWebScrollDown = () => { if (currentIndex < numPanels - 1 && !animating) gotoSection(currentIndex + 1, 1); };
+const handleWebScrollUp = () => { if (currentIndex > 0 && !animating) gotoSection(currentIndex - 1, -1); if(currentIndex === 0 && observer) observer.vars.preventDefault = true; };
+const handleMobileScrollDown = () => { if (currentIndex > 0 && !animating) gotoSection(currentIndex - 1, -1); };
+const handleMobileScrollUp = () => { if (currentIndex < numPanels - 1 && !animating) gotoSection(currentIndex + 1, 1); };
+
+// ✨ Hero 타임라인 생성 함수
+const createHeroTimeline = () => {
+  heroTl = gsap.timeline({ paused: true }); // 처음엔 멈춤
+
+  // HomeSectionHero 내부 요소들을 직접 선택 (ref나 더 구체적인 셀렉터 사용 권장)
+  const heroTitle = mainContainer.value?.querySelector('.home-hero h1');
+  const heroSubtitle = mainContainer.value?.querySelector('.home-hero .hero-subtitle');
+  const heroBg = mainContainer.value?.querySelector('.home-hero .hero-background-image');
+  const heroContent = mainContainer.value?.querySelector('.home-hero .hero-content'); // 글자색 변경용
+
+  if (heroTitle) gsap.set(heroTitle, { autoAlpha: 0, y: 40 });
+  if (heroSubtitle) gsap.set(heroSubtitle, { autoAlpha: 0, y: 40 });
+  // 배경 초기 상태는 PageHero 컴포넌트 CSS에서 clip-path로 관리
+
+  if (heroTitle) heroTl.to(heroTitle, { duration: 1.2, y: 0, autoAlpha: 1, ease: "power3.out" }, "-=0.3");
+  if (heroSubtitle) heroTl.to(heroSubtitle, { duration: 1.2, y: 0, autoAlpha: 1, ease: "power3.out" }, "-=0.9");
+  if (heroBg) heroTl.to(heroBg, { duration: 2.5, clipPath: 'ellipse(150% 150% at 50% 100%)', opacity: 1, ease: "power2.inOut" }, "<0.2");
+  if (heroContent) heroTl.to(heroContent, { duration: 2.0, color: '#ffffff', ease: 'power2.inOut' }, "-=2.5"); // 글자색 변경
 };
-const handleWebScrollUp = () => {
-  if (currentIndex > 0) {
-    if (!animating) gotoSection(currentIndex - 1, -1); // 이전 섹션
+
+// ✨ Observer 설정 함수
+const setupObserver = () => {
+  if (observer) observer.kill(); // 기존 옵저버 제거
+
+  observer = Observer.create({
+    target: mainContainer.value,
+    type: 'wheel,touch,pointer',
+    onDown: isMobile.value ? handleMobileScrollDown : handleWebScrollDown,
+    onUp: isMobile.value ? handleMobileScrollUp : handleWebScrollUp,
+    tolerance: 10,
+    preventDefault: true, // 첫 섹션 이후 스크롤 방지
+  });
+
+  // 첫 섹션에서는 위로 스크롤 방지 (웹 전용)
+  if (!isMobile.value && currentIndex === 0 && observer) {
+    observer.vars.preventDefault = true;
   }
-  if(currentIndex === 0 && observer) {
-    observer.vars.preventDefault = true; // 첫 섹션 위로 스크롤 방지 (원하는 동작 유지)
-  }
+
+  // About Us 섹션 터치 처리 (필요한 경우 활성화)
+  // if (businessAreas.value) {
+  //   businessAreas.value.addEventListener('touchstart', disableObserver, { passive: true });
+  //   businessAreas.value.addEventListener('touchend', enableObserver, { passive: true });
+  // }
 };
 
-// --- 모바일용 스크롤 핸들러 (반대 로직) ---
-const handleMobileScrollDown = () => { // 아래로 드래그 -> 이전 섹션
-  if (currentIndex > 0) {
-    if (!animating) gotoSection(currentIndex - 1, -1); // 이전 섹션
-  }
-};
-const handleMobileScrollUp = () => { // 위로 드래그 -> 다음 섹션
-  if (currentIndex < numPanels - 1) {
-    if (!animating) gotoSection(currentIndex + 1, 1); // 다음 섹션
-  }
-};
-
-
-onMounted(() => {
-  // 모바일 환경 감지 (예: 창 너비 기준)
-  isMobile.value = window.innerWidth < 768;
-  // 필요시 User Agent 문자열 사용: /Mobi|Android/i.test(navigator.userAgent)
-
-  gsap.registerPlugin(ScrollTrigger, Observer)
-
-  headerTheme.value = 'light' // 초기 헤더 테마 설정
-
+// ✨ 패널 및 내부 애니메이션 설정 함수
+const setupPanelsAndAnimations = () => {
   panels = gsap.utils.toArray<HTMLElement>('.panel');
   numPanels = panels.length;
   if (!mainContainer.value || panels.length === 0) return;
 
-  // --- 1. Hero 섹션 애니메이션 ---
-  gsap.set('.home-hero h1, .home-hero .hero-subtitle', { autoAlpha: 0, y: 40 });
-  heroTl = gsap.timeline();
-  heroTl.to(".home-hero h1", { duration: 1.2, y: 0, autoAlpha: 1, ease: "power3.out" }, "-=0.3")
-      .to(".home-hero .hero-subtitle", { duration: 1.2, y: 0, autoAlpha: 1, ease: "power3.out" }, "-=0.9")
-      .to(".home-hero .hero-background-image", { duration: 2.5, clipPath: 'ellipse(150% 150% at 50% 100%)', opacity: 1, ease: "power2.inOut" }, "<0.2")
-      .to(".home-hero .hero-content", { duration: 2.0, color: '#ffffff', ease: 'power2.inOut' }, "-=2.5");
-
-  // --- 2a. 패널 스타일 초기화 ---
+  // 패널 초기화
   gsap.set(mainContainer.value, { position: 'relative', height: '100dvh', overflow: 'hidden' });
-  gsap.set(panels, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' });
-  gsap.set(panels.slice(1), { yPercent: 100, autoAlpha: 0 });
-  gsap.set(panels[0], { yPercent: 0, autoAlpha: 1 });
+  gsap.set(panels, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', autoAlpha: 0 }); // ✨ 모든 패널 일단 숨김
+  gsap.set(panels[0], { autoAlpha: 1, yPercent: 0 }); // ✨ 첫 패널만 보이게
+  gsap.set(panels.slice(1), { yPercent: 100 }); // 나머지 패널은 아래에
 
-  // --- 2b. 각 패널 내부 애니메이션 타임라인 생성 ---
+  // 내부 애니메이션 타임라인 생성
   panelTls = panels.map((panel, i) => {
-    if (i === 0) return null; // 첫 패널(Hero)은 별도 애니메이션
+    // ... (기존 panelTls 생성 로직 - 변경 없음) ...
+    if (i === 0) return null; // 첫 패널(Hero)은 heroTl로 관리
 
-    const isCtaSection = i === 4;
-
-    const title = panel.querySelector('h2');
+    const title = panel.querySelector('h2, h3');
     const description = panel.querySelector('.section-description');
     const cards = gsap.utils.toArray(panel.querySelectorAll('.area-card, .card'));
     const buttons = panel.querySelector('.details-button, .contact-button');
     const logos = panel.querySelector('.client-logos');
     const solution = panel.querySelector('.solution-cards');
-    const strengthsListItems = gsap.utils.toArray(panel.querySelectorAll('.strengths li')); // ✨ 강점 리스트 아이템 선택
-    const inquiryTitle = panel.querySelector('.inquiry h2'); // ✨ 문의하기 제목 선택
+    const strengthsListItems = gsap.utils.toArray(panel.querySelectorAll('.strengths li'));
+    const inquiryTitle = panel.querySelector('.inquiry h2');
+    const isCtaSection = i === 4; // CTA 섹션 인덱스 확인
+
     const contentTl = gsap.timeline({ paused: true });
     const elementsToSet = [title, description, ...cards, buttons, logos, solution, ...strengthsListItems, inquiryTitle].filter(Boolean);
 
     if (elementsToSet.length > 0) gsap.set(elementsToSet, { autoAlpha: 0, y: 30 });
-    if (title) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1);
+
+    // 일반 섹션 요소
+    if (title && !isCtaSection) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1);
     if (description) contentTl.to(description, { autoAlpha: 1, y: 0, duration: 0.6 }, '<0.1');
     if (cards.length > 0) contentTl.to(cards, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.5 }, '<0.2');
     if (logos) contentTl.to(logos, { autoAlpha: 1, y: 0, duration: 0.5 }, '<0.1');
     if (solution) contentTl.to(solution, { autoAlpha: 1, y: 0, duration: 0.5 }, '<0.1');
 
-    // ✨ CTA 섹션 애니메이션 추가
+    // CTA 섹션 요소
     if (isCtaSection) {
       if (title) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1); // Strengths 제목
-      if (strengthsListItems.length > 0) {
-        // ✨ 강점 리스트 아이템 순차적 등장 애니메이션 (stagger)
-        contentTl.to(strengthsListItems, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.2 // 0.2초 간격으로 순차 등장 (값 조절 가능)
-        }, '<0.1'); // 제목 나타난 후 바로 시작
-      }
-      if (inquiryTitle) contentTl.to(inquiryTitle, { autoAlpha: 1, y: 0, duration: 0.6 }, '<0.3'); // 문의 제목 (stagger와 약간 겹치게)
-      if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1'); // 버튼
-    } else {
-      // ✨ 기존 버튼 애니메이션 (CTA 섹션이 아닐 때만)
-      if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1');
+      if (strengthsListItems.length > 0) contentTl.to(strengthsListItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.2 }, '<0.1');
+      if (inquiryTitle) contentTl.to(inquiryTitle, { autoAlpha: 1, y: 0, duration: 0.6 }, '<0.3');
+      if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1'); // CTA 버튼
+    } else if (buttons) {
+      contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1'); // 다른 섹션 버튼
     }
 
     return contentTl;
   });
+};
 
-  // --- Observer 생성 (환경에 따라 다른 핸들러 할당) ---
-  observer = Observer.create({
-    target: mainContainer.value,
-    type: 'wheel,touch,pointer',
-    onDown: isMobile.value ? handleMobileScrollDown : handleWebScrollDown, // 모바일/웹 구분
-    onUp: isMobile.value ? handleMobileScrollUp : handleWebScrollUp,       // 모바일/웹 구분
-    tolerance: 10, // 스크롤 감도 조절 (필요시 값 변경)
-    preventDefault: true // 기본 스크롤 동작 방지
+
+// --- Lifecycle Hooks ---
+onMounted(async () => {
+  isMobile.value = window.innerWidth < 768; // 모바일 감지
+  await nextTick(); // DOM 요소 확보
+
+  const introTextEl = introTextRef.value;
+  const headerEl = appHeaderRef.value?.$el as HTMLElement | undefined;
+  const headerLogoEl = headerEl?.querySelector('#header-logo-text'); // ID로 헤더 로고 찾기
+
+  if (!introTextEl || !headerEl || !headerLogoEl || !mainContainer.value) {
+    console.error("Intro animation elements not found!");
+    isLoadingIntro.value = false; // 에러 시 바로 내용 표시
+    // 에러 발생 시 기존 로직 실행 (선택적)
+    createHeroTimeline();
+    setupPanelsAndAnimations();
+    heroTl?.play(); // 바로 히어로 애니메이션 시작
+    setupObserver();
+    return;
+  }
+
+  // --- 인트로 애니메이션 실행 ---
+  headerTheme.value = 'light'; // 인트로 중 헤더 테마 (필요시 조정)
+  gsap.set(headerEl, { autoAlpha: 0 }); // 헤더 숨기기
+  gsap.set(mainContainer.value, { autoAlpha: 0 }); // 메인 콘텐츠 숨기기
+
+  createHeroTimeline(); // Hero 타임라인 생성 (재생은 나중에)
+
+  const introTl = gsap.timeline({
+    onComplete: () => {
+      isLoadingIntro.value = false; // 인트로 요소 숨기기
+      gsap.to(mainContainer.value, { autoAlpha: 1, duration: 0.5 }); // 메인 콘텐츠 보이기
+      setupPanelsAndAnimations(); // 패널 설정
+      heroTl?.play(); // Hero 애니메이션 시작
+      setupObserver(); // 스크롤 옵저버 시작
+    }
   });
 
-  // --- ABOUT US 슬라이드 영역 터치 시 Observer 비활성화/활성화 ---
-  // (이전 대화에서 문제가 되었다면 주석 처리된 상태 유지)
-  // if (businessAreas.value) {
-  //   businessAreas.value.addEventListener('touchstart', disableObserver, { passive: true });
-  //   businessAreas.value.addEventListener('touchend', enableObserver, { passive: true });
-  // }
+  // 1. 인트로 텍스트 등장 (Rise 효과 예시: 아래에서 위로 + 페이드인)
+  introTl.fromTo(introTextEl,
+      { y: 50, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 1.5, ease: 'power3.out' }
+  );
+
+  // 2. Flip 애니메이션 준비 및 실행
+  introTl.add(() => {
+    const state = Flip.getState(introTextEl); // 시작 상태 저장
+    gsap.set(introTextEl, { display: 'none' }); // 인트로 텍스트 즉시 숨김
+    gsap.set(headerEl, { autoAlpha: 1 }); // 헤더 보이기
+
+    // Flip 애니메이션 실행 (인트로 텍스트 위치 -> 헤더 로고 위치)
+    Flip.from(state, {
+      targets: headerLogoEl,
+      duration: 1.2,
+      ease: 'power2.inOut',
+      scale: true, // 크기 변화 애니메이션 활성화
+      // onComplete 콜백은 introTl의 onComplete에서 처리하므로 여기선 제거
+    });
+  }, ">-0.5"); // 앞 애니메이션 종료 0.5초 전에 시작
 
 });
 
@@ -225,16 +280,51 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full overflow-hidden" ref="mainContainer">
-    <HomeSectionHero />
-    <HomeSectionAbout ref="sectionAboutRef" />
-    <HomeSectionSiSm />
-    <HomeSectionSolutions />
-    <HomeSectionCta />
-    <HomeSectionFooter />
+  <div>
+
+    <div v-if="isLoadingIntro" class="intro-overlay">
+      <h1 ref="introTextRef" class="intro-text">FOURBERRY</h1>
+    </div>
+
+
+    <div v-show="!isLoadingIntro">
+      <AppHeader ref="appHeaderRef" />
+      <div class="w-full overflow-hidden" ref="mainContainer">
+        <HomeSectionHero ref="homeHeroRef"/>
+        <HomeSectionAbout ref="sectionAboutRef" />
+        <HomeSectionSiSm />
+        <HomeSectionSolutions />
+        <HomeSectionCta />
+        <HomeSectionFooter />
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-/* 필요한 경우 여기에 스타일 추가 */
+<style>
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white; /* 흰색 배경 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  overflow: hidden;
+}
+.intro-text {
+  /* 크기를 viewport 기준으로 설정 (반응형) */
+  font-size: clamp(40px, 12vw, 150px); /* 최소, 가변, 최대 크기 */
+  font-weight: 800; /* Extra bold */
+  color: #003da5; /* Primary color (tailwind.config.js 참조) */
+  /* 필요시 글꼴 등 추가 */
+  font-family: "Roman", sans-serif; /* Roman 폰트 적용 */
+  opacity: 0; /* 초기 상태는 투명 (GSAP에서 제어) */
+}
+
+/* AppHeader가 처음엔 보이지 않도록 (GSAP set으로 제어하지만 안전장치) */
+/* header {
+  opacity: 0;
+  visibility: hidden;
+} */
 </style>
