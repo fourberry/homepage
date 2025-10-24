@@ -3,7 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   // ✅ 사용 모듈들 (nuxt/image 옵션 인라인)
   modules: [

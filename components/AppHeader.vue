@@ -15,7 +15,7 @@
       <div class="md:hidden">
         <button @click="toggleMobileMenu" :class="hamburgerButtonClasses" aria-label="메뉴 열기/닫기">
           <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
           <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -122,7 +122,7 @@ const headerClasses = computed(() => {
 // ❗ 5. 햄버거 버튼 클래스 수정
 // 햄버거 버튼 링 색상도 effectiveTheme을 따르도록 변경
 const hamburgerButtonClasses = computed(() => [
-  'p-2', 'rounded-md', 'focus:outline-none', 'focus:ring-2', 'focus:ring-inset',
+
   effectiveTheme.value === 'dark'
       ? 'focus:ring-gray-800'
       : 'focus:ring-white'

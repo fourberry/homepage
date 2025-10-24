@@ -67,7 +67,7 @@ const gotoSection = (toIndex: number, direction: number) => {
   panelTls[fromIndex]?.seek(0).pause();
 
   const tl = gsap.timeline({
-    defaults: { duration: 1.25, ease: "power1.inOut" },
+    defaults: { duration: 0.5, ease: "power1.inOut" },
     onComplete: () => {
       animating = false;
       panelTls[toIndex]?.play();
@@ -143,14 +143,18 @@ onMounted(() => {
   panelTls = panels.map((panel, i) => {
     if (i === 0) return null; // 첫 패널(Hero)은 별도 애니메이션
 
+    const isCtaSection = i === 4;
+
     const title = panel.querySelector('h2');
     const description = panel.querySelector('.section-description');
     const cards = gsap.utils.toArray(panel.querySelectorAll('.area-card, .card'));
     const buttons = panel.querySelector('.details-button, .contact-button');
     const logos = panel.querySelector('.client-logos');
     const solution = panel.querySelector('.solution-cards');
+    const strengthsListItems = gsap.utils.toArray(panel.querySelectorAll('.strengths li')); // ✨ 강점 리스트 아이템 선택
+    const inquiryTitle = panel.querySelector('.inquiry h2'); // ✨ 문의하기 제목 선택
     const contentTl = gsap.timeline({ paused: true });
-    const elementsToSet = [title, description, ...cards, buttons, logos, solution].filter(Boolean);
+    const elementsToSet = [title, description, ...cards, buttons, logos, solution, ...strengthsListItems, inquiryTitle].filter(Boolean);
 
     if (elementsToSet.length > 0) gsap.set(elementsToSet, { autoAlpha: 0, y: 30 });
     if (title) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1);
@@ -158,7 +162,25 @@ onMounted(() => {
     if (cards.length > 0) contentTl.to(cards, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.5 }, '<0.2');
     if (logos) contentTl.to(logos, { autoAlpha: 1, y: 0, duration: 0.5 }, '<0.1');
     if (solution) contentTl.to(solution, { autoAlpha: 1, y: 0, duration: 0.5 }, '<0.1');
-    if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1');
+
+    // ✨ CTA 섹션 애니메이션 추가
+    if (isCtaSection) {
+      if (title) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1); // Strengths 제목
+      if (strengthsListItems.length > 0) {
+        // ✨ 강점 리스트 아이템 순차적 등장 애니메이션 (stagger)
+        contentTl.to(strengthsListItems, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.2 // 0.2초 간격으로 순차 등장 (값 조절 가능)
+        }, '<0.1'); // 제목 나타난 후 바로 시작
+      }
+      if (inquiryTitle) contentTl.to(inquiryTitle, { autoAlpha: 1, y: 0, duration: 0.6 }, '<0.3'); // 문의 제목 (stagger와 약간 겹치게)
+      if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1'); // 버튼
+    } else {
+      // ✨ 기존 버튼 애니메이션 (CTA 섹션이 아닐 때만)
+      if (buttons) contentTl.to(buttons, { autoAlpha: 1, y: 0, duration: 0.4 }, '<0.1');
+    }
 
     return contentTl;
   });
