@@ -6,10 +6,10 @@
       <NuxtLink id="header-logo-text" to="/" class="font-bold text-2xl no-underline">FOURBERRY</NuxtLink>
 
       <nav class="hidden md:flex items-center space-x-6">
-        <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">회사소개</NuxtLink>
+        <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
         <NuxtLink to="/projects" class="text-base no-underline hover:opacity-80 transition-opacity">SI/SM</NuxtLink>
-        <NuxtLink to="/services" class="text-base no-underline hover:opacity-80 transition-opacity">솔루션</NuxtLink>
-        <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">문의하기</NuxtLink>
+        <NuxtLink to="/services" class="text-base no-underline hover:opacity-80 transition-opacity">SOLUTION</NuxtLink>
+        <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">CONTACT</NuxtLink>
       </nav>
 
       <div class="md:hidden">
@@ -17,7 +17,7 @@
           <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
-          <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg v-if="isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
@@ -29,10 +29,10 @@
           v-if="isMobileMenuOpen"
           class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg flex flex-col border-t border-gray-200"
       >
-        <NuxtLink @click="isMobileMenuOpen = false" to="/about" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">회사소개</NuxtLink>
+        <NuxtLink @click="isMobileMenuOpen = false" to="/about" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">ABOUT</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/projects" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SI/SM</NuxtLink>
-        <NuxtLink @click="isMobileMenuOpen = false" to="/services" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">솔루션</NuxtLink>
-        <NuxtLink @click="isMobileMenuOpen = false" to="/contact" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">문의하기</NuxtLink>
+        <NuxtLink @click="isMobileMenuOpen = false" to="/services" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
+        <NuxtLink @click="isMobileMenuOpen = false" to="/contact" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">CONTACT</NuxtLink>
       </nav>
     </transition>
   </header>
@@ -100,8 +100,7 @@ const headerClasses = computed(() => {
   // 구분선 색상:
   let borderColor;
   if (isInitialTransparentState) {
-    // 초기 투명 상태: 흰색 구분선 (반투명)
-    borderColor = 'border-b border-white/20';
+
   } else if (theme === 'dark' && isHomePage.value) {
     // ✨ 홈 페이지이고 다크 테마(ABOUT US 섹션 등): 검은색 구분선
     borderColor = 'border-b border-gray-800'; // 또는 border-black

@@ -8,12 +8,12 @@
       </p>
       <div class="flex flex-col items-center gap-4 sm:gap-6 md:gap-8 mb-8 md:mb-10 md:flex-row md:justify-center solution-cards">
         <div class="bg-white p-4 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-[350px] flex flex-col items-center text-center">
-          <img :src="ssoIconUrl" alt="SSO 아이콘" class="h-20 w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 mb-2 sm:mb-4 text-primary">
+          <NuxtImg :src="ssoIconUrl" alt="SSO 아이콘" class="h-20 w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 mb-2 sm:mb-4 text-primary"/>
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800">베리패스 (Berry-Pass)</h3>
 <!--          <p class="text-base md:text-lg text-gray-600 leading-normal">SSO 솔루션: 다양한 인증 통합 관리</p> -->
         </div>
         <div class="bg-white p-4 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-[350px] flex flex-col items-center text-center">
-          <img :src="scrapingIconUrl" alt="웹 자동화 아이콘" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 mb-2 sm:mb-4 text-primary">
+          <NuxtImg :src="scrapingIconUrl" alt="웹 자동화 아이콘" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 mb-2 sm:mb-4 text-primary"/>
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800">베리마인 (Berry-Mine)</h3>
 <!--           <p class="text-base md:text-lg text-gray-600 leading-normal">웹 자동화 솔루션: 정보 수집 및 RPA</p> -->
         </div>

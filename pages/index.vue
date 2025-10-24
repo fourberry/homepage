@@ -295,7 +295,6 @@ onUnmounted(() => {
         <HomeSectionSiSm />
         <HomeSectionSolutions />
         <HomeSectionCta />
-        <HomeSectionFooter />
       </div>
     </div>
   </div>
