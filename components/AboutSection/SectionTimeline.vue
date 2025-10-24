@@ -1,33 +1,33 @@
 <template>
   <section
-    class="py-20 bg-background relative overflow-hidden"
-    :style="{ height: sectionHeight + 'px' }"
+      class="py-20 bg-background relative overflow-hidden"
+      :style="{ height: sectionHeight + 'px' }"
   >
     <div class="max-w-6xl mx-auto px-6 relative">
       <h2 class="text-2xl md:text-3xl font-bold text-center">포베리 연혁</h2>
 
       <div
-        ref="timelineContainer"
-        class="mt-12 grid grid-cols-1 md:grid-cols-[9rem_1fr] gap-10 relative"
+          ref="timelineContainer"
+          class="mt-12 grid grid-cols-1 md:grid-cols-[9rem_1fr] gap-10 relative"
       >
         <!-- ✅ 세로 라인: 길이 고정 70vh, 섹션 안에서만 -->
         <div
-          class="hidden md:block absolute left-[7.3rem] top-1/2 -translate-y-1/2 w-px h-[70vh] bg-black/10 dark:bg-white/10"
+            class="hidden md:block absolute left-[7.3rem] top-1/2 -translate-y-1/2 w-px h-[70vh] bg-black/10 dark:bg-white/10"
         ></div>
 
         <!-- 좌측: 연도 리스트 -->
         <aside class="md:pr-4">
           <ul class="space-y-14 relative">
             <li
-              v-for="y in yearsDesc"
-              :key="y"
-              class="relative flex items-center gap-3 py-3"
+                v-for="y in yearsDesc"
+                :key="y"
+                class="relative flex items-center gap-3 py-3"
             >
               <!-- 연도 버튼 -->
               <button
-                class="w-[5.5rem] text-right font-semibold transition-colors"
-                :class="selectedYear === y ? 'text-black dark:text-white' : 'text-black/60 dark:text-white/60'"
-                @click="selectYear(y)"
+                  class="w-[5.5rem] text-right font-semibold transition-colors"
+                  :class="selectedYear === y ? 'text-black dark:text-white' : 'text-black/60 dark:text-white/60'"
+                  @click="selectYear(y)"
               >
                 {{ y }}
               </button>
@@ -35,14 +35,14 @@
               <!-- ✅ 점/원 (라인 중앙보다 살짝 위로 정렬) -->
               <span class="relative -translate-y-[3px]">
                 <span
-                  class="block w-2.5 h-2.5 rounded-full"
-                  :class="selectedYear === y
+                    class="block w-2.5 h-2.5 rounded-full"
+                    :class="selectedYear === y
                     ? 'bg-transparent border-2 border-black/60 dark:border-white/70'
                     : 'bg-black/30 dark:bg-white/30'"
                 ></span>
                 <span
-                  v-if="selectedYear === y"
-                  class="absolute -inset-1 rounded-full border-2 border-black/60 dark:border-white/70"
+                    v-if="selectedYear === y"
+                    class="absolute -inset-1 rounded-full border-2 border-black/60 dark:border-white/70"
                 ></span>
               </span>
             </li>
@@ -53,9 +53,9 @@
         <main class="md:pl-8">
           <div v-if="yearBlocks[selectedYear]" class="space-y-12">
             <div
-              v-for="(monthBlock, idx) in yearBlocks[selectedYear]"
-              :key="idx"
-              class="space-y-3"
+                v-for="(monthBlock, idx) in yearBlocks[selectedYear]"
+                :key="idx"
+                class="space-y-3"
             >
               <p class="text-black/60 dark:text-white/60 font-semibold">
                 {{ selectedYear }}.<span>{{ monthBlock.month }}</span>
@@ -63,13 +63,13 @@
 
               <ul class="space-y-3">
                 <li
-                  v-for="(text, j) in monthBlock.titles"
-                  :key="j"
-                  class="text-base leading-relaxed"
+                    v-for="(text, j) in monthBlock.titles"
+                    :key="j"
+                    class="text-base leading-relaxed"
                 >
                   <span
-                    class="font-semibold text-black dark:text-white"
-                    v-html="bold(text)"
+                      class="font-semibold text-black dark:text-white"
+                      v-html="bold(text)"
                   ></span>
                 </li>
               </ul>
@@ -145,10 +145,10 @@ onMounted(async () => {
     const temp = document.createElement('div')
     temp.className = 'absolute opacity-0 pointer-events-none w-[600px]'
     temp.innerHTML = yearBlocks.value[y]
-      ?.map(
-        (m) => `<p>${y}.${m.month}</p><ul>${m.titles.map((t) => `<li>${t}</li>`).join('')}</ul>`
-      )
-      .join('') || ''
+        ?.map(
+            (m) => `<p>${y}.${m.month}</p><ul>${m.titles.map((t) => `<li>${t}</li>`).join('')}</ul>`
+        )
+        .join('') || ''
     document.body.appendChild(temp)
     yearHeights.push(temp.scrollHeight)
     temp.remove()

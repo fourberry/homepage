@@ -3,8 +3,8 @@
     <AboutSectionTop />
     <AboutSectionInfo />
     <AboutSectionValues />
-    <AboutSectionCEO />
     <AboutSectionTimeline />
+    <AboutSectionCEO />
     <AboutSectionFact />
 
   </div>
