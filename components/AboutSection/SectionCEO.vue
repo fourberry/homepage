@@ -3,12 +3,16 @@
     <div class="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-28 md:py-40">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 lg:gap-24">
         
-        <!-- 왼쪽 정보 패널 (그대로 유지) -->
+        <!-- 왼쪽 정보 패널 -->
         <aside class="hidden md:block md:col-span-5 lg:col-span-4">
           <div class="lg:sticky lg:top-24 space-y-8">
             <div>
-              <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">인사말</h1>
-              <p class="mt-2 text-xl lg:text-2xl font-semibold text-gray-800">대표이사 우대식</p>
+              <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
+                인사말
+              </h1>
+              <p class="mt-2 text-xl lg:text-2xl font-semibold text-gray-800">
+                대표이사 우대식
+              </p>
             </div>
           </div>
         </aside>
@@ -17,19 +21,29 @@
         <article class="md:col-span-7 lg:col-span-8">
           <!-- 모바일 전용 헤더 -->
           <div class="block md:hidden mb-6">
-            <p class="text-lg font-semibold text-gray-800">대표이사 우대식</p>
+            <p class="text-lg font-semibold text-gray-800">
+              대표이사 우대식
+            </p>
           </div>
 
+          <!-- 제목 영역 -->
           <header class="mb-8 md:mb-10">
-  <h2
-    class="text-text text-3xl md:text-5xl lg:text-[64px] font-extrabold tracking-tight leading-tight whitespace-nowrap"
-  >
-    "기술의 중심에 사람이 있습니다."
-  </h2>
-</header>
+            <h2
+              class="text-text
+                     text-2xl leading-snug font-extrabold tracking-tight whitespace-normal
+                     md:text-5xl md:leading-tight md:whitespace-nowrap
+                     lg:text-[64px]"
+            >
+              "기술의 중심에 사람이 있습니다."
+            </h2>
+          </header>
 
+          <!-- 본문 -->
           <div class="border-l-0 md:border-l-4 lg:border-l-6 border-gray-200 pl-0 md:pl-8 lg:pl-10">
-            <div class="prose prose-gray max-w-none text-gray-800 leading-relaxed text-lg md:text-2xl lg:text-[22px]">
+            <div
+              class="prose prose-gray max-w-none text-gray-800 leading-relaxed
+                     text-lg md:text-2xl lg:text-[22px]"
+            >
               <p class="mb-8">
                 주식회사 포베리는 2023년 창업 이래 IT 분야에서
                 <span class="font-semibold text-secondary">기본이 되자는 목적과 사명의식</span>을 가지고
@@ -65,5 +79,4 @@
 </script>
 
 <style scoped>
-
 </style>

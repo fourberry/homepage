@@ -18,8 +18,13 @@
           :threshold="0.5"
         >
           <div
-            class="w-72 h-72 mx-auto mb-10 flex items-center justify-center rounded-full
-                         bg-white/40 backdrop-blur-md shadow-xl"
+            class="w-72 h-72 mx-auto mb-10 flex items-center justify-center rounded-full shadow-xl transition-colors duration-300"
+            :class="[
+              // i가 0일 때 (고객 중심) 스카이 블루 배경 적용
+              i === 0 ? 'bg-green-100/80' : 
+              // i가 1일 때 (기술 역량과 품질) 오렌지 배경 적용 (기존)
+              i === 1 ? 'bg-yellow-100/80' : 'bg-white/40 backdrop-blur-md',
+            ]"
           >
             <NuxtImg
               :src="item.iconUrl"
@@ -45,7 +50,7 @@
 <script setup lang="ts">
 const coreValuesWithIcons = [
   {
-    title: '사람 중심',
+    title: '고객 중심',
     desc: '모든 기술 발전의 최우선 가치이자 고객 경험의 출발점입니다.',
     iconUrl: '/images/people.png',
   },
@@ -57,7 +62,11 @@ const coreValuesWithIcons = [
   {
     title: '신뢰 기반 성장',
     desc: '투명한 소통과 협력을 통해 고객과 함께 지속적으로 성장합니다.',
-    iconUrl: '/images/growth.png',
+    iconUrl: '/images/growth2.jpg',
   },
 ];
 </script>
+
+<style scoped>
+/* 커스텀 스타일은 변경 사항 없음 */
+</style>
