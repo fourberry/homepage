@@ -92,6 +92,7 @@ const gotoSection = (toIndex: number, direction: number) => {
 
       // ✨ [추가] CTA 섹션(인덱스 4)으로 전환 완료 시 타이핑 시작
       if (toIndex === 4 && sectionCtaRef.value) {
+        console.log("test12345")
         sectionCtaRef.value.startTyping();
       }
     }
