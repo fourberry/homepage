@@ -2,6 +2,7 @@
   <div class="overflow-x-hidden">
     <AboutSectionTop />
     <AboutSectionInfo />
+    <AboutSectionStrength />
     <AboutSectionValues />
     <AboutSectionCEO />
     <AboutSectionTimeline />
