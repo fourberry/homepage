@@ -8,7 +8,7 @@
       </p>
       <div class="flex flex-col items-center gap-4 sm:gap-6 md:gap-8 mb-8 md:mb-10 md:flex-row md:justify-center solution-cards">
         <div class="bg-white p-4 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-[350px] flex flex-col items-center text-center">
-          <NuxtImg :src="ssoIconUrl" alt="SSO 아이콘" class="h-20 w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 mb-2 sm:mb-4 text-primary"/>
+          <NuxtImg :src="ssoIconUrl" alt="SSO 아이콘" class="h-20 w-20 sm:h-24 sm:w-24 md:h-72 md:w-72 mb-2 sm:mb-4 text-primary"/>
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800">베리패스 (Berry-Pass)</h3>
 <!--          <p class="text-base md:text-lg text-gray-600 leading-normal">SSO 솔루션: 다양한 인증 통합 관리</p> -->
         </div>
@@ -35,14 +35,11 @@
 // import bgImage3 from '../public/images/3.jpg'
 
 // ✨ 아이콘 이미지 경로 (실제 파일 경로로 변경 필요)
-const ssoIconUrl = '/images/sso_1.svg' // '../public/' 제거하고 '/' 로 시작
+const ssoIconUrl = '/images/sso_4.png' // '../public/' 제거하고 '/' 로 시작
 const scrapingIconUrl = '/images/web_scraper.svg'
 </script>
 
 <style scoped>
-.font-roman-section {
-  font-family: "Roman";
-}
 /* 카드 호버 효과는 유지 */
 .solution-cards .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

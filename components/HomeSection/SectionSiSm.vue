@@ -37,7 +37,4 @@
 </script>
 
 <style scoped>
-.font-roman-section {
-  font-family: "Roman";
-}
 </style>

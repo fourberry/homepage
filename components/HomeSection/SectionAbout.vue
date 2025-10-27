@@ -1,7 +1,8 @@
 <template>
   <BaseSection
       class="panel h-dvh bg-white"
-      text-color="#111827" >
+      text-color="#111827"
+      :background-image-url="bgImageUrl">
     <div class="text-center h-full flex flex-col justify-center py-8 px-4 sm:px-6">
       <h2 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 sm:mb-6 text-gray-900 section-title about-us-title">ABOUT US</h2>
       <p class="text-base sm:text-lg md:text-xl text-gray-700 mb-8 md:mb-12 leading-relaxed section-description">
@@ -56,6 +57,8 @@
 <script setup lang="ts">
 // 스크립트 부분은 기존 코드 그대로 사용합니다.
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+
+const bgImageUrl = '/images/2148144531.jpg'
 
 const areaImages = ref({
   si_sm: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1740&auto=format&fit=crop',
@@ -154,8 +157,9 @@ defineExpose({ businessAreas });
 </script>
 
 <style scoped>
+
 .about-us-title {
-  font-family: "Roman";
+  font-weight: 800;
 }
 .area-card-image {
   width: 100%;
