@@ -1,6 +1,6 @@
 <template>
   <BaseSection
-      class="panel h-dvh bg-white"  text-color="#ffffff"          :background-image-url="bgImageUrl"
+      class="panel h-dvh bg-white"  text-color="#ffffff"          background-image-url="/images/aboutUs.jpg"
       :overlay-opacity="0.1">     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 items-center h-full py-16 px-4 sm:px-6">
     <div class="text-left md:pr-8">
       <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 section-title about-us-title ">
@@ -58,7 +58,7 @@
 // 스크립트 부분은 변경 없음
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
-const bgImageUrl = '/images/2148144531.jpg' // cite: 18
+const bgImageUrl = '/images/aboutUs.jpg' // cite: 18
 
 const areaImages = ref({
   si_sm: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1740&auto=format&fit=crop',
