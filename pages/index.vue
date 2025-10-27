@@ -7,6 +7,7 @@ import { useHeaderTheme } from '~/composables/useHeaderTheme'
 import type SectionAbout from "~/components/HomeSection/SectionAbout.vue";
 import AppHeader from "~/components/AppHeader.vue";
 import { Flip } from 'gsap/Flip';
+import type SectionCta from "~/components/HomeSection/SectionCta.vue";
 
 // ✨ Flip 플러그인 등록
 gsap.registerPlugin(Flip, ScrollTrigger, Observer);
@@ -26,6 +27,13 @@ const sectionAboutRef = ref<InstanceType<typeof SectionAbout> & SectionAboutExpo
 
 // businessAreas ref (computed로 변경)
 const businessAreas = computed(() => sectionAboutRef.value?.businessAreas);
+
+// ✨ [추가] SectionCta 컴포넌트 ref 타입 정의
+interface SectionCtaExposed {
+  startTyping: () => void;
+}
+// ✨ [추가] SectionCta 컴포넌트 ref 선언
+const sectionCtaRef = ref<InstanceType<typeof SectionCta> & SectionCtaExposed | null>(null);
 
 const appHeaderRef = ref<InstanceType<typeof AppHeader> | null>(null);
 const introTextRef = ref<HTMLElement | null>(null); // ✨ Intro 텍스트 ref
@@ -81,6 +89,11 @@ const gotoSection = (toIndex: number, direction: number) => {
     onComplete: () => {
       animating = false;
       panelTls[toIndex]?.play();
+
+      // ✨ [추가] CTA 섹션(인덱스 4)으로 전환 완료 시 타이핑 시작
+      if (toIndex === 4 && sectionCtaRef.value) {
+        sectionCtaRef.value.startTyping();
+      }
     }
   });
 

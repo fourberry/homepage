@@ -1,49 +1,56 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 // --- ✨ 타이핑 효과를 위한 스크립트 시작 ✨ ---
 
-// 1. 표시될 텍스트를 위한 ref (처음엔 비어있음)
 const displayedLine1 = ref('');
 const displayedLine2 = ref('');
-
-// 2. 타이핑 완료 여부 (커서 위치 제어용)
 const isLine1Complete = ref(false);
+const isTypingStarted = ref(false); // ref 선언은 올바릅니다.
 
-// 3. 타이핑될 전체 문구
 const targetLine1 = "시스템은 사람이 중심이 되어야 합니다.";
 const targetLine2 = "지금 '사람 중심' IT를 완성하는 포베리와 함께하세요.";
+const typingSpeed = 100;
+const linePause = 500;
 
-// 4. 타이핑 속도 (ms)
-const typingSpeed = 100; // 100ms (0.1초)
-const linePause = 500; // 500ms (0.5초) - 1라인 완료 후 대기 시간
-
-// 5. 타이핑 함수
+// (typeLine1, typeLine2 함수는 변경 없음)
 function typeLine1() {
-  // 1라인 타이핑
   if (displayedLine1.value.length < targetLine1.length) {
     displayedLine1.value += targetLine1.charAt(displayedLine1.value.length);
     setTimeout(typeLine1, typingSpeed);
   } else {
-    // 1라인 완료
     isLine1Complete.value = true;
-    // 잠시 대기 후 2라인 시작
     setTimeout(typeLine2, linePause);
   }
 }
 
 function typeLine2() {
-  // 2라인 타이핑
   if (displayedLine2.value.length < targetLine2.length) {
     displayedLine2.value += targetLine2.charAt(displayedLine2.value.length);
     setTimeout(typeLine2, typingSpeed);
   }
-  // 2라인 완료 (커서가 v-if에 의해 자동으로 사라짐)
 }
 
-// 6. 컴포넌트 마운트 시 타이핑 시작
-onMounted(() => {
+
+// ✨ [수정] startTyping 함수 내부 수정
+function startTyping() {
+  // 중복 실행 방지 시 .value 사용
+  if (isTypingStarted.value) return;
+  // 값 변경 시 .value 사용
+  isTypingStarted.value = true;
+
+  // (초기화 로직은 동일)
+  displayedLine1.value = '';
+  displayedLine2.value = '';
+  isLine1Complete.value = false;
+
+  // 타이핑 시작 (동일)
   typeLine1();
+}
+
+// (defineExpose는 변경 없음)
+defineExpose({
+  startTyping
 });
 
 // --- ✨ 타이핑 효과 스크립트 끝 ✨ ---
@@ -62,11 +69,11 @@ onMounted(() => {
           <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
             <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
               {{ displayedLine1 }}
-              <span class="cursor" v-if="!isLine1Complete"></span>
+              <span class="cursor" v-if="!isLine1Complete.value"></span>
             </h2>
             <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
               {{ displayedLine2 }}
-              <span class="cursor" v-if="isLine1Complete && displayedLine2.length < targetLine2.length"></span>
+              <span class="cursor" v-if="isLine1Complete.value && displayedLine2.length < targetLine2.length"></span>
             </h2>
           </div>
 
