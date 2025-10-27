@@ -94,7 +94,7 @@ defineProps({
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center 70%;
   /* 홈 히어로 초기 상태는 index.vue 스크립트에서 제어 */
   opacity: 1; /* 기본적으로 보이도록 설정 */
   z-index: 0; /* 내용 뒤로 */
@@ -105,7 +105,7 @@ defineProps({
   clip-path: ellipse(0% 0% at 50% 100%);
   opacity: 0; /* 초기엔 안보임 */
   /* 홈 히어로 기본 배경 이미지 (index.vue 에서 사용하던 것) */
-  background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop');
+  background-image: url('https://images.unsplash.com/photo-1504177847824-d075f5706770?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1548');
 }
 
 .hero-content {

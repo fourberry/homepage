@@ -283,9 +283,9 @@ onUnmounted(() => {
 <template>
   <div>
 
-    <div v-if="isLoadingIntro" class="intro-overlay">
-      <h1 ref="introTextRef" class="intro-text">FOURBERRY</h1>
-    </div>
+<!--    <div v-if="isLoadingIntro" class="intro-overlay">-->
+<!--      <h1 ref="introTextRef" class="intro-text">FOURBERRY</h1>-->
+<!--    </div>-->
 
 
     <div v-show="!isLoadingIntro">
