@@ -15,6 +15,10 @@ defineProps({
     default: 0.5, // 기본값 50%
     // 값의 유효성 검사 (0과 1 사이)
     validator: (value: number) => value >= 0 && value <= 1,
+  },
+  fullWidth: { // ✨ fullWidth prop 추가
+    type: Boolean,
+    default: false,
   }
 })
 </script>
@@ -29,7 +33,7 @@ defineProps({
         class="background-image"
         :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity})), url('${backgroundImageUrl}')` }"
     ></div>
-    <div class="relative z-10 max-w-[1100px] mx-auto px-4 md:px-8 h-full">
+    <div class="relative z-10 h-full" :class="{ 'max-w-[1100px] mx-auto px-4 md:px-8': !fullWidth }" >
       <slot />
     </div>
   </section>

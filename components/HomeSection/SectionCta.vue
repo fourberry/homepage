@@ -6,14 +6,13 @@ import { ref } from 'vue';
 const displayedLine1 = ref('');
 const displayedLine2 = ref('');
 const isLine1Complete = ref(false);
-const isTypingStarted = ref(false); // ref 선언은 올바릅니다.
+const isTypingStarted = ref(false);
 
 const targetLine1 = "시스템은 사람이 중심이 되어야 합니다.";
 const targetLine2 = "지금 '사람 중심' IT를 완성하는 포베리와 함께하세요.";
 const typingSpeed = 100;
 const linePause = 500;
 
-// (typeLine1, typeLine2 함수는 변경 없음)
 function typeLine1() {
   if (displayedLine1.value.length < targetLine1.length) {
     displayedLine1.value += targetLine1.charAt(displayedLine1.value.length);
@@ -32,23 +31,17 @@ function typeLine2() {
 }
 
 
-// ✨ [수정] startTyping 함수 내부 수정
 function startTyping() {
-  // 중복 실행 방지 시 .value 사용
   if (isTypingStarted.value) return;
-  // 값 변경 시 .value 사용
   isTypingStarted.value = true;
 
-  // (초기화 로직은 동일)
   displayedLine1.value = '';
   displayedLine2.value = '';
   isLine1Complete.value = false;
 
-  // 타이핑 시작 (동일)
   typeLine1();
 }
 
-// (defineExpose는 변경 없음)
 defineExpose({
   startTyping
 });
@@ -58,57 +51,63 @@ defineExpose({
 
 <template>
   <BaseSection
-      class="panel h-dvh cta-section-identifier bg-primary"
-      text-color="#ffffff">
-    <div class="flex flex-col justify-between cta-section h-full py-8 px-4 sm:px-6">
+      class="panel h-dvh cta-section-identifier bg-black"
+      text-color="#ffffff" :fullWidth="true">
+    <div class="flex flex-col justify-between cta-section h-full py-8">
 
-      <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-12 md:gap-16 items-center justify-items-center">
+      <div class="flex-grow flex items-center justify-center">
+        <div class="max-w-screen-xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-12 md:gap-16 items-center justify-items-center">
+            <div class="inquiry text-center md:text-center">
+              <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+                  {{ displayedLine1 }}
+                  <span class="cursor" v-if="!isLine1Complete"></span>
+                </h2>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+                  {{ displayedLine2 }}
+                  <span class="cursor" v-if="isLine1Complete && displayedLine2.length < targetLine2.length"></span>
+                </h2>
+              </div>
 
-        <div class="inquiry text-center md:text-center">
+              <NuxtLink
+                  to="/contact"
+                  class="contact-button relative inline-flex items-center justify-center
+                        bg-black text-white
+                        w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48
+                        rounded-full
+                        no-underline font-bold text-base sm:text-lg md:text-xl
+                         transition-transform duration-500 ease-in-out">
 
-          <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
-            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
-              {{ displayedLine1 }}
-              <span class="cursor" v-if="!isLine1Complete.value"></span>
-            </h2>
-            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
-              {{ displayedLine2 }}
-              <span class="cursor" v-if="isLine1Complete.value && displayedLine2.length < targetLine2.length"></span>
-            </h2>
+                <span class="button-text relative z-10 block transition-transform duration-500 ease-in-out">
+                  문의하기
+                <span class="dot absolute w-2 h-2 bg-primary rounded-full ml-1 -mt-1 top-1/2 transition-colors duration-500 ease-in-out"></span>
+                </span>
+                <span class="circle _1"></span>
+                <span class="circle _2"></span>
+                <span class="circle _3"></span>
+                <span class="circle _4"></span>
+                <span class="circle _5"></span>
+                <span class="circle _6"></span>
+              </NuxtLink>
+            </div>
           </div>
-
-          <NuxtLink
-              to="/contact"
-              class="contact-button relative inline-flex items-center justify-center
-                     bg-black hover:bg-teal-500 text-white
-                     w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48
-                     rounded-full
-                     no-underline font-bold text-base sm:text-lg md:text-xl
-                     transition-colors duration-300 ease-in-out">
-
-            <span class="relative z-10">문의하기</span>
-            <span class="circle _1"></span>
-            <span class="circle _2"></span>
-            <span class="circle _3"></span>
-            <span class="circle _4"></span>
-            <span class="circle _5"></span>
-            <span class="circle _6"></span>
-          </NuxtLink>
         </div>
       </div>
-
-      <div class="footer-content border-t border-white/20 mt-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
-        <div class="flex flex-col items-center md:items-start text-center md:text-left">
-          <div class="font-bold text-lg text-white mb-1">
-            FOURBERRY
+      <div class="max-w-screen-xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div class="footer-content border-t border-white/20 mt-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
+          <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="font-bold text-lg text-white mb-1">
+              FOURBERRY
+            </div>
+            <div class="flex flex-col md:flex-row md:items-center gap-x-4 gap-y-1 text-xs">
+              <span>Addr: 서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</span>
+              <span>Email: damon@fourberry.co.kr</span>
+            </div>
           </div>
-          <div class="flex flex-col md:flex-row md:items-center gap-x-4 gap-y-1 text-xs">
-            <span>Addr: 서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</span>
-            <span>Email: damon@fourberry.co.kr</span>
+          <div class="text-center md:text-right text-xs text-white">
+            <p>&copy; 2025 FOURBERRY Inc. All rights reserved.</p>
           </div>
-        </div>
-        <div class="text-center md:text-right text-xs text-white">
-          <p>&copy; 2025 FOURBERRY Inc. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -116,86 +115,89 @@ defineExpose({
 </template>
 
 <style scoped>
-/* ✨ 새 애니메이션 키프레임 정의 */
-/* ✨ 새 애니메이션 키프레임 정의: 커졌다가 원래대로 돌아오며 투명해짐 */
-@keyframes pulse-outward {
-  0% {
-    transform: translate(-50%, -50%) scale(1); /* 시작: 버튼 크기, 약간 불투명 */
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2.0); /* 종료: 더 커진 상태, 완전히 투명 */
-    opacity: 0;
-  }
+/* ✨ 버튼 기본 스타일 및 회전 설정 */
+
+
+/* ✨ 내부 점 스타일 */
+.contact-button .dot {
+  /* Tailwind 클래스로 스타일링 */
 }
 
-/* ✨ 버튼 기본 스타일 수정 */
-.contact-button {
-  /* position: relative; */ /* Tailwind 'relative' 클래스 사용 */
-  /* overflow: hidden; */ /* Tailwind 'overflow-hidden' 클래스 사용 */
-  /* width, height, border-radius 등은 Tailwind 클래스로 지정 */
-  /* Flex centering 은 Tailwind 'inline-flex items-center justify-center' 사용 */
-}
-
-/* ✨ 애니메이션 원 스타일 변경 */
+/* ✨ 원형 테두리 스타일 */
 .contact-button .circle {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%; /* 버튼과 동일한 크기 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 부모 버튼 크기와 동일하게 */
   height: 100%;
-  background-color: transparent; /* 배경 없음 */
-  /* ✨ 테두리 두께 1px로 변경 */
-  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1); /* 중앙 정렬, 초기 크기 100% */
-  /* ✨ 애니메이션 이름, 지속시간, 타이밍 함수 변경 */
-  animation: pulse-outward 2.5s infinite linear; /* 새 이름, linear 타이밍 */
-  opacity: 0; /* 초기 상태는 투명 (애니메이션 시작 시 0% opacity로 설정됨) */
-  pointer-events: none;
+  box-sizing: border-box; /* 테두리 포함 크기 계산 */
+  pointer-events: none; /* 클릭 방해 방지 */
+  /* 애니메이션 적용 */
+  animation: gatherAndSpread 1s ease-in-out alternate infinite;
+  transition: all 0.5s ease; /* 호버 효과를 위한 트랜지션 */
 }
 
-/* ✨ 각 원에 애니메이션 지연 시간 적용 (간격 조정) */
-.contact-button ._1 { animation-delay: 0s; }
-.contact-button ._2 { animation-delay: 0.4s; } /* 간격 늘림 */
-.contact-button ._3 { animation-delay: 0.8s; }
-.contact-button ._4 { animation-delay: 1.2s; }
-.contact-button ._5 { animation-delay: 1.6s; }
-.contact-button ._6 { animation-delay: 2.0s; }
+/* ✨ 각 원의 테두리 색상 및 초기 위치 변수 설정 */
+.contact-button .circle._1 { --circle-y: -1.5rem; border: 1px solid rgba(255, 255, 255, 0.7); }
+.contact-button .circle._2 { --circle-y: -1rem;   border: 1px solid rgba(255, 255, 255, 0.7); }
+.contact-button .circle._3 { --circle-y: -0.5rem; border: 1px solid rgba(255, 255, 255, 0.7); }
+.contact-button .circle._4 { --circle-y: 0.5rem;  border: 1px solid rgba(255, 255, 255, 0.3); }
+.contact-button .circle._5 { --circle-y: 1rem;    border: 1px solid rgba(255, 255, 255, 0.3); }
+.contact-button .circle._6 { --circle-y: 1.5rem;  border: 1px solid rgba(255, 255, 255, 0.3); }
+/* 참고: translate 값(--circle-y)은 버튼 크기에 맞춰 조정 필요 */
 
-.footer-content {
-  /* border-top: 1px solid rgba(255, 255, 255, 0.2); */ /* Tailwind border 클래스 사용 */
-}
-/* --- ✨ 타이핑 커서 애니메이션 CSS 시작 ✨ --- */
 
-.cursor {
-  display: inline-block;
-  /* ✨ 커서의 높이를 글꼴에 맞게 1em으로 설정 */
-  height: 1em;
-  /* ✨ 커서의 두께 */
-  width: 3px;
-  /* ✨ 커서 색상 (텍스트 색상과 동일하게) */
-  background-color: #ffffff;
-  /* ✨ 텍스트 옆에 약간의 여백 */
-  margin-left: 8px;
-  /* ✨ 텍스트와 세로 정렬 */
-  vertical-align: middle;
-  /* ✨ 'blink' 애니메이션 적용 */
-  animation: blink 0.7s infinite;
-}
-
-/* 깜빡임 키프레임 */
-@keyframes blink {
+/* ✨ 원 이동 애니메이션 */
+@keyframes gatherAndSpread {
   0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
+    transform: translate(0, 0); /* 초기 위치 (중앙) */
   }
   100% {
-    opacity: 1;
+    /* 각 원에 설정된 --circle-y 변수만큼 이동 */
+    transform: translate(0, var(--circle-y));
   }
 }
 
-/* --- ✨ 타이핑 커서 애니메이션 CSS 끝 ✨ --- */
+/* --- ✨ 호버 효과 ✨ --- */
+.contact-button:hover {
+  background-color: #003da5; /* 상공의 민트색 배경 (#29D4C1) */
+  /* Tailwind의 hover:bg-teal-500 대신 사용 */
+}
+
+.contact-button:hover .button-text {
+  color: #fff; /* 호버 시 텍스트 색상 (필요시 조정) */
+}
+
+.contact-button:hover .dot {
+  background-color: #fff; /* 호버 시 점 색상 변경 */
+}
+
+/* 호버 시 원 애니메이션 멈추고 투명하게 */
+.contact-button:hover .circle {
+  animation: none; /* 애니메이션 중지 */
+  transform: translate(0, var(--circle-y)); /* 최종 위치 유지 */
+  border-color: transparent; /* 테두리 투명하게 */
+  opacity: 0; /* 부드럽게 사라지도록 (선택 사항) */
+}
+
+
+/* --- 기존 스타일 유지 --- */
+.footer-content {
+  /* border-top: 1px solid rgba(255, 255, 255, 0.2); */
+}
+.cursor {
+  display: inline-block;
+  height: 1em;
+  width: 3px;
+  background-color: #ffffff;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
 </style>
