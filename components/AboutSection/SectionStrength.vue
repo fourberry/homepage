@@ -11,7 +11,7 @@
       </h2>
 
       <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-        포베리는 기술의 본질과 미래를 탐구하며,<br />
+        기술의 본질과 미래를 탐구하며,<br />
         고객의 비즈니스에 가장 확실한 가치를 더합니다.
       </p>
     </header>
@@ -25,15 +25,15 @@
       >
         <!-- 배경 이미지 -->
         <NuxtImg
-          :src="strength.img"
-          :alt="strength.title + ' 이미지'"
-          class="w-full h-[360px] lg:h-[420px] object-cover object-center opacity-70 transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+  :src="strength.img"
+  :alt="strength.title + ' 이미지'"
+  class="w-full h-auto object-contain object-center opacity-70 transition-transform duration-500 group-hover:scale-105"
+  loading="lazy"
+/>
 
         <!-- 어둡게 덮는 반투명 레이어 -->
         <div
-          class="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-60 transition-colors duration-300"
+          class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-colors duration-300"
         ></div>
 
         <!-- 텍스트 콘텐츠 (가운데 정렬) -->
@@ -67,36 +67,33 @@
 const strengthItems = [
   {
     title: '기술의 본질을 탐구',
-    img: '/images/aboutMain.jpg',
+    img: '/images/bgcomputer.jpg',
     desc:
       '변화하는 기술 속에서도 \n' +
       '우리는 본질을 잃지 않습니다.',
   },
   {
     title: '유연한 사고, 민첩한 실행',
-    img: '/images/aboutMain.jpg',
+    img: '/images/orange.jpg',
     desc:
       '아이디어가 있으면 바로 실험!\n' +
       '신속한 피드백으로 완성도를 높입니다.',
   },
   {
     title: '끊임없는 개선',
-    img: '/images/aboutMain.jpg',
+    img: '/images/color.jpg',
     desc:
       "더 나은 오늘을 위해\n" +
       "우리는 늘 '다음'을 고민합니다.",
   },
   {
     title: '작은 팀, 큰 영향력',
-    img: '/images/aboutMain.jpg',
+    img: '/images/wave.jpg',
     desc:
-      '작은 팀이지만 큰 목표를 향해\n' +
+      '작은 팀이지만 큰 목표를 향해.\n' +
       '우리는 결과로 말합니다.',
   },
 ];
 </script>
 
-<style scoped>
-/* 지금은 Tailwind로 거의 커버되므로 커스텀 스타일 불필요.
-   추후 hover 효과 강화나 브레이크포인트별 높이 조정 가능 */
-</style>
+

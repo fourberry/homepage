@@ -9,5 +9,6 @@
     <AboutSectionCulture />
     <AboutSectionFact />
 
+
   </div>
 </template>
