@@ -101,7 +101,7 @@ defineExpose({
           </div>
         </div>
       </div>
-      <div class="max-w-8xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+      <div class="max-w-9xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div class="footer-content border-t border-white/20 mt-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
           <div class="flex flex-col items-center md:items-start text-center md:text-left">
             <div class="font-bold text-lg text-white mb-1">

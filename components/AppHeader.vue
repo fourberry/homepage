@@ -1,7 +1,7 @@
 <template>
   <header :class="headerClasses">
 
-    <div class="max-w-8xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center relative">
+    <div class="max-w-9xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center relative">
 
       <NuxtLink id="header-logo-text" to="/" class="font-bold text-2xl no-underline">FOURBERRY</NuxtLink>
 
