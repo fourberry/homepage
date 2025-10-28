@@ -41,7 +41,7 @@
         </div>
 
         <div class="relative rounded-lg overflow-hidden shadow-md h-24 md:h-28 group">
-          <img src="/images/whatWeDo_1.jpg" alt="IT 컨설팅 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+          <img src="/images/whatWeDo_5.jpg" alt="IT 컨설팅 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-white">
             <h3 class="text-lg md:text-xl font-semibold mb-1">IT 컨설팅</h3>

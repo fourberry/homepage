@@ -17,7 +17,7 @@
         </p>
       </div>
 
-      <div class="flex flex-col gap-2 lg:gap-3">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
 
         <div class="relative rounded-lg overflow-hidden shadow-md h-24 md:h-28 group">
           <NuxtImg src="/images/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100"/>
