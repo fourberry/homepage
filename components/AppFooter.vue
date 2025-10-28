@@ -17,7 +17,7 @@
   text-align: center;
   color: #6c757d;
   border-top: 1px solid #eaeaea;
-  margin-top: 2rem;
+ 
 }
 .container {
   max-width: 1200px;
