@@ -50,6 +50,10 @@ export default {
           'sans-serif', // 마지막 fallback
         ],
       },
+      maxWidth: {
+        '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)
+        '9xl': '1600px', // 1600px 너비
+      },
       // 3. 테두리 둥글기 (Border Radius): 정의하신 2xl 값을 유지합니다.
       borderRadius: {
         '2xl': '1rem',

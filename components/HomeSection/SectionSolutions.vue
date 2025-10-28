@@ -1,7 +1,9 @@
 <template>
   <BaseSection
-      class="panel h-dvh bg-white border-t border-black font-roman-section" text-color="#111827">
-    <div class="text-center h-full flex flex-col justify-center py-6 px-4 sm:px-6">
+      class="panel h-dvh bg-white border-t border-black font-roman-section"
+      text-color="#111827"
+  >
+    <div class="text-center h-full flex flex-col justify-center">
       <h2 class="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-3 sm:mb-6 section-title text-gray-900">SOLUTION PROGRAM</h2>
       <p class="text-base sm:text-lg md:text-xl text-gray-700 mb-2 md:mb-10 leading-relaxed section-description large">
         고객의 비즈니스에 새로운 가치를 더하는 포베리만의 기술력을 만나보세요.
@@ -10,12 +12,10 @@
         <div class="bg-white p-4 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-[350px] flex flex-col items-center text-center">
           <NuxtImg :src="ssoIconUrl" alt="SSO 아이콘" class="h-20 w-20 sm:h-24 sm:w-24 md:h-72 md:w-72 mb-2 sm:mb-4 text-primary"/>
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800">베리패스 (Berry-Pass)</h3>
-<!--          <p class="text-base md:text-lg text-gray-600 leading-normal">SSO 솔루션: 다양한 인증 통합 관리</p> -->
         </div>
         <div class="bg-white p-4 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-[350px] flex flex-col items-center text-center">
           <NuxtImg :src="scrapingIconUrl" alt="웹 자동화 아이콘" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 mb-2 sm:mb-4 text-primary"/>
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800">베리마인 (Berry-Mine)</h3>
-<!--           <p class="text-base md:text-lg text-gray-600 leading-normal">웹 자동화 솔루션: 정보 수집 및 RPA</p> -->
         </div>
       </div>
       <NuxtLink

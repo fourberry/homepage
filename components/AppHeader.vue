@@ -1,11 +1,12 @@
 <template>
   <header :class="headerClasses">
 
-    <div class="max-w-screen-xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+    <div class="max-w-8xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center relative">
 
       <NuxtLink id="header-logo-text" to="/" class="font-bold text-2xl no-underline">FOURBERRY</NuxtLink>
 
-      <nav class="hidden md:flex items-center space-x-6">
+      <nav class="hidden md:flex items-center space-x-6
+                  md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
         <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
         <NuxtLink to="/projects" class="text-base no-underline hover:opacity-80 transition-opacity">SI/SM</NuxtLink>
         <NuxtLink to="/services" class="text-base no-underline hover:opacity-80 transition-opacity">SOLUTION</NuxtLink>

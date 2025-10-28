@@ -1,8 +1,9 @@
 <template>
   <BaseSection
       class="panel h-dvh bg-white border-t border-black font-roman-section"
-      text-color="#111827" >
-    <div class="text-center h-full flex flex-col justify-center py-8 px-4 sm:px-6">
+      text-color="#111827"
+  >
+    <div class="text-center h-full flex flex-col justify-center">
       <h2 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 sm:mb-6 section-title text-gray-900">
         System Integration
       </h2>
@@ -37,4 +38,7 @@
 </script>
 
 <style scoped>
+/* 스타일은 수정할 필요 없습니다.
+  필요시 .details-button, .client-logos 등의 스타일을 여기에 추가하세요.
+*/
 </style>

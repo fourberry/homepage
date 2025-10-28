@@ -73,7 +73,7 @@ const gotoSection = (toIndex: number, direction: number) => {
   }
 
   // 헤더 테마 변경
-  if (toIndex === 1 || toIndex === 2 || toIndex === 3) {
+  if ( toIndex === 2 || toIndex === 3) {
     headerTheme.value = 'dark';
   } else {
     headerTheme.value = 'light';

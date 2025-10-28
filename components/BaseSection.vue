@@ -16,7 +16,7 @@ defineProps({
     // 값의 유효성 검사 (0과 1 사이)
     validator: (value: number) => value >= 0 && value <= 1,
   },
-  fullWidth: { // ✨ fullWidth prop 추가
+  fullWidth: { // ✨ fullWidth prop은 그대로 둡니다.
     type: Boolean,
     default: false,
   }
@@ -25,7 +25,7 @@ defineProps({
 
 <template>
   <section
-      class="relative py-12 px-4 md:py-24 md:px-8 section-container"
+      class="relative py-12 md:py-24 section-container"
       :style="{ color: textColor }"
   >
     <div
@@ -33,7 +33,11 @@ defineProps({
         class="background-image"
         :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity})), url('${backgroundImageUrl}')` }"
     ></div>
-    <div class="relative z-10 h-full" :class="{ 'max-w-[1100px] mx-auto px-4 md:px-8': !fullWidth }" >
+
+    <div
+        class="relative z-10 h-full"
+        :class="{ 'max-w-8xl mx-auto px-4 md:px-8': !fullWidth }"
+    >
       <slot />
     </div>
   </section>
@@ -51,7 +55,4 @@ defineProps({
   background-position: center;
   z-index: 0; /* 콘텐츠 뒤로 보내기 */
 }
-
-/* BaseSection 자체에만 적용할 스타일이 있다면 여기에 추가합니다. */
-/* .section-container { overflow: hidden; } /* 필요하다면 */
 </style>

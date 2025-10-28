@@ -13,6 +13,13 @@ const targetLine2 = "지금 '사람 중심' IT를 완성하는 포베리와 함�
 const typingSpeed = 100;
 const linePause = 500;
 
+// ✨ 1. useRuntimeConfig 훅을 사용해 설정값 가져오기
+const config = useRuntimeConfig()
+// ✨ 2. baseURL을 포함한 전체 이미지 경로 생성
+// nuxt.config.ts의 baseURL이 '/homepage/' 이므로, 'images/aboutUs.jpg' (앞에 / 제외)를 붙입니다.
+const imageUrl = `${config.app.baseURL}images/cta_1.svg`
+// const imageUrl = `${config.app.baseURL}images/cta_2.svg`
+
 function typeLine1() {
   if (displayedLine1.value.length < targetLine1.length) {
     displayedLine1.value += targetLine1.charAt(displayedLine1.value.length);
@@ -51,12 +58,12 @@ defineExpose({
 
 <template>
   <BaseSection
-      class="panel h-dvh cta-section-identifier bg-black"
-      text-color="#ffffff" :fullWidth="true">
+      class="panel h-dvh cta-section-identifier"
+      text-color="#ffffff" :fullWidth="true" :background-image-url="imageUrl">
     <div class="flex flex-col justify-between cta-section h-full py-8">
 
       <div class="flex-grow flex items-center justify-center">
-        <div class="max-w-screen-xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div class="max-w-8xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-12 md:gap-16 items-center justify-items-center">
             <div class="inquiry text-center md:text-center">
               <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
@@ -94,7 +101,7 @@ defineExpose({
           </div>
         </div>
       </div>
-      <div class="max-w-screen-xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+      <div class="max-w-8xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div class="footer-content border-t border-white/20 mt-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
           <div class="flex flex-col items-center md:items-start text-center md:text-left">
             <div class="font-bold text-lg text-white mb-1">
@@ -113,7 +120,6 @@ defineExpose({
     </div>
   </BaseSection>
 </template>
-
 <style scoped>
 /* ✨ 버튼 기본 스타일 및 회전 설정 */
 
