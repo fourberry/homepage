@@ -2,7 +2,7 @@
   <BaseSection
       class="panel bg-white border-t border-gray-200 py-16 md:py-24 h-dvh" text-color="#111827"
   >
-    <div class="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+    <div class="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center mt-4">
       <div class="text-center mb-10 md:mb-16">
         <h2 class="text-4xl md:text-[80px] font-extrabold mb-4 sm:mb-6 text-gray-900">
           WHAT WE DO

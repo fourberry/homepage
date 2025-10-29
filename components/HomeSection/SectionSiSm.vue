@@ -204,12 +204,13 @@ onMounted(() => {
                 transformPerspective: 1000
               });
 
+              let isFlipped = false;
               const tl = gsap.timeline({ paused: true });
               const timing = 1;
 
               // [수정됨] rotationY -> rotationX
               tl.to(card, {
-                rotationX: "+=180", // 세로로 +180도 회전
+                rotationX: 180, // 세로로 +180도 회전
                 duration: timing,
                 ease: "power2.inOut"
               });
@@ -222,10 +223,19 @@ onMounted(() => {
                 repeat: 1
               }, 0);
 
+
               // [수정 없음] 클릭 시 'additive' 재생
               const onClick = () => {
-                if (!tl.isActive()) {
-                  tl.restart();
+                if (tl.isActive()) {
+                  return;
+                }
+                isFlipped = !isFlipped;
+                if (isFlipped) {
+                  // true이면: face2로 (앞으로) 재생
+                  tl.play();
+                } else {
+                  // false이면: face1로 (뒤로) 재생
+                  tl.reverse();
                 }
               };
               card.addEventListener('click', onClick);
@@ -324,6 +334,7 @@ onUnmounted(() => {
 
     /* [수정됨] GSAP가 transform을 직접 제어하므로 transition에서 제거 */
     transition: z-index 0s var(--card-z-index-delay);
+    overflow: visible;
   }
 
   /* "SEE ALL" 카드도 동일한 높이 적용 */
@@ -345,18 +356,6 @@ onUnmounted(() => {
     scrollbar-width: none; /* Firefox */
   }
 
-  /* --- [새로 추가됨] 카드 구분선 --- */
-  .flex-card:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -0.5rem;
-    top: 15%;
-    bottom: 15%;
-    width: 1px;
-    background-color: #e5e7eb; /* gray-200 */
-    z-index: 5;
-  }
-
   /* --- [ ✨ 수정됨 ] 모바일 3D 플립을 위한 Face 스타일 오버라이드 --- */
 
   .card-face {
@@ -368,7 +367,7 @@ onUnmounted(() => {
 
   .face1 {
     /* [ ✨ 수정됨 ] rotateY(0) 대신 rotateX(0) */
-    transform: rotateX(0deg);
+    transform: translateY(0) rotateX(0deg);
   }
 
   .face2 {
@@ -377,74 +376,41 @@ onUnmounted(() => {
      * rotateY(180deg) 대신 rotateX(180deg) (세로로 뒤집기)
      * + rotateZ(180deg) (콘텐츠가 거꾸로 보이는 것을 방지하기 위해 미리 뒤집음)
      */
-    transform: rotateX(180deg) rotateZ(180deg);
-
+    transform: translateY(0) rotateX(180deg) rotateZ(0deg);
     /* [추가됨] 데스크톱 .face2에 있던 배경/블러 스타일 */
     background-color: rgba(255, 255, 255, 0.95);
 
   }
 
-  /*
-   * .is-active 시 데스크톱의 translateY 애니메이션 방지
-   * (데스크톱 Flip에는 필요하므로 하위 @media만 수정)
-   */
-  .flex-card.is-active .face1 {
-    transform: translateY(-100%); /* 데스크톱용 */
-
-    @media (max-width: 767px) {
-      /* [ ✨ 수정됨 ] */
-      transform: rotateX(0deg); /* 모바일 오버라이드 */
-    }
-  }
-  .flex-card.is-active .face2 {
-    transform: translateY(0); /* 데스크톱용 */
-
-    @media (max-width: 767px) {
-      /* [ ✨ 수정됨 ] */
-      transform: rotateX(180deg) rotateZ(180deg); /* 모바일 오버라이드 */
-    }
-  }
-  /* --- 3D 플립 스타일 끝 --- */
-
-
-  /* --- [수정 없음] 모바일 스크롤 버튼 스타일 (기존과 동일) --- */
   .mobile-arrow-container {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
+
   .arrow-btn {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background-color: #f3f4f6;
+    color: #374151;
+    transition: all 0.2s ease;
   }
 
-  @media (max-width: 767px) {
-    .mobile-arrow-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .arrow-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 9999px;
-      background-color: #f3f4f6;
-      color: #374151;
-      transition: all 0.2s ease;
-    }
-
-    .arrow-btn:active {
-      transform: scale(0.95);
-      background-color: #e5e7eb;
-    }
-
-    .arrow-btn.is-disabled {
-      opacity: 0.4;
-      pointer-events: none;
-    }
+  .arrow-btn:active {
+    transform: scale(0.95);
+    background-color: #e5e7eb;
   }
+
+  .arrow-btn.is-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
 }
 </style>
