@@ -17,7 +17,7 @@ const linePause = 500;
 const config = useRuntimeConfig()
 // ✨ 2. baseURL을 포함한 전체 이미지 경로 생성
 // nuxt.config.ts의 baseURL이 '/homepage/' 이므로, 'images/aboutUs.jpg' (앞에 / 제외)를 붙입니다.
-const imageUrl = `${config.app.baseURL}images/cta_1.svg`
+const imageUrl = `${config.app.baseURL}images/homeCta/cta_1.svg`
 // const imageUrl = `${config.app.baseURL}images/cta_2.svg`
 
 function typeLine1() {

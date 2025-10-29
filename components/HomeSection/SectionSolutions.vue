@@ -31,12 +31,10 @@
 </template>
 
 <script setup lang="ts">
-// ✨ 배경 이미지 import 제거
-// import bgImage3 from '../public/images/3.jpg'
 
 // ✨ 아이콘 이미지 경로 (실제 파일 경로로 변경 필요)
-const ssoIconUrl = '/images/sso_4.png' // '../public/' 제거하고 '/' 로 시작
-const scrapingIconUrl = '/images/web_scraper.svg'
+const ssoIconUrl = '/images/homeSolution/sso_4.png' // '../public/' 제거하고 '/' 로 시작
+const scrapingIconUrl = '/images/homeSolution/web_scraper.svg'
 </script>
 
 <style scoped>

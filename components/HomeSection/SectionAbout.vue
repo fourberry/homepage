@@ -18,7 +18,7 @@
           class="flex flex-col gap-2 lg:gap-3 wide-image-container"
       >
         <div class="relative rounded-lg overflow-hidden shadow-md h-16 md:h-28 group">
-          <img src="/images/whatWeDo_1.jpg" alt="시스템 통합 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+          <img src="/images/homeAbout/whatWeDo_1.jpg" alt="시스템 통합 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-white"> <h3 class="text-lg md:text-xl font-semibold mb-1">시스템 통합 및 유지보수</h3>
           <p class="text-xs md:text-sm text-white-300 leading-tight hidden md:block">비즈니스 환경에 최적화된 시스템 구축 및 운영</p>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="relative rounded-lg overflow-hidden shadow-md h-16 md:h-28 group">
-          <img src="/images/whatWeDo_2.jpg" alt="솔루션 개발 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100" style="object-position: 80% 80%;">
+          <img src="/images/homeAbout/whatWeDo_2.jpg" alt="솔루션 개발 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100" style="object-position: 80% 80%;">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-white">
             <h3 class="text-lg md:text-xl font-semibold mb-1">자체 솔루션 개발</h3>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="relative rounded-lg overflow-hidden shadow-md h-16 md:h-28 group">
-          <img src="/images/whatWeDo_3.jpg" alt="AI/빅데이터 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+          <img src="/images/homeAbout/whatWeDo_3.jpg" alt="AI/빅데이터 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-white">
             <h3 class="text-lg md:text-xl font-semibold mb-1">AI/빅데이터 R&D</h3>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="relative rounded-lg overflow-hidden shadow-md h-16 md:h-28 group">
-          <img src="/images/whatWeDo_5.jpg" alt="IT 컨설팅 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100" style="object-position: 20% 30%;">
+          <img src="/images/homeAbout/whatWeDo_5.jpg" alt="IT 컨설팅 배경" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80 group-hover:opacity-100" style="object-position: 20% 30%;">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-white">
             <h3 class="text-lg md:text-xl font-semibold mb-1">IT 컨설팅</h3>

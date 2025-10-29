@@ -25,7 +25,7 @@
 
           <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
             <div class="card-face face1">
-              <NuxtImg src="/images/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
+              <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
             </div>
             <div class="card-face face2">
               <NuxtImg src="/images/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-contain opacity-30 blur-sm"/>
@@ -40,7 +40,7 @@
 
           <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
             <div class="card-face face1">
-              <NuxtImg src="/images/hanaro.svg" alt="Hanaro Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
+              <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
             </div>
             <div class="card-face face2">
               <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-gray-900 text-left">
@@ -54,7 +54,7 @@
 
           <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
             <div class="card-face face1">
-              <NuxtImg src="/images/kobc.svg" alt="KOBC Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
+              <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
             </div>
             <div class="card-face face2">
               <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-gray-900 text-left">
