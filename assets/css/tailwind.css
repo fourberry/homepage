@@ -1,35 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 1. SCSS 변수 및 함수 임포트 (가장 먼저) */
+@import '~/assets/scss/abstract/_funtions.scss';
+@import '~/assets/scss/abstract/_variables.scss';
+@import '~/assets/scss/common.scss';
 
-@import '~/assets/scss/abstract/_functions.scss';/* 1._functions 파일은 도구이므로 가장 먼저 가져옵니다. */
-@import '~/assets/scss/abstract/_variables.scss';/* 1. _variables 파일은 도구이므로 가장 먼저 가져옵니다. */
-@import '~/assets/scss/common.scss';/* 2. common 파일은 전역 스타일을 적용하므로 그 다음에 가져옵니다. */
-
-/* 예: 공통 버튼 유틸 */
-.btn-primary {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-xl
-         bg-primary text-white hover:bg-blue-700 transition;
-}
-
+/* 2. @font-face 선언 */
 @font-face {
     font-family: 'Roman';
-    src: url('../fonts/aboutUs_2.woff2') format('woff2'), /* 실제 파일 경로로 수정 */
-    url('../fonts/aboutUs_1.woff') format('woff');  /* 실제 파일 경로로 수정 */
-    font-weight: 900; /* 예시 굵기 */
+    src: url('../fonts/aboutUs_2.woff2') format('woff2'),
+         url('../fonts/aboutUs_1.woff') format('woff');
+    font-weight: 900;
     font-style: normal;
-    font-display: swap; /* 폰트 로딩 중 대체 폰트 표시 */
-}
-
-@font-face {
-    font-family: 'DM Sans'; /* 폰트 이름 지정 */
-    src: url('../fonts/dm-sans.woff2') format('woff2'); /* 폰트 파일 경로 */
-    /* 필요에 따라 font-weight, font-style 등을 추가할 수 있습니다. */
-    font-weight: normal; /* 예시 */
-    font-style: normal;  /* 예시 */
     font-display: swap;
 }
-
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 @font-face {
   font-family: 'Happiness Sans';
   src: url('@/assets/fonts/Happiness-Sans-Regular.ttf') format('truetype');
@@ -48,3 +37,16 @@
   font-weight: 300;
   font-display: swap;
 }
+
+
+/* 3. Tailwind 기본 스타일 주입 */
+@tailwind base;
+@tailwind components;
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-xl bg-primary text-white hover:bg-blue-700 transition;
+}
+
+/* 5. Tailwind 유틸리티 (항상 맨 마지막) */
+/* 이 구문 뒤에는 다른 스타일을 정의하지 않는 것이 좋습니다. */
+@tailwind utilities;
