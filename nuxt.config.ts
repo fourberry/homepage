@@ -20,6 +20,13 @@ export default defineNuxtConfig({
     '~/assets/scss/common.scss',
   ],
 
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+
   // ✅ SSG (Static Site Generation)
   routeRules: {
     '/**': { prerender: true },
