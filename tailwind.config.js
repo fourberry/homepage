@@ -86,6 +86,14 @@ export default {
         'spin-slow': 'spin 3s linear infinite', //로딩 스피너
       },
     },
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      'desktop': '1200px', 
+    },
   },
 
   plugins: [],
