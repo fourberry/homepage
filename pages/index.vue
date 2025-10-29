@@ -184,14 +184,18 @@ const setupPanelsAndAnimations = () => {
     const strengthsListItems = gsap.utils.toArray(panel.querySelectorAll('.strengths li'));
     const inquiryTitle = panel.querySelector('.inquiry h2');
     const isCtaSection = i === 4; // CTA 섹션 인덱스 확인
+    const isAboutSection = i === 1;
 
     const contentTl = gsap.timeline({ paused: true });
-    const elementsToSet = [title, description, ...cards, buttons, logos, solution, ...strengthsListItems, inquiryTitle].filter(Boolean);
+    const elementsToSet = [(isAboutSection ? null : title),, description, ...cards, buttons, logos, solution, ...strengthsListItems, inquiryTitle].filter(Boolean);
 
     if (elementsToSet.length > 0) gsap.set(elementsToSet, { autoAlpha: 0, y: 30 });
 
+    if (isAboutSection && title) {
+      gsap.set(title, { autoAlpha: 1, y: 0 });
+    }
     // 일반 섹션 요소
-    if (title && !isCtaSection) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1);
+    if (title && !isCtaSection && !isAboutSection) contentTl.to(title, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.1);
     if (description) contentTl.to(description, { autoAlpha: 1, y: 0, duration: 0.6 }, '<0.1');
     if (cards.length > 0) contentTl.to(cards, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.5 }, '<0.2');
     if (logos) contentTl.to(logos, { autoAlpha: 1, y: 0, duration: 0.5 }, '<0.1');

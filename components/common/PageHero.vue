@@ -35,7 +35,7 @@ defineProps({
     ></div>
 
     <div class="hero-content">
-      <h1 v-if="title" v-html="title"></h1>
+      <h1 class="break-keep" v-if="title" v-html="title"></h1>
       <p v-if="subtitle" class="hero-subtitle">{{ subtitle }}</p>
     </div>
 <!--    <div v-if="isHome" class="scroll-indicator">-->
