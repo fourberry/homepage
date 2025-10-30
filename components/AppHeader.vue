@@ -7,7 +7,7 @@
 
       <nav class="hidden md:flex items-center space-x-6
                   md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-        <NuxtLink to="/pages" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
+        <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
         <NuxtLink to="/projects" class="text-base no-underline hover:opacity-80 transition-opacity">SI/SM</NuxtLink>
         <NuxtLink to="/services" class="text-base no-underline hover:opacity-80 transition-opacity">SOLUTION</NuxtLink>
         <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">CONTACT</NuxtLink>
@@ -52,7 +52,7 @@
           v-if="isMobileMenuOpen"
           class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg flex flex-col border-t border-gray-200"
       >
-        <NuxtLink @click="isMobileMenuOpen = false" to="/pages" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+        <NuxtLink @click="isMobileMenuOpen = false" to="/about" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">ABOUT</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/projects" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SI/SM</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/services" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/contact" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">CONTACT</NuxtLink>
