@@ -1,13 +1,13 @@
 <template>
   <div class="overflow-x-hidden">
-    <AboutSectionTop />
-    <AboutSectionInfo />
-    <AboutSectionStrength />
-    <AboutSectionValues />
-    <AboutSectionCEO />
-    <AboutSectionTimeline />
-    <AboutSectionCulture />
-    <AboutSectionFact />
+    <HomeSectionTop />
+    <HomeSectionInfo />
+    <HomeSectionStrength />
+    <HomeSectionValues />
+    <HomeSectionCEO />
+    <HomeSectionTimeline />
+    <HomeSectionCulture />
+    <HomeSectionFact />
 
 
   </div>

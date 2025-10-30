@@ -4,10 +4,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Observer } from 'gsap/Observer'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
-import type SectionAbout from "~/components/HomeSection/SectionAbout.vue";
+import type SectionAbout from "~/components/HomeSectionbefore/SectionAbout.vue";
 import AppHeader from "~/components/AppHeader.vue";
 import { Flip } from 'gsap/Flip'; // Flip은 사용하지 않으므로 제거해도 됩니다.
-import type SectionCta from "~/components/HomeSection/SectionCta.vue";
+import type SectionCta from "~/components/HomeSectionbefore/SectionCta.vue";
 
 // Flip 플러그인은 사용하지 않으므로 등록 제거 가능
 gsap.registerPlugin(ScrollTrigger, Observer); // Flip 제거

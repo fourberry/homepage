@@ -1,8 +1,7 @@
 <template>
   <section
       class="relative min-h-[560px] overflow-hidden
-           mt-[var(--header-h,70px)]
-           h-[calc(100vh-var(--header-h,80px))]"
+           h-screen"
   >
     <img
         src="/images/aboutMain.jpg"
