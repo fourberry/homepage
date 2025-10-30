@@ -15,7 +15,7 @@ defineProps({
     required: false,
     default: '', // 배경 이미지가 없을 수도 있음
   },
-  // index.vue 에서만 사용되는 특별한 스타일/구조를 위한 prop (선택적)
+  // 에서만 사용되는 특별한 스타일/구조를 위한 prop (선택적)
   isHome: {
     type: Boolean,
     default: false,
@@ -95,7 +95,7 @@ defineProps({
   height: 100%;
   background-size: cover;
   background-position: center 70%;
-  /* 홈 히어로 초기 상태는 index.vue 스크립트에서 제어 */
+  /* 홈 히어로 초기 상태는  스크립트에서 제어 */
   opacity: 1; /* 기본적으로 보이도록 설정 */
   z-index: 0; /* 내용 뒤로 */
 }
@@ -104,7 +104,7 @@ defineProps({
 .home-hero .hero-background-image {
   clip-path: ellipse(0% 0% at 50% 100%);
   opacity: 0; /* 초기엔 안보임 */
-  /* 홈 히어로 기본 배경 이미지 (index.vue 에서 사용하던 것) */
+  /* 홈 히어로 기본 배경 이미지 ( 에서 사용하던 것) */
   background-image: url('https://images.unsplash.com/photo-1504177847824-d075f5706770?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1548');
 }
 
