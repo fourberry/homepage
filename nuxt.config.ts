@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/homepage/',
     head: {
-      titleTemplate: '%s · Company',
+      titleTemplate: '%s · (주)포베리',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: '회사 소개 웹사이트' },
