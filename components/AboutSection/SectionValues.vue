@@ -1,9 +1,22 @@
 <template>
   <section class="py-32 md:py-40 bg-background">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-accent text-center mb-20">
+    <!-- 상단 헤더 -->
+    <header class="text-center mb-16 md:mb-24 max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+      <p class="text-sm tracking-widest uppercase font-semibold text-red-300 mb-2">
+        Values
+      </p>
+
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
         핵심 가치
       </h2>
+
+      <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+        기술의 본질과 미래를 탐구하며,<br />
+        고객의 비즈니스에 가장 확실한 가치를 더합니다.
+      </p>
+    </header>
+    
 
       <ul class="grid sm:grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-28 mt-12">
         <li

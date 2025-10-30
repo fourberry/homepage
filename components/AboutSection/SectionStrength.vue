@@ -15,6 +15,7 @@
         고객의 비즈니스에 가장 확실한 가치를 더합니다.
       </p>
     </header>
+    
 
     <!-- 카드 그리드 -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-0 w-full">
@@ -25,11 +26,11 @@
       >
         <!-- 배경 이미지 -->
         <NuxtImg
-  :src="strength.img"
-  :alt="strength.title + ' 이미지'"
-  class="w-full h-auto object-contain object-center opacity-70 transition-transform duration-500 group-hover:scale-105"
-  loading="lazy"
-/>
+          :src="strength.img"
+          :alt="strength.title + ' 이미지'"
+          class="w-full h-auto object-contain object-center opacity-70 transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
 
         <!-- 어둡게 덮는 반투명 레이어 -->
         <div
