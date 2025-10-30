@@ -105,14 +105,19 @@ const headerClasses = computed(() => {
   const backgroundAndPosition = isInitialTransparentState
       ? 'absolute bg-transparent'
       : 'fixed bg-white';
-  const textColor = theme === 'dark' ? 'text-gray-800' : 'text-white';
+  // 새 로직
+  let textColor;
   let borderColor;
+
   if (isInitialTransparentState) {
-    // 투명 상태일 땐 구분선 없음
-  } else if (theme === 'dark' && isHomePage.value) {
-    borderColor = 'border-b border-gray-800';
+    // 1. 홈페이지 최상단 (스크롤 0)
+    // 요청하신대로 글씨를 투명하게 설정합니다.
+    textColor = 'text-transparent';
+    borderColor = ''; // 테두리 없음
   } else {
-    borderColor = 'border-b border-gray-200';
+    // 2. 스크롤을 내렸거나, 다른 페이지일 경우
+    // 배경이 흰색이 되므로 글씨를 검은색으로 설정합니다.
+    textColor = 'text-gray-800';
   }
 
   return [
