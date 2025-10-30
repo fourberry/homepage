@@ -5,7 +5,7 @@
 
       <!-- 섹션 타이틀 -->
       <h3 class="text-white text-2xl md:text-3xl font-bold mb-8 tracking-tight">
-        오시는 길
+        LOCATION
       </h3>
 
       <!-- 2컬럼 레이아웃 -->

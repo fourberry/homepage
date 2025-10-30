@@ -31,13 +31,23 @@
         >
           <!-- 이미지 -->
           <div
-            class="w-full aspect-square bg-gray-100 overflow-hidden border border-gray-200 rounded-2xl shadow-sm"
+            :class="[
+              'w-full aspect-square overflow-hidden rounded-2xl shadow-sm flex items-center justify-center transition-colors duration-300',
+              item.title === '유연근무제'
+                ? 'bg-slate-300'
+                : item.title === '자기계발비 지원'
+                ? 'bg-lime-50'
+                : 'bg-gray-100',
+            ]"
           >
             <NuxtImg
               :src="item.img"
               :alt="item.title + ' 이미지'"
-              class="w-full h-full object-cover object-center"
               loading="lazy"
+              class="w-full h-full object-center"
+              :class="item.title === '유연근무제'
+                ? 'object-contain'
+                : 'object-cover'"
             />
           </div>
 
@@ -65,7 +75,7 @@
 const cultureItems = [
   {
     title: "유연근무제",
-    img: "/images/working.png",
+    img: "/images/work.png",
     desc:
       "8시 ~ 10시 사이에 자율적으로 출근해요.\n" +
       "업무 효율은 높이고 워라밸은 확실하게!",
@@ -84,7 +94,7 @@ const cultureItems = [
   },
   {
     title: "자기계발비 지원",
-    img: "/images/allowance.jpg",
+    img: "/images/allowance2.png",
     desc:
       "책, 강의(인프런), 세미나 등\n" +
       "배움에 대한 투자 적극 환영합니다.",
