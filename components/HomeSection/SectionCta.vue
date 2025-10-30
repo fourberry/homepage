@@ -1,73 +1,15 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-
-// --- ✨ 타이핑 효과를 위한 스크립트 시작 ✨ ---
-
-const displayedLine1 = ref('');
-const displayedLine2 = ref('');
-const isLine1Complete = ref(false);
-const isTypingStarted = ref(false);
-
-const targetLine1 = "시스템은 사람이 중심이 되어야 합니다.";
-const targetLine2 = "지금 '사람 중심' IT를 완성하는 포베리와 함께하세요.";
-const typingSpeed = 100;
-const linePause = 500;
-
-// ✨ 1. useRuntimeConfig 훅을 사용해 설정값 가져오기
-const config = useRuntimeConfig()
-// ✨ 2. baseURL을 포함한 전체 이미지 경로 생성
-// nuxt.config.ts의 baseURL이 '/homepage/' 이므로, 'images/aboutUs.jpg' (앞에 / 제외)를 붙입니다.
-const imageUrl = `${config.app.baseURL}images/homeCta/cta_1.svg`
-// const imageUrl = `${config.app.baseURL}images/cta_2.svg`
-
-function typeLine1() {
-  if (displayedLine1.value.length < targetLine1.length) {
-    displayedLine1.value += targetLine1.charAt(displayedLine1.value.length);
-    setTimeout(typeLine1, typingSpeed);
-  } else {
-    isLine1Complete.value = true;
-    setTimeout(typeLine2, linePause);
-  }
-}
-
-function typeLine2() {
-  if (displayedLine2.value.length < targetLine2.length) {
-    displayedLine2.value += targetLine2.charAt(displayedLine2.value.length);
-    setTimeout(typeLine2, typingSpeed);
-  }
-}
-
-
-function startTyping() {
-  if (isTypingStarted.value) return;
-  isTypingStarted.value = true;
-
-  displayedLine1.value = '';
-  displayedLine2.value = '';
-  isLine1Complete.value = false;
-
-  typeLine1();
-}
-
-defineExpose({
-  startTyping
-});
-
-// --- ✨ 타이핑 효과 스크립트 끝 ✨ ---
-</script>
-
 <template>
   <BaseSection
       class="panel h-dvh cta-section-identifier"
       text-color="#ffffff" :fullWidth="true" :background-image-url="imageUrl">
-    <div class="flex flex-col justify-between cta-section h-full py-8">
+    <div class="flex flex-col justify-between cta-section h-full pt-8">
 
       <div class="flex-grow flex items-center justify-center">
         <div class="max-w-8xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-12 md:gap-16 items-center justify-items-center">
             <div class="inquiry text-center md:text-center">
               <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+                <h2 class="text-3xl break-keep sm:text-4xl md:text-6xl font-extrabold leading-tight whitespace-nowrap">
                   {{ displayedLine1 }}
                   <span class="cursor" v-if="!isLine1Complete"></span>
                 </h2>
@@ -120,6 +62,65 @@ defineExpose({
     </div>
   </BaseSection>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+// --- ✨ 타이핑 효과를 위한 스크립트 시작 ✨ ---
+
+const displayedLine1 = ref('');
+const displayedLine2 = ref('');
+const isLine1Complete = ref(false);
+const isTypingStarted = ref(false);
+
+const targetLine1 = "아이디어를 실천하는 힘, 다양한 지식과 경험에서 나옵니다.";
+const targetLine2 = "결과로 증명하는 포베리와 지금 함께하세요.";
+const typingSpeed = 100;
+const linePause = 500;
+
+// ✨ 1. useRuntimeConfig 훅을 사용해 설정값 가져오기
+const config = useRuntimeConfig()
+// ✨ 2. baseURL을 포함한 전체 이미지 경로 생성
+// nuxt.config.ts의 baseURL이 '/homepage/' 이므로, 'images/aboutUs.jpg' (앞에 / 제외)를 붙입니다.
+const imageUrl = `${config.app.baseURL}images/homeCta/cta_1.svg`
+// const imageUrl = `${config.app.baseURL}images/cta_2.svg`
+
+function typeLine1() {
+  if (displayedLine1.value.length < targetLine1.length) {
+    displayedLine1.value += targetLine1.charAt(displayedLine1.value.length);
+    setTimeout(typeLine1, typingSpeed);
+  } else {
+    isLine1Complete.value = true;
+    setTimeout(typeLine2, linePause);
+  }
+}
+
+function typeLine2() {
+  if (displayedLine2.value.length < targetLine2.length) {
+    displayedLine2.value += targetLine2.charAt(displayedLine2.value.length);
+    setTimeout(typeLine2, typingSpeed);
+  }
+}
+
+
+function startTyping() {
+  if (isTypingStarted.value) return;
+  isTypingStarted.value = true;
+
+  displayedLine1.value = '';
+  displayedLine2.value = '';
+  isLine1Complete.value = false;
+
+  typeLine1();
+}
+
+defineExpose({
+  startTyping
+});
+
+// --- ✨ 타이핑 효과 스크립트 끝 ✨ ---
+</script>
+
 <style scoped>
 /* ✨ 버튼 기본 스타일 및 회전 설정 */
 
