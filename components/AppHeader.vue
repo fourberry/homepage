@@ -18,16 +18,23 @@
           class="md:hidden z-50 relative flex justify-center items-center w-8 h-8"
           aria-label="메뉴 토글"
       >
-        <span
-            ref="lineHorizontal"
-            class="block absolute w-6 h-0.5 transition-colors duration-300 ease-in-out"
-            :class="lineClasses"
-        ></span>
-        <span
-            ref="lineVertical"
-            class="block absolute w-0.5 h-6 transition-colors duration-300 ease-in-out"
-            :class="lineClasses"
-        ></span>
+        <div class="relative w-6 h-4">
+          <span
+              ref="lineTop"
+              class="block absolute left-0 top-0 w-full h-0.5 transition-colors duration-300 ease-in-out"
+              :class="lineClasses"
+          ></span>
+          <span
+              ref="lineMiddle"
+              class="block absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 transition-colors duration-300 ease-in-out"
+              :class="lineClasses"
+          ></span>
+          <span
+              ref="lineBottom"
+              class="block absolute left-0 bottom-0 w-full h-0.5 transition-colors duration-300 ease-in-out"
+              :class="lineClasses"
+          ></span>
+        </div>
       </button>
 
     </div>
@@ -73,8 +80,9 @@ const effectiveTheme = computed(() => {
 
 // --- 모바일 메뉴 로직 (수정됨) ---
 const isMobileMenuOpen = ref(false)
-const lineHorizontal = ref<HTMLElement | null>(null) // 가로선 ref
-const lineVertical = ref<HTMLElement | null>(null)   // 세로선 ref
+const lineTop = ref<HTMLElement | null>(null)
+const lineMiddle = ref<HTMLElement | null>(null)
+const lineBottom = ref<HTMLElement | null>(null)
 const menuTimeline = ref<gsap.core.Timeline | null>(null)
 
 const toggleMobileMenu = () => {
@@ -141,11 +149,24 @@ const setupScrollTrigger = () => {
 // --- 생명주기 로직 (수정됨) ---
 onMounted(() => {
   // GSAP +/X 타임라인 초기화 (수정됨)
-  if (process.client && lineHorizontal.value && lineVertical.value) {
+  if (process.client && lineTop.value && lineMiddle.value && lineBottom.value) {
+
+    // transform-origin을 중앙으로 설정
+    gsap.set([lineTop.value, lineBottom.value], { transformOrigin: '50% 50%' });
+
     menuTimeline.value = gsap.timeline({ paused: true, defaults: { duration: 0.3, ease: 'power2.inOut' } })
-        // 두 선을 동시에 45도 회전
-        .to(lineHorizontal.value, { rotate: 45 }, 0)
-        .to(lineVertical.value, { rotate: 45 }, 0);
+        // ✨ [기존] +/X 애니메이션 삭제
+        // .to(lineHorizontal.value, { rotate: 45 }, 0)
+        // .to(lineVertical.value, { rotate: 45 }, 0);
+
+        // ✨ [신규] 햄버거 -> X 애니메이션
+        // 1. 중간 선을 숨김
+        .to(lineMiddle.value, { opacity: 0 }, 0)
+        // 2. 윗쪽 선을 45도 회전시키고 중앙으로 이동
+        // (h-4 컨테이너(16px)의 절반(8px) - h-0.5(2px)의 절반(1px) = 7px 이동)
+        .to(lineTop.value, { y: 7, rotate: 45 }, 0)
+        // 3. 아랫쪽 선을 -45도 회전시키고 중앙으로 이동
+        .to(lineBottom.value, { y: -7, rotate: -45 }, 0);
   }
 
   // --- (기존 onMounted 로직) ---
