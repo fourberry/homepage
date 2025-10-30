@@ -38,6 +38,7 @@ export default {
         sans: [
           'Happiness Sans',
           'Pretendard',
+          'Pretendard Variable', 
           'DM Sans', // 사용자 정의 웹 폰트
           '-apple-system', // 시스템 폰트 시작
           'BlinkMacSystemFont',
