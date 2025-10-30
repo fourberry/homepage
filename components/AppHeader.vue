@@ -7,7 +7,7 @@
 
       <nav class="hidden md:flex items-center space-x-6
                   md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-        <NuxtLink to="/about" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
+        <NuxtLink to="/pages" class="text-base no-underline hover:opacity-80 transition-opacity">ABOUT</NuxtLink>
         <NuxtLink to="/projects" class="text-base no-underline hover:opacity-80 transition-opacity">SI/SM</NuxtLink>
         <NuxtLink to="/services" class="text-base no-underline hover:opacity-80 transition-opacity">SOLUTION</NuxtLink>
         <NuxtLink to="/contact" class="text-base no-underline hover:opacity-80 transition-opacity">CONTACT</NuxtLink>
@@ -20,19 +20,27 @@
       >
         <div class="relative w-6 h-4">
           <span
-              ref="lineTop"
-              class="block absolute left-0 top-0 w-full h-0.5 transition-colors duration-300 ease-in-out"
-              :class="lineClasses"
+              class="block absolute left-0 top-0 w-full h-0.5 origin-center transition-all duration-300 ease-in-out"
+              :class="[
+                lineClasses,
+                isMobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
+              ]"
           ></span>
+
           <span
-              ref="lineMiddle"
-              class="block absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 transition-colors duration-300 ease-in-out"
-              :class="lineClasses"
+              class="block absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 transition-all duration-300 ease-in-out"
+              :class="[
+                lineClasses,
+                isMobileMenuOpen ? 'opacity-0' : ''
+              ]"
           ></span>
+
           <span
-              ref="lineBottom"
-              class="block absolute left-0 bottom-0 w-full h-0.5 transition-colors duration-300 ease-in-out"
-              :class="lineClasses"
+              class="block absolute left-0 bottom-0 w-full h-0.5 origin-center transition-all duration-300 ease-in-out"
+              :class="[
+                lineClasses,
+                isMobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+              ]"
           ></span>
         </div>
       </button>
@@ -44,7 +52,7 @@
           v-if="isMobileMenuOpen"
           class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg flex flex-col border-t border-gray-200"
       >
-        <NuxtLink @click="isMobileMenuOpen = false" to="/about" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+        <NuxtLink @click="isMobileMenuOpen = false" to="/pages" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">ABOUT</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/projects" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SI/SM</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/services" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
         <NuxtLink @click="isMobileMenuOpen = false" to="/contact" class="px-6 py-3 text-gray-800 font-medium no-underline hover:bg-gray-50">CONTACT</NuxtLink>
@@ -80,10 +88,6 @@ const effectiveTheme = computed(() => {
 
 // --- 모바일 메뉴 로직 (수정됨) ---
 const isMobileMenuOpen = ref(false)
-const lineTop = ref<HTMLElement | null>(null)
-const lineMiddle = ref<HTMLElement | null>(null)
-const lineBottom = ref<HTMLElement | null>(null)
-const menuTimeline = ref<gsap.core.Timeline | null>(null)
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
@@ -93,15 +97,6 @@ const toggleMobileMenu = () => {
 const lineClasses = computed(() => [
   effectiveTheme.value === 'dark' ? 'bg-gray-800' : 'bg-white'
 ])
-
-// GSAP 애니메이션 Watcher
-watch(isMobileMenuOpen, (isOpen) => {
-  if (isOpen) {
-    menuTimeline.value?.play()
-  } else {
-    menuTimeline.value?.reverse()
-  }
-})
 
 // --- Tailwind 클래스 바인딩 로직 ---
 const headerClasses = computed(() => {
@@ -148,26 +143,6 @@ const setupScrollTrigger = () => {
 
 // --- 생명주기 로직 (수정됨) ---
 onMounted(() => {
-  // GSAP +/X 타임라인 초기화 (수정됨)
-  if (process.client && lineTop.value && lineMiddle.value && lineBottom.value) {
-
-    // transform-origin을 중앙으로 설정
-    gsap.set([lineTop.value, lineBottom.value], { transformOrigin: '50% 50%' });
-
-    menuTimeline.value = gsap.timeline({ paused: true, defaults: { duration: 0.3, ease: 'power2.inOut' } })
-        // ✨ [기존] +/X 애니메이션 삭제
-        // .to(lineHorizontal.value, { rotate: 45 }, 0)
-        // .to(lineVertical.value, { rotate: 45 }, 0);
-
-        // ✨ [신규] 햄버거 -> X 애니메이션
-        // 1. 중간 선을 숨김
-        .to(lineMiddle.value, { opacity: 0 }, 0)
-        // 2. 윗쪽 선을 45도 회전시키고 중앙으로 이동
-        // (h-4 컨테이너(16px)의 절반(8px) - h-0.5(2px)의 절반(1px) = 7px 이동)
-        .to(lineTop.value, { y: 7, rotate: 45 }, 0)
-        // 3. 아랫쪽 선을 -45도 회전시키고 중앙으로 이동
-        .to(lineBottom.value, { y: -7, rotate: -45 }, 0);
-  }
 
   // --- (기존 onMounted 로직) ---
   if (isHomePage.value) {

@@ -12,6 +12,7 @@
         <p class=" text-xl sm:text-lg md:text-[40px] font-bold  text-gray-950 leading-relaxed max-w-3xl mx-auto">
           포베리는 AICBM 기술을 중심으로 고객의 비즈니스에 새로운 가치를 더하는 SI/SM 사업을 수행합니다.
         </p>
+        <div class="font-bold">테스트</div>
       </div>
 
       <div class="w-full">

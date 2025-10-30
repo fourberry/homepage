@@ -69,7 +69,7 @@ onMounted(() => {
 main {
   /* main 영역이 최소한 뷰포트 높이만큼 차지하도록 설정 */
   min-height: 100vh; /* 변경: 80vh -> 100vh 또는 필요에 따라 조정 */
-  display: flex; /* 내부 컨텐츠를 flex로 관리 (index.vue 패널 구조와 충돌 방지) */
+  display: flex; /* 내부 컨텐츠를 flex로 관리 ( 패널 구조와 충돌 방지) */
   flex-direction: column;
 }
 .layout-wrapper {
