@@ -38,6 +38,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('@/assets/fonts/PretendardVariable.woff2') format('woff2-variations');
+  font-weight: 100 900; /* 가변 폰트 범위 */
+  font-style: normal;
+  font-display: swap;
+}
+
 
 /* 3. Tailwind 기본 스타일 주입 */
 @tailwind base;

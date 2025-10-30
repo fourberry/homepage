@@ -36,6 +36,7 @@ export default {
       // 2. 폰트 정의 (Font Family): 정의하신 폰트 스택을 유지합니다.
       fontFamily: {
         sans: [
+          'Pretendard Variable', 
           'Happiness Sans',
           'Pretendard',
           'DM Sans', // 사용자 정의 웹 폰트
