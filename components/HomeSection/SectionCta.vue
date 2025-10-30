@@ -1,7 +1,7 @@
 <template>
   <BaseSection
       class="panel h-dvh cta-section-identifier"
-      text-color="#ffffff" :fullWidth="true" :background-image-url="imageUrl">
+      text-color="#ffffff" :fullWidth="true" :background-image-url="imageUrl" paddingClass="pt-12 md:pt-24">
     <div class="flex flex-col justify-between cta-section h-full pt-8">
 
       <div class="flex-grow flex items-center justify-center">
@@ -9,11 +9,11 @@
           <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-12 md:gap-16 items-center justify-items-center">
             <div class="inquiry text-center md:text-center">
               <div class="typing-wrapper mb-6 sm:mb-8 min-h-[100px] sm:min-h-[120px] md:min-h-[160px]">
-                <h2 class="text-3xl break-keep sm:text-4xl md:text-6xl font-extrabold leading-tight whitespace-nowrap">
+                <h2 class="text-xl break-keep sm:text-4xl md:text-6xl font-extrabold leading-tight sm:whitespace-nowrap">
                   {{ displayedLine1 }}
                   <span class="cursor" v-if="!isLine1Complete"></span>
                 </h2>
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+                <h2 class="text-xl break-keep mb-16 sm:text-4xl md:text-6xl font-extrabold leading-tight">
                   {{ displayedLine2 }}
                   <span class="cursor" v-if="isLine1Complete && displayedLine2.length < targetLine2.length"></span>
                 </h2>
@@ -44,14 +44,14 @@
         </div>
       </div>
       <div class="max-w-9xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <div class="footer-content border-t border-white/20 mt-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
+        <div class="footer-content border-t border-white/20 my-12 pt-8 text-gray-300 text-sm flex flex-col md:flex-row justify-between items-center gap-y-4">
           <div class="flex flex-col items-center md:items-start text-center md:text-left">
             <div class="font-bold text-lg text-white mb-1">
               FOURBERRY
             </div>
             <div class="flex flex-col md:flex-row md:items-center gap-x-4 gap-y-1 text-xs">
-              <span>Addr: 서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</span>
-              <span>Email: damon@fourberry.co.kr</span>
+              <span>서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</span>
+              <span>fourberry@fourberry.co.kr</span>
             </div>
           </div>
           <div class="text-center md:text-right text-xs text-white">

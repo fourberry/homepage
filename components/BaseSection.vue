@@ -19,13 +19,18 @@ defineProps({
   fullWidth: { // ✨ fullWidth prop은 그대로 둡니다.
     type: Boolean,
     default: false,
+  },
+  paddingClass: {
+    type: String,
+    default: 'py-12 md:py-24', // ✨ 2. 기본값을 하드코딩했던 값으로 설정
   }
 })
 </script>
 
 <template>
   <section
-      class="relative py-12 md:py-24 section-container"
+      class="relative section-container"
+      :class="paddingClass"
       :style="{ color: textColor }"
   >
     <div
