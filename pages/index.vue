@@ -7,8 +7,7 @@
     <HomeSectionCEO />
     <HomeSectionTimeline />
     <HomeSectionCulture />
+    <ContactSection />
     <HomeSectionFact />
-
-
   </div>
 </template>
