@@ -11,9 +11,10 @@
           alt="FOURBERRY background"
           class="w-full h-full object-cover object-[50%_40%]"
       />
+      <div class="absolute inset-0 bg-black/45"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
     </div>
-    <div class="absolute inset-0 bg-black/45"></div>
-    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
+
 
     <div ref="textWrapper" class="absolute inset-0 flex items-end justify-start">
       <div class="text-white px-4 pb-16 md:px-16 md:pb-28 text-left">
