@@ -273,7 +273,7 @@
                 <h3 class="text-lg font-bold text-gray-900 mb-4">
                     개인정보보호정책
                 </h3>
-                <div classs="max-h-96 overflow-y-auto text-sm text-gray-600 space-y-4">
+                <div class="text-sm text-gray-600 space-y-4">
                     <p><strong>제1조 (총칙)</strong><br>
                         주식회사 포베리(이하 '회사'라 함)는 이용자의 개인정보를 중요시하며, '개인정보 보호법', '정보통신망 이용촉진 및 정보보호 등에 관한 법률' 등 관련 법령을 준수하고 있습니다.
                     </p>
