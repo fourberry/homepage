@@ -2,6 +2,7 @@
   <div class="overflow-x-hidden">
     <AboutSectionTop />
     <AboutSectionInfo />
+    <AboutSectionBusiness/>
     <!-- <AboutSectionStrength /> -->
     <AboutSectionValues />
     <AboutSectionCEO />

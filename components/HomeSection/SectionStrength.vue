@@ -1,8 +1,11 @@
 <template>
   <section class="bg-background text-black py-24 md:py-36 overflow-hidden">
     <!-- 상단 헤더 -->
-    <header class="text-center mb-16 md:mb-24 max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-      <p class="text-sm tracking-widest uppercase font-semibold text-red-300 mb-2">
+    <header
+      class="text-center mb-16 md:mb-24 max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+      <p
+        class="text-sm tracking-widest uppercase font-semibold text-red-300 mb-2"
+      >
         Strength
       </p>
 
@@ -15,7 +18,6 @@
         고객의 비즈니스에 가장 확실한 가치를 더합니다.
       </p>
     </header>
-    
 
     <!-- 카드 그리드 -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-0 w-full">
@@ -67,34 +69,25 @@
 // 카드 데이터
 const strengthItems = [
   {
-    title: '기술의 본질을 탐구',
-    img: '/images/bgcomputer.jpg',
-    desc:
-      '변화하는 기술 속에서도 \n' +
-      '우리는 본질을 잃지 않습니다.',
+    title: "기술의 본질을 탐구",
+    img: "/images/bgcomputer.jpg",
+    desc: "변화하는 기술 속에서도 \n" + "우리는 본질을 잃지 않습니다.",
   },
   {
-    title: '유연한 사고, 민첩한 실행',
-    img: '/images/orange.jpg',
+    title: "유연한 사고, 민첩한 실행",
+    img: "/images/orange.jpg",
     desc:
-      '아이디어가 있으면 바로 실험!\n' +
-      '신속한 피드백으로 완성도를 높입니다.',
+      "아이디어가 있으면 바로 실험!\n" + "신속한 피드백으로 완성도를 높입니다.",
   },
   {
-    title: '끊임없는 개선',
-    img: '/images/color.jpg',
-    desc:
-      "더 나은 오늘을 위해\n" +
-      "우리는 늘 '다음'을 고민합니다.",
+    title: "끊임없는 개선",
+    img: "/images/color.jpg",
+    desc: "더 나은 오늘을 위해\n" + "우리는 늘 '다음'을 고민합니다.",
   },
   {
-    title: '작은 팀, 큰 영향력',
-    img: '/images/wave.jpg',
-    desc:
-      '작은 팀이지만 큰 목표를 향해.\n' +
-      '우리는 결과로 말합니다.',
+    title: "작은 팀, 큰 영향력",
+    img: "/images/wave.jpg",
+    desc: "작은 팀이지만 큰 목표를 향해.\n" + "우리는 결과로 말합니다.",
   },
 ];
 </script>
-
-

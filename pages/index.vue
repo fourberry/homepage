@@ -2,7 +2,6 @@
   <div class="overflow-x-hidden">
     <HomeSectionTop />
     <HomeSectionInfo />
-    <HomeSectionStrength />
     <HomeSectionValues />
     <HomeSectionCEO />
     <HomeSectionTimeline />

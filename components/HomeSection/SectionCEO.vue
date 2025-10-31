@@ -1,10 +1,10 @@
 <template>
   <section class="bg-surface">
-    <div class="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-28 md:py-40">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 lg:gap-24">
+    <div class="container mx-auto py-28 px-4 md:px-12 lg:px-20 xl:px-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 min-w-0">
         
         <!-- 왼쪽 정보 패널 -->
-        <aside class="hidden md:block md:col-span-5 lg:col-span-4">
+        <aside class="hidden lg:block lg:col-span-4">
           <div class="lg:sticky lg:top-24 space-y-8">
             <div>
               <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
@@ -18,31 +18,33 @@
         </aside>
 
         <!-- 오른쪽 본문 -->
-        <article class="md:col-span-7 lg:col-span-8">
-          <!-- 모바일 전용 헤더 -->
-          <div class="block md:hidden mb-6">
+        <article class="lg:col-span-8 min-w-0">
+          <!-- 모바일·태블릿 전용 헤더 -->
+          <div class="block lg:hidden mb-6">
             <p class="text-lg font-semibold text-gray-800">
               대표이사 우대식
             </p>
           </div>
 
           <!-- 제목 영역 -->
-          <header class="mb-8 md:mb-10">
+          <header class="mb-8 lg:mb-10">
+            <!-- ✅ laptop-L(xl~)부터 글자 크기 살짝 축소 -->
             <h2
-              class="text-text
-                     text-2xl leading-snug font-extrabold tracking-tight whitespace-normal
-                     md:text-5xl md:leading-tight md:whitespace-nowrap
-                     lg:text-[64px]"
+              class="text-text leading-snug font-extrabold tracking-tight
+                     text-[clamp(20px,6vw,48px)]
+                     lg:text-[clamp(24px,4vw,60px)]
+                     xl:text-[56px] 2xl:text-[64px]
+                     whitespace-normal break-words"
             >
               "기술의 중심에 사람이 있습니다."
             </h2>
           </header>
 
           <!-- 본문 -->
-          <div class="border-l-0 md:border-l-4 lg:border-l-6 border-gray-200 pl-0 md:pl-8 lg:pl-10">
+          <div class="border-l-0 lg:border-l-6 border-gray-200 pl-0 lg:pl-8 xl:pl-10">
             <div
               class="prose prose-gray max-w-none text-gray-800 leading-relaxed
-                     text-lg md:text-2xl lg:text-[22px]"
+                     text-lg lg:text-[22px]"
             >
               <p class="mb-8">
                 주식회사 포베리는 2023년 창업 이래 IT 분야에서
