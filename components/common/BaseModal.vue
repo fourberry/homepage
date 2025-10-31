@@ -16,7 +16,7 @@
                     relative z-10 w-full max-w-md 
                     bg-white rounded-lg shadow-xl 
                     flex flex-col
-                    max-h-[calc(100vh-3rem)]
+                    max-h-[calc(100dvh-3rem)]
                 ">
                 <div class="overflow-y-auto">
                     <slot />
