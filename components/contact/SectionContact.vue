@@ -144,8 +144,7 @@
                                         dark:bg-gray-50 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-primary dark:focus:border-primary"
                                     placeholder="예: 프로젝트 개요, 요구사항 등"
                                     v-model="textareaContent"
-                                    maxlength="4000">
-                                </textarea>
+                                    maxlength="4000"></textarea>
                                 <div class="text-right text-xs text-gray-500 mt-2 mb-3">
                                     {{ textareaContent.length }}/4000자
                                 </div>
