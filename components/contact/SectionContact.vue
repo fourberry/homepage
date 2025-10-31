@@ -12,7 +12,14 @@
         <div class="container mx-auto py-28 px-4">
             <div class="flex flex-col gap-15">
                 <!-- 문의 상단 -->
-                <div class="flex flex-col md:flex-row justify-between items-center gap-10 border-b-2 border-black">
+                <div
+                    v-motion
+                    :initial="{ opacity: 0, y: 20 }"
+                    :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                    :delay="0"
+                    :once="true"
+                    :threshold="0.1"
+                    class="flex flex-col md:flex-row justify-between items-center gap-10 border-b-2 border-black">
                     <div class="flex flex-row gap-6 lg:gap-20 md:gap-10 w-full justify-start md:w-auto">
                         <div class="font-extrabold text-lg md:text-3xl whitespace-nowrap leading-9">문의</div>
                         <div class="text-[1.4rem] leading-9">
@@ -41,7 +48,14 @@
                     <form @submit.prevent="handleSubmit">
                         <ol class="flex flex-col gap-10">
                             <!-- 상담 유형 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="150"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <h4 class="font-extrabold mb-1">어떤 유형의 상담을 원하시나요?</h4>
                                 <div class="text-xs font-medium mb-3">필수 선택 📌</div>
                                 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-3 list-none m-0 p-0">
@@ -62,7 +76,14 @@
                                 </ul>
                             </li>
                             <!-- 관심 서비스 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="200"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <h4 class="font-extrabold mb-1">관심 서비스를 선택해 주세요.</h4>
                                 <div class="text-xs font-medium mb-3">다중 선택 📚</div>
                                 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-3 list-none m-0 p-0">
@@ -83,7 +104,14 @@
                                 </ul>
                             </li>
                             <!-- 예산/일정 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="250"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <h4 class="font-extrabold mb-3">예산과 일정은 어떻게 되나요?</h4>
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
                                     <li>
@@ -105,7 +133,14 @@
                                 </ul>
                             </li>
                             <!-- 기타내용(파일 업로드) -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="300"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <h4 class="font-extrabold mb-1">추가로 전달하고 싶은 내용이 있으신가요?</h4>
                                 <div class="text-xs font-medium mb-3">구체적인 내용을 적어주시면 이해하는 데 도움이 됩니다.</div>
                                 <textarea 
@@ -130,7 +165,14 @@
                             </li>
 
                             <!-- 의뢰인 정보 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="350"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <h4 class="font-extrabold mb-3">의뢰하시는 분의 정보를 알려주세요.</h4>
 
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
@@ -176,14 +218,28 @@
                             </li>
 
                             <!-- 개인정보처리방침 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="400"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <div class="flex items-center">
                                     <input id="link-checkbox" type="checkbox" v-model="isPrivacyAgreed" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><a href="#" class="text-primary dark:text-blue-500 hover:underline">개인정보보호정책</a>에 동의합니다.<em class="text-red-600 font-bold">*</em></label>
                                 </div>
                             </li>
                             <!-- 제출 버튼 -->
-                            <li>
+                            <li
+                                v-motion
+                                :initial="{ opacity: 0, y: 20 }"
+                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
+                                :delay="450"
+                                :once="true"
+                                :threshold="0.1"
+                            >
                                 <BaseButton type="submit" :loading="isLoading">
                                     문의하기
                                 </BaseButton>
