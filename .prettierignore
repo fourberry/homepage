@@ -1,0 +1,16 @@
+# 빌드/의존성 폴더
+node_modules
+.nuxt
+dist
+.build
+coverage
+
+# 로그 / 잠금파일
+*.log
+*.lock
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# 자동 생성된 이미지나 파일들 (필요 시 제외)
+public/og/**
