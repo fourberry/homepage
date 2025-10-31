@@ -241,6 +241,18 @@
                 </div>
             </div>
         </div>
+
+        <BaseModal :show="showModal" @close="closeModal">
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                    {{ modalTitle }}
+                </h3>
+                <p class="text-sm text-gray-700">
+                    {{ modalMessage }}
+                </p>
+            </div>
+        </BaseModal>
+
     </div>
 </template>
 
@@ -250,6 +262,7 @@ import FormFloatingInput from '@/components/contact/FormFloatingInput.vue';
 import FormSelect from '@/components/contact/FormSelect.vue';
 import FormFileUpload from '@/components/contact/FormFileUpload.vue';
 import BaseButton from '@/components/contact/BaseButton.vue';
+import BaseModal from '@/components/common/BaseModal.vue';
 
 // 솔루션 도입 문의
 // 신규 시스템 구축 의뢰
@@ -310,13 +323,41 @@ const clientInfo = ref({
     email: '',
 });
 
+const showModal = ref(false);
+const modalTitle = ref('');
+const modalMessage = ref('');
+// 폼 전송 성공/실패 여부를 저장 (모달을 닫을 때 폼을 리셋할지 결정)
+const submissionStatus = ref<'success' | 'error' | 'validation' | null>(null);
+
+/**
+ * 모달을 띄우는 헬퍼 함수
+ */
+const openModal = (title: string, message: string, status: 'success' | 'error' | 'validation') => {
+    modalTitle.value = title;
+    modalMessage.value = message;
+    submissionStatus.value = status;
+    showModal.value = true;
+};
+
+/**
+ * 모달 닫기 핸들러
+ */
+const closeModal = () => {
+    showModal.value = false;
+    // 폼 전송에 '성공'했을 때만 폼을 리셋합니다.
+    if (submissionStatus.value === 'success') {
+        resetForm();
+    }
+    submissionStatus.value = null; // 상태 초기화
+};
+
 /**
  * 폼 유효성 검사 함수
  */
 const validateForm = (): boolean => {
     // 1. 상담 유형 (필수)
     if (!selectedType.value) {
-        alert('어떤 유형의 상담을 원하시나요? (필수)');
+        openModal('입력 확인', '어떤 유형의 상담을 원하시나요? (필수)', 'validation');
         return false;
     }
 
@@ -326,21 +367,21 @@ const validateForm = (): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!clientInfo.value.name.trim()) {
-        alert('담당자명은 필수입니다.');
+        openModal('입력 확인', '담당자명은 필수입니다.', 'validation');
         return false;
     }
     if (!clientInfo.value.tel.trim() || !telRegex.test(clientInfo.value.tel)) {
-        alert('유효한 연락처를 입력해주세요. (10~11자리 숫자)');
+        openModal('입력 확인', '유효한 연락처를 입력해주세요. (10~11자리 숫자)', 'validation');
         return false;
     }
     if (!clientInfo.value.email.trim() || !emailRegex.test(clientInfo.value.email)) {
-        alert('유효한 이메일을 입력해주세요.');
+        openModal('입력 확인', '유효한 이메일을 입력해주세요.', 'validation');
         return false;
     }
 
     // 3. 개인정보처리방침 (필수)
     if (!isPrivacyAgreed.value) {
-        alert('개인정보보호정책에 동의해주세요.');
+        openModal('입력 확인', '개인정보보호정책에 동의해주세요.', 'validation');
         return false;
     }
 
@@ -405,13 +446,13 @@ const handleSubmit = async () => {
         });
 
         // 4. 성공 처리
-        alert('문의가 성공적으로 전송되었습니다. 감사합니다.');
+        openModal('전송 완료', '문의가 성공적으로 전송되었습니다. 감사합니다.', 'success');
         resetForm(); // 폼 초기화
 
     } catch (error) {
         // 5. 실패 처리
         console.error('문의 전송 실패:', error);
-        alert('문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        openModal('전송 실패', '문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.', 'error');
     } finally {
         // 6. 로딩 상태 해제
         isLoading.value = false;
