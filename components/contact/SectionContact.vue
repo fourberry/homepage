@@ -23,9 +23,21 @@
                         <div class="font-extrabold text-lg md:text-3xl whitespace-nowrap leading-9">문의</div>
                         <div class="text-[1.4rem] leading-9 md:text-2xl lg:text-3xl">
                             <div class="font-extralight">FOURBERRY</div>
-                            <div class="font-black">성공적인 파트너가</div>
+                            <div 
+                                class="
+                                    font-black
+                                    bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500
+                                    bg-clip-text text-transparent
+                                    bg-[size:200%_auto] animate-text-shine
+                                ">성공적인 파트너가</div>
                             <div class="font-extralight">기다리고 있습니다.</div>
-                            <div class="font-black">지금 바로 문의하세요.</div>
+                            <div 
+                                class="
+                                    font-black
+                                    bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500
+                                    bg-clip-text text-transparent
+                                    bg-[size:200%_auto] animate-text-shine
+                                ">지금 바로 문의하세요.</div>
                         </div>
                     </div>
                     <div>
@@ -246,7 +258,7 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <BaseButton type="submit" :loading="isLoading">
+                                <BaseButton type="submit" :loading="isLoading" class="animate-pulse-subtle">
                                     문의하기
                                 </BaseButton>
                             </li>

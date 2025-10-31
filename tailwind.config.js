@@ -80,12 +80,33 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'pulse-subtle': {
+          '0%, 100%': { 
+            transform: 'scale(1)' 
+          },
+          '50%': { 
+            transform: 'scale(1.05)' // 3% 커짐
+          },
+        },
+        'text-shine': {
+          '0%': { 
+            backgroundPosition: '0% 50%' 
+          },
+          '100%': { 
+            backgroundPosition: '200% 50%' // 그라데이션을 200% 이동
+          },
+        }
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards', // 페이지,컴포넌트 사라짐 효과
         'fade-in-up': 'fadeInUp 0.6s ease-out forwards', // 페이지,컴포넌트 등장 효과
         'spin-slow': 'spin 3s linear infinite', //로딩 스피너
+        'pulse-subtle': 'pulse-subtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite', // 2.5초 동안 무한 반복
+        'text-shine': 'text-shine 3s ease-in-out infinite',
       },
+      backgroundSize: {
+        '200%': '200% auto',
+      }
     },
     screens: {
       'xs': '320px',
