@@ -5,6 +5,7 @@
             w-full 
             md:w-60
             md:mx-auto
+            md:text-lg
             bg-primary 
             text-white 
             font-bold 

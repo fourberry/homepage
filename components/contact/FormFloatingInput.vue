@@ -3,7 +3,7 @@
         <input 
             :type="type" 
             :id="id" 
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" 
+            class="block py-2.5 px-0 w-full text-sm md:text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" 
             :class="[
                 isValid 
                 ? 'border-gray-300 focus:border-primary' 
@@ -18,7 +18,7 @@
         />
         <label  
             :for="id" 
-            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm md:text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             :class="[
                 isValid 
                 ? 'text-gray-500 dark:text-gray-400 peer-focus:text-primary' 
@@ -29,7 +29,7 @@
             <em v-if="required" class="ml-1 text-red-600 font-bold">*</em>
         </label>
 
-        <div v-if="!isValid && errorMessage" class="text-xs text-red-600 mt-1">
+        <div v-if="!isValid && errorMessage" class="text-xs md:text-sm text-red-600 mt-1">
             {{ errorMessage }}
         </div>
     </div>

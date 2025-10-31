@@ -9,7 +9,7 @@
 -->
 <template>
     <div>
-        <div class="container mx-auto py-28 px-4">
+        <div class="max-w-7xl mx-auto py-14 px-4">
             <div class="flex flex-col gap-15">
                 <!-- 문의 상단 -->
                 <div
@@ -21,7 +21,7 @@
                     class="flex flex-col md:flex-row justify-between items-center gap-10 border-b-2 border-black">
                     <div class="flex flex-row gap-6 lg:gap-20 md:gap-10 w-full justify-start md:w-auto">
                         <div class="font-extrabold text-lg md:text-3xl whitespace-nowrap leading-9">문의</div>
-                        <div class="text-[1.4rem] leading-9">
+                        <div class="text-[1.4rem] leading-9 md:text-2xl lg:text-3xl">
                             <div class="font-extralight">FOURBERRY</div>
                             <div class="font-black">성공적인 파트너가</div>
                             <div class="font-extralight">기다리고 있습니다.</div>
@@ -45,7 +45,7 @@
                     <SectionTitle>상담문의</SectionTitle>
                     <!-- 문의 폼 -->
                     <form @submit.prevent="handleSubmit">
-                        <ol class="flex flex-col gap-10">
+                        <ol class="flex flex-col gap-10 md:gap-15">
                             <!-- 상담 유형 -->
                             <li
                                 v-motion
@@ -54,14 +54,14 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <h4 class="font-extrabold mb-1">어떤 유형의 상담을 원하시나요?</h4>
-                                <div class="text-xs font-medium mb-3">필수 선택 📌</div>
+                                <h4 class="font-extrabold mb-1 md:text-lg">어떤 유형의 상담을 원하시나요?</h4>
+                                <div class="text-xs md:text-sm font-medium mb-3">필수 선택 📌</div>
                                 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-3 list-none m-0 p-0">
                                     <li v-for="type in consultationTypes" :key="type.id">
                                         <input type="radio" name="rdoType" :id="type.id" :value="type.value" class="hidden peer" v-model="selectedType" />
                                         <label 
                                             :for="type.id"
-                                            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm font-medium text-gray-700
+                                            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm md:text-base font-medium text-gray-700
                                                     hover:bg-gray-50
                                                     peer-checked:border-primary
                                                     peer-checked:bg-primary
@@ -81,14 +81,14 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <h4 class="font-extrabold mb-1">관심 서비스를 선택해 주세요.</h4>
-                                <div class="text-xs font-medium mb-3">다중 선택 📚</div>
+                                <h4 class="font-extrabold mb-1 md:text-lg">관심 서비스를 선택해 주세요.</h4>
+                                <div class="text-xs md:text-sm font-medium mb-3">다중 선택 📚</div>
                                 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-3 list-none m-0 p-0">
                                     <li v-for="service in favoriteServices" :key="service.id">
                                         <input type="checkbox" :id="service.id" :value="service.value" class="hidden peer" v-model="selectedServices" />
                                         <label 
                                             :for="service.id"
-                                            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm font-medium text-gray-700
+                                            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm md:text-base font-medium text-gray-700
                                                     hover:bg-gray-50
                                                     peer-checked:border-primary
                                                     peer-checked:bg-primary
@@ -108,7 +108,7 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <h4 class="font-extrabold mb-3">예산과 일정은 어떻게 되나요?</h4>
+                                <h4 class="font-extrabold mb-3 md:text-lg">예산과 일정은 어떻게 되나요?</h4>
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
                                     <li>
                                         <FormSelect
@@ -136,11 +136,11 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <h4 class="font-extrabold mb-1">추가로 전달하고 싶은 내용이 있으신가요?</h4>
-                                <div class="text-xs font-medium mb-3">구체적인 내용을 적어주시면 이해하는 데 도움이 됩니다.</div>
+                                <h4 class="font-extrabold mb-1 md:text-lg">추가로 전달하고 싶은 내용이 있으신가요?</h4>
+                                <div class="text-xs md:text-sm font-medium mb-3">구체적인 내용을 적어주시면 이해하는 데 도움이 됩니다.</div>
                                 <textarea 
                                     rows="5"
-                                    class="block p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary focus:border-primary 
+                                    class="block p-4 w-full text-sm md:text-base text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary focus:border-primary 
                                         dark:bg-gray-50 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-primary dark:focus:border-primary"
                                     placeholder="예: 프로젝트 개요, 요구사항 등"
                                     v-model="textareaContent"
@@ -166,7 +166,7 @@
                                 :delay="100"
                                 :threshold="0.1"
                             >
-                                <h4 class="font-extrabold mb-3">의뢰하시는 분의 정보를 알려주세요.</h4>
+                                <h4 class="font-extrabold mb-3 md:text-lg">의뢰하시는 분의 정보를 알려주세요.</h4>
 
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
                                     <li>
@@ -225,7 +225,7 @@
                                         v-model="isPrivacyAgreed" 
                                         class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     >
-                                    <div class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    <div class="ms-2 text-sm md:text-base font-medium text-gray-900 dark:text-gray-300">
                                         <a 
                                             href.prevent="" 
                                             @click="openPrivacyModal" class="text-primary dark:text-blue-500 hover:underline">

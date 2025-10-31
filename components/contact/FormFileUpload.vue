@@ -2,7 +2,7 @@
     <div>
         <label
             :for="id"
-            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+            class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm md:text-base font-medium text-gray-700 hover:bg-gray-50"
         >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
             ref="fileInputRef"
         />
 
-        <div class="text-xs text-gray-500 mt-2 mb-3">
+        <div class="text-xs md:text-sm text-gray-500 mt-2 mb-3">
             * 최대 {{ maxFiles }}개, 파일당 최대 {{ maxSizeMb }}MB까지 첨부
             가능합니다.
         </div>
@@ -40,7 +40,7 @@
             <li
                 v-for="(file, index) in modelValue"
                 :key="file.name + index"
-                class="flex items-center justify-between p-3 text-sm"
+                class="flex items-center justify-between p-3 text-sm md:text-base"
             >
                 <div class="flex-1 truncate">
                     <span class="font-medium text-gray-900">{{ file.name }}</span>
