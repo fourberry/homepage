@@ -9,7 +9,7 @@
 -->
 <template>
     <div>
-        <div class="max-w-7xl mx-auto py-14 px-4">
+        <div class="container mx-auto py-14 px-4">
             <div class="flex flex-col gap-15">
                 <!-- 문의 상단 -->
                 <div
