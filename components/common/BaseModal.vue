@@ -59,21 +59,25 @@ defineEmits(['close']);
 
 // watchEffect는 props.show가 변경될 때마다 자동으로 실행됩니다.
 watchEffect(() => {
-    const htmlElement = document.documentElement; // <html> 태그
+    if (process.client) {
+        const htmlElement = document.documentElement; // <html> 태그
 
-    if (props.show) {
-        // 모달이 보일 때: <html>의 스크롤을 숨깁니다.
-        htmlElement.style.overflow = 'hidden';
-    } else {
-        // 모달이 숨겨질 때: <html>의 스크롤을 원래대로 복원합니다.
-        htmlElement.style.overflow = ''; 
+        if (props.show) {
+            // 모달이 보일 때: <html>의 스크롤을 숨깁니다.
+            htmlElement.style.overflow = 'hidden';
+        } else {
+            // 모달이 숨겨질 때: <html>의 스크롤을 원래대로 복원합니다.
+            htmlElement.style.overflow = ''; 
+        }
     }
 });
 
 // onUnmounted: 컴포넌트가 사라질 때 (예: 페이지 이동 시)
 // 스크롤이 잠겨있는 상태로 남지 않도록 보장합니다.
 onUnmounted(() => {
-    document.documentElement.style.overflow = '';
+    if (process.client) {
+        document.documentElement.style.overflow = '';
+    }
 });
 
 // --- 스크롤 잠금 로직 끝 ---
