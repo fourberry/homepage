@@ -1,19 +1,25 @@
 <template>
-  <section class="bg-white py-32 md:py-40">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+  <section class="bg-white">
+     <div class="container mx-auto py-28 px-4">
       <!-- 헤더 영역 -->
       <header class="mb-20">
         <div>
           <!-- 상단 작은 타이틀 -->
           <div class="inline-block mb-4">
-            <span class="relative font-extrabold text-3xl md:text-4xl text-gray-900 leading-none">
+            <span
+              class="relative font-extrabold text-3xl md:text-4xl text-gray-900 leading-none"
+            >
               <span class="relative z-[1]">복지/문화</span>
-              <span class="absolute left-0 bottom-0 w-full h-[10px] bg-yellow-300 -z-[1]"></span>
+              <span
+                class="absolute left-0 bottom-0 w-full h-[10px] bg-yellow-300 -z-[1]"
+              ></span>
             </span>
           </div>
 
           <!-- 설명 문구 -->
-          <p class="text-2xl md:text-3xl text-gray-800 leading-snug font-medium">
+          <p
+            class="text-2xl md:text-3xl text-gray-800 leading-snug font-medium"
+          >
             즐겁게 일하는 포베리의<br class="md:hidden" />
             일상입니다.
           </p>
@@ -24,11 +30,7 @@
       <ul
         class="grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20"
       >
-        <li
-          v-for="(item, i) in cultureItems"
-          :key="i"
-          class="flex flex-col"
-        >
+        <li v-for="(item, i) in cultureItems" :key="i" class="flex flex-col">
           <!-- 이미지 -->
           <div
             :class="[
@@ -45,9 +47,9 @@
               :alt="item.title + ' 이미지'"
               loading="lazy"
               class="w-full h-full object-center"
-              :class="item.title === '유연근무제'
-                ? 'object-contain'
-                : 'object-cover'"
+              :class="
+                item.title === '유연근무제' ? 'object-contain' : 'object-cover'
+              "
             />
           </div>
 
@@ -95,23 +97,18 @@ const cultureItems = [
   {
     title: "자기계발비 지원",
     img: "/images/allowance2.png",
-    desc:
-      "책, 강의(인프런), 세미나 등\n" +
-      "배움에 대한 투자 적극 환영합니다.",
+    desc: "책, 강의(인프런), 세미나 등\n" + "배움에 대한 투자 적극 환영합니다.",
   },
   {
     title: "간식·커피 무제한",
     img: "/images/cookie.jpg",
-    desc:
-      "당 떨어질 틈 없이!\n" +
-      "언제든 꺼내 먹을 수 있어요.",
+    desc: "당 떨어질 틈 없이!\n" + "언제든 꺼내 먹을 수 있어요.",
   },
   {
     title: "게임 타임",
     img: "/images/game.jpg",
     desc:
-      "취미와 친목, 재미를 위해\n" +
-      "보드게임과 온라인게임을 같이 즐긴답니다.",
+      "취미와 친목, 재미를 위해\n" + "보드게임과 온라인게임을 같이 즐긴답니다.",
   },
 ];
 </script>
