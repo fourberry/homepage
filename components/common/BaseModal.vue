@@ -3,7 +3,7 @@
         <Transition name="modal-fade">
         <div 
             v-if="show"
-            class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+            class="fixed inset-0 z-[100] flex items-center justify-center p-4 overflow-y-auto"
             @mousedown.self="$emit('close')"
         >
             <div 
