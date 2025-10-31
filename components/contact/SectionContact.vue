@@ -220,8 +220,23 @@
                                 :threshold="0.1"
                             >
                                 <div class="flex items-center">
-                                    <input id="link-checkbox" type="checkbox" v-model="isPrivacyAgreed" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><a href="#" class="text-primary dark:text-blue-500 hover:underline">개인정보보호정책</a>에 동의합니다.<em class="text-red-600 font-bold">*</em></label>
+                                    <input 
+                                        id="link-checkbox" 
+                                        type="checkbox" 
+                                        v-model="isPrivacyAgreed" 
+                                        class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    >
+                                    <div class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                        <a 
+                                            href.prevent="" 
+                                            @click="openPrivacyModal" class="text-primary dark:text-blue-500 hover:underline">
+                                            개인정보보호정책
+                                        </a>
+                                        
+                                        <label for="link-checkbox" class="cursor-pointer">
+                                            에 동의합니다.<em class="text-red-600 font-bold">*</em>
+                                        </label>
+                                    </div>
                                 </div>
                             </li>
                             <!-- 제출 버튼 -->
@@ -253,6 +268,30 @@
             </div>
         </BaseModal>
 
+        <BaseModal :show="showPrivacyModal" @close="closePrivacyModal">
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                    개인정보보호정책
+                </h3>
+                <div classs="max-h-96 overflow-y-auto text-sm text-gray-600 space-y-4">
+                    <p><strong>제1조 (총칙)</strong><br>
+                        주식회사 포베리(이하 '회사'라 함)는 이용자의 개인정보를 중요시하며, '개인정보 보호법', '정보통신망 이용촉진 및 정보보호 등에 관한 법률' 등 관련 법령을 준수하고 있습니다.
+                    </p>
+                    <p><strong>제2조 (수집하는 개인정보의 항목)</strong><br>
+                        회사는 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.<br>
+                        - 필수항목 : 담당자명, 연락처, 이메일<br>
+                        - 선택항목 : 회사/단체명, 상담내용, 첨부파일
+                    </p>
+                    <p><strong>제3조 (개인정보의 수집 및 이용목적)</strong><br>
+                        회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br>
+                        - 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산<br>
+                        - 콘텐츠 제공, 구매 및 요금 결제, 물품배송 또는 청구지 등 발송<br>
+                        - 회원 관리: 회원제 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와 비인가 사용 방지, 가입 의사 확인, 연령확인, 불만처리 등 민원처리, 고지사항 전달<br>
+                        - 마케팅 및 광고에 활용: 신규 서비스(제품) 개발 및 특화, 이벤트 등 광고성 정보 전달, 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계
+                    </p>
+                </div>
+            </div>
+        </BaseModal>
     </div>
 </template>
 
@@ -328,6 +367,15 @@ const modalTitle = ref('');
 const modalMessage = ref('');
 // 폼 전송 성공/실패 여부를 저장 (모달을 닫을 때 폼을 리셋할지 결정)
 const submissionStatus = ref<'success' | 'error' | 'validation' | null>(null);
+
+const showPrivacyModal = ref(false);
+
+const openPrivacyModal = () => {
+    showPrivacyModal.value = true;
+};
+const closePrivacyModal = () => {
+    showPrivacyModal.value = false;
+};
 
 /**
  * 모달을 띄우는 헬퍼 함수
