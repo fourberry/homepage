@@ -15,9 +15,8 @@
                 <div
                     v-motion
                     :initial="{ opacity: 0, y: 20 }"
-                    :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                    :delay="0"
-                    :once="true"
+                    :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                    :delay="100"
                     :threshold="0.1"
                     class="flex flex-col md:flex-row justify-between items-center gap-10 border-b-2 border-black">
                     <div class="flex flex-row gap-6 lg:gap-20 md:gap-10 w-full justify-start md:w-auto">
@@ -51,9 +50,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="150"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <h4 class="font-extrabold mb-1">어떤 유형의 상담을 원하시나요?</h4>
@@ -79,9 +77,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="200"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <h4 class="font-extrabold mb-1">관심 서비스를 선택해 주세요.</h4>
@@ -107,9 +104,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="250"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <h4 class="font-extrabold mb-3">예산과 일정은 어떻게 되나요?</h4>
@@ -136,9 +132,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="300"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <h4 class="font-extrabold mb-1">추가로 전달하고 싶은 내용이 있으신가요?</h4>
@@ -168,9 +163,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="350"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <h4 class="font-extrabold mb-3">의뢰하시는 분의 정보를 알려주세요.</h4>
@@ -221,9 +215,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="400"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <div class="flex items-center">
@@ -235,9 +228,8 @@
                             <li
                                 v-motion
                                 :initial="{ opacity: 0, y: 20 }"
-                                :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
-                                :delay="450"
-                                :once="true"
+                                :visible-once="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
+                                :delay="100"
                                 :threshold="0.1"
                             >
                                 <BaseButton type="submit" :loading="isLoading">
