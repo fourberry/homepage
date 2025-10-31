@@ -36,9 +36,9 @@
                 
                 <!-- 상담 목록 -->
                 <div class="flex flex-col gap-6">
-                    <h3 class="font-medium relative isolate w-fit highlight-title">상담문의</h3>
+                    <SectionTitle>상담문의</SectionTitle>
                     <!-- 문의 폼 -->
-                    <form>
+                    <form @submit.prevent="handleSubmit">
                         <ol class="flex flex-col gap-10">
                             <!-- 상담 유형 -->
                             <li>
@@ -87,27 +87,20 @@
                                 <h4 class="font-extrabold mb-3">예산과 일정은 어떻게 되나요?</h4>
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
                                     <li>
-                                        <select id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                                            <option selected>예산을 선택하세요.</option>
-                                            <option value="500">500만원 미만</option>
-                                            <option value="5000">5000만원 미만</option>
-                                            <option value="10000">1억원 미만</option>
-                                            <option value="30000">3억원 미만</option>
-                                            <option value="50000">5억원 미만</option>
-                                            <option value="70000">7억원 미만</option>
-                                            <option value="0">미정</option>
-                                        </select>
+                                        <FormSelect
+                                            id="budget_select"
+                                            placeholder="예산을 선택하세요."
+                                            :options="budgetOptions"
+                                            v-model="selectedBudget"
+                                        />
                                     </li>
                                     <li>
-                                        <select id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                                            <option selected>일정을 선택하세요.</option>
-                                            <option value="one_month">1개월 이내</option>
-                                            <option value="three_months">3개월 이내</option>
-                                            <option value="six_months">6개월 이내</option>
-                                            <option value="one_year">1년 이내</option>
-                                            <option value="more_than_one_year">1년 이상</option>
-                                            <option value="undecided">미정</option>
-                                        </select>
+                                        <FormSelect
+                                            id="schedule_select"
+                                            placeholder="일정을 선택하세요."
+                                            :options="scheduleOptions"
+                                            v-model="selectedSchedule"
+                                        />
                                     </li>
                                 </ul>
                             </li>
@@ -127,32 +120,12 @@
                                     {{ textareaContent.length }}/4000자
                                 </div>
                                 
-                                <label
-                                    for="file_input"
-                                    class="flex w-full cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white py-3 px-2 text-center text-sm font-medium text-gray-700
-                                        hover:bg-gray-50"
-                                >
-                                    <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="w-5 h-5 mr-2"
-                                    >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-                                    />
-                                    </svg>
-                                    파일 첨부 (선택)
-                                </label>
-
-                                <input
-                                    class="hidden"
-                                    id="file_input"
-                                    type="file"
+                                <FormFileUpload
+                                    id="contact_file_upload"
+                                    label="파일 첨부 (선택)"
+                                    :maxFiles="5"
+                                    :maxSizeMb="10"
+                                    v-model="selectedFiles"
                                 />
                             </li>
 
@@ -161,54 +134,59 @@
                                 <h4 class="font-extrabold mb-3">의뢰하시는 분의 정보를 알려주세요.</h4>
 
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 list-none m-0 p-0">
-                                    <li class="relative z-0">
-                                        <input 
-                                            type="text" 
-                                            id="floating_standard" 
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" placeholder=" " />
-                                        <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">회사/단체명</label>
+                                    <li>
+                                        <FormFloatingInput
+                                            id="client_company"
+                                            label="회사/단체명"
+                                            v-model="clientInfo.company"
+                                            :maxlength="50"
+                                            :required="true"
+                                        />
                                     </li>
-                                    <li class="relative z-0">
-                                        <input 
-                                            type="text" 
-                                            id="floating_standard" 
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" placeholder=" " />
-                                        <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">담당자명</label>
+                                    <li>
+                                        <FormFloatingInput
+                                            id="client_name"
+                                            label="담당자명"
+                                            v-model="clientInfo.name"
+                                            :maxlength="30"
+                                            :required="true"
+                                        />
                                     </li>
-                                    <li class="relative z-0">
-                                        <input 
-                                            type="text" 
-                                            id="floating_standard" 
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" placeholder=" " />
-                                        <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">연락처</label>
+                                    <li>
+                                        <FormFloatingInput
+                                            id="client_tel"
+                                            label="연락처"
+                                            type="tel"
+                                            v-model="clientInfo.tel"
+                                            :maxlength="11"
+                                            :required="true"
+                                        />
                                     </li>
-                                    <li class="relative z-0">
-                                        <input 
-                                            type="text" 
-                                            id="floating_standard" 
-                                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-primary peer" placeholder=" " />
-                                        <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">이메일</label>
+                                    <li>
+                                        <FormFloatingInput
+                                            id="client_email"
+                                            label="이메일"
+                                            type="email"
+                                            v-model="clientInfo.email"
+                                            :maxlength="100"
+                                            :required="true"
+                                        />
                                     </li>
                                 </ul>
-                                
-                                
                             </li>
 
                             <!-- 개인정보처리방침 -->
                             <li>
                                 <div class="flex items-center">
-                                    <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input id="link-checkbox" type="checkbox" v-model="isPrivacyAgreed" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><a href="#" class="text-primary dark:text-blue-500 hover:underline">개인정보보호정책</a>에 동의합니다.<em class="text-red-600 font-bold">*</em></label>
                                 </div>
                             </li>
                             <!-- 제출 버튼 -->
                             <li>
-                                <button
-                                    type="submit"
-                                    class="w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:opacity-90 
-                                            focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all">
+                                <BaseButton type="submit" :loading="isLoading">
                                     문의하기
-                                </button>
+                                </BaseButton>
                             </li>
                         </ol>
                     </form>
@@ -219,6 +197,12 @@
 </template>
 
 <script setup lang="ts">
+import SectionTitle from '@/components/contact/SectionTitle.vue';
+import FormFloatingInput from '@/components/contact/FormFloatingInput.vue';
+import FormSelect from '@/components/contact/FormSelect.vue';
+import FormFileUpload from '@/components/contact/FormFileUpload.vue';
+import BaseButton from '@/components/contact/BaseButton.vue';
+
 // 솔루션 도입 문의
 // 신규 시스템 구축 의뢰
 // 유지보수 및 기술지원
@@ -242,25 +226,149 @@ const favoriteServices = [
     { id: 'SERVICE_06', value: 'SERVICE_06', label: '기타 시스템 개발' }
 ];
 
-const selectedType = ref('');
-const selectedServices = ref<string[]>([]);
-const textareaContent = ref<string>('');
+const budgetOptions = [
+    { value: '1000', label: '1000만원 미만' },
+    { value: '5000', label: '5000만원 미만' },
+    { value: '10000', label: '1억원 미만' },
+    { value: '30000', label: '3억원 미만' },
+    { value: '50000', label: '5억원 미만' },
+    { value: '70000', label: '7억원 미만' },
+    { value: '0', label: '미정' },
+];
+
+const scheduleOptions = [
+    { value: 'one_month', label: '1개월 이내' },
+    { value: 'three_months', label: '3개월 이내' },
+    { value: 'six_months', label: '6개월 이내' },
+    { value: 'one_year', label: '1년 이내' },
+    { value: 'more_than_one_year', label: '1년 이상' },
+    { value: 'undecided', label: '미정' },
+];
+
+const selectedType = ref(''); // 상담 유형
+const selectedServices = ref<string[]>([]); // 관심 서비스
+const selectedBudget = ref('');
+const selectedSchedule = ref('');
+const textareaContent = ref<string>(''); // 추가 내용
+const selectedFiles = ref<File[]>([]);
+const isLoading = ref(false);
+const isPrivacyAgreed = ref(false);
+
+// 의뢰자 정보
+const clientInfo = ref({
+    company: '',
+    name: '',
+    tel: '',
+    email: '',
+});
+
+/**
+ * 폼 유효성 검사 함수
+ */
+const validateForm = (): boolean => {
+    // 1. 상담 유형 (필수)
+    if (!selectedType.value) {
+        alert('어떤 유형의 상담을 원하시나요? (필수)');
+        return false;
+    }
+
+    // 2. 의뢰인 정보 (필수)
+    // (FormFloatingInput이 자체 유효성 검사를 하지만, 최종 제출 시 한 번 더 확인)
+    const telRegex = /^\d{10,11}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!clientInfo.value.name.trim()) {
+        alert('담당자명은 필수입니다.');
+        return false;
+    }
+    if (!clientInfo.value.tel.trim() || !telRegex.test(clientInfo.value.tel)) {
+        alert('유효한 연락처를 입력해주세요. (10~11자리 숫자)');
+        return false;
+    }
+    if (!clientInfo.value.email.trim() || !emailRegex.test(clientInfo.value.email)) {
+        alert('유효한 이메일을 입력해주세요.');
+        return false;
+    }
+
+    // 3. 개인정보처리방침 (필수)
+    if (!isPrivacyAgreed.value) {
+        alert('개인정보보호정책에 동의해주세요.');
+        return false;
+    }
+
+    return true;
+};
+
+/**
+ * 폼 초기화 함수
+ */
+const resetForm = () => {
+    selectedType.value = '';
+    selectedServices.value = [];
+    textareaContent.value = '';
+    clientInfo.value = { company: '', name: '', tel: '', email: '' };
+    selectedBudget.value = '';
+    selectedSchedule.value = '';
+    selectedFiles.value = [];
+    isPrivacyAgreed.value = false;
+};
+
+/**
+ * API 제출 핸들러
+ */
+const handleSubmit = async () => {
+    if (isLoading.value) return; // 중복 제출 방지
+
+    // 1. 유효성 검사
+    if (!validateForm()) {
+        return; // 유효성 검사 실패 시 중단
+    }
+
+    isLoading.value = true;
+
+    // 2. FormData 생성
+    const formData = new FormData();
+
+    // 2-1. 폼 데이터 (JSON이 아닌 개별 필드로 추가)
+    formData.append('type', selectedType.value);
+    formData.append('services', JSON.stringify(selectedServices.value)); // 배열은 JSON 문자열로
+    formData.append('budget', selectedBudget.value);
+    formData.append('schedule', selectedSchedule.value);
+    formData.append('content', textareaContent.value);
+    formData.append('company', clientInfo.value.company);
+    formData.append('name', clientInfo.value.name);
+    formData.append('tel', clientInfo.value.tel);
+    formData.append('email', clientInfo.value.email);
+
+    // 2-2. 파일 데이터 (다중 파일)
+    selectedFiles.value.forEach((file, index) => {
+        formData.append('files', file); // 'files'라는 동일한 key로 여러 파일을 추가
+    });
+
+    try {
+        // 3. API 호출 (Nuxt 3의 $fetch 사용)
+        //    - /api/contact는 예시 엔드포인트입니다.
+        //    - 실제 Spring Boot/Node.js 서버의 엔드포인트로 변경해야 합니다.
+        await $fetch('/api/contact', {
+            method: 'POST',
+            body: formData,
+            // (참고) body가 FormData일 경우 'Content-Type': 'multipart/form-data'
+            // 헤더는 브라우저가 자동으로 설정하므로 명시하지 않습니다.
+        });
+
+        // 4. 성공 처리
+        alert('문의가 성공적으로 전송되었습니다. 감사합니다.');
+        resetForm(); // 폼 초기화
+
+    } catch (error) {
+        // 5. 실패 처리
+        console.error('문의 전송 실패:', error);
+        alert('문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+        // 6. 로딩 상태 해제
+        isLoading.value = false;
+    }
+};
 </script>
 
-<style lang="scss" scoped>
-.highlight-title::before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    left: 0px;
-    transition-property: all;
-    transition-duration: 0.7s;
-    transition-delay: 0.5s;
-    transition-timing-function: ease-in;
-    background-color: rgba(0, 191, 255, 0.3);
-    bottom: 0.3328px;
-    height: 5.96875px;
-    width: 100%;
-}
-</style>
+<style lang="scss" scoped></style>

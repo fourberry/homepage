@@ -7,7 +7,10 @@
     <HomeSectionCEO />
     <HomeSectionTimeline />
     <HomeSectionCulture />
-    <ContactSection />
+    <SectionContact />
     <HomeSectionFact />
   </div>
 </template>
+<script setup lang="ts">
+import SectionContact from '@/components/contact/SectionContact.vue'
+</script>
