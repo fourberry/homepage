@@ -460,7 +460,7 @@ const handleSubmit = async () => {
         // 4. API 요청 본문(Body) 생성
         const requestBody = {
             channel: "email",
-            to: "briskly0415@fourberry.co.kr,won567567@fourberry.co.kr,lsj8376@fourberry.co.kr", // 요청 명세에 따름
+            to: "briskly0415@fourberry.co.kr,won567567@fourberry.co.kr,lsj8376@fourberry.co.kr", // 요청 명세에 따름 damon@fourberry.co.kr,dodam@fourberry.co.kr
             subject: `[포베리 문의] ${clientInfo.value.company || clientInfo.value.name} 님 - ${typeLabel}`,
             content: htmlContent,
             data: {
