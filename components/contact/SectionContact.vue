@@ -359,60 +359,133 @@ const resetForm = () => {
 }
 
 /**
+ * File 객체를 Base64 문자열로 변환하는 헬퍼 함수
+ * (data:mime/type;base64, 접두사 제거)
+ */
+const readFileAsBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const result = reader.result as string;
+            // "data:mime/type;base64," 부분을 제거하고 순수 Base64 데이터만 반환
+            const base64Content = result.split(',')[1];
+            resolve(base64Content);
+        };
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file);
+    });
+};
+
+/**
  * API 제출 핸들러
  */
 const handleSubmit = async () => {
-    if (isLoading.value) return // 중복 제출 방지
+    if (isLoading.value) return; // 중복 제출 방지
 
     // 1. 유효성 검사
     if (!validateForm()) {
-        return // 유효성 검사 실패 시 중단
+        return; // 유효성 검사 실패 시 중단
     }
 
-    isLoading.value = true
-
-    // 2. FormData 생성
-    const formData = new FormData()
-
-    // 2-1. 폼 데이터 (JSON이 아닌 개별 필드로 추가)
-    formData.append('type', selectedType.value)
-    formData.append('services', JSON.stringify(selectedServices.value)) // 배열은 JSON 문자열로
-    formData.append('budget', selectedBudget.value)
-    formData.append('schedule', selectedSchedule.value)
-    formData.append('content', textareaContent.value)
-    formData.append('company', clientInfo.value.company)
-    formData.append('name', clientInfo.value.name)
-    formData.append('tel', clientInfo.value.tel)
-    formData.append('email', clientInfo.value.email)
-
-    // 2-2. 파일 데이터 (다중 파일)
-    selectedFiles.value.forEach((file, index) => {
-        formData.append('files', file) // 'files'라는 동일한 key로 여러 파일을 추가
-    })
+    isLoading.value = true;
 
     try {
-        // 3. API 호출 (Nuxt 3의 $fetch 사용)
-        //    - /api/contact는 예시 엔드포인트입니다.
-        //    - 실제 Spring Boot/Node.js 서버의 엔드포인트로 변경해야 합니다.
-        await $fetch('/api/contact', {
-            method: 'POST',
-            body: formData,
-            // (참고) body가 FormData일 경우 'Content-Type': 'multipart/form-data'
-            // 헤더는 브라우저가 자동으로 설정하므로 명시하지 않습니다.
-        })
+        // 2. 첨부 파일 Base64 인코딩 (비동기 처리)
+        const attachmentPromises = selectedFiles.value.map(async (file) => {
+            const base64Content = await readFileAsBase64(file);
+            return {
+                filename: file.name,
+                mimeType: file.type || 'application/octet-stream', // 파일 타입이 없는 경우 대비
+                content: base64Content,
+            };
+        });
+        
+        const attachments = await Promise.all(attachmentPromises);
 
-        // 4. 성공 처리
-        openModal('전송 완료', '문의가 성공적으로 전송되었습니다. 감사합니다.', 'success')
-        resetForm() // 폼 초기화
+        // 3. 이메일 본문(content)으로 사용할 HTML 생성
+        // (가독성을 위해 선택된 값의 'label'을 찾아옵니다)
+        const typeLabel = consultationTypes.find(t => t.value === selectedType.value)?.label || 'N/A';
+        const serviceLabels = selectedServices.value
+            .map(val => favoriteServices.find(s => s.value === val)?.label)
+            .filter(Boolean)
+            .join(', ') || 'N/A';
+        const budgetLabel = budgetOptions.find(b => b.value === selectedBudget.value)?.label || 'N/A';
+        const scheduleLabel = scheduleOptions.find(s => s.value === selectedSchedule.value)?.label || 'N/A';
+        
+        // (XSS 방지를 위해 간단한 텍스트 이스케이프)
+        const escapeHTML = (str: string) => str.replace(/[&<>"']/g, match => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[match]!));
+        
+        const htmlContent = `
+            <h1>[포베리] 신규 문의가 접수되었습니다.</h1>
+            <p><strong>${escapeHTML(clientInfo.value.company || clientInfo.value.name)}</strong>님으로부터 새로운 문의가 접수되었습니다.</p>
+            <hr>
+            <h2>문의자 정보</h2>
+            <ul>
+                <li><strong>회사/단체명:</strong> ${escapeHTML(clientInfo.value.company) || 'N/A'}</li>
+                <li><strong>담당자명:</strong> ${escapeHTML(clientInfo.value.name)}</li>
+                <li><strong>연락처:</strong> ${escapeHTML(clientInfo.value.tel)}</li>
+                <li><strong>이메일:</strong> ${escapeHTML(clientInfo.value.email)}</li>
+            </ul>
+            <hr>
+            <h2>문의 내용</h2>
+            <ul>
+                <li><strong>상담 유형:</strong> ${escapeHTML(typeLabel)}</li>
+                <li><strong>관심 서비스:</strong> ${escapeHTML(serviceLabels)}</li>
+                <li><strong>예산:</strong> ${escapeHTML(budgetLabel)}</li>
+                <li><strong>일정:</strong> ${escapeHTML(scheduleLabel)}</li>
+            </ul>
+            <hr>
+            <h3>추가 전달 내용</h3>
+            <pre style="white-space: pre-wrap; word-wrap: break-word; background-color: #f4f4f4; padding: 10px; border-radius: 5px;">${escapeHTML(textareaContent.value) || 'N/A'}</pre>
+            <hr>
+            <p>첨부파일: ${attachments.length > 0 ? escapeHTML(attachments.map(a => a.filename).join(', ')) : '없음'}</p>
+        `;
+
+        // 4. API 요청 본문(Body) 생성
+        const requestBody = {
+            channel: "email",
+            to: "briskly0415@fourberry.co.kr", // 요청 명세에 따름
+            subject: `[포베리 문의] ${clientInfo.value.company || clientInfo.value.name} 님 - ${typeLabel}`,
+            content: htmlContent,
+            data: {
+                // (API 명세의 data 객체가 템플릿 변수용이라면, 
+                //  여기에도 주요 정보를 넣어주는 것이 좋을 수 있습니다.)
+                clientName: clientInfo.value.name,
+                clientCompany: clientInfo.value.company,
+                inquiryType: typeLabel
+            },
+            attachments: attachments
+        };
+
+        // 5. API 호출 (Nuxt 3의 $fetch 사용)
+        await $fetch('https://briskly0714.cafe24.com/lime/api/v1/messages/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'msg_fourberry_clipsight_d7288f6917991ca3c414f15c86535a09'
+                // (만약 인증 토큰이 필요하다면 여기에 추가)
+                // 'Authorization': 'Bearer YOUR_API_KEY'
+            },
+            body: requestBody,
+        });
+
+        // 6. 성공 처리
+        openModal('전송 완료', '문의가 성공적으로 전송되었습니다. 감사합니다.', 'success');
+
     } catch (error) {
-        // 5. 실패 처리
-        console.error('문의 전송 실패:', error)
-        openModal('전송 실패', '문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.', 'error')
+        // 7. 실패 처리
+        console.error('문의 전송 실패:', error);
+        // CORS 오류가 발생할 수 있습니다.
+        // 서버 측에서 'https://briskly0714.cafe24.com' API를 호출하도록 
+        // Nuxt 서버 라우트(/server/api/contact.post.ts)를 만드는 것이 더 안정적일 수 있습니다.
+        openModal('전송 실패', '문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.', 'error');
     } finally {
-        // 6. 로딩 상태 해제
-        isLoading.value = false
+        // 8. 로딩 상태 해제
+        isLoading.value = false;
     }
-}
+};
 </script>
 
 <style lang="scss" scoped></style>
