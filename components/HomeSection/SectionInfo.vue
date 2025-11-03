@@ -2,14 +2,19 @@
     <section class="relative isolate w-full bg-background px-6 py-40 text-center sm:px-8 sm:py-32 md:flex md:min-h-screen md:items-center md:justify-center md:px-10">
         <div class="mx-auto max-w-5xl">
             <!-- 메인 헤드라인 -->
-            <h2 class="mb-10 text-2xl font-extrabold leading-[1.35] text-gray-900 sm:text-4xl sm:leading-[1.25] md:text-6xl md:leading-[1.15] lg:text-[80px] lg:leading-[1.1]">
-                포베리는
-                <br />
-                <span class="text-primary">사람 중심</span>
-                의 기술로
-                <br />
-                <span class="text-primary">더 나은 IT 환경</span>
-                을 만듭니다.
+            <h2
+            class="mb-10 text-3xl font-extrabold leading-[1.35] text-gray-900 
+                    sm:text-4xl sm:leading-[1.25] 
+                    md:text-6xl md:leading-[1.15] 
+                    lg:text-[80px] lg:leading-[1.1]"
+            >
+            포베리는
+            <br />
+            <span class="text-primary">사람 중심</span>
+            의 기술로
+            <br />
+            <span class="text-primary">더 나은 IT 환경</span>
+            을 만듭니다.
             </h2>
 
             <!-- 서브 헤드라인 -->
