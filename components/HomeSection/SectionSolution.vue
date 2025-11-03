@@ -13,10 +13,10 @@
         <div class="absolute inset-0 bg-black/25"></div>
       </figure>
 
-      <!-- Text (right / fade-in animation) -->
+      <!-- Text (right) -->
       <div class="flex items-center w-full">
         <div
-          class="px-6 py-12 md:px-12 lg:px-16"
+          class="px-6 py-12 md:px-12 lg:px-16 xl:max-w-[560px] 2xl:max-w-[640px] mr-auto"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 600, easing: 'ease-out' } }"
@@ -37,7 +37,7 @@
             회원 정보를 효율적으로 관리할 수 있는 통합 환경을 제공합니다.
           </p>
 
-          <ul class="space-y-2 text-slate-700 mb-7 md:mb-8">
+          <ul class="space-y-1.5 text-slate-700 mb-7 md:mb-8">
             <li class="flex items-start gap-2">
               <span class="mt-2 h-1.5 w-1.5 rounded-full bg-blue-700"></span>
               <span>통합 회원 관리 – 약관, 권한, 개인정보 동의 이력까지 한 화면에서 관리</span>
@@ -72,7 +72,7 @@
         :visible="{ opacity: 1, y: 0, transition: { duration: 600, easing: 'ease-out' } }"
         :once="true"
       >
-        <div class="px-6 py-12 md:px-12 lg:px-16">
+        <div class="px-6 py-12 md:px-12 lg:px-16 xl:max-w-[560px] 2xl:max-w-[640px] ml-auto">
           <p class="mb-3 inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
             Web Automation · Scraping · Data
           </p>
@@ -87,7 +87,7 @@
             자체 개발한 엔진을 통해 복잡한 데이터 수집 과정을 안정적이고 효율적으로 수행합니다.
           </p>
 
-          <ul class="space-y-2 text-slate-700 mb-7 md:mb-8">
+          <ul class="space-y-1.5 text-slate-700 mb-7 md:mb-8">
             <li class="flex items-start gap-2">
               <span class="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-700"></span>
               <span>자체 엔진 기반 – 독자 개발 엔진(FBScript)으로 안정적인 자동화 제공</span>
