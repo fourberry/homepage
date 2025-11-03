@@ -9,13 +9,13 @@
                     </div>
                 </div>
 
-                <div class="flex-panel-card _1 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
+                <div class="flex-panel-card _1 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" />
                         </div>
                         <div class="description">
-                            <p class="kind">CUCKOO</p>
+                            <p class="kind">2021.11 ~ 2022.09</p>
                             <p class="title">OMS 및 차세대 영업관리 시스템 구축</p>
                         </div>
                         <h3 class="h3 my-0">CUCKOO</h3>
@@ -23,13 +23,13 @@
                     <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _2 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
+                <div class="flex-panel-card _2 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" />
                         </div>
                         <div class="description">
-                            <p class="kind">WITH FRESH</p>
+                            <p class="kind">2024.01 ~ 2025.03</p>
                             <p class="title">브랜드몰 (하이브리드 앱) 및 SSO 구축</p>
                         </div>
                         <h3 class="h3 my-0">WITH FRESH</h3>
@@ -37,13 +37,13 @@
                     <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _3 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
+                <div class="flex-panel-card _3 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" />
                         </div>
                         <div class="description">
-                            <p class="kind">KOBC</p>
+                            <p class="kind">2024.10 ~ 2025.01</p>
                             <p class="title">게이미피케이션 접목 캠페인 (PC/모바일)</p>
                         </div>
                         <h3 class="h3 my-0">KOBC</h3>
@@ -62,8 +62,11 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useHeaderTheme } from '~/composables/useHeaderTheme'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const { setHeaderTheme } = useHeaderTheme()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const flexContainer = ref<HTMLElement | null>(null)
@@ -93,6 +96,17 @@ onMounted(() => {
                             scrub: 1,
                             end: () => '+=' + (wrapper.scrollWidth - document.documentElement.clientWidth),
                             invalidateOnRefresh: true,
+                            // --- [3. 수정/추가] ScrollTrigger 콜백 추가 ---
+                            // onToggle을 사용하면 더 간결합니다.
+                            onToggle: self => {
+                                if (self.isActive) {
+                                    // 섹션이 활성화되면(화면에 고정되면)
+                                    setHeaderTheme('transparent') //
+                                } else {
+                                    // 섹션이 비활성화되면(고정이 풀리면)
+                                    setHeaderTheme('dark') // 기본 테마(예: 'light')로 복원
+                                }
+                            },
                         },
                     })
 
@@ -104,7 +118,7 @@ onMounted(() => {
                     // 여기서는 뷰포트에 따라 달라지는 vw 대신 고정 픽셀 값을 사용해 보겠습니다.
                     // 1.2 스케일의 절반(0.1) * 30vw 너비 => 3vw
                     // 예: 1920px 화면에서 3vw = 약 57px. 60px 정도로 설정.
-                    const pushAmount = 60 // (px 단위, 원하는 만큼 조절하세요)
+                    const pushAmount = 120 // (px 단위, 원하는 만큼 조절하세요)
 
                     cards.forEach((card: any, index: number) => {
                         // 'index' 매개변수 추가
@@ -128,18 +142,12 @@ onMounted(() => {
                                     duration: 0.3,
                                     ease: 'power1.out',
                                 })
-                                // 2. 현재 카드 이전의 모든 카드들을 왼쪽으로 밀기
-                                gsap.to(cards.slice(0, index), {
-                                    x: -pushAmount, // (translateX)
-                                    duration: 0.3,
-                                    ease: 'power1.out',
-                                })
-                                // 3. 현재 카드 이후의 모든 카드들을 오른쪽으로 밀기
                                 gsap.to(cards.slice(index + 1), {
-                                    x: pushAmount, // (translateX)
+                                    x: pushAmount, // 120px
                                     duration: 0.3,
                                     ease: 'power1.out',
                                 })
+                                // --- [수정 끝] ---
                             })
 
                             // mouseleave 이벤트 리스너 추가
@@ -177,6 +185,7 @@ onUnmounted(() => {
     if (ctx.value) {
         ctx.value.revert()
     }
+    setHeaderTheme('light')
 })
 </script>
 
@@ -187,6 +196,9 @@ onUnmounted(() => {
     --card-height-desktop-default: 50rem; /* md:h-96 */
 }
 
+.flex-panel-card {
+    transform-origin: top left;
+}
 /* --- [CSS 추가 2] "Target" 예제의 스타일을 복사 및 수정 --- */
 
 /* 2-1. 그라데이션 배경색 (카드 패널에 적용) */
@@ -238,11 +250,10 @@ onUnmounted(() => {
     position: relative;
     z-index: 1;
     width: 100%;
-    position: relative;
     margin: 0 auto;
     padding: 0 2rem; /* 좌우 패딩 */
     box-sizing: border-box;
-    height: 30rem;
+    height: 35rem;
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -262,28 +273,14 @@ onUnmounted(() => {
     position: relative;
     z-index: 1;
     width: 100%;
-    position: relative;
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
     margin: 20px auto 0;
     padding: 0 2rem; /* 좌우 패딩 */
     box-sizing: border-box;
     color: #000000;
-}
-
-.description p {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif; /* 폰트 지정 */
-}
-.description p.kind {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-.description p.title {
-    font-size: 1.2rem;
-    font-weight: 500;
-    line-height: 1.4;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 /* 2-6. 메인 타이틀 (h3) */
@@ -293,21 +290,11 @@ onUnmounted(() => {
     z-index: 1;
     font-weight: 900;
     color: #fff;
-    font-size: 4rem; /* 폰트 크기 조절 */
+    font-size: 64px; /* 폰트 크기 조절 */
     letter-spacing: -1.92px;
     text-align: center;
     margin: 10px auto 0;
     position: relative;
-}
-
-/* [CSS 수정 3] .flex-card는 NuxtLink에도 쓰이므로 높이/정렬만 설정 */
-.flex-card {
-    height: var(--card-height-desktop-default);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    box-shadow: none;
 }
 
 /* [CSS 수정 4] 모바일 반응형 */

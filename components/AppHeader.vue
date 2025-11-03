@@ -46,59 +46,58 @@ import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// [수정 1] setHeaderTheme도 가져옵니다.
+import { useHeaderTheme } from '~/composables/useHeaderTheme'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // --- 상태 로직 ---
-const isScrolled = ref(false)
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
 let scrollTriggerInstance: ScrollTrigger | null = null
-const headerTheme = useHeaderTheme()
-const shouldApplyScrolledClass = computed(() => isScrolled.value || !isHomePage.value)
-const effectiveTheme = computed(() => {
-    if (!isHomePage.value) {
-        return 'dark'
-    }
-    if (isScrolled.value) {
-        return 'dark'
-    }
-    return headerTheme.value
-})
 
-// --- 모바일 메뉴 로직 (수정됨) ---
+// [수정 2] 'theme'과 'setHeaderTheme'을 올바르게 구조분해합니다.
+const { theme, setHeaderTheme } = useHeaderTheme()
+
+// --- 모바일 메뉴 로직 ---
 const isMobileMenuOpen = ref(false)
-
 const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
-// 버튼 라인 색상
-const lineClasses = computed(() => [effectiveTheme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
+// [수정 3] 햄버거 버튼 라인 색상 로직
+// 'dark' 테마(스크롤 내림)일 때만 'bg-gray-800', 그 외('light', 'transparent')는 'bg-white'
+const lineClasses = computed(() => [theme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
 
-// --- Tailwind 클래스 바인딩 로직 ---
+// [수정 4] 헤더 클래스 바인딩 로직 (가장 중요)
+// effectiveTheme을 제거하고, 'theme' 값을 직접 사용하여 4가지 상태를 처리합니다.
 const headerClasses = computed(() => {
-    const isInitialTransparentState = isHomePage.value && headerTheme.value === 'light'
-    const theme = effectiveTheme.value
-    const backgroundAndPosition = isInitialTransparentState ? 'absolute bg-transparent' : 'fixed bg-white/60 backdrop-blur-md shadow-sm'
-    // 새 로직
-    let textColor
-    let borderColor
+    const baseClasses = 'top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out'
 
-    if (isInitialTransparentState) {
-        // 1. 홈페이지 최상단 (스크롤 0)
-        // 요청하신대로 글씨를 투명하게 설정합니다.
-        textColor = 'text-transparent'
-        borderColor = '' // 테두리 없음
-    } else {
-        // 2. 스크롤을 내렸거나, 다른 페이지일 경우
-        // 배경이 흰색이 되므로 글씨를 검은색으로 설정합니다.
-        textColor = 'text-gray-800'
+    // 1. 홈페이지가 아닐 때: 항상 흰색 배경
+    if (!isHomePage.value) {
+        return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
 
-    return ['top-0', 'left-0', 'w-full', 'z-50', 'transition-all', 'duration-300', 'ease-in-out', backgroundAndPosition, textColor, borderColor]
+    // 2. 홈페이지일 때: 'theme' 값에 따라 분기
+    switch (theme.value) {
+        case 'transparent':
+            // 2-1. 'transparent' 강제 설정 시 (예: SectionSiSm)
+            // [수정] 글씨를 'text-white'로 변경
+            return [baseClasses, 'fixed bg-transparent text-transparent']
+        case 'dark':
+            // 2-2. 스크롤이 내려간 상태
+            // [수정] 글씨를 'text-gray-800'로 변경
+            return [baseClasses, 'fixed bg-white/60 backdrop-blur-md shadow-sm text-gray-800']
+        case 'light':
+        default:
+            // 2-3. 홈페이지 최상단 (스크롤 0)
+            // [수정] 글씨를 'text-white'로 변경 (기존 text-transparent 오류 수정)
+            return [baseClasses, 'absolute bg-transparent text-transparent']
+    }
 })
 
+// [수정 5] ScrollTrigger 로직 수정
 const setupScrollTrigger = () => {
     scrollTriggerInstance?.kill()
     if (isHomePage.value) {
@@ -107,9 +106,10 @@ const setupScrollTrigger = () => {
             start: 'top top',
             end: '+=10',
             onUpdate: self => {
-                isScrolled.value = self.scroll() > 10
-                if (isHomePage.value) {
-                    headerTheme.value = isScrolled.value ? 'dark' : 'light'
+                const scrolled = self.scroll() > 10
+                // [중요] 현재 테마가 'transparent'가 아닐 때만 스크롤에 따라 테마 변경
+                if (theme.value !== 'transparent') {
+                    setHeaderTheme(scrolled ? 'dark' : 'light')
                 }
             },
         })
@@ -118,14 +118,15 @@ const setupScrollTrigger = () => {
 
 // --- 생명주기 로직 (수정됨) ---
 onMounted(() => {
-    // --- (기존 onMounted 로직) ---
     if (isHomePage.value) {
-        isScrolled.value = window.scrollY > 10
-        headerTheme.value = isScrolled.value ? 'dark' : 'light'
+        const scrolled = window.scrollY > 10
+        // [중요] 초기 로드 시에도 'transparent'가 아니어야 테마 설정
+        if (theme.value !== 'transparent') {
+            setHeaderTheme(scrolled ? 'dark' : 'light')
+        }
         setupScrollTrigger()
     } else {
-        isScrolled.value = true
-        headerTheme.value = 'dark'
+        setHeaderTheme('dark') // 다른 페이지는 항상 'dark'
     }
 
     watch(
@@ -134,12 +135,13 @@ onMounted(() => {
             isMobileMenuOpen.value = false // 페이지 이동 시 메뉴 닫기
 
             if (newPath === '/') {
-                isScrolled.value = window.scrollY > 10
-                headerTheme.value = isScrolled.value ? 'dark' : 'light'
+                // 홈페이지로 돌아올 땐 테마 리셋
+                const scrolled = window.scrollY > 10
+                setHeaderTheme(scrolled ? 'dark' : 'light')
                 setupScrollTrigger()
             } else {
-                isScrolled.value = true
-                headerTheme.value = 'dark'
+                // 다른 페이지로 이동 시
+                setHeaderTheme('dark')
                 scrollTriggerInstance?.disable()
             }
         }
