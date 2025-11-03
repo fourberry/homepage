@@ -367,9 +367,23 @@ const readFileAsBase64 = (file: File): Promise<string> => {
         const reader = new FileReader();
         reader.onload = () => {
             const result = reader.result as string;
+            
+            if (typeof result !== 'string' || !result.includes(',')) {
+                // result가 유효한 data URL 형식이 아닌 경우
+                reject(new Error('Failed to read file as base64 data URL.'));
+                return;
+            }
+
             // "data:mime/type;base64," 부분을 제거하고 순수 Base64 데이터만 반환
             const base64Content = result.split(',')[1];
-            resolve(base64Content);
+            
+            if (base64Content) {
+                // 성공적으로 base64 문자열을 추출한 경우
+                resolve(base64Content);
+            } else {
+                // 쉼표는 있었지만, 그 뒤에 내용이 없는 비정상적인 경우
+                reject(new Error('Failed to extract base64 content from data URL.'));
+            }
         };
         reader.onerror = (error) => reject(error);
         reader.readAsDataURL(file);
@@ -446,7 +460,7 @@ const handleSubmit = async () => {
         // 4. API 요청 본문(Body) 생성
         const requestBody = {
             channel: "email",
-            to: "briskly0415@fourberry.co.kr", // 요청 명세에 따름
+            to: "briskly0415@fourberry.co.kr,won567567@fourberry.co.kr,lsj8376@fourberry.co.kr", // 요청 명세에 따름
             subject: `[포베리 문의] ${clientInfo.value.company || clientInfo.value.name} 님 - ${typeLabel}`,
             content: htmlContent,
             data: {
