@@ -1,26 +1,22 @@
 <template>
-  <section class="bg-background py-16 md:py-24 lg:py-28">
+  <section class="bg-background py-24 md:py-32">
     <div class="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-12">
       <h2 class="sr-only">회사 기본 정보</h2>
 
       <!-- 섹션 타이틀 -->
-      <h3
-        class="mb-8 text-2xl font-extrabold tracking-tight text-black md:text-3xl leading-none"
-      >
-        오시는 길
-      </h3>
+      <h3 class="mb-8 text-2xl font-bold tracking-tight text-black md:text-3xl">LOCATION</h3>
 
       <!-- 2컬럼 레이아웃 -->
       <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
         <!-- ========== 왼쪽: 지도 영역 ========== -->
-        <div class="flex h-full min-h-full flex-col space-y-4 rounded-2xl min-w-0">
+        <div class="flex h-full min-h-full flex-col space-y-4 rounded-2xl">
           <!-- 지도 상단 컨트롤 -->
-          <div class="flex flex-wrap items-center gap-3 text-sm text-black lg:text-[0.9rem]">
+          <div class="flex flex-wrap items-center gap-3 text-sm text-black">
             <button
               class="rounded-lg border border-gray-400 bg-gray-100 px-3 py-2 text-black transition hover:bg-gray-200"
               @click="toggleTraffic"
             >
-              교통정보 {{ trafficOn ? "끄기" : "켜기" }}
+              교통정보 {{ trafficOn ? '끄기' : '켜기' }}
             </button>
           </div>
 
@@ -30,65 +26,56 @@
 
             <!-- 주소 라벨 -->
             <div
-              class="absolute bottom-4 left-4 max-w-[80%] break-words rounded-lg border border-gray-300 bg-white/90 px-3 py-2 text-[11px] text-gray-800 shadow-lg md:text-xs"
+              class="absolute bottom-4 left-4 rounded-lg border border-gray-300 bg-white/90 px-3 py-2 text-xs text-gray-800 shadow-lg"
             >
-              서울특별시 영등포구 양평로 22길 21<br />
+              서울특별시 영등포구 양평로 22길 21
+              <br />
               코오롱디지털타워 1409호 (선유도 인근)
             </div>
           </div>
         </div>
 
         <!-- ========== 오른쪽: 회사 정보 영역 ========== -->
-        <div class="flex h-full min-h-full flex-col justify-center min-w-0">
-          <dl class="divide-y-2 divide-gray-300">
+        <div class="flex h-full min-h-full flex-col justify-center">
+          <dl class="divide-y divide-gray-200">
             <!-- 회사명 -->
-            <div class="grid grid-cols-1 gap-3 py-5 md:grid-cols-6 md:py-6">
-              <dt
-                class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg"
-              >
-                회사명
-              </dt>
+            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+              <dt class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg">회사명</dt>
               <dd
-                class="min-w-0 text-base text-black md:col-span-4 md:pl-6 md:text-[1.05rem] lg:text-[1.1rem] xl:text-xl"
+                class="text-base text-black md:col-span-4 md:pl-4 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-keep leading-snug"
               >
                 포베리주식회사
               </dd>
             </div>
 
             <!-- 설립일 -->
-            <div class="grid grid-cols-1 gap-3 py-5 md:grid-cols-6 md:py-6">
-              <dt
-                class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg"
-              >
-                설립일
-              </dt>
+            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+              <dt class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg">설립일</dt>
               <dd
-                class="min-w-0 text-base text-black md:col-span-4 md:pl-6 md:text-[1.05rem] lg:text-[1.1rem] xl:text-xl"
+                class="text-base text-black md:col-span-4 md:pl-4 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-keep leading-snug"
               >
                 2023년 10월 30일
               </dd>
             </div>
 
             <!-- Contact -->
-            <div class="grid grid-cols-1 gap-3 py-5 md:grid-cols-6 md:py-6">
-              <dt
-                class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg"
-              >
-                Contact
-              </dt>
+            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+              <dt class="text-sm text-gray-600 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg">Contact</dt>
               <dd
-                class="min-w-0 text-base text-black md:col-span-4 md:pl-6 md:text-[1.05rem] lg:text-[1.1rem] xl:text-xl"
+                class="text-base text-black md:col-span-4 md:pl-4 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-words leading-relaxed"
               >
-                <div class="grid grid-cols-[6rem_1fr] gap-x-4 gap-y-2 md:grid-cols-[7rem_1fr]">
-                  <span class="text-sm text-gray-500 md:text-base lg:text-[0.9rem]">HP</span>
+                <div
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-1 sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]"
+                >
+                  <span class="text-sm text-gray-500 md:text-base">HP</span>
                   <span>010-2755-6550</span>
 
-                  <span class="text-sm text-gray-500 md:text-base lg:text-[0.9rem]">Addr</span>
-                  <span class="leading-relaxed break-words lg:break-keep">
+                  <span class="text-sm text-gray-500 md:text-base">Addr</span>
+                  <span class="break-words leading-relaxed">
                     서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호
                   </span>
 
-                  <span class="text-sm text-gray-500 md:text-base lg:text-[0.9rem]">Email</span>
+                  <span class="text-sm text-gray-500 md:text-base">Email</span>
                   <span class="break-all">damon@fourberry.co.kr</span>
                 </div>
               </dd>
@@ -101,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { ref, onMounted } from 'vue'
 
 const mapContainerRef = ref<HTMLDivElement | null>(null)
 const { $kakao } = useNuxtApp()
@@ -134,7 +121,7 @@ onMounted(async () => {
 
     const marker = new kakaoRef.maps.Marker({ position: center, map: mapRef })
 
-    const content = document.createElement("div")
+    const content = document.createElement('div')
     content.innerHTML = `
       <div style="
         display: inline-block;
