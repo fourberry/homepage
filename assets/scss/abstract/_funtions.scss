@@ -7,7 +7,7 @@
 */
 @function rem($px) {
     // 16으로 나누고 'rem' 단위를 붙여 최종 CSS 값으로 반환합니다.
-    @return calc($px / 16) + rem; 
+    @return calc($px / 16) + rem;
 }
 
 /* 2. color-with-opacity() 함수 정의 (선택 사항)
@@ -16,9 +16,8 @@
 */
 @function color-with-opacity($color, $opacity) {
     // rgba() 함수를 사용하여 색상과 투명도를 결합합니다.
-    @return rgba($color, $opacity); 
+    @return rgba($color, $opacity);
 }
-
 
 /* 3. adjust-color() 함수 정의 (추가)
   - 역할: 기존 색상의 밝기를 조절하여 새로운 색상을 생성합니다.
@@ -27,5 +26,5 @@
 */
 @function adjust-color($color, $percentage) {
     // 'change-color' 함수를 사용하여 lightness(밝기)만 조절합니다.
-    @return change-color($color, $lightness: $percentage); 
+    @return change-color($color, $lightness: $percentage);
 }

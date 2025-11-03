@@ -1,25 +1,14 @@
 <template>
-    <h3
-        class="
-            font-medium 
-            relative 
-            isolate 
-            w-fit 
-            highlight-title 
-            md:text-xl
-        "
-    >
+    <h3 class="highlight-title relative isolate w-fit font-medium md:text-xl">
         <slot />
     </h3>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .highlight-title::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     z-index: -1;

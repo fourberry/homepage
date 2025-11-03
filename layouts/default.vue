@@ -1,21 +1,17 @@
 <template>
-  <div>
-    <div
-      v-if="showPreloader"
-      ref="preloader"
-      class="fixed inset-0 z-[9999] flex h-full w-full items-center justify-center bg-white"
-    >
-      </div>
+    <div>
+        <div v-if="showPreloader" ref="preloader" class="fixed inset-0 z-[9999] flex h-full w-full items-center justify-center bg-white"></div>
 
-    <div class="flex min-h-screen flex-col">
-      <AppHeader />
+        <div class="flex min-h-screen flex-col">
+            <AppHeader />
 
-      <main class="grow">
-        <slot /> </main>
+            <main class="grow">
+                <slot />
+            </main>
 
-      <AppFooter />
+            <AppFooter />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -30,22 +26,22 @@ const showPreloader = ref(true)
 const preloader = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  // 컴포넌트 마운트 시 프리로더 애니메이션 실행
-  if (preloader.value) {
-    // GSAP를 사용하여 0.8초 동안 투명도를 0으로 변경
-    gsap.to(preloader.value, {
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      onComplete: () => {
-        // 애니메이션 완료 후 DOM에서 제거하기 위해 상태 변경
+    // 컴포넌트 마운트 시 프리로더 애니메이션 실행
+    if (preloader.value) {
+        // GSAP를 사용하여 0.8초 동안 투명도를 0으로 변경
+        gsap.to(preloader.value, {
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            onComplete: () => {
+                // 애니메이션 완료 후 DOM에서 제거하기 위해 상태 변경
+                showPreloader.value = false
+            },
+        })
+    } else {
+        // preloader.value가 없는 예외 상황 처리
         showPreloader.value = false
-      }
-    })
-  } else {
-    // preloader.value가 없는 예외 상황 처리
-    showPreloader.value = false
-  }
+    }
 })
 
 // --- 2. Head (SEO) 설정 ---

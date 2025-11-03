@@ -1,14 +1,15 @@
 <template>
-  <div class="overflow-x-hidden">
-    <HomeSectionTop />
-    <HomeSectionInfo />
-    <HomeSectionValues />
-    <HomeSectionCEO />
-    <HomeSectionTimeline />
-    <HomeSectionCulture />
-    <SectionContact />
-    <HomeSectionFact />
-  </div>
+    <div class="overflow-x-hidden">
+        <HomeSectionTop />
+        <HomeSectionInfo />
+        <HomeSectionValues />
+        <HomeSectionCEO />
+        <HomeSectionTimeline />
+        <HomeSectionbeforeSectionSiSm />
+        <HomeSectionCulture />
+        <SectionContact />
+        <HomeSectionFact />
+    </div>
 </template>
 <script setup lang="ts">
 import SectionContact from '@/components/contact/SectionContact.vue'

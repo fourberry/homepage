@@ -1,417 +1,266 @@
 <template>
-  <BaseSection
-      class="panel h-dvh bg-white border-t border-gray-200 py-16 md:py-24"
-      text-color="#111827"
-  >
-    <div class="text-center h-full flex flex-col justify-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref="sectionRef" class="panel relative min-h-dvh overflow-hidden border-t border-gray-200 bg-white py-0 md:py-0">
+        <div class="h-dvh">
+            <div ref="flexContainer" class="flex h-full snap-x snap-mandatory flex-row flex-nowrap items-center overflow-x-auto md:snap-none md:overflow-x-visible">
+                <div class="flex-panel-title flex h-full w-[90vw] flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 md:w-[30vw] md:text-left lg:px-12">
+                    <div class="break-keep">
+                        <h2 class="mb-4 text-4xl font-extrabold text-gray-950 md:mb-12 md:text-[80px]">SI & SM</h2>
+                        <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-700 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                    </div>
+                </div>
 
-      <div class="mb-4 md:mb-16 break-keep mt-8">
-        <h2 class="text-4xl md:text-[80px] font-extrabold mb-4 md:mb-12 text-gray-950">
-          SI & SM
-        </h2>
-        <p class=" text-xl sm:text-lg md:text-[40px] font-bold  text-gray-950 leading-relaxed max-w-3xl mx-auto">
-          포베리는 AICBM 기술을 중심으로 고객의 비즈니스에 새로운 가치를 더하는 SI/SM 사업을 수행합니다.
-        </p>
-        <div class="font-bold">테스트</div>
-      </div>
+                <div class="flex-panel-card _1 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
+                        <div class="thumbnail">
+                            <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" />
+                        </div>
+                        <div class="description">
+                            <p class="kind">CUCKOO</p>
+                            <p class="title">OMS 및 차세대 영업관리 시스템 구축</p>
+                        </div>
+                        <h3 class="h3 my-0">CUCKOO</h3>
+                    </div>
+                </div>
 
-      <div class="w-full">
+                <div class="flex-panel-card _2 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
+                        <div class="thumbnail">
+                            <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" />
+                        </div>
+                        <div class="description">
+                            <p class="kind">WITH FRESH</p>
+                            <p class="title">브랜드몰 (하이브리드 앱) 및 SSO 구축</p>
+                        </div>
+                        <h3 class="h3 my-0">WITH FRESH</h3>
+                    </div>
+                </div>
 
-        <div
-            ref="flexContainer"
-            class="flex flex-row md:flex-row gap-4 lg:gap-6 md:h-96
-                 overflow-x-auto justify-start md:justify-center md:overflow-x-visible
-                 snap-x snap-mandatory md:snap-none"
-        >
+                <div class="flex-panel-card _3 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
+                        <div class="thumbnail">
+                            <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" />
+                        </div>
+                        <div class="description">
+                            <p class="kind">KOBC</p>
+                            <p class="title">게이미피케이션 접목 캠페인 (PC/모바일)</p>
+                        </div>
+                        <h3 class="h3 my-0">KOBC</h3>
+                    </div>
+                </div>
 
-          <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
-            <div class="card-face face1">
-              <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
+                <div class="flex-panel-card _4 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4"></div>
             </div>
-            <div class="card-face face2">
-              <NuxtImg src="/images/cuckoo.svg" alt="Cuckoo Project" class="absolute inset-0 w-full h-full object-contain opacity-30 blur-sm"/>
-              <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-gray-900 text-left">
-                <h3 class="text-lg md:text-xl font-semibold mb-2">CUCKOO</h3>
-                <p class="text-xs md:text-sm leading-tight font-medium">
-                  78개 영업채널의 주문/배송/재고를 관리하는 통합 쇼핑몰(OMS) 및 차세대 영업관리 시스템을 구축
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
-            <div class="card-face face1">
-              <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
-            </div>
-            <div class="card-face face2">
-              <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-gray-900 text-left">
-                <h3 class="text-lg md:text-xl font-semibold mb-2">WITH FRESH</h3>
-                <p class="text-xs md:text-sm leading-tight font-medium">
-                  영등포농협의 자체 브랜드몰 'Always withFresh' (하이브리드 모바일 앱) 및 통합로그인(SSO) 시스템을 구축
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex-card relative rounded-lg overflow-hidden shadow-md w-[80vw] md:w-auto snap-start">
-            <div class="card-face face1">
-              <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" class="absolute inset-0 w-full h-full object-contain opacity-80"/>
-            </div>
-            <div class="card-face face2">
-              <div class="relative z-10 p-4 md:p-5 flex flex-col justify-center h-full text-gray-900 text-left">
-                <h3 class="text-lg md:text-xl font-semibold mb-2">KOBC</h3>
-                <p class="text-xs md:text-sm leading-tight font-medium">
-                  한국해양공사의 선박 매연 저감 캠페인을 '부루마블' 게이미피케이션과 접목하여 PC/모바일로 구축
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <NuxtLink to="/projects" class="flex-card relative rounded-lg overflow-hidden shadow-md bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-800 w-[80vw] md:w-auto snap-start">
-            <div class="text-center">
-              <h3 class="text-lg md:text-xl font-semibold mb-1">SEE ALL PROJECTS</h3>
-              <p class="text-xs md:text-sm text-gray-600 leading-tight">전체 프로젝트 보러가기 &rarr;</p>
-            </div>
-          </NuxtLink>
-
         </div>
-        <div class="mobile-arrow-container">
-          <button
-              @click="scrollLeft"
-              aria-label="Scroll Left"
-              :class="[
-                'arrow-btn',
-                { 'is-disabled': isAtStart }
-              ]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-
-          <button
-              @click="scrollRight"
-              aria-label="Scroll Right"
-              :class="[
-                'arrow-btn',
-                { 'is-disabled': isAtEnd }
-              ]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-        </div>
-
-      </div> </div>
-  </BaseSection>
+    </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted }from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
-import { Flip } from 'gsap/Flip'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(Flip)
+gsap.registerPlugin(ScrollTrigger)
 
-const config = useRuntimeConfig()
-const imageUrl = `${config.app.baseURL}images/sism_4.jpg`
+const sectionRef = ref<HTMLElement | null>(null)
 const flexContainer = ref<HTMLElement | null>(null)
 const ctx = ref<gsap.Context | null>(null)
 
-// --- 스크롤 버튼 상태 관리 ---
-const scrollAmount = ref(0)
-const isAtStart = ref(true)
-const isAtEnd = ref(false)
-// ------------------------------------
-
-// --- 스크롤 함수 ---
-const scrollLeft = () => {
-  flexContainer.value?.scrollBy({ left: -scrollAmount.value, behavior: 'smooth' })
-}
-const scrollRight = () => {
-  flexContainer.value?.scrollBy({ left: scrollAmount.value, behavior: 'smooth' })
-}
-
-/** 스크롤 컨테이너의 현재 상태를 체크하여 버튼 표시 여부 업데이트 */
-const updateScrollState = () => {
-  const el = flexContainer.value
-  if (!el) return
-
-  isAtStart.value = el.scrollLeft < 10
-  isAtEnd.value = el.scrollWidth - el.scrollLeft <= el.clientWidth + 10
-}
-// ----------------------------------
-
-
 onMounted(() => {
-  const containerEl = flexContainer.value
-  if (!containerEl) return
+    if (!sectionRef.value || !flexContainer.value) return
 
-  const cards = gsap.utils.toArray<HTMLElement>(containerEl.children)
+    ctx.value = gsap.context(() => {
+        gsap.matchMedia().add(
+            {
+                isDesktop: '(min-width: 768px)',
+                isMobile: '(max-width: 767px)',
+            },
+            context => {
+                const { isDesktop } = context.conditions as { isDesktop: boolean }
 
-  // --- 스크롤양 계산 및 리스너 등록 ---
-  if (cards.length > 0) {
-    const firstCard = cards[0]
-    const containerStyle = getComputedStyle(containerEl)
-    const gap = parseFloat(containerStyle.gap) || 16
+                if (isDesktop) {
+                    const wrapper = flexContainer.value!
 
-    scrollAmount.value = firstCard.offsetWidth + gap
-  }
-
-  containerEl.addEventListener('scroll', updateScrollState, { passive: true })
-  updateScrollState()
-  // ----------------------------------------
-
-  // --- GSAP 로직 ---
-  ctx.value = gsap.context(() => {
-    gsap.matchMedia().add({
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)"
-        },
-        (context) => {
-          const { isDesktop, isMobile } = context.conditions as { isDesktop: boolean, isMobile: boolean };
-
-          cards.forEach(card => {
-            if (card.tagName.toLowerCase() === 'a') return
-
-            // [수정 없음] 데스크톱 로직
-            if (isDesktop) {
-              const onEnter = () => {
-                const state = Flip.getState(cards)
-                card.classList.add('is-active')
-                Flip.from(state, {
-                  duration: 0.8,
-                  ease: 'elastic.out(1, 0.7)',
-                  absolute: true
-                })
-              }
-              const onLeave = () => {
-                const state = Flip.getState(cards)
-                card.classList.remove('is-active')
-                Flip.from(state, {
-                  duration: 0.5,
-                  ease: 'power2.out',
-                  absolute: true
-                })
-              }
-              card.addEventListener('mouseenter', onEnter)
-              card.addEventListener('mouseleave', onLeave)
-            }
-
-            // --- [ ✨ 여기가 X축(세로)으로 수정되었습니다 ] ---
-            if (isMobile) {
-              gsap.set(card, {
-                transformPerspective: 1000
-              });
-
-              let isFlipped = false;
-              const tl = gsap.timeline({ paused: true });
-              const timing = 1;
-
-              // [수정됨] rotationY -> rotationX
-              tl.to(card, {
-                rotationX: 180, // 세로로 +180도 회전
-                duration: timing,
-                ease: "power2.inOut"
-              });
-
-              // [수정 없음] z축 팝업 효과는 동일
-              tl.to(card, {
-                z: 50,
-                duration: timing / 2,
-                yoyo: true,
-                repeat: 1
-              }, 0);
-
-
-              // [수정 없음] 클릭 시 'additive' 재생
-              const onClick = () => {
-                if (tl.isActive()) {
-                  return;
+                    gsap.to(wrapper, {
+                        x: () => -(wrapper.scrollWidth - document.documentElement.clientWidth) + 'px',
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sectionRef.value,
+                            pin: true,
+                            scrub: 1,
+                            end: () => '+=' + (wrapper.scrollWidth - document.documentElement.clientWidth),
+                            invalidateOnRefresh: true,
+                        },
+                    })
                 }
-                isFlipped = !isFlipped;
-                if (isFlipped) {
-                  // true이면: face2로 (앞으로) 재생
-                  tl.play();
-                } else {
-                  // false이면: face1로 (뒤로) 재생
-                  tl.reverse();
-                }
-              };
-              card.addEventListener('click', onClick);
             }
-            // --- [ ✨ 수정 끝 ] ---
-
-          }) // end forEach
-        }) // end context
-  }, containerEl) // end gsap.context
+        )
+    }, sectionRef.value)
 })
 
 onUnmounted(() => {
-  if (ctx.value) {
-    ctx.value.revert()
-  }
-  if (flexContainer.value) {
-    flexContainer.value.removeEventListener('scroll', updateScrollState)
-  }
+    if (ctx.value) {
+        ctx.value.revert()
+    }
 })
 </script>
 
 <style scoped>
-/*
- * :root 또는 컴포넌트 최상위(.panel)에 변수 선언
- */
+/* [CSS 수정 1] 변수 정의 */
 .panel {
-  --card-slide-duration: 0.6s;
-  --card-slide-ease: cubic-bezier(0.76, 0, 0.24, 1);
-  --card-z-index-delay: 0.5s;
-
-  /* 모바일용 카드 높이 (기본 16rem) */
-  --card-height-mobile-default: 16rem;
+    --card-height-mobile-default: 16rem;
+    --card-height-desktop-default: 24rem; /* md:h-96 */
 }
 
+/* --- [CSS 추가 2] "Target" 예제의 스타일을 복사 및 수정 --- */
+
+/* 2-1. 그라데이션 배경색 (카드 패널에 적용) */
+.flex-panel-card._1 {
+    background: linear-gradient(135deg, #ffa800, #ff5d17);
+}
+.flex-panel-card._2 {
+    background: linear-gradient(135deg, #12d6f0, #12f093);
+}
+.flex-panel-card._3 {
+    background: linear-gradient(135deg, #3f1ca0, #a912f0);
+}
+/* 2-2. 'SEE ALL PROJECTS'용 배경 */
+.flex-panel-card._4 {
+    background: #f3f4f6; /* bg-gray-100 */
+}
+/* NuxtLink의 기본 배경/그림자 제거 */
+.flex-panel-card._4 .flex-card {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* 2-3. 새 카드 레이아웃 스타일 */
+.portfolio-item-replacement {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0; /* 상하 패딩 */
+    box-sizing: border-box;
+    height: var(--card-height-desktop-default);
+
+    /* 호버 시 줌 효과 (선택 사항) */
+    transition: transform 0.4s ease-in-out;
+}
+.portfolio-item-replacement:hover {
+    transform: scale(1.02);
+}
+
+/* 2-4. 썸네일 (이미지) */
+.thumbnail {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding: 0 2rem; /* 좌우 패딩 */
+    box-sizing: border-box;
+    height: 12rem;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 로고가 잘리지 않게 contain으로 */
+    opacity: 0.8; /* 예제와 비슷하게 */
+}
+
+/* 2-5. 텍스트 설명 */
+.description {
+    width: 100%;
+    position: relative;
+    text-align: left;
+    margin: 20px auto 0;
+    padding: 0 2rem; /* 좌우 패딩 */
+    box-sizing: border-box;
+}
+
+/* 텍스트 색상 관리 */
+.flex-panel-card._1 .description,
+.flex-panel-card._3 .description {
+    color: #fff;
+}
+.flex-panel-card._2 .description {
+    color: #000;
+}
+
+.description p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* 폰트 지정 */
+}
+.description p.kind {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+.description p.title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* 2-6. 메인 타이틀 (h3) */
+.h3 {
+    font-family: 'Poppins', sans-serif; /* 폰트 지정 */
+    font-weight: 900;
+    color: #fff;
+    font-size: 4rem; /* 폰트 크기 조절 */
+    letter-spacing: -1.92px;
+    text-align: center;
+    margin: 10px auto 0;
+    position: relative;
+}
+
+/* h3 텍스트 색상 조정 */
+.flex-panel-card._2 .h3 {
+    color: #000;
+}
+
+/* [CSS 수정 3] .flex-card는 NuxtLink에도 쓰이므로 높이/정렬만 설정 */
 .flex-card {
-  /* 기본 (데스크톱) 스타일 */
-  flex-basis: 25%;
-  flex-grow: 1;
-  flex-shrink: 1;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  transition: z-index 0s var(--card-z-index-delay);
-  border: 1px solid #e5e7eb;
-
-  /* [추가] 3D 플립 효과를 위한 원근감 설정 */
-  perspective: 1000px;
+    height: var(--card-height-desktop-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
 }
 
-/* GSAP Flip이 사용할 .is-active 로직 (카드 크기 변경 - 데스크톱) */
-.flex-card.is-active {
-  /* 데스크톱: 호버 시 2배(50%) 크기로 넓어짐 */
-  flex-basis: 50%;
-  flex-grow: 2;
-  z-index: 10;
-  transition-delay: 0s; /* 활성화 시 z-index 즉시 변경 */
-}
-
-/* --- 카드 내부 슬라이드 애니메이션 (face1, face2) - 데스크톱 --- */
-.card-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform var(--card-slide-duration) var(--card-slide-ease);
-}
-.face1 {
-  transform: translateY(0);
-  color: white;
-}
-.face2 {
-  transform: translateY(100%);
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  color: #111827;
-}
-/* 데스크톱 .is-active 애니메이션 */
-.flex-card.is-active .face1 {
-  transform: translateY(-100%);
-}
-.flex-card.is-active .face2 {
-  transform: translateY(0);
-}
-
-
-/* --- ✨ [수정됨] 모바일 (max-width: 767px) 스타일 --- */
+/* [CSS 수정 4] 모바일 반응형 */
 @media (max-width: 767px) {
-  .flex-card {
-    /* 가로 스크롤 아이템(flex: 0 0 auto)으로 변경 */
-    flex: 0 0 auto; /* 너비는 w-[80vw]가 제어 */
-    min-height: var(--card-height-mobile-default);
+    /* 기존 3D 플립 스타일(.face1, .face2 등)은 모두 제거 */
 
-    /* [추가] 모바일에서 3D 변형 스타일 적용 */
-    transform-style: preserve-3d;
+    .flex-panel-card {
+        height: var(--card-height-mobile-default); /* 모바일 패널 높이 */
+    }
+    .portfolio-item-replacement,
+    .flex-card {
+        height: var(--card-height-mobile-default); /* 모바일 카드 높이 */
+        padding: 15px 0;
+    }
+    .h3 {
+        font-size: 2.5rem; /* 모바일용 h3 폰트 크기 */
+    }
+    .description p.kind {
+        font-size: 1.2rem;
+    }
+    .description p.title {
+        font-size: 1rem;
+    }
+}
 
-    /* [수정됨] GSAP가 transform을 직접 제어하므로 transition에서 제거 */
-    transition: z-index 0s var(--card-z-index-delay);
-    overflow: visible;
-  }
-
-  /* "SEE ALL" 카드도 동일한 높이 적용 */
-  .flex-card:last-child {
-    min-height: var(--card-height-mobile-default);
-  }
-
-  /* .is-active 클래스 기반의 transform 제거 (GSAP가 제어) */
-  .flex-card.is-active {
-    transition-delay: 0s;
-  }
-
-  /* (선택 사항) 모바일에서 가로 스크롤바 숨기기 */
-  .overflow-x-auto::-webkit-scrollbar {
+/* (선택 사항) 모바일에서 가로 스크롤바 숨기기 */
+.overflow-x-auto::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
-  }
-  .overflow-x-auto {
+}
+.overflow-x-auto {
     -ms-overflow-style: none; /* IE, Edge */
     scrollbar-width: none; /* Firefox */
-  }
-
-  /* --- [ ✨ 수정됨 ] 모바일 3D 플립을 위한 Face 스타일 오버라이드 --- */
-
-  .card-face {
-    /* [추가] 카드의 뒷면을 숨김 */
-    backface-visibility: hidden;
-    /* [수정] 데스크톱의 슬라이드 transition을 제거 */
-    transition: none;
-  }
-
-  .face1 {
-    /* [ ✨ 수정됨 ] rotateY(0) 대신 rotateX(0) */
-    transform: translateY(0) rotateX(0deg);
-  }
-
-  .face2 {
-    /*
-     * [ ✨ 수정됨 ]
-     * rotateY(180deg) 대신 rotateX(180deg) (세로로 뒤집기)
-     * + rotateZ(180deg) (콘텐츠가 거꾸로 보이는 것을 방지하기 위해 미리 뒤집음)
-     */
-    transform: translateY(0) rotateX(180deg) rotateZ(0deg);
-    /* [추가됨] 데스크톱 .face2에 있던 배경/블러 스타일 */
-    background-color: rgba(255, 255, 255, 0.95);
-
-  }
-
-  .mobile-arrow-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .arrow-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 9999px;
-    background-color: #f3f4f6;
-    color: #374151;
-    transition: all 0.2s ease;
-  }
-
-  .arrow-btn:active {
-    transform: scale(0.95);
-    background-color: #e5e7eb;
-  }
-
-  .arrow-btn.is-disabled {
-    opacity: 0.4;
-    pointer-events: none;
-  }
-
 }
 </style>
