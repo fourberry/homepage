@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <div class="flex-panel-card _1 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
+                <div class="flex-panel-card _1 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden pt-10 md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" />
@@ -23,7 +23,7 @@
                     <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _2 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
+                <div class="flex-panel-card _2 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden pt-10 md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" />
@@ -37,7 +37,7 @@
                     <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _3 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden md:w-[33vw] md:items-start">
+                <div class="flex-panel-card _3 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden pt-10 md:w-[33vw] md:items-start">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" />
