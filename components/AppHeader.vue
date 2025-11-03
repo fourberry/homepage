@@ -80,7 +80,7 @@ const lineClasses = computed(() => [effectiveTheme.value === 'dark' ? 'bg-gray-8
 const headerClasses = computed(() => {
     const isInitialTransparentState = isHomePage.value && headerTheme.value === 'light'
     const theme = effectiveTheme.value
-    const backgroundAndPosition = isInitialTransparentState ? 'absolute bg-transparent' : 'fixed bg-white'
+    const backgroundAndPosition = isInitialTransparentState ? 'absolute bg-transparent' : 'fixed bg-white/60 backdrop-blur-md shadow-sm'
     // 새 로직
     let textColor
     let borderColor

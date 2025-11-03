@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <div class="flex-panel-card _1 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                <div class="flex-panel-card _1 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" />
@@ -20,9 +20,10 @@
                         </div>
                         <h3 class="h3 my-0">CUCKOO</h3>
                     </div>
+                    <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _2 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                <div class="flex-panel-card _2 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" />
@@ -33,9 +34,10 @@
                         </div>
                         <h3 class="h3 my-0">WITH FRESH</h3>
                     </div>
+                    <div class="unified-overlay"></div>
                 </div>
 
-                <div class="flex-panel-card _3 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4">
+                <div class="flex-panel-card _3 relative flex h-full w-[80vw] flex-shrink-0 items-center justify-center overflow-hidden p-3 md:w-[30vw] md:items-start md:p-4">
                     <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
                         <div class="thumbnail">
                             <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" />
@@ -46,9 +48,11 @@
                         </div>
                         <h3 class="h3 my-0">KOBC</h3>
                     </div>
+                    <div class="unified-overlay"></div>
                 </div>
 
                 <div class="flex-panel-card _4 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4"></div>
+                <div class="flex-panel-card _5 flex h-full w-[80vw] flex-shrink-0 items-center justify-center p-3 md:w-[30vw] md:p-4"></div>
             </div>
         </div>
     </section>
@@ -91,6 +95,78 @@ onMounted(() => {
                             invalidateOnRefresh: true,
                         },
                     })
+
+                    // --- [이 부분 수정] ---
+                    const cards = gsap.utils.toArray(wrapper.querySelectorAll('.flex-panel-card'))
+
+                    // 카드를 밀어낼 거리(px). 카드의 30vw 너비와 scale(1.2)를 고려한 값.
+                    // (30vw * 1.2 = 36vw, 즉 6vw 증가. 절반인 3vw만큼 밀어냄)
+                    // 여기서는 뷰포트에 따라 달라지는 vw 대신 고정 픽셀 값을 사용해 보겠습니다.
+                    // 1.2 스케일의 절반(0.1) * 30vw 너비 => 3vw
+                    // 예: 1920px 화면에서 3vw = 약 57px. 60px 정도로 설정.
+                    const pushAmount = 60 // (px 단위, 원하는 만큼 조절하세요)
+
+                    cards.forEach((card: any, index: number) => {
+                        // 'index' 매개변수 추가
+                        const cardContent = card.querySelector('.portfolio-item-replacement')
+                        // [수정] 단일 오버레이만 선택합니다.
+                        const unifiedOverlay = card.querySelector('.unified-overlay')
+
+                        if (cardContent) {
+                            // mouseenter 이벤트 리스너 추가
+                            card.addEventListener('mouseenter', () => {
+                                // 1. 현재 카드 확대
+                                gsap.to(card, {
+                                    scale: 1.2,
+                                    zIndex: 10,
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                                // [수정] 단일 오버레이만 투명하게 만듭니다.
+                                gsap.to(unifiedOverlay, {
+                                    opacity: 0,
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                                // 2. 현재 카드 이전의 모든 카드들을 왼쪽으로 밀기
+                                gsap.to(cards.slice(0, index), {
+                                    x: -pushAmount, // (translateX)
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                                // 3. 현재 카드 이후의 모든 카드들을 오른쪽으로 밀기
+                                gsap.to(cards.slice(index + 1), {
+                                    x: pushAmount, // (translateX)
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                            })
+
+                            // mouseleave 이벤트 리스너 추가
+                            card.addEventListener('mouseleave', () => {
+                                // 1. 현재 카드 원래대로
+                                gsap.to(card, {
+                                    scale: 1.0,
+                                    zIndex: 1,
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                                // [수정] 단일 오버레이를 다시 어둡게(초기값) 만듭니다.
+                                gsap.to(unifiedOverlay, {
+                                    opacity: 0.2, // CSS에 설정된 초기 불투명도(0.4)
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                                // 2. 모든 카드의 x 위치(translateX)를 0으로 리셋
+                                gsap.to(cards, {
+                                    x: 0,
+                                    duration: 0.3,
+                                    ease: 'power1.out',
+                                })
+                            })
+                        }
+                    })
+                    // --- [수정 끝] ---
                 }
             }
         )
@@ -108,7 +184,7 @@ onUnmounted(() => {
 /* [CSS 수정 1] 변수 정의 */
 .panel {
     --card-height-mobile-default: 16rem;
-    --card-height-desktop-default: 24rem; /* md:h-96 */
+    --card-height-desktop-default: 50rem; /* md:h-96 */
 }
 
 /* --- [CSS 추가 2] "Target" 예제의 스타일을 복사 및 수정 --- */
@@ -123,15 +199,12 @@ onUnmounted(() => {
 .flex-panel-card._3 {
     background: linear-gradient(135deg, #3f1ca0, #a912f0);
 }
-/* 2-2. 'SEE ALL PROJECTS'용 배경 */
 .flex-panel-card._4 {
-    background: #f3f4f6; /* bg-gray-100 */
+    background: linear-gradient(135deg, #eb3656, #fea032);
 }
-/* NuxtLink의 기본 배경/그림자 제거 */
-.flex-panel-card._4 .flex-card {
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
+
+.flex-panel-card._5 {
+    background: linear-gradient(135deg, #fff6a5, #ffb1b1);
 }
 
 /* 2-3. 새 카드 레이아웃 스타일 */
@@ -142,21 +215,34 @@ onUnmounted(() => {
     box-sizing: border-box;
     height: var(--card-height-desktop-default);
 
-    /* 호버 시 줌 효과 (선택 사항) */
-    transition: transform 0.4s ease-in-out;
+    position: relative; /* z-index 스태킹 컨텍스트를 위해 추가 */
+    z-index: 1; /* 오버레이보다 위에 있도록 설정 */
 }
-.portfolio-item-replacement:hover {
-    transform: scale(1.02);
+/* [--- 수정 ---] */
+/* 단일 오버레이 스타일 (이전의 .card-overlay와 .content-overlay를 대체) */
+.unified-overlay {
+    position: absolute;
+    /* 부모(.flex-panel-card) 전체를 덮도록 설정 (패딩 영역 포함) */
+    inset: 0; /* top: 0; left: 0; right: 0; bottom: 0; */
+    background-color: #000000;
+    opacity: 0.4; /* 초기 불투명도 */
+
+    /* [수정] z-index: 2 (콘텐츠보다 위) */
+    z-index: 2;
+    pointer-events: none;
 }
 
 /* 2-4. 썸네일 (이미지) */
 .thumbnail {
+    /* [수정] 콘텐츠 오버레이(z-index: 2)보다 아래에 위치 */
+    position: relative;
+    z-index: 1;
     width: 100%;
     position: relative;
     margin: 0 auto;
     padding: 0 2rem; /* 좌우 패딩 */
     box-sizing: border-box;
-    height: 12rem;
+    height: 30rem;
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -164,29 +250,24 @@ onUnmounted(() => {
 }
 .thumbnail img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 8rem;
     object-fit: contain; /* 로고가 잘리지 않게 contain으로 */
     opacity: 0.8; /* 예제와 비슷하게 */
 }
 
 /* 2-5. 텍스트 설명 */
 .description {
+    /* [수정] 콘텐츠 오버레이(z-index: 2)보다 아래에 위치 */
+    position: relative;
+    z-index: 1;
     width: 100%;
     position: relative;
     text-align: left;
     margin: 20px auto 0;
     padding: 0 2rem; /* 좌우 패딩 */
     box-sizing: border-box;
-}
-
-/* 텍스트 색상 관리 */
-.flex-panel-card._1 .description,
-.flex-panel-card._3 .description {
-    color: #fff;
-}
-.flex-panel-card._2 .description {
-    color: #000;
+    color: #000000;
 }
 
 .description p {
@@ -207,7 +288,9 @@ onUnmounted(() => {
 
 /* 2-6. 메인 타이틀 (h3) */
 .h3 {
-    font-family: 'Poppins', sans-serif; /* 폰트 지정 */
+    /* [수정] 콘텐츠 오버레이(z-index: 2)보다 아래에 위치 */
+    position: relative;
+    z-index: 1;
     font-weight: 900;
     color: #fff;
     font-size: 4rem; /* 폰트 크기 조절 */
@@ -215,11 +298,6 @@ onUnmounted(() => {
     text-align: center;
     margin: 10px auto 0;
     position: relative;
-}
-
-/* h3 텍스트 색상 조정 */
-.flex-panel-card._2 .h3 {
-    color: #000;
 }
 
 /* [CSS 수정 3] .flex-card는 NuxtLink에도 쓰이므로 높이/정렬만 설정 */
