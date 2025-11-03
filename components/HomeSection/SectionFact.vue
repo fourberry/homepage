@@ -4,7 +4,7 @@
       <h2 class="sr-only">회사 기본 정보</h2>
 
       <!-- 섹션 타이틀 -->
-      <h3 class="mb-8 text-2xl font-bold tracking-tight text-black md:text-3xl">LOCATION</h3>
+      <h3 class="mb-8 text-2xl font-bold tracking-tight text-black md:text-3xl">오시는 길</h3>
 
       <!-- 2컬럼 레이아웃 -->
       <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2 lg:gap-16">

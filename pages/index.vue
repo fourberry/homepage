@@ -6,6 +6,7 @@
         <HomeSectionCEO />
         <HomeSectionTimeline />
         <HomeSectionbeforeSectionSiSm />
+        <HomeSectionSolution />
         <HomeSectionCulture />
         <SectionContact />
         <HomeSectionFact />
