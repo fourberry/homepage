@@ -7,7 +7,7 @@
       <h3
         class="mb-8 text-2xl font-extrabold tracking-tight text-black md:text-3xl leading-none"
       >
-        LOCATION
+        오시는 길
       </h3>
 
       <!-- 2컬럼 레이아웃 -->
