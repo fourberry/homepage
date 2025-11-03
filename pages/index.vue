@@ -2,6 +2,7 @@
     <div class="overflow-x-hidden">
         <HomeSectionTop />
         <HomeSectionInfo />
+        <HomeSectionBusiness />
         <HomeSectionValues />
         <HomeSectionCEO />
         <HomeSectionTimeline />

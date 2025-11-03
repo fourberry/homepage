@@ -2,7 +2,6 @@
 type Area = {
     title: string
     desc: string
-    icon?: string
 }
 
 const props = withDefaults(
@@ -12,28 +11,24 @@ const props = withDefaults(
         areas?: Area[]
     }>(),
     {
-        title: '국내에서 쌓아온 성과를 세계로 확장합니다.',
-        subtitle: '365mc는 고객 중심의 혁신을 바탕으로 의료, 바이오, 글로벌 사업 전반에 걸쳐 새로운 가능성을 만들어갑니다.',
+        title: '기술로 연결하고, 혁신으로 성장합니다.',
+        subtitle: '포베리는 시스템 자동화, 맞춤형 솔루션, AI 연구개발, IT 컨설팅을 통해 기업의 디지털 전환을 앞당깁니다.',
         areas: () => [
             {
-                title: '의료사업',
-                desc: '365mc의 경험을 바탕으로 글로벌 의료 네트워크를 확장해 나갑니다.',
-                icon: '✚',
+                title: '시스템 자동화 및 통합',
+                desc: '기업 환경에 최적화된 업무 프로세스 자동화와 시스템 통합 솔루션을 제공합니다.',
             },
             {
-                title: '바이오사업',
-                desc: '의료 데이터를 기반으로 AI 바이오 기술의 미래를 설계합니다.',
-                icon: '❄️',
+                title: '시스템 솔루션 개발',
+                desc: '고객의 요구에 맞춘 맞춤형 웹·모바일 솔루션을 기획부터 구축까지 전 과정 수행합니다.',
             },
             {
-                title: 'R&D',
-                desc: '의료를 넘어 콘텐츠와 테크를 아우르는 새로운 공동 연구를 진행합니다.',
-                icon: '▶️',
+                title: 'AI / 빅데이터 R&D',
+                desc: '데이터 기반의 인공지능 기술과 산학협력을 통해 혁신적인 연구개발을 이어갑니다.',
             },
             {
-                title: '글로벌사업',
-                desc: '의료 노하우를 전 세계로 확장하며 혁신적 솔루션을 제공합니다.',
-                icon: '🌍',
+                title: 'IT 컨설팅',
+                desc: '프로젝트 기획부터 운영까지, 기술과 비즈니스를 잇는 전략적 IT 컨설팅 서비스를 제공합니다.',
             },
         ],
     }
@@ -54,29 +49,32 @@ const props = withDefaults(
             </header>
 
             <ul class="grid grid-cols-1 place-items-center gap-8 sm:grid-cols-2 md:gap-12">
-                <li v-for="(item, i) in areas" :key="i" class="group w-[90%] sm:w-[80%] md:w-[70%]">
-                    <div
-                        class="relative rounded-[2.5rem] border border-white/10 bg-zinc-950 px-6 py-8 shadow-[0_18px_50px_-22px_rgba(0,0,0,0.7)] transition-transform duration-300 group-hover:-translate-y-1 md:px-10 md:py-12"
-                    >
-                        <!-- 아이콘 (원하면 유지) -->
-                        <div
-                            v-if="item.icon"
-                            class="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-amber-400 to-orange-600 text-xl font-bold text-black shadow-lg"
-                        >
-                            <span aria-hidden="true">{{ item.icon }}</span>
-                        </div>
-
-                        <div class="mt-2">
-                            <h3 class="inline-block rounded-full bg-zinc-800/80 px-3 py-1 text-sm font-semibold tracking-tight">
-                                {{ item.title }}
-                            </h3>
-                            <p class="mt-3 text-sm leading-relaxed text-zinc-300 md:text-[15px]">
-                                {{ item.desc }}
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+  <li
+    v-for="(item, i) in areas"
+    :key="i"
+    class="group w-[90%] sm:w-[80%] md:w-[70%]"
+  >
+    <div
+      class="relative rounded-[1.75rem] border border-white/10 bg-zinc-950 
+             px-5 py-5 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.6)]
+             transition-transform duration-300 group-hover:-translate-y-1 
+             md:px-8 md:py-6"
+    >
+      <div class="mt-1">
+        <h3
+          class="inline-block rounded-full bg-zinc-800/80 px-3 py-1 text-sm font-semibold tracking-tight"
+        >
+          {{ item.title }}
+        </h3>
+        <p
+          class="mt-2 text-sm leading-relaxed text-zinc-300 md:text-[15px]"
+        >
+          {{ item.desc }}
+        </p>
+      </div>
+    </div>
+  </li>
+</ul>
         </div>
     </section>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-background pb-32 md:pb-40">
+  <section class="bg-background pt-32 md:pt-40 pb-32 md:pb-40">
     <div class="mx-auto max-w-7xl px-4">
       <!-- 상단 헤더 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
@@ -79,7 +79,7 @@ const coreValuesWithIcons = [
   {
     title: '혁신과 도전',
     desc: '새로운 기술과 도전을 두려워하지 않고, 항상 더 나은 방법을 탐구합니다.',
-    iconUrl: '/images/challenge.png', // 필요 시 전용 이미지로 교체
+    iconUrl: '/images/challenge.png', 
   },
 ]
 </script>
