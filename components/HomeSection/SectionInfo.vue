@@ -25,7 +25,13 @@
             </p>
 
             <!-- 설명 문단 -->
-            <p class="text-sm leading-relaxed text-gray-500 sm:text-lg md:text-xl lg:text-2xl">
+            <p
+  class="mx-auto text-center text-sm leading-relaxed text-gray-500 text-balance
+         max-w-[18rem]
+         sm:text-lg sm:max-w-[28rem]
+         md:text-xl md:max-w-[40rem]
+         lg:text-2xl lg:max-w-[55rem]"
+>
                 포베리는 사람을 위한 기술, 신뢰를 쌓는 기술을 추구하는 IT 전문 기업입니다.
                 <br />
                 다양한 산업 분야의 시스템 자동화와 통합 솔루션, R&amp;D, AI 빅데이터 기술을 통해
