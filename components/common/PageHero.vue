@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Props 정의: 제목, 부제목, (선택적) 배경 이미지 URL
 defineProps({
     title: {
         type: String,
@@ -24,20 +23,18 @@ defineProps({
 </script>
 
 <template>
-    <section class="page-hero-section" :class="{ 'home-hero': isHome, 'has-background': backgroundImageUrl }">
+    <section ref="root" class="page-hero-section" :class="{ 'home-hero': isHome, 'has-background': backgroundImageUrl }">
         <div
             v-if="backgroundImageUrl || isHome"
+            ref="bgImage"
             class="hero-background-image"
             :style="{ backgroundImage: backgroundImageUrl ? `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${backgroundImageUrl}')` : '' }"
         ></div>
 
         <div class="hero-content">
-            <h1 class="break-keep" v-if="title" v-html="title"></h1>
-            <p v-if="subtitle" class="hero-subtitle">{{ subtitle }}</p>
+            <h1 ref="heroTitle" class="break-keep" v-if="title" v-html="title"></h1>
+            <p ref="heroSubtitle" v-if="subtitle" class="hero-subtitle">{{ subtitle }}</p>
         </div>
-        <!--    <div v-if="isHome" class="scroll-indicator">-->
-        <!--      <span>Scroll Down</span>-->
-        <!--    </div>-->
     </section>
 </template>
 

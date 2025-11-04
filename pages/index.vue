@@ -1,6 +1,8 @@
 <template>
-    <div class="overflow-x-hidden">
-        <HomeSectionTop />
+    <div class="overflow-x-hidden" ref="mainContainer">
+        <div class="relative h-screen overflow-hidden">
+            <HomeSectionTop class="absolute inset-0 h-full w-full" />
+        </div>
         <HomeSectionInfo />
         <HomeSectionBusiness />
         <HomeSectionValues />
