@@ -9,68 +9,52 @@
                 FOURBERRY
             </NuxtLink>
 
+            <!-- 데스크탑 메뉴 -->
             <div class="md:flex items-center gap-3 desktop:gap-5 hidden">
                 <NuxtLink
                     to="#about"
-                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
-                        ABOUT
-                    </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
-                        소개
-                    </span>
+                    <span class="front block">ABOUT</span>
+                    <span class="back absolute inset-0 block">소개</span>
                 </NuxtLink>
 
                 <NuxtLink
                     to="#projects"
-                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
-                        SI/SM
-                    </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
-                        구축/운영
-                    </span>
+                    <span class="front block">SI/SM</span>
+                    <span class="back absolute inset-0 block">구축/운영</span>
                 </NuxtLink>
 
                 <NuxtLink
                     to="#services"
-                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
-                        SOLUTION
-                    </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
-                        솔루션
-                    </span>
+                    <span class="front block">SOLUTION</span>
+                    <span class="back absolute inset-0 block">솔루션</span>
                 </NuxtLink>
 
                 <NuxtLink
                     to="#contact"
-                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
-                        CONTACT
-                    </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
-                        연락처
-                    </span>
+                    <span class="front block">CONTACT</span>
+                    <span class="back absolute inset-0 block">연락처</span>
                 </NuxtLink>
             </div>
 
+            <!-- 햄버거 버튼 등 기존 그대로 -->
             <button @click="toggleMobileMenu" class="relative z-50 flex h-8 w-8 items-center justify-center md:hidden" aria-label="메뉴 토글">
                 <div class="relative h-4 w-6">
                     <span
                         class="absolute left-0 top-0 block h-0.5 w-full origin-center transition-all duration-300 ease-in-out"
                         :class="[lineClasses, isMobileMenuOpen ? 'translate-y-[7px] rotate-45' : '']"
                     ></span>
-
                     <span
                         class="absolute left-0 top-1/2 block h-0.5 w-full -translate-y-1/2 transition-all duration-300 ease-in-out"
                         :class="[lineClasses, isMobileMenuOpen ? 'opacity-0' : '']"
                     ></span>
-
                     <span
                         class="absolute bottom-0 left-0 block h-0.5 w-full origin-center transition-all duration-300 ease-in-out"
                         :class="[lineClasses, isMobileMenuOpen ? '-translate-y-[7px] -rotate-45' : '']"
@@ -79,6 +63,7 @@
             </button>
         </div>
 
+        <!-- 모바일 메뉴(이미 hover 효과 없음) -->
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
                 <NuxtLink @click="isMobileMenuOpen = false" to="#about"    class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
@@ -89,6 +74,7 @@
         </transition>
     </header>
 </template>
+
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
@@ -213,7 +199,58 @@ defineExpose({
 </script>
 
 <style scoped>
-/* 모바일 메뉴 패널 트랜지션 */
+/* ✅ 기본값: 모든 기기에서 front만 보이게, back은 숨김 */
+.menu-link .front {
+    transform: translateY(0);
+    opacity: 1;
+    transition: none;
+}
+
+.menu-link .back {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: none;
+}
+
+/* ✅ 호버/마우스가 가능한 환경(데스크탑/트랙패드 연결된 iPad 등)에서만 애니메이션 활성화 */
+@media (any-hover: hover) and (any-pointer: fine) {
+    .menu-link .front,
+    .menu-link .back {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .menu-link .front {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .menu-link .back {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    .menu-link:hover .front {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .menu-link:hover .back {
+        transform: translateY(0);
+        opacity: 1;
+        /* 필요 시 색상 강조 */
+        color: rgb(37 99 235); /* blue-600 */
+    }
+}
+
+/* (선택) 터치 전용 환경에서 전환 완전 비활성화 – 안전장치 */
+@media (hover: none) and (pointer: coarse) {
+    .menu-link .front,
+    .menu-link .back {
+        transition: none;
+    }
+}
+
+/* 기존 모바일 메뉴 패널 트랜지션 유지 */
 .slide-down-enter-active,
 .slide-down-leave-active {
     transition:
@@ -226,3 +263,4 @@ defineExpose({
     opacity: 0;
 }
 </style>
+
