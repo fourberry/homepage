@@ -1,6 +1,6 @@
 <template>
     <header :class="headerClasses">
-        <div class="container relative mx-auto flex items-center justify-between px-4 py-4 md:px-8">
+        <div class="container-wide relative mx-auto flex items-center justify-between px-4 py-4 md:px-8">
             <NuxtLink
                 id="header-logo-text"
                 to="/"

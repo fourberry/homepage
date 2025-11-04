@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     app: {
         baseURL: '/homepage/',
         head: {
-            titleTemplate: '%s · (주)포베리',
+            titleTemplate: '%s (주)포베리',
             meta: [
                 { name: 'theme-color', content: '#ffffff' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },

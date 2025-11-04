@@ -8,7 +8,7 @@
 'desktop': '1200px',  
 -->
 <template>
-    <div>
+    <div id="contact">
         <div class="container-wide py-14">
             <div class="flex flex-col gap-15">
                 <!-- 문의 상단 -->
