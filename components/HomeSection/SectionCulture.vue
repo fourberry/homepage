@@ -29,7 +29,7 @@
               item.title === '유연근무제'
                 ? 'bg-slate-300'
                 : item.title === '자기계발비 지원'
-                ? 'bg-lime-50'
+                ? 'bg-slate-50'
                 : 'bg-gray-100',
             ]"
           >
