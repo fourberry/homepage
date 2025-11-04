@@ -1,25 +1,18 @@
 <template>
   <section class="bg-background py-24 md:py-32">
-    <div class="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-12">
+    <div class="container-wide">
       <h2 class="sr-only">회사 기본 정보</h2>
+     <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
+        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-red-300">contact</p>
+        <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">오시는 길</h2>
 
-      <!-- 섹션 타이틀 -->
-      <h3 class="mb-8 text-2xl font-bold tracking-tight text-black md:text-3xl">오시는 길</h3>
+      </header>
+
 
       <!-- 2컬럼 레이아웃 -->
-      <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[3fr_2fr] lg:gap-16">
         <!-- ========== 왼쪽: 지도 영역 ========== -->
         <div class="flex h-full min-h-full flex-col space-y-4 rounded-2xl">
-          <!-- 지도 상단 컨트롤 -->
-          <div class="flex flex-wrap items-center gap-3 text-sm text-black">
-            <button
-              class="rounded-lg border border-gray-400 bg-gray-100 px-3 py-2 text-black transition hover:bg-gray-200"
-              @click="toggleTraffic"
-            >
-              교통정보 {{ trafficOn ? '끄기' : '켜기' }}
-            </button>
-          </div>
-
           <!-- 지도 컨테이너 -->
           <div class="relative w-full">
             <div ref="mapContainerRef" class="h-[400px] w-full bg-gray-100 shadow-inner"></div>
@@ -65,18 +58,29 @@
                 class="text-base text-black md:col-span-4 md:pl-4 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-words leading-relaxed"
               >
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-1 sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]"
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]"
                 >
-                  <span class="text-sm text-gray-500 md:text-base">HP</span>
-                  <span>010-2755-6550</span>
+                  <span class="text-gray-500 flex items-center gap-1 text-sm md:text-base">
+                    <i class="fa-solid fa-phone text-gray-600"></i>
+                    전화
+                  </span>
+                  <span><a href="tel:010-2755-6550" class="hover:text-primary">010-2755-6550</a></span>
 
-                  <span class="text-sm text-gray-500 md:text-base">Addr</span>
+                  <span class="text-gray-500 flex items-center gap-1 text-sm md:text-base">
+                    <i class="fa-solid fa-location-dot text-gray-600"></i>
+                    주소
+                  </span>
                   <span class="break-words leading-relaxed">
                     서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호
                   </span>
 
-                  <span class="text-sm text-gray-500 md:text-base">Email</span>
-                  <span class="break-all">damon@fourberry.co.kr</span>
+                  <span class="text-gray-500 flex items-center gap-1 text-sm md:text-base">
+                    <i class="fa-solid fa-envelope text-gray-600"></i>
+                    이메일
+                  </span>
+                  <span class="break-all">
+                    <a href="mailto:damon@fourberry.co.kr" class="hover:text-primary">damon@fourberry.co.kr</a>
+                  </span>
                 </div>
               </dd>
             </div>
@@ -93,23 +97,11 @@ import { ref, onMounted } from 'vue'
 const mapContainerRef = ref<HTMLDivElement | null>(null)
 const { $kakao } = useNuxtApp()
 
-const trafficOn = ref(false)
 let kakaoRef: any = null
 let mapRef: any = null
 
 const companyLat = 37.5398071417051
 const companyLng = 126.894657064548
-
-const toggleTraffic = () => {
-  if (!mapRef || !kakaoRef) return
-  if (trafficOn.value) {
-    mapRef.removeOverlayMapTypeId(kakaoRef.maps.MapTypeId.TRAFFIC)
-    trafficOn.value = false
-  } else {
-    mapRef.addOverlayMapTypeId(kakaoRef.maps.MapTypeId.TRAFFIC)
-    trafficOn.value = true
-  }
-}
 
 onMounted(async () => {
   kakaoRef = await $kakao.load()
@@ -126,7 +118,6 @@ onMounted(async () => {
       <div style="
         display: inline-block;
         background: rgba(0, 0, 0, 0.85);
-        border: 1px solid rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
         padding: 8px 14px;

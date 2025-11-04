@@ -1,10 +1,10 @@
 <template>
   <section class="bg-background pt-32 md:pt-40 pb-32 md:pb-40">
-    <div class="mx-auto max-w-7xl px-4">
+    <div class="container-wide">
       <!-- 상단 헤더 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
         <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-red-300">Values</p>
-        <h2 class="mb-3 text-3xl font-extrabold leading-tight md:text-5xl">핵심 가치</h2>
+        <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">핵심 가치</h2>
         <p class="mx-auto max-w-2xl text-base text-gray-400 md:text-lg">
           기술의 본질과 미래를 탐구하며,<br />
           고객의 비즈니스에 가장 확실한 가치를 더합니다.
@@ -12,9 +12,7 @@
       </header>
 
       <!-- ✅ 1 → 2 → 4 → 4 열 (랩탑부터 4열) -->
-      <ul
-        class="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-16 xl:gap-x-16 xl:gap-y-20"
-      >
+      <ul class="mt-16 md:mt-20 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-16 xl:gap-x-16 xl:gap-y-20">
         <li
           v-for="(item, i) in coreValuesWithIcons"
           :key="i"
@@ -31,10 +29,10 @@
             class="mx-auto mb-8 flex items-center justify-center rounded-full shadow-xl transition-colors duration-300
                    h-48 w-48 sm:h-56 sm:w-56 lg:h-52 lg:w-52 xl:h-64 xl:w-64 overflow-hidden"
             :class="[
-              i === 0 ? 'bg-green-100/80'
-              : i === 1 ? 'bg-yellow-100/80'
+              i === 0 ? 'bg-sky-100/80'
+              : i === 1 ? 'bg-fuchsia-50/80'
               : i === 2 ? 'bg-white/40 backdrop-blur-md'
-              : 'bg-purple-100/80'
+              : 'bg-indigo-100/80'
             ]"
           >
             <NuxtImg

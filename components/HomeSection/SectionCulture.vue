@@ -1,28 +1,21 @@
 <template>
   <section class="bg-white py-32 md:py-40">
-    <div class="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-12">
+   <div class="container-wide">
       <!-- 헤더 영역 -->
-      <header class="mb-20">
-        <div>
-          <!-- 상단 작은 타이틀 -->
-          <div class="inline-block mb-4">
-            <span class="relative font-extrabold text-2xl md:text-3xl text-gray-900 leading-none">
-              <span class="relative z-[1]">복지/문화</span>
-              <span class="absolute left-0 bottom-0 w-full h-[8px] bg-yellow-300 -z-[1]"></span>
-            </span>
-          </div>
 
-          <!-- 설명 문구 -->
-          <p class="text-xl md:text-2xl text-gray-800 leading-snug font-medium">
-            즐겁게 일하는 포베리의<br class="md:hidden" />
-            일상입니다.
-          </p>
-        </div>
+
+       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
+        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-red-300">Culture</p>
+        <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">복지/문화</h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-400 md:text-lg">
+          즐겁게 일하는 포베리의
+          일상입니다.
+        </p>
       </header>
 
       <!-- 카드 그리드 -->
       <ul
-        class="grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20"
+        class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-x-10 md:gap-y-20 lg:gap-x-16"
       >
         <li
           v-for="(item, i) in cultureItems"

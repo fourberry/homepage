@@ -50,6 +50,21 @@
 /* 3. Tailwind 기본 스타일 주입 */
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .px-gutter { @apply px-4 md:px-8 lg:px-12; }              /* 가터 (좌우여백 공통)*/
+  .container-wide { @apply mx-auto max-w-screen-2xl px-gutter; } /* 최대폭 + 가터 */
+
+    /* 방향별 여백 */
+  .pl-gutter { @apply pl-4 md:pl-8 lg:pl-12; }
+  .pr-gutter { @apply pr-4 md:pr-8 lg:pr-12; }
+
+   /* 이미지 풀블리드(컨테이너 밖으로 삐져나가게) */
+  .bleed-left  { margin-left:  calc(50% - 50vw); }
+  .bleed-right { margin-right: calc(50% - 50vw); }
+}
+
 
 .btn-primary {
     @apply inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2 text-white transition hover:bg-blue-700;
