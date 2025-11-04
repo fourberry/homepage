@@ -1,9 +1,10 @@
 <template>
     <section ref="sectionRef" class="panel relative overflow-hidden border-t border-gray-200 bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
-        <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 md:text-left lg:px-12 xl:hidden">
+        <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 lg:px-12 xl:hidden">
             <div class="break-keep">
-                <h2 class="mb-4 text-4xl font-extrabold text-gray-950 md:mb-12 md:text-[80px]">SI & SM</h2>
-                <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-700 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                <p class="mb-4 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
+                <h2 class="md:mb-12md:text-5xl mb-4 text-4xl font-extrabold text-gray-950 lg:text-6xl">System Integration</h2>
+                <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-400 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
             </div>
         </div>
 
@@ -14,8 +15,12 @@
             >
                 <div class="flex-panel-title hidden h-auto w-full flex-shrink-0 flex-col justify-center px-4 py-12 text-center sm:px-6 md:py-0 md:text-left lg:px-12 xl:flex xl:h-full xl:w-[30vw]">
                     <div class="break-keep">
-                        <h2 class="mb-4 text-4xl font-extrabold text-gray-950 md:mb-12 md:text-[80px]">SI & SM</h2>
-                        <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-700 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                        <div class="inline-block text-center">
+                            <p class="mb-8 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
+                            <h2 class="mb-8 text-4xl font-extrabold text-gray-950 xl:mb-12 xl:text-[4.5vw]">System</h2>
+                            <h2 class="mb-4 text-4xl font-extrabold text-gray-950 md:mb-12 xl:text-[4.5vw]">Integration</h2>
+                            <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-400 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                        </div>
                     </div>
                 </div>
 
