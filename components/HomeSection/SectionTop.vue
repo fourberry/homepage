@@ -141,7 +141,7 @@ function startUnifiedAnimation() {
         )
 
         // 1초 정도 머무르기
-        .to({}, { duration: 1 })
+        .to({}, { duration: 0.01 })
 
     // === Stage 1 -> Stage 2 전환 (4초 ~ 5초) ===
     masterTl
