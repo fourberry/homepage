@@ -1,14 +1,63 @@
 <template>
     <header :class="headerClasses">
-        <div class="relative mx-auto flex max-w-9xl items-center justify-between px-4 py-4 md:px-8">
-            <NuxtLink id="header-logo-text" to="/" class="text-2xl font-bold no-underline">FOURBERRY</NuxtLink>
+        <div class="container relative mx-auto flex items-center justify-between px-4 py-4 md:px-8">
+            <NuxtLink
+                id="header-logo-text"
+                to="/"
+                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+            >
+                FOURBERRY
+            </NuxtLink>
 
-            <nav class="hidden items-center space-x-6 md:absolute md:left-1/2 md:top-1/2 md:flex md:-translate-x-1/2 md:-translate-y-1/2">
-                <NuxtLink to="/about" class="text-base no-underline transition-opacity hover:opacity-80">ABOUT</NuxtLink>
-                <NuxtLink to="/projects" class="text-base no-underline transition-opacity hover:opacity-80">SI/SM</NuxtLink>
-                <NuxtLink to="/services" class="text-base no-underline transition-opacity hover:opacity-80">SOLUTION</NuxtLink>
-                <NuxtLink to="/contact" class="text-base no-underline transition-opacity hover:opacity-80">CONTACT</NuxtLink>
-            </nav>
+            <div class="md:flex items-center gap-3 desktop:gap-5 hidden">
+                <NuxtLink
+                    to="#about"
+                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                >
+                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                        ABOUT
+                    </span>
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                        소개
+                    </span>
+                </NuxtLink>
+
+                <NuxtLink
+                    to="#projects"
+                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                >
+                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                        SI/SM
+                    </span>
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                        구축/운영
+                    </span>
+                </NuxtLink>
+
+                <NuxtLink
+                    to="#services"
+                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                >
+                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                        SOLUTION
+                    </span>
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                        솔루션
+                    </span>
+                </NuxtLink>
+
+                <NuxtLink
+                    to="#contact"
+                    class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
+                >
+                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                        CONTACT
+                    </span>
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                        연락처
+                    </span>
+                </NuxtLink>
+            </div>
 
             <button @click="toggleMobileMenu" class="relative z-50 flex h-8 w-8 items-center justify-center md:hidden" aria-label="메뉴 토글">
                 <div class="relative h-4 w-6">
@@ -32,10 +81,10 @@
 
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
-                <NuxtLink @click="isMobileMenuOpen = false" to="/about" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="/projects" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SI/SM</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="/services" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="/contact" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#about"    class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#projects" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SI/SM</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#services" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#contact"  class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
             </nav>
         </transition>
     </header>
@@ -67,32 +116,38 @@ const toggleMobileMenu = () => {
 
 // [수정 3] 햄버거 버튼 라인 색상 로직
 // 'dark' 테마(스크롤 내림)일 때만 'bg-gray-800', 그 외('light', 'transparent')는 'bg-white'
-const lineClasses = computed(() => [theme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
+const lineClasses = computed(() => [
+    (isMobileMenuOpen.value || theme.value === 'dark') ? 'bg-gray-800' : 'bg-white',
+])
 
 // [수정 4] 헤더 클래스 바인딩 로직 (가장 중요)
 // effectiveTheme을 제거하고, 'theme' 값을 직접 사용하여 4가지 상태를 처리합니다.
 const headerClasses = computed(() => {
     const baseClasses = 'top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out'
 
-    // 1. 홈페이지가 아닐 때: 항상 흰색 배경
+    // [신규] 1. 모바일 메뉴가 열렸을 때: 무조건 흰색 배경 + 검은색 텍스트
+    // 이렇게 해야 최상단(투명) 상태에서 메뉴를 열어도 헤더가 보입니다.
+    if (isMobileMenuOpen.value) {
+        return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
+    }
+
+    // --- (메뉴가 닫혀 있을 때) ---
+    // 2. 홈페이지가 아닐 때: 항상 흰색 배경
     if (!isHomePage.value) {
         return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
 
-    // 2. 홈페이지일 때: 'theme' 값에 따라 분기
+    // 3. 홈페이지일 때: 'theme' 값에 따라 분기
     switch (theme.value) {
         case 'transparent':
-            // 2-1. 'transparent' 강제 설정 시 (예: SectionSiSm)
-            // [수정] 글씨를 'text-white'로 변경
+            // 3-1. 'transparent' 강제 설정 시 (예: SectionSiSm)
             return [baseClasses, 'fixed bg-transparent text-transparent']
         case 'dark':
-            // 2-2. 스크롤이 내려간 상태
-            // [수정] 글씨를 'text-gray-800'로 변경
+            // 3-2. 스크롤이 내려간 상태
             return [baseClasses, 'fixed bg-white/60 backdrop-blur-md shadow-sm text-gray-800']
         case 'light':
         default:
-            // 2-3. 홈페이지 최상단 (스크롤 0)
-            // [수정] 글씨를 'text-white'로 변경 (기존 text-transparent 오류 수정)
+            // 3-3. 홈페이지 최상단 (스크롤 0)
             return [baseClasses, 'absolute bg-transparent text-transparent']
     }
 })

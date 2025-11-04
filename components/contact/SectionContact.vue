@@ -473,14 +473,12 @@ const handleSubmit = async () => {
             attachments: attachments
         };
 
-        // 5. API 호출 (Nuxt 3의 $fetch 사용)
+        // 5. API 호출
         await $fetch('https://briskly0714.cafe24.com/lime/api/v1/messages/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-api-key': 'msg_fourberry_clipsight_d7288f6917991ca3c414f15c86535a09'
-                // (만약 인증 토큰이 필요하다면 여기에 추가)
-                // 'Authorization': 'Bearer YOUR_API_KEY'
             },
             body: requestBody,
         });
@@ -491,9 +489,6 @@ const handleSubmit = async () => {
     } catch (error) {
         // 7. 실패 처리
         console.error('문의 전송 실패:', error);
-        // CORS 오류가 발생할 수 있습니다.
-        // 서버 측에서 'https://briskly0714.cafe24.com' API를 호출하도록 
-        // Nuxt 서버 라우트(/server/api/contact.post.ts)를 만드는 것이 더 안정적일 수 있습니다.
         openModal('전송 실패', '문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.', 'error');
     } finally {
         // 8. 로딩 상태 해제
