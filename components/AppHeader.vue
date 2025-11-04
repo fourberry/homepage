@@ -4,7 +4,7 @@
             <NuxtLink
                 id="header-logo-text"
                 to="/"
-                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
             >
                 FOURBERRY
             </NuxtLink>
@@ -14,10 +14,10 @@
                     to="#about"
                     class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
                         ABOUT
                     </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
                         소개
                     </span>
                 </NuxtLink>
@@ -26,10 +26,10 @@
                     to="#projects"
                     class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
                         SI/SM
                     </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
                         구축/운영
                     </span>
                 </NuxtLink>
@@ -38,10 +38,10 @@
                     to="#services"
                     class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
                         SOLUTION
                     </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
                         솔루션
                     </span>
                 </NuxtLink>
@@ -50,10 +50,10 @@
                     to="#contact"
                     class="group relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
                 >
-                    <span class="block transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
+                    <span class="block transition-[transform,opacity] duration-300 ease-in-out group-hover:-translate-y-full group-hover:opacity-0">
                         CONTACT
                     </span>
-                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
+                    <span class="absolute inset-0 block translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-blue-600">
                         연락처
                     </span>
                 </NuxtLink>
