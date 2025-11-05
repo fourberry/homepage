@@ -1,10 +1,10 @@
 <template>
     <section ref="sectionRef" class="panel relative overflow-hidden border-t border-gray-200 bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
         <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 lg:px-12 xl:hidden">
-            <div class="break-keep">
-                <p class="mb-4 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
-                <h2 class="md:mb-12md:text-5xl mb-4 text-4xl font-extrabold text-gray-950 lg:text-6xl">System Integration</h2>
-                <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-400 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+            <div class="mb-4 break-keep">
+                <p class="mb-4 text-sm font-semibold tracking-widest text-red-300">SERVICE</p>
+                <h2 class="mb-4 text-3xl font-bold text-gray-950 md:mb-8 md:text-3xl lg:text-3xl">System Integration</h2>
+                <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
             </div>
         </div>
 
@@ -16,83 +16,38 @@
                 <div class="flex-panel-title hidden h-auto w-full flex-shrink-0 flex-col justify-center px-4 py-12 text-center sm:px-6 md:py-0 md:text-left lg:px-12 xl:flex xl:h-full xl:w-[30vw]">
                     <div class="break-keep">
                         <div class="inline-block text-center">
-                            <p class="mb-8 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
-                            <h2 class="mb-8 text-4xl font-extrabold text-gray-950 xl:mb-12 xl:text-[4.5vw]">System</h2>
-                            <h2 class="mb-4 text-4xl font-extrabold text-gray-950 md:mb-12 xl:text-[4.5vw]">Integration</h2>
-                            <p class="mx-auto max-w-3xl text-xl font-bold leading-relaxed text-gray-400 sm:text-lg md:text-[16px]">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                            <p class="mb-4 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
+                            <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">System</h2>
+                            <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">Integration</h2>
+                            <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex-panel-card _1 relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:items-start xl:pt-10">
-                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
-                        <div class="thumbnail">
-                            <NuxtImg src="/images/homeSiSm/cuckoo.svg" alt="Cuckoo Project" />
+                <div
+                    v-for="project in siSmProjects"
+                    :key="project.id"
+                    :class="['flex-panel-card', project.gradientClasses]"
+                    class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
+                >
+                    <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden rounded-lg py-[30px] text-center sm:h-[40rem] md:h-[45rem] xl:h-full">
+                        <div class="thumbnail relative z-10 mx-auto flex h-[20rem] w-full items-center justify-center bg-white px-8 sm:h-[30rem] md:h-[30rem]">
+                            <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
                         </div>
-                        <div class="description">
-                            <p class="kind">2021.11 ~ 2022.09</p>
-                            <p class="title">OMS 및 차세대 영업관리 시스템 구축</p>
+                        <div class="description relative z-10 mx-auto mt-5 flex min-h-[4.5em] w-full items-center justify-between px-6 text-[1rem] font-bold text-gray-900 sm:text-[1rem]">
+                            <p v-for="(date, index) in project.dates" :key="index" class="kind">
+                                {{ date }}
+                            </p>
+                            <p class="title break-keep">{{ project.title }}</p>
                         </div>
-                        <h3 class="h3 my-0">CUCKOO</h3>
+                        <h3
+                            class="h3 relative z-10 mx-auto my-0 mt-2.5 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[2.5rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem]"
+                            :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
+                        >
+                            {{ project.clientName }}
+                        </h3>
                     </div>
-                    <div class="unified-overlay"></div>
-                </div>
-
-                <div class="flex-panel-card _2 relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:items-start xl:pt-10">
-                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
-                        <div class="thumbnail">
-                            <NuxtImg src="/images/homeSiSm/hanaro.svg" alt="Hanaro Project" />
-                        </div>
-                        <div class="description">
-                            <p class="kind">2024.01 ~ 2025.03</p>
-                            <p class="title">브랜드몰 (하이브리드 앱) 및 SSO 구축</p>
-                        </div>
-                        <h3 class="h3 my-0">WITH FRESH</h3>
-                    </div>
-                    <div class="unified-overlay"></div>
-                </div>
-
-                <div class="flex-panel-card _3 relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:items-start xl:pt-10">
-                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
-                        <div class="thumbnail">
-                            <NuxtImg src="/images/homeSiSm/kobc.svg" alt="KOBC Project" />
-                        </div>
-                        <div class="description">
-                            <p class="kind">2024.10 ~ 2025.01</p>
-                            <p class="title">게이미피케이션 접목 캠페인 (PC/모바일)</p>
-                        </div>
-                        <h3 class="h3 my-0">KOBC</h3>
-                    </div>
-                    <div class="unified-overlay"></div>
-                </div>
-
-                <div class="flex-panel-card _4 relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:items-start xl:pt-10">
-                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
-                        <div class="thumbnail">
-                            <NuxtImg src="/images/homeSiSm/lotto.svg" alt="Lotto Project" />
-                        </div>
-                        <div class="description">
-                            <p class="kind">2024.10 ~ 2025.10</p>
-                            <p class="title">인쇄복권 시스템 통합 및 DB 전환</p>
-                        </div>
-                        <h3 class="h3 my-0">DONGHANG</h3>
-                    </div>
-                    <div class="unified-overlay"></div>
-                </div>
-
-                <div class="flex-panel-card _5 relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:items-start xl:pt-10">
-                    <div class="portfolio-item-replacement relative h-full w-full overflow-hidden rounded-lg text-center">
-                        <div class="thumbnail">
-                            <NuxtImg src="/images/homeSiSm/auto_crypt.svg" alt="AutoCrypt Project" />
-                        </div>
-                        <div class="description">
-                            <p class="kind">2024.06 ~ 2024.10</p>
-                            <p class="kind">2025.06 ~ 2025.09</p>
-                            <p class="title">자동차 보안 대응 시스템(K-CSMS) 구축</p>
-                        </div>
-                        <h3 class="h3 my-0">AUTOCRYPT</h3>
-                    </div>
-                    <div class="unified-overlay"></div>
+                    <div class="unified-overlay pointer-events-none absolute inset-0 z-20 bg-black opacity-0 xl:opacity-20"></div>
                 </div>
             </div>
         </div>
@@ -108,6 +63,98 @@ import { useHeaderTheme } from '~/composables/useHeaderTheme'
 gsap.registerPlugin(ScrollTrigger)
 
 const { setHeaderTheme } = useHeaderTheme()
+
+// ✅ 여기에 프로젝트 데이터 배열을 추가합니다.
+const siSmProjects = [
+    {
+        id: 'si_1',
+        // 그라데이션 클래스를 직접 저장
+        gradientClasses: 'bg-gradient-to-br from-[#ffa800] to-[#ff5d17]',
+        imageSrc: '/images/homeSiSm/cuckoo.svg',
+        imageAlt: 'Cuckoo Project',
+        dates: ['2021.11 ~ 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
+        title: 'OMS 및 차세대 영업관리 시스템 구축',
+        clientName: 'CUCKOO',
+        imageStyle: 'cuckoo', // Cuckoo 로고만 특별 스타일 적용
+        smallH3: false,
+    },
+    {
+        id: 'si_2',
+        gradientClasses: 'bg-gradient-to-br from-[#12d6f0] to-[#12f093]',
+        imageSrc: '/images/homeSiSm/hanaro.svg',
+        imageAlt: 'Hanaro Project',
+        dates: ['2024.01 ~ 2025.03'],
+        title: '브랜드몰 (하이브리드 앱) 및 SSO 구축',
+        clientName: 'WITH FRESH',
+        imageStyle: 'default',
+        smallH3: true, // 긴 텍스트용 h3
+    },
+    {
+        id: 'si_3',
+        gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] to-[#a912f0]',
+        imageSrc: '/images/homeSiSm/kobc.svg',
+        imageAlt: 'KOBC Project',
+        dates: ['2024.10 ~ 2025.01'],
+        title: '게이미피케이션 접목 캠페인 (PC/모바일)',
+        clientName: 'KOBC',
+        imageStyle: 'default',
+        smallH3: false,
+    },
+    {
+        id: 'si_4',
+        gradientClasses: 'bg-gradient-to-br from-[#eb3656] to-[#fea032]',
+        imageSrc: '/images/homeSiSm/lotto.svg',
+        imageAlt: 'Lotto Project',
+        dates: ['2024.10 ~ 2025.10'],
+        title: '인쇄복권 시스템 통합 및 DB 전환',
+        clientName: 'DONGHANG',
+        imageStyle: 'lotto',
+        smallH3: true, // 긴 텍스트용 h3
+    },
+    {
+        id: 'si_5',
+        gradientClasses: 'bg-gradient-to-br from-[#fff6a5] to-[#ffb1b1]',
+        imageSrc: '/images/homeSiSm/auto_crypt.svg',
+        imageAlt: 'AutoCrypt Project',
+        dates: ['2024.06 ~ 2024.10', '2025.06 ~ 2025.09'], // AUTOCRYPT처럼 날짜가 2개인 경우
+        title: '자동차 보안 대응 시스템(K-CSMS) 구축',
+        clientName: 'AUTOCRYPT',
+        imageStyle: 'auto',
+        smallH3: true, // 긴 텍스트용 h3
+    },
+]
+
+/**
+ * 프로젝트의 imageStyle에 따라 적절한 Tailwind 클래스를 반환합니다.
+ */
+const getImageClasses = (project: (typeof siSmProjects)[0]) => {
+    // 모든 이미지에 공통으로 적용될 기본 클래스
+    const baseClasses = 'block object-contain opacity-80'
+
+    let specificClasses = ''
+
+    // imageStyle 값에 따라 스타일 분기
+    switch (project.imageStyle) {
+        case 'cuckoo':
+            specificClasses = 'max-h-[15rem] w-full'
+            break
+        case 'lotto':
+            // 여기에 'lotto' 스타일에 맞는 클래스를 지정하세요. (예시)
+            specificClasses = 'max-h-[6rem] w-auto max-w-[70%]'
+            break
+        case 'auto':
+            // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
+            specificClasses = 'max-h-[10rem] w-auto max-w-[60%]'
+            break
+        default:
+            // 'default' 또는 정의되지 않은 경우
+            specificClasses = 'max-h-[10rem] w-auto max-w-[65%]'
+            break
+    }
+
+    // 기본 클래스와 특정 스타일 클래스를 배열로 반환
+    return [baseClasses, specificClasses]
+}
 
 const sectionRef = ref<HTMLElement | null>(null)
 const flexContainer = ref<HTMLElement | null>(null)
@@ -125,11 +172,11 @@ onMounted(() => {
                 isMobile: '(max-width: 1279px)',
             },
             context => {
-                const { isDesktop } = context.conditions as { isDesktop: boolean }
+                const { isDesktop, isMobile } = context.conditions as { isDesktop: boolean; isMobile: boolean }
+                const wrapper = flexContainer.value!
 
                 // 이 로직은 이제 1280px 이상일 때만 실행됩니다.
                 if (isDesktop) {
-                    const wrapper = flexContainer.value!
                     const endPadding = 200
 
                     gsap.to(wrapper, {
@@ -199,6 +246,30 @@ onMounted(() => {
                         }
                     })
                 }
+
+                // --- 2. 모바일 (세로 스크롤) 로직 ---
+                if (isMobile) {
+                    const cards = gsap.utils.toArray(wrapper.querySelectorAll('.flex-panel-card'))
+
+                    // ✅ [추가] 각 카드의 콘텐츠에 대한 스크롤 애니메이션
+                    cards.forEach((card: any) => {
+                        const content = card.querySelector('.portfolio-item-replacement')
+                        if (!content) return
+
+                        gsap.from(content, {
+                            x: 100,
+                            opacity: 0, // 투명한 상태에서 시작
+                            duration: 0.7, // 애니메이션 지속 시간
+                            ease: 'power3.out', // 부드러운 이징
+                            scrollTrigger: {
+                                trigger: card, // 애니메이션 트리거를 각 'card'로 설정
+                                start: 'top 60%', // 카드의 상단이 뷰포트 85% 지점에 도달할 때
+                                toggleActions: 'play none none none', // 한 번만 재생
+                                once: true, // 스크롤을 올렸다가 내려도 다시 실행되지 않음
+                            },
+                        })
+                    })
+                }
             }
         )
     }, sectionRef.value)
@@ -212,183 +283,4 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-/* [CSS 수정] 모바일(기본) 스타일과 데스크톱(md) 스타일을 분리 */
-
-.panel {
-    /* 모바일용 카드 높이를 30rem (480px) 정도로 설정 */
-    --card-height-mobile-default: 30rem;
-    /* 데스크톱용 카드 높이 */
-    --card-height-desktop-default: 50rem;
-}
-
-.flex-panel-card {
-    /* [수정] 데스크톱(xl)에서만 transform-origin 적용 */
-    @media (min-width: 1280px) {
-        transform-origin: top left;
-    }
-}
-
-/* 2-1. 그라데이션 배경색 (카드 패널에 적용) */
-.flex-panel-card._1 {
-    background: linear-gradient(135deg, #ffa800, #ff5d17);
-}
-.flex-panel-card._2 {
-    background: linear-gradient(135deg, #12d6f0, #12f093);
-}
-.flex-panel-card._3 {
-    background: linear-gradient(135deg, #3f1ca0, #a912f0);
-}
-.flex-panel-card._4 {
-    background: linear-gradient(135deg, #eb3656, #fea032);
-}
-.flex-panel-card._5 {
-    background: linear-gradient(135deg, #fff6a5, #ffb1b1);
-}
-
-/* 2-3. 새 카드 레이아웃 스타일 (모바일 기본) */
-.portfolio-item-replacement {
-    display: flex;
-    flex-direction: column;
-    padding: 30px 0; /* 상하 패딩 */
-    box-sizing: border-box;
-    /* [수정] 모바일 높이를 기본값으로 설정 */
-    height: var(--card-height-mobile-default);
-    position: relative;
-    z-index: 1;
-}
-
-/* [수정] md: (768px) 이상일 때 데스크톱 높이 적용 (태블릿 포함) */
-@media (min-width: 768px) {
-    .portfolio-item-replacement {
-        height: var(--card-height-desktop-default);
-    }
-}
-
-/* [이 코드 추가] xl: (1280px) 이상일 때 높이를 다시 100%로 되돌립니다. */
-@media (min-width: 1280px) {
-    .portfolio-item-replacement {
-        height: 100%;
-    }
-}
-
-/* 2-3-1. 단일 오버레이 스타일 */
-.unified-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: #000000;
-    opacity: 0.1; /* [수정] 기본값을 0.2에서 0으로 변경 */
-    z-index: 2;
-    pointer-events: none;
-}
-/* [이 코드 추가] xl: (1280px) 이상일 때만 오버레이 활성화 */
-@media (min-width: 1280px) {
-    .unified-overlay {
-        opacity: 0.2;
-    }
-}
-/* 2-4. 썸네일 (이미지) */
-.thumbnail {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 2rem;
-    box-sizing: border-box;
-    height: 35rem;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* [삭제] height: 35rem; 삭제 */
-}
-.thumbnail img {
-    display: block;
-    width: auto;
-    max-height: 8rem;
-    max-width: 70%;
-    object-fit: contain;
-    opacity: 0.8;
-}
-/* [추가] CUCKOO 로고(_1)만 개별 타겟팅 */
-.flex-panel-card._1 .thumbnail img {
-    /* * 'width: auto' 대신 '100%'를 사용해 강제로
-     * 부모 컨테이너 너비를 기준으로 크기를 계산하도록 함.
-     */
-    width: 100%;
-    max-height: 18rem;
-}
-
-/* 2-5. 텍스트 설명 (모바일 기본) */
-.description {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px auto 0;
-    padding: 0 1.5rem; /* 모바일 좌우 패딩 */
-    box-sizing: border-box;
-    color: #000000;
-    font-size: 14px; /* 모바일용 폰트 크기 */
-    font-weight: 700;
-    min-height: 4.5em;
-}
-/* 데스크톱 텍스트 설명 (태블릿 포함) */
-@media (min-width: 768px) {
-    .description {
-        font-size: 16px;
-    }
-}
-
-/* 2-6. 메인 타이틀 (h3) (모바일 기본) */
-.h3 {
-    position: relative;
-    z-index: 1;
-    font-weight: 900;
-    color: #fff;
-    /* [수정] 폰트 크기 + 고정 높이 및 정렬 */
-    font-size: 2.5rem;
-    height: 3.5rem; /* 2.5rem 폰트를 담을 수 있는 고정 높이 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    letter-spacing: -1.92px;
-    text-align: center;
-    margin: 10px auto 0;
-}
-
-/* 데스크톱 h3 (태블릿 포함) */
-@media (min-width: 768px) {
-    .h3 {
-        /* [수정] 폰트 크기 + 고정 높이 및 정렬 */
-        font-size: 64px;
-        height: 80px; /* 64px 폰트를 담을 수 있는 고정 높이 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* [추가] 긴 텍스트 h3 폰트 크기 조절 (데스크톱) */
-    .flex-panel-card._2 .h3,
-    .flex-panel-card._4 .h3,
-    .flex-panel-card._5 .h3 {
-        font-size: 55px; /* 폰트 크기만 줄임 */
-        /* height: 80px 는 위에서 상속받음 */
-    }
-}
-
-/* [삭제] 기존 @media (max-width: 767px) 블록은 모바일 우선 스타일로 변경되어 삭제 */
-
-/* 모바일에서 가로 스크롤바 숨기기 (이 코드는 이제 필요 없지만, 만약을 위해 남겨둡니다) */
-.overflow-x-auto::-webkit-scrollbar {
-    display: none;
-}
-.overflow-x-auto {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-</style>
+<style scoped></style>

@@ -107,26 +107,34 @@ function startUnifiedAnimation() {
     .set(stage1Subtitle.value, { autoAlpha: 0, y: 40 })
     .set(stage1Bg.value, { clipPath: 'ellipse(0% 0% at 50% 100%)', opacity: 0 })
 
-    .to(stage1Title.value, { duration: 1.2, y: 0, autoAlpha: 1, ease: 'power3.out' }, 0.2)
-    .to(stage1Subtitle.value, { duration: 1.2, y: 0, autoAlpha: 1, ease: 'power3.out' }, '<0.3')
-    .to(
-      stage1Bg.value,
-      {
-        duration: 2.5,
-        clipPath: 'ellipse(150% 150% at 50% 100%)',
-        opacity: 1,
-        ease: 'power2.inOut',
-      },
-      '<0.2'
-    )
-    .to(stage1Content.value, { duration: 2.0, color: '#ffffff', ease: 'power2.inOut' }, '-=2.5')
-    .to({}, { duration: 1 })
+        // Stage 2 초기 상태
+        .set(stage2.value, { autoAlpha: 0, zIndex: 1 }) // stage2는 처음에 숨김
+        .set(stage2BgWrapper.value, { autoAlpha: 0 }) // stage2 배경도 숨김
+        .set(stage2TextWrapper.value, { opacity: 0, y: 20 }) // (onMounted에서도 하지만 여기서도 명시)
 
-  // === 전환 (4~5s)
-  masterTl
-    .set(stage1.value, { zIndex: 1 })
-    .set(stage2.value, { zIndex: 2, autoAlpha: 1 })
-    .to(stage1.value, { duration: 0.8, autoAlpha: 0, ease: 'power2.inOut' })
+        // Stage 1 제목 등장
+        .to(
+            stage1Title.value,
+            {
+                duration: 1.2,
+                y: 0,
+                autoAlpha: 1,
+                ease: 'power3.out',
+            },
+            0.2
+        )
+
+        // Stage 1 부제목 등장
+        .to(
+            stage1Subtitle.value,
+            {
+                duration: 1.2,
+                y: 0,
+                autoAlpha: 1,
+                ease: 'power3.out',
+            },
+            '<0.3'
+        )
 
         // Stage 1 배경 이미지 등장
         .to(
@@ -152,7 +160,7 @@ function startUnifiedAnimation() {
         )
 
         // 1초 정도 머무르기
-        .to({}, { duration: 0.01 })
+        .to({}, { duration: 0.1 })
 
     // === Stage 1 -> Stage 2 전환 (4초 ~ 5초) ===
     masterTl
@@ -170,11 +178,15 @@ function startUnifiedAnimation() {
     // === Stage 2 애니메이션 (5초 ~) ===
     masterTl
         // Stage 2 배경 이미지 등장
-        .to(stage2BgWrapper.value, {
-            duration: 1.8,
-            clipPath: 'inset(0% 0% 0% 0%)',
-            ease: 'power4.out',
-        })
+        .to(
+            stage2BgWrapper.value,
+            {
+                duration: 2.0, // 배경은 2초에 걸쳐 천천히
+                autoAlpha: 1,
+                ease: 'power3.inOut',
+            },
+            '<' // '<' : 바로 앞의 애니메이션(stage1.value fadeout)과 동시에 시작
+        )
 
         // Stage 2 텍스트 등장
         .to(
@@ -194,9 +206,8 @@ function startUnifiedAnimation() {
 }
 
 onMounted(() => {
-  gsap.set(stage2TextWrapper.value, { opacity: 0, y: 20 })
-  gsap.set(stage2BgWrapper.value, { clipPath: 'inset(100% 0% 0% 0%)' })
-  startUnifiedAnimation()
+    // 통합 애니메이션 시작
+    startUnifiedAnimation()
 })
 </script>
 
@@ -223,7 +234,7 @@ onMounted(() => {
 /* ✅ 태블릿 전용 구간 */
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero-content {
-    margin-top: 15%; 
+    margin-top: 15%;
   }
 
   .hero-content h1 {
