@@ -47,7 +47,9 @@
                                         </template>
                                     </div>
                                 </div>
-                                <p class="title break-keep text-[0.9rem] font-semibold sm:text-[0.9rem]">{{ project.title }}</p>
+                                <p class="title line-clamp-2 min-w-0 flex-1 break-keep text-right text-[0.9rem] font-semibold xl:line-clamp-none">
+                                    {{ project.title }}
+                                </p>
                             </div>
                             <h3
                                 class="h3 relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
