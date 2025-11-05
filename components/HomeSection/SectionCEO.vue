@@ -30,32 +30,31 @@
                     </header>
 
                     <!-- 본문 -->
-                    <div class="lg:border-l-6 border-l-0 border-gray-200 pl-0 lg:pl-8 xl:pl-10">
+                    <div class="lg:border-l-4 border-l-0 border-gray-300 pl-0 lg:pl-8 xl:pl-10">
                         <div class="prose prose-gray max-w-none text-lg leading-relaxed text-gray-800 lg:text-[22px]">
                             <p class="mb-8">
-                                주식회사 포베리는 2023년 창업 이래 IT 분야에서
-                                <span class="font-semibold text-secondary">기본이 되자는 목적과 사명의식</span>
-                                을 가지고 사업을 추진하고 있습니다.
+                            주식회사 포베리는 2023년 창업 이래 IT 분야에서
+                            <span class="font-semibold text-secondary">기본이 되자는 목적과 사명의식</span>
+                            을 가지고 사업을 추진하고 있습니다.
                             </p>
 
                             <p class="mb-8">
-                                시스템은
-                                <span class="font-semibold text-secondary">사람이 중심</span>
-                                이 되어야 하고 사람을 위해서 존재해야 한다는 것이 저희 포베리가 IT 산업을 바라보는 철학이자 기업의 경영방침입니다.
+                            시스템은
+                            <span class="font-semibold text-secondary">사람이 중심</span>
+                            이 되어야 하고 사람을 위해서 존재해야 한다는 것이 저희 포베리가 IT 산업을 바라보는 철학이자 기업의 경영방침입니다.
                             </p>
 
                             <p class="mb-8">
-                                사람 중심의 기술 발전을 위해
-                                <span class="font-semibold text-secondary">AICBM (AI · IoT · Cloud · Big Data · Mobile)</span>
-                                중심의 사업 전개가 필수적이라는 판단에서 관련 사업에 적극적으로 매진함과 동시에 R&D 역량 향상에도 집중적으로 투자하고 있습니다.
+                            사람 중심의 기술 발전을 위해
+                            <span class="font-semibold text-secondary">AICBM (AI · IoT · Cloud · Big Data · Mobile)</span>
+                            중심의 사업 전개가 필수적이라는 판단에서 관련 사업에 적극적으로 매진함과 동시에 R&D 역량 향상에도 집중적으로 투자하고 있습니다.
                             </p>
 
                             <p>
-                                거시적 관점의 기술 개발에서 초미세화 관점으로 전이되고 있는 IT 기술의 시대 변화에 대응하고, 사람 중심의 IT 기업을 완성할 수 있도록 고객과 함께 노력하는 기업이 되도록
-                                하겠습니다.
+                            거시적 관점의 기술 개발에서 초미세화 관점으로 전이되고 있는 IT 기술의 시대 변화에 대응하고, 사람 중심의 IT 기업을 완성할 수 있도록 고객과 함께 노력하는 기업이 되도록 하겠습니다.
                             </p>
                         </div>
-                    </div>
+                        </div>
                 </article>
             </div>
         </div>

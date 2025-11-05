@@ -102,6 +102,10 @@ export default {
             backgroundSize: {
                 '200%': '200% auto',
             },
+            /*노트북일때(스크린 높이 낮음) 패딩 줄이기 */
+            screens: {
+            'short': { 'raw': '(max-height: 800px)' },
+            },
         },
         screens: {
             xs: '320px',
