@@ -4,9 +4,12 @@
             <NuxtLink
                 id="header-logo-text"
                 to="/"
-                class="flex items-center text-2xl font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80 desktop:h-14 desktop:text-3xl"
+                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
+                aria-label="FOURBERRY"
             >
-                FOURBERRY
+                <span class="logo-word" ref="logoEl">
+                    <span v-for="(ch, idx) in logoLetters" :key="idx" class="logo-ch">{{ ch }}</span>
+                </span>
             </NuxtLink>
 
             <!-- 데스크탑 메뉴 -->
@@ -54,76 +57,59 @@
         <!-- 모바일 메뉴(이미 hover 효과 없음) -->
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
-                <NuxtLink @click="isMobileMenuOpen = false" to="#info" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#about"    class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#projects" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SI/SM</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#services" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="#contact" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#contact"  class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
             </nav>
         </transition>
     </header>
 </template>
+
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-// [수정 1] setHeaderTheme도 가져옵니다.
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// --- 상태 로직 ---
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
 let scrollTriggerInstance: ScrollTrigger | null = null
 
-// [수정 2] 'theme'과 'setHeaderTheme'을 올바르게 구조분해합니다.
 const { theme, setHeaderTheme } = useHeaderTheme()
 
-// --- 모바일 메뉴 로직 ---
 const isMobileMenuOpen = ref(false)
 const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
-// [수정 3] 햄버거 버튼 라인 색상 로직
-// 'dark' 테마(스크롤 내림)일 때만 'bg-gray-800', 그 외('light', 'transparent')는 'bg-white'
-const lineClasses = computed(() => [isMobileMenuOpen.value || theme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
+const lineClasses = computed(() => [
+    (isMobileMenuOpen.value || theme.value === 'dark') ? 'bg-gray-800' : 'bg-white',
+])
 
-// [수정 4] 헤더 클래스 바인딩 로직 (가장 중요)
-// effectiveTheme을 제거하고, 'theme' 값을 직접 사용하여 4가지 상태를 처리합니다.
 const headerClasses = computed(() => {
     const baseClasses = 'top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out'
-
-    // [신규] 1. 모바일 메뉴가 열렸을 때: 무조건 흰색 배경 + 검은색 텍스트
-    // 이렇게 해야 최상단(투명) 상태에서 메뉴를 열어도 헤더가 보입니다.
     if (isMobileMenuOpen.value) {
         return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
-
-    // --- (메뉴가 닫혀 있을 때) ---
-    // 2. 홈페이지가 아닐 때: 항상 흰색 배경
     if (!isHomePage.value) {
         return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
-
-    // 3. 홈페이지일 때: 'theme' 값에 따라 분기
     switch (theme.value) {
         case 'transparent':
-            // 3-1. 'transparent' 강제 설정 시 (예: SectionSiSm)
             return [baseClasses, 'fixed bg-transparent text-transparent']
         case 'dark':
-            // 3-2. 스크롤이 내려간 상태
             return [baseClasses, 'fixed bg-white/60 backdrop-blur-md shadow-sm text-gray-800']
         case 'light':
         default:
-            // 3-3. 홈페이지 최상단 (스크롤 0)
             return [baseClasses, 'absolute bg-transparent text-transparent']
     }
 })
 
-// [수정 5] ScrollTrigger 로직 수정
 const setupScrollTrigger = () => {
     scrollTriggerInstance?.kill()
     if (isHomePage.value) {
@@ -133,7 +119,6 @@ const setupScrollTrigger = () => {
             end: '+=10',
             onUpdate: self => {
                 const scrolled = self.scroll() > 10
-                // [중요] 현재 테마가 'transparent'가 아닐 때만 스크롤에 따라 테마 변경
                 if (theme.value !== 'transparent') {
                     setHeaderTheme(scrolled ? 'dark' : 'light')
                 }
@@ -142,62 +127,123 @@ const setupScrollTrigger = () => {
     }
 }
 
-// --- 생명주기 로직 (수정됨) ---
+/* ---------- [로고 애니메이션 추가] ---------- */
+const logoText = 'FOURBERRY'
+const logoLetters = logoText.split('')
+const logoEl = ref<HTMLElement | null>(null)
+let logoTl: gsap.core.Timeline | null = null
+
+const buildLogoTimeline = () => {
+    if (!logoEl.value) {
+        console.warn('로고 요소를 찾을 수 없습니다.')
+        return
+    }
+
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mq.matches) return
+
+    const letters = logoEl.value.querySelectorAll<HTMLElement>('.logo-ch')
+
+    // 기존 타임라인 정리
+    logoTl?.kill()
+
+    // 전체 사이클 끝나고 5초 대기 후 반복
+    logoTl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 5,
+    })
+
+    // 초기 상태
+    gsap.set(letters, { y: 0 })
+
+    // ✨ 핵심: 한 글자(올라감→내려옴)를 'keyframes'로 묶고, stagger로 겹치게 시작
+    logoTl.to(letters, {
+        keyframes: [
+            { y: -12, duration: 0.22, ease: 'power2.out' },      // 위로 콕
+            { y: 0,   duration: 0.28, ease: 'power2.inOut' },     // 자연스럽게 복귀
+        ],
+        // 다음 글자가 살짝 먼저 시작하게 하여 "연쇄"처럼 보이게 함
+        stagger: 0.06, // 더 촘촘: 0.04 ~ 0.05 / 더 느긋: 0.08 ~ 0.1
+    }, 0)
+}
+
 onMounted(() => {
     if (isHomePage.value) {
         const scrolled = window.scrollY > 10
-        // [중요] 초기 로드 시에도 'transparent'가 아니어야 테마 설정
         if (theme.value !== 'transparent') {
             setHeaderTheme(scrolled ? 'dark' : 'light')
         }
         setupScrollTrigger()
     } else {
-        setHeaderTheme('dark') // 다른 페이지는 항상 'dark'
+        setHeaderTheme('dark')
     }
 
+    // 로고 애니메이션 초기화
+    buildLogoTimeline()
+
+    // 라우트 전환 시: 메뉴 정리 + 헤더 테마 처리 + (홈일 때만) 로고 타임라인 재구성
     watch(
         () => route.path,
         newPath => {
-            isMobileMenuOpen.value = false // 페이지 이동 시 메뉴 닫기
+            isMobileMenuOpen.value = false
 
             if (newPath === '/') {
-                // 홈페이지로 돌아올 땐 테마 리셋
                 const scrolled = window.scrollY > 10
                 setHeaderTheme(scrolled ? 'dark' : 'light')
                 setupScrollTrigger()
+                buildLogoTimeline()
             } else {
-                // 다른 페이지로 이동 시
                 setHeaderTheme('dark')
                 scrollTriggerInstance?.disable()
+                // 다른 페이지에서는 과도한 움직임 방지를 위해 일단 정지
+                logoTl?.pause(0)
             }
         }
     )
+
+    // 모바일 메뉴가 열린 동안에는 사용자가 메뉴에 집중할 수 있게 애니메이션 일시정지
+    watch(isMobileMenuOpen, (open) => {
+        if (open) {
+            logoTl?.pause()
+        } else {
+            logoTl?.resume()
+        }
+    })
 })
 
 onUnmounted(() => {
     scrollTriggerInstance?.kill()
+    logoTl?.kill()
 })
+/* ---------- [로고 애니메이션 추가 끝] ---------- */
 
-defineExpose({
-    // ref를 직접 노출하기보다 $el 접근을 염두에 둠
-})
+defineExpose({})
 </script>
 
 <style scoped>
-/* ✅ 기본값: 모든 기기에서 front만 보이게, back은 숨김 */
+/* 로고 글자 단위 애니메이션을 위한 설정 */
+.logo-word {
+    display: inline-flex;
+    gap: 0.02em;
+}
+
+.logo-ch {
+    display: inline-block;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 아래 기존 스타일 그대로 유지 */
 .menu-link .front {
     transform: translateY(0);
     opacity: 1;
     transition: none;
 }
-
 .menu-link .back {
     transform: translateY(100%);
     opacity: 0;
     transition: none;
 }
-
-/* ✅ 호버/마우스가 가능한 환경(데스크탑/트랙패드 연결된 iPad 등)에서만 애니메이션 활성화 */
 @media (any-hover: hover) and (any-pointer: fine) {
     .menu-link .front,
     .menu-link .back {
@@ -205,44 +251,18 @@ defineExpose({
             transform 0.3s ease-in-out,
             opacity 0.3s ease-in-out;
     }
-
-    .menu-link .front {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .menu-link .back {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    .menu-link:hover .front {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-
-    .menu-link:hover .back {
-        transform: translateY(0);
-        opacity: 1;
-        /* 필요 시 색상 강조 */
-        color: rgb(37 99 235); /* blue-600 */
-    }
+    .menu-link .front { transform: translateY(0); opacity: 1; }
+    .menu-link .back  { transform: translateY(100%); opacity: 0; }
+    .menu-link:hover .front { transform: translateY(-100%); opacity: 0; }
+    .menu-link:hover .back  { transform: translateY(0); opacity: 1; color: rgb(37 99 235); }
 }
-
-/* (선택) 터치 전용 환경에서 전환 완전 비활성화 – 안전장치 */
 @media (hover: none) and (pointer: coarse) {
     .menu-link .front,
-    .menu-link .back {
-        transition: none;
-    }
+    .menu-link .back { transition: none; }
 }
-
-/* 기존 모바일 메뉴 패널 트랜지션 유지 */
 .slide-down-enter-active,
 .slide-down-leave-active {
-    transition:
-        transform 0.3s ease-in-out,
-        opacity 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 .slide-down-enter-from,
 .slide-down-leave-to {
@@ -250,3 +270,4 @@ defineExpose({
     opacity: 0;
 }
 </style>
+
