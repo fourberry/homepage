@@ -1,57 +1,61 @@
 <template>
-    <section ref="sectionRef" class="panel relative overflow-hidden border-t border-gray-200 bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
-        <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 lg:px-12 xl:hidden">
-            <div class="mb-4 break-keep">
-                <p class="mb-4 text-sm font-semibold tracking-widest text-red-300">SERVICE</p>
-                <h2 class="mb-4 text-3xl font-bold text-gray-950 md:mb-8 md:text-3xl lg:text-3xl">System Integration</h2>
-                <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
-            </div>
-        </div>
-
-        <div class="h-auto xl:h-dvh">
-            <div
-                ref="flexContainer"
-                class="grid w-full grid-cols-1 pb-12 md:grid-cols-2 md:pb-16 lg:grid-cols-3 xl:flex xl:h-full xl:snap-none xl:flex-row xl:flex-nowrap xl:items-center xl:gap-0 xl:overflow-x-visible xl:p-0"
-            >
-                <div class="flex-panel-title hidden h-auto w-full flex-shrink-0 flex-col justify-center px-4 py-12 text-center sm:px-6 md:py-0 md:text-left lg:px-12 xl:flex xl:h-full xl:w-[30vw]">
-                    <div class="break-keep">
-                        <div class="inline-block text-center">
-                            <p class="mb-4 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
-                            <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">System</h2>
-                            <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">Integration</h2>
-                            <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
-                        </div>
-                    </div>
+    <div id="projects">
+        <section ref="sectionRef" class="panel relative overflow-hidden border-t border-gray-200 bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
+            <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 lg:px-12 xl:hidden">
+                <div class="mb-4 break-keep">
+                    <p class="mb-4 text-sm font-semibold tracking-widest text-red-300">SERVICE</p>
+                    <h2 class="mb-4 text-3xl font-bold text-gray-950 md:mb-8 md:text-3xl lg:text-3xl">System Integration</h2>
+                    <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
                 </div>
+            </div>
 
+            <div class="h-auto xl:h-dvh">
                 <div
-                    v-for="project in siSmProjects"
-                    :key="project.id"
-                    :class="['flex-panel-card', project.gradientClasses]"
-                    class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
+                    ref="flexContainer"
+                    class="grid w-full grid-cols-1 pb-12 md:grid-cols-2 md:pb-16 lg:grid-cols-3 xl:flex xl:h-full xl:snap-none xl:flex-row xl:flex-nowrap xl:items-center xl:gap-0 xl:overflow-x-visible xl:p-0"
                 >
-                    <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden rounded-lg py-[30px] text-center sm:h-[40rem] md:h-[45rem] xl:h-full">
-                        <div class="thumbnail relative z-10 mx-auto flex h-[20rem] w-full items-center justify-center bg-white px-8 sm:h-[30rem] md:h-[30rem]">
-                            <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
+                    <div class="flex-panel-title hidden h-auto w-full flex-shrink-0 flex-col justify-center px-4 py-12 text-center sm:px-6 md:py-0 md:text-left lg:px-12 xl:flex xl:h-full xl:w-[30vw]">
+                        <div class="break-keep">
+                            <div class="inline-block text-center">
+                                <p class="mb-4 text-sm font-bold tracking-widest text-red-300">SERVICE</p>
+                                <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">System</h2>
+                                <h2 class="mb-4 text-3xl font-bold text-gray-950 md:text-4xl lg:text-5xl">Integration</h2>
+                                <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-base md:text-lg">비즈니스에 새로운 가치를 더하는 SI/SM 사업</p>
+                            </div>
                         </div>
-                        <div class="description relative z-10 mx-auto mt-5 flex min-h-[4.5em] w-full items-center justify-between px-6 text-[1rem] font-bold text-gray-900 sm:text-[1rem]">
-                            <p v-for="(date, index) in project.dates" :key="index" class="kind">
-                                {{ date }}
-                            </p>
-                            <p class="title break-keep">{{ project.title }}</p>
-                        </div>
-                        <h3
-                            class="h3 relative z-10 mx-auto my-0 mt-2.5 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[2.5rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem]"
-                            :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
-                        >
-                            {{ project.clientName }}
-                        </h3>
                     </div>
-                    <div class="unified-overlay pointer-events-none absolute inset-0 z-20 bg-black opacity-0 xl:opacity-20"></div>
+
+                    <div
+                        v-for="project in siSmProjects"
+                        :key="project.id"
+                        :class="['flex-panel-card', project.gradientClasses]"
+                        class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
+                    >
+                        <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[40rem] md:h-[45rem] xl:h-full">
+                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white px-8 shadow-inner shadow-black/30 sm:h-[30rem] md:h-[35rem]">
+                                <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
+                            </div>
+                            <div class="description relative z-10 mx-auto mt-5 flex min-h-[4.5em] w-full items-center justify-between px-6 text-[1rem] font-bold text-gray-800 sm:text-[1rem]">
+                                <div class="text-left">
+                                    <p v-for="(date, index) in project.dates" :key="index" class="kind">
+                                        {{ date }}
+                                    </p>
+                                </div>
+                                <p class="title break-keep">{{ project.title }}</p>
+                            </div>
+                            <h3
+                                class="h3 relative z-10 mx-auto my-0 mt-2.5 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[2.5rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem]"
+                                :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
+                            >
+                                {{ project.clientName }}
+                            </h3>
+                        </div>
+                        <div class="unified-overlay pointer-events-none absolute inset-0 z-20 bg-black opacity-0 xl:opacity-20"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -116,11 +120,22 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#fff6a5] to-[#ffb1b1]',
         imageSrc: '/images/homeSiSm/auto_crypt.svg',
         imageAlt: 'AutoCrypt Project',
-        dates: ['2024.06 ~ 2024.10', '2025.06 ~ 2025.09'], // AUTOCRYPT처럼 날짜가 2개인 경우
+        dates: ['2024.06 ~ 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
         title: '자동차 보안 대응 시스템(K-CSMS) 구축',
         clientName: 'AUTOCRYPT',
         imageStyle: 'auto',
         smallH3: true, // 긴 텍스트용 h3
+    },
+    {
+        id: 'si_6',
+        gradientClasses: 'bg-gradient-to-br from-[#0072ff] to-[#00c6ff]',
+        imageSrc: '/images/homeSiSm/sport_university.svg',
+        imageAlt: 'KNSU Project',
+        dates: ['2022.08 ~ 2023.02'],
+        title: '실시간 승부조작 위험성 경고 시스템 구축',
+        clientName: 'KNSU',
+        imageStyle: 'knsu',
+        smallH3: false,
     },
 ]
 
@@ -145,6 +160,10 @@ const getImageClasses = (project: (typeof siSmProjects)[0]) => {
         case 'auto':
             // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
             specificClasses = 'max-h-[10rem] w-auto max-w-[60%]'
+            break
+        case 'knsu':
+            // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
+            specificClasses = 'max-h-[8rem] w-auto max-w-[60%]'
             break
         default:
             // 'default' 또는 정의되지 않은 경우
@@ -263,7 +282,7 @@ onMounted(() => {
                             ease: 'power3.out', // 부드러운 이징
                             scrollTrigger: {
                                 trigger: card, // 애니메이션 트리거를 각 'card'로 설정
-                                start: 'top 60%', // 카드의 상단이 뷰포트 85% 지점에 도달할 때
+                                start: 'top 50%', // 카드의 상단이 뷰포트 85% 지점에 도달할 때
                                 toggleActions: 'play none none none', // 한 번만 재생
                                 once: true, // 스크롤을 올렸다가 내려도 다시 실행되지 않음
                             },

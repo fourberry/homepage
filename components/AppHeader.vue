@@ -4,41 +4,29 @@
             <NuxtLink
                 id="header-logo-text"
                 to="/"
-                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
+                class="flex items-center text-2xl font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80 desktop:h-14 desktop:text-3xl"
             >
                 FOURBERRY
             </NuxtLink>
 
             <!-- 데스크탑 메뉴 -->
-            <div class="md:flex items-center gap-3 desktop:gap-5 hidden">
-                <NuxtLink
-                    to="#about"
-                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
-                >
+            <div class="hidden items-center gap-3 md:flex desktop:gap-5">
+                <NuxtLink to="#about" class="menu-link group relative min-w-[6rem] overflow-hidden text-center text-base font-bold no-underline desktop:text-lg">
                     <span class="front block">ABOUT</span>
                     <span class="back absolute inset-0 block">소개</span>
                 </NuxtLink>
 
-                <NuxtLink
-                    to="#projects"
-                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
-                >
+                <NuxtLink to="#projects" class="menu-link group relative min-w-[6rem] overflow-hidden text-center text-base font-bold no-underline desktop:text-lg">
                     <span class="front block">SI/SM</span>
                     <span class="back absolute inset-0 block">구축/운영</span>
                 </NuxtLink>
 
-                <NuxtLink
-                    to="#services"
-                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
-                >
+                <NuxtLink to="#services" class="menu-link group relative min-w-[6rem] overflow-hidden text-center text-base font-bold no-underline desktop:text-lg">
                     <span class="front block">SOLUTION</span>
                     <span class="back absolute inset-0 block">솔루션</span>
                 </NuxtLink>
 
-                <NuxtLink
-                    to="#contact"
-                    class="group menu-link relative min-w-[6rem] text-center text-base font-bold desktop:text-lg no-underline overflow-hidden"
-                >
+                <NuxtLink to="#contact" class="menu-link group relative min-w-[6rem] overflow-hidden text-center text-base font-bold no-underline desktop:text-lg">
                     <span class="front block">CONTACT</span>
                     <span class="back absolute inset-0 block">연락처</span>
                 </NuxtLink>
@@ -66,15 +54,14 @@
         <!-- 모바일 메뉴(이미 hover 효과 없음) -->
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
-                <NuxtLink @click="isMobileMenuOpen = false" to="#about"    class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#info" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#projects" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SI/SM</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#services" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="#contact"  class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#contact" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
             </nav>
         </transition>
     </header>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
@@ -102,9 +89,7 @@ const toggleMobileMenu = () => {
 
 // [수정 3] 햄버거 버튼 라인 색상 로직
 // 'dark' 테마(스크롤 내림)일 때만 'bg-gray-800', 그 외('light', 'transparent')는 'bg-white'
-const lineClasses = computed(() => [
-    (isMobileMenuOpen.value || theme.value === 'dark') ? 'bg-gray-800' : 'bg-white',
-])
+const lineClasses = computed(() => [isMobileMenuOpen.value || theme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
 
 // [수정 4] 헤더 클래스 바인딩 로직 (가장 중요)
 // effectiveTheme을 제거하고, 'theme' 값을 직접 사용하여 4가지 상태를 처리합니다.
@@ -216,7 +201,9 @@ defineExpose({
 @media (any-hover: hover) and (any-pointer: fine) {
     .menu-link .front,
     .menu-link .back {
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition:
+            transform 0.3s ease-in-out,
+            opacity 0.3s ease-in-out;
     }
 
     .menu-link .front {
@@ -263,4 +250,3 @@ defineExpose({
     opacity: 0;
 }
 </style>
-
