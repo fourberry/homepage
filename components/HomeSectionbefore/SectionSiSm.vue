@@ -31,20 +31,26 @@
                         :class="['flex-panel-card', project.gradientClasses]"
                         class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
                     >
-                        <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[40rem] md:h-[45rem] xl:h-full">
-                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white px-8 shadow-inner shadow-black/30 sm:h-[30rem] md:h-[35rem]">
+                        <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[45rem] md:h-[45rem] xl:h-full">
+                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white px-8 shadow-inner shadow-black/30 sm:h-[35rem] md:h-[35rem]">
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
                             </div>
-                            <div class="description relative z-10 mx-auto mt-5 flex min-h-[4.5em] w-full items-center justify-between px-6 text-[1rem] font-bold text-gray-800 sm:text-[1rem]">
-                                <div class="text-left">
-                                    <p v-for="(date, index) in project.dates" :key="index" class="kind">
-                                        {{ date }}
-                                    </p>
+                            <div class="description font-custom relative z-10 flex min-h-[4.5em] w-full items-center justify-between px-6 text-gray-950">
+                                <div class="text-left text-[1rem] font-bold opacity-90 sm:text-[1rem]">
+                                    <div v-for="(date, index) in project.dates" :key="index" class="kind">
+                                        <template v-if="date.includes(' - ')">
+                                            <p>{{ date.split(' - ')[0] }}</p>
+                                            <p>{{ date.split(' - ')[1] }}</p>
+                                        </template>
+                                        <template v-else>
+                                            <p>{{ date }}</p>
+                                        </template>
+                                    </div>
                                 </div>
-                                <p class="title break-keep">{{ project.title }}</p>
+                                <p class="title break-keep text-[0.9rem] font-semibold sm:text-[0.9rem]">{{ project.title }}</p>
                             </div>
                             <h3
-                                class="h3 relative z-10 mx-auto my-0 mt-2.5 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[2.5rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem]"
+                                class="h3 relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
                                 :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
                             >
                                 {{ project.clientName }}
@@ -76,7 +82,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#ffa800] to-[#ff5d17]',
         imageSrc: '/images/homeSiSm/cuckoo.svg',
         imageAlt: 'Cuckoo Project',
-        dates: ['2021.11 ~ 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
+        dates: ['2021.11 - 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
         title: 'OMS 및 차세대 영업관리 시스템 구축',
         clientName: 'CUCKOO',
         imageStyle: 'cuckoo', // Cuckoo 로고만 특별 스타일 적용
@@ -87,7 +93,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#12d6f0] to-[#12f093]',
         imageSrc: '/images/homeSiSm/hanaro.svg',
         imageAlt: 'Hanaro Project',
-        dates: ['2024.01 ~ 2025.03'],
+        dates: ['2024.01 - 2025.03'],
         title: '브랜드몰 (하이브리드 앱) 및 SSO 구축',
         clientName: 'WITH FRESH',
         imageStyle: 'default',
@@ -98,7 +104,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] to-[#a912f0]',
         imageSrc: '/images/homeSiSm/kobc.svg',
         imageAlt: 'KOBC Project',
-        dates: ['2024.10 ~ 2025.01'],
+        dates: ['2024.10 - 2025.01'],
         title: '게이미피케이션 접목 캠페인 (PC/모바일)',
         clientName: 'KOBC',
         imageStyle: 'default',
@@ -109,7 +115,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#eb3656] to-[#fea032]',
         imageSrc: '/images/homeSiSm/lotto.svg',
         imageAlt: 'Lotto Project',
-        dates: ['2024.10 ~ 2025.10'],
+        dates: ['2024.10 - 2025.10'],
         title: '인쇄복권 시스템 통합 및 DB 전환',
         clientName: 'DONGHANG',
         imageStyle: 'lotto',
@@ -120,7 +126,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#fff6a5] to-[#ffb1b1]',
         imageSrc: '/images/homeSiSm/auto_crypt.svg',
         imageAlt: 'AutoCrypt Project',
-        dates: ['2024.06 ~ 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
+        dates: ['2024.06 - 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
         title: '자동차 보안 대응 시스템(K-CSMS) 구축',
         clientName: 'AUTOCRYPT',
         imageStyle: 'auto',
@@ -131,7 +137,7 @@ const siSmProjects = [
         gradientClasses: 'bg-gradient-to-br from-[#0072ff] to-[#00c6ff]',
         imageSrc: '/images/homeSiSm/sport_university.svg',
         imageAlt: 'KNSU Project',
-        dates: ['2022.08 ~ 2023.02'],
+        dates: ['2022.08 - 2023.02'],
         title: '실시간 승부조작 위험성 경고 시스템 구축',
         clientName: 'KNSU',
         imageStyle: 'knsu',

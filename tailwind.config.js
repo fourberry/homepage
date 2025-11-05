@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'
 export default {
     // Tailwind CSS가 클래스를 찾아낼 파일 경로를 정의합니다. (Nuxt 기본 설정)
     content: ['./app.vue', './layouts/**/*.vue', './pages/**/*.vue', './components/**/*.vue'],
@@ -45,6 +46,7 @@ export default {
                     '"Helvetica Neue"', // 띄어쓰기가 있으므로 따옴표 사용
                     'sans-serif', // 마지막 fallback
                 ],
+                custom: ['VinaSans', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)
@@ -104,7 +106,7 @@ export default {
             },
             /*노트북일때(스크린 높이 낮음) 패딩 줄이기 */
             screens: {
-            'short': { 'raw': '(max-height: 800px)' },
+                short: { raw: '(max-height: 800px)' },
             },
         },
         screens: {
