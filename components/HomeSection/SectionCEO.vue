@@ -31,7 +31,8 @@
 
                     <!-- 본문 -->
                     <div class="lg:border-l-4 border-l-0 border-gray-300 pl-0 lg:pl-8 xl:pl-10">
-                        <div class="prose prose-gray max-w-none text-lg leading-relaxed text-gray-800 lg:text-[22px]">
+                        <div  class="prose prose-gray max-w-none text-[15px] text-gray-800
+         leading-relaxed sm:text-base md:text-[17px] lg:text-[22px] lg:leading-loose xl:leading-[1.9]">
                             <p class="mb-8">
                             주식회사 포베리는 2023년 창업 이래 IT 분야에서
                             <span class="font-semibold text-secondary">기본이 되자는 목적과 사명의식</span>

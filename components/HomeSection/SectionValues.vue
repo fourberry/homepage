@@ -24,11 +24,11 @@
           class="relative min-w-0 pt-0 text-center" 
           v-motion
           :initial="{ opacity: 0, y: 20 }"
-          :visible="{
-            opacity: 1,
-            y: 0,
-            transition: { duration: 1000, delay: getDelay(i) }
-          }"
+           :visibleOnce="{
+             opacity: 1,
+             y: 0,
+             transition: { duration: 1000, delay: getDelay(i) }
+           }"
           :once="true"
           :threshold="0.4"
         >
