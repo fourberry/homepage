@@ -47,6 +47,13 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Vina Sans'; /* 👈 앞으로 사용할 폰트 이름 */
+    src: url('~/assets/fonts/VinaSans-Regular.ttf') format('ttf');
+    font-weight: normal; /* 또는 'normal' */
+    font-style: normal;
+}
+
 /* 3. Tailwind 기본 스타일 주입 */
 @tailwind base;
 @tailwind components;
