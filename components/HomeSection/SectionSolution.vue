@@ -16,7 +16,7 @@
         class="grid grid-cols-1 xl:grid-cols-2"
         v-motion
         :initial="{ opacity: 0, x: -120 }"
-        :visible="{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 1200, easing: 'ease-out' } }"
+        :visibleOnce="{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 1200, easing: 'ease-out' } }"
         :once="true"
       >
         <!-- Image (v-motion 제거) -->
@@ -82,7 +82,7 @@
         class="grid grid-cols-1 xl:grid-cols-2"
         v-motion
         :initial="{ opacity: 0, x: 120 }"
-        :visible="{ opacity: 1, x: 0, transition: { delay: 9.0, duration: 1300, easing: 'ease-in-out' } }"
+        :visibleOnce="{ opacity: 1, x: 0, transition: { delay: 9.0, duration: 1300, easing: 'ease-in-out' } }"
         :once="true"
       >
         <!-- Text (v-motion 제거) -->

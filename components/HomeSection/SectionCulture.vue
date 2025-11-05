@@ -1,10 +1,8 @@
 <template>
   <section class="bg-white py-32 md:py-40">
-   <div class="container-wide">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
       <!-- 헤더 영역 -->
-
-
-       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
+      <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
         <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-violet-400">Culture</p>
         <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">복지/문화</h2>
         <p class="mx-auto max-w-2xl text-base text-gray-400 md:text-lg">
@@ -13,9 +11,15 @@
         </p>
       </header>
 
-      <!-- 카드 그리드 -->
+      <!-- 카드 그리드 (애니메이션: 최초 1회만 실행) -->
       <ul
-        class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-x-10 md:gap-y-20 lg:gap-x-16"
+        v-motion
+        :initial="{ opacity: 0, y: 20 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, easing: 'ease-out' } }"
+        :delay="100"
+        :threshold="0.15"
+        class="transform-gpu will-change-transform
+               grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20"
       >
         <li
           v-for="(item, i) in cultureItems"
@@ -24,12 +28,12 @@
         >
           <!-- 이미지 -->
           <div
-            :class="[ 
+            :class="[
               'w-full aspect-square overflow-hidden rounded-2xl shadow-sm flex items-center justify-center transition-colors duration-300',
               item.title === '유연근무제'
                 ? 'bg-slate-300'
                 : item.title === '자기계발비 지원'
-                ? 'bg-slate-50'
+                ? 'bg-lime-50'
                 : 'bg-gray-100',
             ]"
           >
@@ -38,23 +42,16 @@
               :alt="item.title + ' 이미지'"
               loading="lazy"
               class="w-full h-full object-center"
-              :class="item.title === '유연근무제'
-                ? 'object-contain'
-                : 'object-cover'"
+              :class="item.title === '유연근무제' ? 'object-contain' : 'object-cover'"
             />
           </div>
 
           <!-- 텍스트 영역 -->
           <div class="mt-4 md:mt-6">
-            <h3
-              class="text-sm sm:text-base md:text-lg font-extrabold text-gray-900 tracking-tight uppercase"
-            >
+            <h3 class="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 tracking-tight uppercase">
               {{ item.title }}
             </h3>
-
-            <p
-              class="text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 mt-2 md:mt-3 whitespace-pre-line"
-            >
+            <p class="text-sm sm:text-base md:text-lg leading-relaxed text-gray-700 mt-2 md:mt-3 whitespace-pre-line">
               {{ item.desc }}
             </p>
           </div>
@@ -69,9 +66,7 @@ const cultureItems = [
   {
     title: "유연근무제",
     img: "/images/work.png",
-    desc:
-      "8시 ~ 10시 사이에 자율적으로 출근해요.\n" +
-      "업무 효율은 높이고 워라밸은 확실하게!",
+    desc: "8시 ~ 10시 사이에 자율적으로 출근해요.\n업무 효율은 높이고 워라밸은 확실하게!",
   },
   {
     title: "점심식사 제공",
@@ -81,30 +76,24 @@ const cultureItems = [
   {
     title: "생일 축하금 지급",
     img: "/images/birthday.jpg",
-    desc:
-      "생일 당일엔 현금 20만원을 드리고 조기퇴근도 OK! " +
-      "기념일은 일보다 내가 더 소중하니까요~",
+    desc: "생일 당일엔 현금 20만원을 드리고 조기퇴근도 OK! 기념일은 일보다 내가 더 소중하니까요~",
   },
   {
     title: "자기계발비 지원",
     img: "/images/allowance2.png",
-    desc:
-      "책, 강의(인프런), 세미나 등\n" +
-      "배움에 대한 투자 적극 환영합니다.",
+    desc: "책, 강의(인프런), 세미나 등\n배움에 대한 투자 적극 환영합니다.",
   },
   {
     title: "간식·커피 무제한",
     img: "/images/cookie.jpg",
-    desc:
-      "당 떨어질 틈 없이!\n" +
-      "언제든 꺼내 먹을 수 있어요.",
+    desc: "당 떨어질 틈 없이!\n언제든 꺼내 먹을 수 있어요.",
   },
   {
     title: "게임 타임",
     img: "/images/game.jpg",
-    desc:
-      "취미와 친목, 재미를 위해\n" +
-      "보드게임과 온라인게임을 같이 즐긴답니다.",
+    desc: "취미와 친목, 재미를 위해\n보드게임과 온라인게임을 같이 즐긴답니다.",
   },
 ];
 </script>
+
+<style scoped></style>
