@@ -3,7 +3,7 @@
     <div class="container-wide">
       <!-- 상단 헤더 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-red-300">Values</p>
+        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-teal-300">Values</p>
         <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">핵심 가치</h2>
         <p class="mx-auto max-w-2xl text-base text-gray-400 md:text-lg">
           기술의 본질과 미래를 탐구하며,<br />

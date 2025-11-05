@@ -9,7 +9,7 @@
                 <slot />
             </main>
 
-            <AppFooter />
+            <!-- <AppFooter /> -->
         </div>
     </div>
 </template>

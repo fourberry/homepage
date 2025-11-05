@@ -5,7 +5,7 @@
 
 
        <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-red-300">Culture</p>
+        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-violet-400">Culture</p>
         <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl">복지/문화</h2>
         <p class="mx-auto max-w-2xl text-base text-gray-400 md:text-lg">
           즐겁게 일하는 포베리의

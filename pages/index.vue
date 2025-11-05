@@ -5,7 +5,7 @@
         <HomeSectionBusiness />
         <HomeSectionValues />
         <HomeSectionCEO />
-        <HomeSectionTimeline />
+        <!-- <HomeSectionTimeline /> -->
         <HomeSectionbeforeSectionSiSm />
         <HomeSectionSolution />
         <HomeSectionCulture />

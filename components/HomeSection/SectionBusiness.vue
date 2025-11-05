@@ -1,7 +1,7 @@
 <template>
   <section class="relative bg-black text-white">
     <!-- 🔹 세로가 낮은 화면에서만 상하 패딩 축소 -->
-    <div class="mx-auto max-w-7xl px-4 py-28 short:py-16 md:px-10 md:py-36 lg:px-16">
+    <div class="container-wide py-28 short:py-16 md:py-36">
       <!-- 헤더 -->
       <header class="text-center">
         <h2
@@ -45,7 +45,7 @@
             </h3>
 
             <p
-              class="mt-2 text-lg short:text-base md:text-xl leading-snug text-zinc-300 text-center px-3"
+               class="mt-2 text-lg short:text-base md:text-xl leading-snug text-zinc-300 text-left px-3"
             >
               {{ item.desc }}
             </p>

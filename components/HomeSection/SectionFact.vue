@@ -1,11 +1,11 @@
 <template>
   <section
-    class="bg-accent py-24 md:py-32 rounded-t-[3rem] md:rounded-t-[5rem] text-white"
+    class="bg-accent pt-12 pb-0 md:pt-20 md:pb-0 rounded-t-[3rem] md:rounded-t-[5rem] text-white"
     v-motion
     :initial="{ opacity: 0 }"
     :visible="{
       opacity: 1,
-      transition: { delay: 9, duration: 1500, easing: 'ease-in-out' }
+      transition: { delay: 9, duration: 1000, easing: 'ease-in-out' }
     }"
     :once="true"
   >
@@ -37,70 +37,102 @@
         </div>
 
         <!-- 오른쪽: 회사 정보 -->
-        <div class="flex h-full min-h-full flex-col justify-center">
-          <dl class="divide-y divide-white/30">
-            <!-- 회사명 -->
-            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
-              <dt class="text-sm text-blue-100 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg">
-                회사명
-              </dt>
-              <dd
-                class="text-base text-white md:col-span-4 md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-keep leading-snug"
-              >
-                포베리주식회사
-              </dd>
-            </div>
+        <!-- 회사 정보 -->
+<div class="flex h-full min-h-full flex-col justify-center">
+  <dl class="divide-y divide-white/30">
 
-            <!-- 설립일 -->
-            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
-              <dt class="text-sm text-blue-100 md:col-span-2 md:text-base lg:text-[0.95rem] xl:text-lg">
-                설립일
-              </dt>
-              <dd
-                class="text-base text-white md:col-span-4 md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl break-keep leading-snug"
-              >
-                2023년 10월 30일
-              </dd>
-            </div>
-
-            <!-- 연락처 -->
-            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
-              <dd
-                class="col-span-6 text-base text-white md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug"
-              >
-                <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]"
-                >
-                  <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
-                    <i class="fa-solid fa-phone text-blue-100"></i>
-                  </span>
-                  <span>
-                    <a href="tel:010-2755-6550" class="hover:text-yellow-200 transition">010-2755-6550</a>
-                  </span>
-
-                  <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
-                    <i class="fa-solid fa-location-dot text-blue-100"></i>
-                  </span>
-                  <span class="break-words leading-relaxed text-white">
-                    서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호
-                  </span>
-
-                  <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
-                    <i class="fa-solid fa-envelope text-blue-100"></i>
-                  </span>
-                  <span class="break-all text-white">
-                    <a href="mailto:damon@fourberry.co.kr" class="hover:text-yellow-200 transition">
-                      damon@fourberry.co.kr
-                    </a>
-                  </span>
-                </div>
-              </dd>
-            </div>
-          </dl>
+    <!-- 회사명 (아이콘 + 내용) -->
+    <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+      <!-- 접근성: 용어는 화면에서 숨기고 의미만 남김 -->
+      <dt class="sr-only">회사명</dt>
+      <dd class="col-span-6">
+        <div class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+          <span class="flex items-center gap-2 text-sm md:text-base text-blue-100">
+            <i class="fa-solid fa-building text-blue-100"></i>
+           
+          </span>
+          <span class="text-base text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
+            포베리주식회사
+          </span>
         </div>
+      </dd>
+    </div>
+
+    <!-- 설립일 (아이콘 + 내용) -->
+    <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+      <dt class="sr-only">설립일</dt>
+      <dd class="col-span-6">
+        <div class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+          <span class="flex items-center gap-2 text-sm md:text-base text-blue-100">
+            <i class="fa-solid fa-calendar-days text-blue-100"></i>
+            
+          </span>
+          <span class="text-base text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
+            2023년 10월 30일
+          </span>
+        </div>
+      </dd>
+    </div>
+
+    <!-- 연락처 (기존 그대로 유지) -->
+    <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+      <dd class="col-span-6 text-base text-white md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug">
+        <div class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+          <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
+            <i class="fa-solid fa-phone text-blue-100"></i>
+          </span>
+          <span>
+            <a href="tel:010-2755-6550" class="hover:text-yellow-200 transition">010-2755-6550</a>
+          </span>
+
+          <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
+            <i class="fa-solid fa-location-dot text-blue-100"></i>
+          </span>
+          <span class="break-words leading-relaxed text-white">
+            서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호
+          </span>
+
+          <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
+            <i class="fa-solid fa-envelope text-blue-100"></i>
+          </span>
+          <span class="break-all text-white">
+            <a href="mailto:damon@fourberry.co.kr" class="hover:text-yellow-200 transition">
+              damon@fourberry.co.kr
+            </a>
+          </span>
+        </div>
+      </dd>
+    </div>
+
+  </dl>
+</div>
       </div>
     </div>
+        <footer  class="bg-accent text-white pt-14 pb-8">
+        <div class="container-wide flex flex-col gap-2 text-center">
+            <div class="text-sm font-semibold">(주)포베리</div>
+            <div class="text-xs font-extralight">(07205) 서울특별시 영등포구 양평로 22길 21 1409호</div>
+            <div class="text-xs font-extralight flex justify-center gap-1">
+                <span>대표이사 : 우대식</span>
+                <span>|</span>
+                <span>사업자등록번호: 562-88-02654</span>
+            </div>
+            <div class="text-xs font-extralight flex justify-center gap-1">
+                <span>Tel: 010-2755-0650</span>
+                <span>|</span>
+                <span>Email: fourberry@fourberry.co.kr</span>
+            </div>
+            <div class="p-4 flex align-middle justify-center">
+                <div class="w-48">
+                    <img src="/images/logo_text_white_transparent.png" />
+                </div>
+            </div>
+            <!-- <p>&copy; 2025 FOURBERRY Inc. All rights reserved.</p>
+            <p>서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</p> -->
+        </div>
+    </footer>
   </section>
+  
 </template>
 
 <script setup lang="ts">
