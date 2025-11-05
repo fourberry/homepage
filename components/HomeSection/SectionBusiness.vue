@@ -9,7 +9,7 @@
                  text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
         >
           기술로 연결하고,<br class="block xl:hidden" />
-          <span class="hidden xl:inline"></span>혁신으로 성장합니다.
+          <span class="hidden xl:inline">&nbsp;</span>혁신으로 성장합니다.
         </h2>
 
         <p class="mt-6 text-lg leading-relaxed text-zinc-300 md:text-xl lg:text-2xl max-w-6xl mx-auto">
