@@ -214,6 +214,29 @@ onMounted(() => {
   z-index: 0;
 }
 
+@media (max-width: 767px) {
+  .hero-content {
+    margin-top: 25%; /* 글씨 블록 전체를 아래로 20% 정도 내림 */
+  }
+}
+
+/* ✅ 태블릿 전용 구간 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-content {
+    margin-top: 15%; 
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.2rem, 3.8vw, 2.2rem); /* 태블릿에서 글씨 조금 작게 */
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.8rem, 2.8vw, 1rem);
+  }
+}
+
+
+
 .hero-content {
   position: relative;
   z-index: 1;
