@@ -35,8 +35,8 @@
                             <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white px-8 shadow-inner shadow-black/30 sm:h-[35rem] md:h-[35rem]">
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
                             </div>
-                            <div class="description font-nanum relative z-10 flex min-h-[4.5em] w-full items-center justify-between px-6 text-gray-950">
-                                <div class="text-left text-[1rem] font-bold opacity-90 sm:text-[1rem]">
+                            <div class="description relative z-10 flex min-h-[4.5em] w-full items-center justify-between px-6 text-gray-950">
+                                <div class="text-left text-[1rem] opacity-90 sm:text-[1rem]">
                                     <div v-for="(date, index) in project.dates" :key="index" class="kind">
                                         <template v-if="date.includes(' - ')">
                                             <p>{{ date.split(' - ')[0] }}</p>

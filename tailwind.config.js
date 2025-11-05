@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme'
+const defaultTheme = require('tailwindcss/defaultTheme')
 export default {
     // Tailwind CSS가 클래스를 찾아낼 파일 경로를 정의합니다. (Nuxt 기본 설정)
     content: ['./app.vue', './layouts/**/*.vue', './pages/**/*.vue', './components/**/*.vue'],
@@ -32,6 +32,7 @@ export default {
             // 2. 폰트 정의 (Font Family): 정의하신 폰트 스택을 유지합니다.
             fontFamily: {
                 sans: [
+                    'NanumSquareNeo',
                     'Pretendard Variable',
                     'Happiness Sans',
                     'Pretendard',
@@ -47,7 +48,7 @@ export default {
                     'sans-serif', // 마지막 fallback
                 ],
                 custom: ['VinaSans', ...defaultTheme.fontFamily.sans],
-                nanum: ['NanumSquare', ...defaultTheme.fontFamily.sans],
+                nanum: ['NanumSquareNeo', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)
