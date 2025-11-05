@@ -47,7 +47,7 @@
                                         </template>
                                     </div>
                                 </div>
-                                <p class="title line-clamp-2 min-w-0 flex-1 break-keep text-right text-[0.9rem] font-semibold xl:line-clamp-none">
+                                <p class="title line-clamp-2 min-w-0 flex-1 whitespace-pre-line break-keep text-right text-[0.9rem] font-semibold xl:line-clamp-none">
                                     {{ project.title }}
                                 </p>
                             </div>
@@ -85,7 +85,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/cuckoo.svg',
         imageAlt: 'Cuckoo Project',
         dates: ['2021.11 - 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
-        title: 'OMS 및 차세대 영업관리 시스템 구축',
+        title: 'OMS 및 차세대\n영업관리 시스템 구축',
         clientName: 'CUCKOO',
         imageStyle: 'cuckoo', // Cuckoo 로고만 특별 스타일 적용
         smallH3: false,
@@ -96,7 +96,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/hanaro.svg',
         imageAlt: 'Hanaro Project',
         dates: ['2024.01 - 2025.03'],
-        title: '브랜드몰 (하이브리드 앱) 및 SSO 구축',
+        title: '브랜드몰 (하이브리드 앱) 및 SSO\n 구축',
         clientName: 'WITH FRESH',
         imageStyle: 'default',
         smallH3: true, // 긴 텍스트용 h3
@@ -107,7 +107,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/kobc.svg',
         imageAlt: 'KOBC Project',
         dates: ['2024.10 - 2025.01'],
-        title: '게이미피케이션 접목 캠페인 (PC/모바일)',
+        title: '게이미피케이션 접목 캠페인\n (PC/모바일)',
         clientName: 'KOBC',
         imageStyle: 'default',
         smallH3: false,
@@ -118,7 +118,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/lotto.svg',
         imageAlt: 'Lotto Project',
         dates: ['2024.10 - 2025.10'],
-        title: '인쇄복권 시스템 통합 및 DB 전환',
+        title: '인쇄복권 시스템 통합 및\n DB 전환',
         clientName: 'DONGHANG',
         imageStyle: 'lotto',
         smallH3: true, // 긴 텍스트용 h3
@@ -129,7 +129,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/auto_crypt.svg',
         imageAlt: 'AutoCrypt Project',
         dates: ['2024.06 - 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
-        title: '자동차 보안 대응 시스템(K-CSMS) 구축',
+        title: '자동차 보안 대응 시스템(K-CSMS)\n 구축',
         clientName: 'AUTOCRYPT',
         imageStyle: 'auto',
         smallH3: true, // 긴 텍스트용 h3
@@ -140,7 +140,7 @@ const siSmProjects = [
         imageSrc: '/images/homeSiSm/sport_university.svg',
         imageAlt: 'KNSU Project',
         dates: ['2022.08 - 2023.02'],
-        title: '실시간 승부조작 위험성 경고 시스템 구축',
+        title: '실시간 승부조작 위험성 경고 시스템 \n구축',
         clientName: 'KNSU',
         imageStyle: 'knsu',
         smallH3: false,
