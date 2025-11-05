@@ -49,8 +49,15 @@
 
 @font-face {
     font-family: 'Vina Sans'; /* 👈 앞으로 사용할 폰트 이름 */
-    src: url('~/assets/fonts/VinaSans-Regular.ttf') format('ttf');
+    src: url('~/assets/fonts/VinaSans-Regular.ttf') format('truetype');
     font-weight: normal; /* 또는 'normal' */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumSquare'; /* 👈 앞으로 사용할 폰트 이름 */
+    src: url('~/assets/fonts/NanumSquareNeo-Variable.ttf') format('truetype-variations');
+    font-weight: 100 900; /* 또는 'normal' */
     font-style: normal;
 }
 

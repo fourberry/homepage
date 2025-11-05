@@ -47,6 +47,7 @@ export default {
                     'sans-serif', // 마지막 fallback
                 ],
                 custom: ['VinaSans', ...defaultTheme.fontFamily.sans],
+                nanum: ['NanumSquare', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)
