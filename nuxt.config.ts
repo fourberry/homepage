@@ -20,9 +20,7 @@ export default defineNuxtConfig({
     },
 
     router: {
-        options: {
-            
-        }
+        options: {},
     },
 
     // ✅ SSG (Static Site Generation)
@@ -32,7 +30,7 @@ export default defineNuxtConfig({
 
     // ✅ 전역 head/SEO
     app: {
-        baseURL: '/homepage/',
+        baseURL: '/home/',
         head: {
             titleTemplate: '%s (주)포베리',
             meta: [
@@ -46,9 +44,9 @@ export default defineNuxtConfig({
                 { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon-64x64.png' },
                 { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon-180x180.png' },
                 {
-            rel: 'stylesheet',
-            href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
-        }
+                    rel: 'stylesheet',
+                    href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+                },
             ],
         },
     },
