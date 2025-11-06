@@ -7,7 +7,7 @@
                 class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
                 aria-label="FOURBERRY"
             >
-                <div class="h-full flex items-center">
+                <div class="h-full flex items-center" :class="logoImageClasses">
                     <img src="/images/logo.png" class="h-full object-contain" />
                 </div>
                 <span class="logo-word" ref="logoEl">
@@ -89,6 +89,16 @@ const isMobileMenuOpen = ref(false)
 const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+
+const logoImageClasses = computed(() => {
+    // 홈이면서, 'light' 테마(스크롤 전)이고, 모바일 메뉴가 열리지 않았을 때
+    if (isHomePage.value && theme.value === 'light' && !isMobileMenuOpen.value) {
+        return 'opacity-0' // 이미지를 숨김
+    }
+    // 그 외 모든 경우 (스크롤 후, 다른 페이지, 모바일 메뉴 열림)
+    // 헤더의 transition과 동일하게 맞추기 위해 transition 속성 추가
+    return 'opacity-100 transition-opacity duration-300 ease-in-out'
+})
 
 const lineClasses = computed(() => [
     (isMobileMenuOpen.value || theme.value === 'dark') ? 'bg-gray-800' : 'bg-white',
