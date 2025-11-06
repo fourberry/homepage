@@ -26,7 +26,7 @@
                    rounded-[1.75rem] border border-white/30 bg-zinc-950 
                    px-6 py-8 short:py-6 md:px-7 md:py-9
                    shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)]
-                   transition-transform duration-300 group-hover:-translate-y-1.5 wave-card">
+                   transition-transform duration-300 wave-card">
             <h3 class="absolute left-8 md:left-10 -top-6 md:-top-7 short:-top-5
          rounded-full bg-white px-6 py-2
          text-black text-base short:text-sm md:text-lg font-semibold tracking-tight shadow-md">

@@ -6,7 +6,7 @@
 
       <!-- 헤더 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-100">contact</p>
+        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-100">location</p>
         <h2 class="mb-3 text-2xl font-extrabold leading-tight md:text-4xl text-white">오시는 길</h2>
       </header>
 

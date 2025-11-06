@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white py-16 sm:py-20 md:py-24 lg:py-40">
+ <section class="bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 lg:pt-24 lg:pb-20 xl:pt-40 xl:pb-24">
     <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
       <!-- 헤더 영역 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">
@@ -15,7 +15,7 @@
       <ul v-motion :initial="{ opacity: 0, y: 20 }"
         :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, easing: 'ease-out' } }" :delay="100"
         :threshold="0.15" class="transform-gpu will-change-transform
-               grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20">
+               grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-8 lg:gap-x-16 gap-y-12 md:gap-y-20">
         <li v-for="(item, i) in cultureItems" :key="i" class="flex flex-col">
           <!-- 이미지 -->
           <div :class="[

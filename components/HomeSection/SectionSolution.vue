@@ -1,6 +1,6 @@
 <template>
   <div id="services">
-    <section class="w-full overflow-hidden bg-white pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-10 lg:pt-72 lg:pb-24">
+    <section class="pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-10 lg:!pt-12 lg:!pb-8 xl:!pt-56 xl:!pb-24">
 
       <!-- ===== Section Header (애니메이션 없음) ===== -->
       <header class="container-wide mb-8 text-center md:mb-14">
@@ -35,7 +35,7 @@
               베리패스(Berry-Pass)
             </h3>
 
-            <p class="mb-8 font-medium leading-relaxed text-slate-700 md:text-base lg:text-lg">
+            <p class="mb-8 font-medium leading-relaxed text-slate-700 md:text-[17px] lg:text-[19px]">
               <b>Berry-Pass</b>
               는 하나의 계정으로 여러 서비스를 안전하고 편리하게 이용할 수 있는
               <b>통합 로그인(SSO)</b>
@@ -43,10 +43,10 @@
               회원 정보를 효율적으로 관리할 수 있는 통합 환경을 제공합니다.
             </p>
 
-            <ul class="grid grid-cols-1 sm:grid-cols-2 
-         gap-y-3 sm:gap-y-5 md:gap-y-4 lg:gap-y-3
-         gap-x-6 sm:gap-x-10 
-         text-slate-800 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed">
+            <ul  class="grid grid-cols-1 sm:grid-cols-2 
+  gap-y-3 sm:gap-y-5 md:gap-y-4 lg:gap-y-3
+  gap-x-6 sm:gap-x-10 
+  text-slate-800 text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed">
               <li>
                 <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">통합 회원 관리</p>
                 <p class="mt-1 text-slate-600">약관, 권한, 개인정보 동의 이력까지 한 화면에서 관리</p>
@@ -93,17 +93,17 @@
               베리마인(Berry-Mine)
             </h3>
 
-            <p class="mb-8 font-medium leading-relaxed text-slate-700 md:text-base lg:text-lg">
+            <p class="mb-8 font-medium leading-relaxed text-slate-700 md:text-[17px] lg:text-[19px]">
               <b>Berry-Mine</b>
               은 공개된 웹 데이터를 자동으로 수집·정리하고, 반복적인 업무를 자동화하는
               <b>웹 스크래핑 솔루션</b>
               입니다. 자체 개발한 엔진을 통해 복잡한 데이터 수집 과정을 안정적이고 효율적으로 수행합니다.
             </p>
 
-            <ul class="grid grid-cols-1 sm:grid-cols-2 
-         gap-y-3 sm:gap-y-5 md:gap-y-4 lg:gap-y-3
-         gap-x-6 sm:gap-x-10 
-         text-slate-800 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed">
+            <ul  class="grid grid-cols-1 sm:grid-cols-2 
+              gap-y-3 sm:gap-y-5 md:gap-y-4 lg:gap-y-3
+              gap-x-6 sm:gap-x-10 
+              text-slate-800 text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed">
               <li>
                 <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">자체 엔진 기반</p>
                 <p class="mt-1 text-slate-600">독자 개발 엔진(FBScript)으로 안정적인 자동화 제공</p>
