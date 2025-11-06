@@ -64,7 +64,7 @@ const cultureItems = [
   },
   {
     title: "자기계발비 지원",
-    img: "/images/allowance2.png",
+    img: "/images/book.jpg",
     desc: "책, 강의(인프런), 세미나 등\n배움에 대한 투자 적극 환영합니다.",
   },
   {

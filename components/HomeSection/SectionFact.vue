@@ -98,7 +98,6 @@
                 </div>
               </dd>
             </div>
-
           </dl>
         </div>
       </div>
@@ -128,7 +127,6 @@
       </div>
     </footer>
   </section>
-
 </template>
 
 <script setup lang="ts">
