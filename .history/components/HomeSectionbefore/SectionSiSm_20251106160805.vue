@@ -1,6 +1,6 @@
 <template>
     <div id="projects">
-        <section ref="sectionRef" class="panel relative overflow-hidden bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
+        <section ref="sectionRef" class="panel relative overflow-hidden border-t border-gray-200 bg-white py-12 md:py-16 xl:min-h-dvh xl:py-0">
             <div class="flex-panel-title flex h-auto w-full flex-shrink-0 flex-col justify-center px-4 text-center sm:px-6 lg:px-12 xl:hidden">
                 <div class="mb-4 break-keep">
                     <p class="mb-4 text-sm font-semibold tracking-widest text-red-300">SERVICE</p>
