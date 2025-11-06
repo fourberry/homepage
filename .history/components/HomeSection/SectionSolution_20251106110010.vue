@@ -117,33 +117,31 @@
             </p>
 
 <ul
-  class="grid grid-cols-1 sm:grid-cols-2 
-         gap-y-3 sm:gap-y-5 md:gap-y-4 lg:gap-y-3
-         gap-x-6 sm:gap-x-10 
+  class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-6 gap-x-6 sm:gap-x-10 
          text-slate-800 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed"
 >
   <li>
-    <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">자체 엔진 기반</p>
+    <p class="font-semibold text-slate-900">자체 엔진 기반</p>
     <p class="mt-1 text-slate-600">독자 개발 엔진(FBScript)으로 안정적인 자동화 제공</p>
   </li>
 
   <li>
-    <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">자동 수집 기능</p>
+    <p class="font-semibold text-slate-900">자동 수집 기능</p>
     <p class="mt-1 text-slate-600">검색 결과, 상품정보, 파일 등 다양한 데이터 추출</p>
   </li>
 
   <li>
-    <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">프로세스 자동화</p>
+    <p class="font-semibold text-slate-900">프로세스 자동화</p>
     <p class="mt-1 text-slate-600">로그인부터 다운로드까지 모든 단계 자동 실행</p>
   </li>
 
   <li>
-    <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">다양한 활용 분야</p>
+    <p class="font-semibold text-slate-900">다양한 활용 분야</p>
     <p class="mt-1 text-slate-600">쇼핑몰 모니터링, 경쟁사 분석 등 실무 자동화 지원</p>
   </li>
 
   <li>
-    <p class="font-semibold text-slate-900 md:text-[1.05rem] lg:text-[1.15rem]">안정적 성능</p>
+    <p class="font-semibold text-slate-900">안정적 성능</p>
     <p class="mt-1 text-slate-600">대규모 데이터도 끊김 없이 처리</p>
   </li>
 </ul>
