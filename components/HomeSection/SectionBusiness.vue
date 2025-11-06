@@ -3,10 +3,8 @@
     <div class="container-wide py-28 short:py-16 md:py-36" ref="waveRoot">
       <!-- 헤더 -->
       <header class="text-center">
-        <h2
-          class="font-extrabold leading-tight text-center
-                 text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-        >
+        <h2 class="font-extrabold leading-tight text-center
+                 text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
           기술로 연결하고,<br class="block xl:hidden" />
           <span class="hidden xl:inline">&nbsp;</span>혁신으로 성장합니다.
         </h2>
@@ -20,33 +18,22 @@
       <div class="mt-16 sm:mt-24 md:mt-32 lg:mt-36 xl:mt-40 short:mt-12"></div>
 
       <!-- 카드 리스트 -->
-      <ul
-        class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-16 md:gap-x-6 md:gap-y-20 lg:gap-x-8 lg:gap-y-24"
-      >
-        <li
-          v-for="(item, i) in areas"
-          :key="i"
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-16 md:gap-x-6 md:gap-y-20 lg:gap-x-8 lg:gap-y-24">
+        <li v-for="(item, i) in areas" :key="i"
           class="group relative w-full sm:w-[95%] md:w-[90%] lg:w-[88%] xl:w-[85%] mx-auto h-full wave-item"
-          :style="{ '--i': i }"
-        >
-          <div
-            class="relative flex flex-col justify-center h-full
+          :style="{ '--i': i }">
+          <div class="relative flex flex-col justify-center h-full
                    rounded-[1.75rem] border border-white/30 bg-zinc-950 
                    px-6 py-8 short:py-6 md:px-7 md:py-9
                    shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)]
-                   transition-transform duration-300 group-hover:-translate-y-1.5 wave-card"
-          >
-            <h3
-              class="absolute left-8 md:left-10 -top-6 md:-top-7 short:-top-5
+                   transition-transform duration-300 group-hover:-translate-y-1.5 wave-card">
+            <h3 class="absolute left-8 md:left-10 -top-6 md:-top-7 short:-top-5
                      rounded-full bg-white px-6 py-2
-                     text-black text-lg short:text-base md:text-xl font-semibold tracking-tight shadow-md"
-            >
+                     text-black text-lg short:text-base md:text-xl font-semibold tracking-tight shadow-md">
               {{ item.title }}
             </h3>
 
-            <p
-              class="mt-2 text-lg short:text-base md:text-xl leading-snug text-white text-left px-3"
-            >
+            <p class="mt-2 text-lg short:text-base md:text-xl leading-snug text-white text-left px-3">
               {{ item.desc }}
             </p>
           </div>
@@ -124,27 +111,47 @@ onBeforeUnmount(() => {
 /* wave-play가 붙으면 순차적으로 애니메이션 재생 */
 .wave-play .wave-item .wave-card {
   /* ⏱️ 더 천천히: 800ms -> 1000ms, 스태거 120ms -> 180ms */
-  animation: waveIn 1000ms cubic-bezier(.22,.8,.26,.99) forwards,
-             settle 7000ms cubic-bezier(.22,.8,.26,.99) 1000ms forwards;
+  animation: waveIn 1000ms cubic-bezier(.22, .8, .26, .99) forwards,
+    settle 7000ms cubic-bezier(.22, .8, .26, .99) 1000ms forwards;
   animation-delay: calc(var(--i) * 180ms), calc(var(--i) * 180ms + 1000ms);
 }
 
 /* 첫 튐 */
 @keyframes waveIn {
-  0%   { opacity: 0; transform: translateY(24px) scale(0.98); }
-  60%  { opacity: 1; transform: translateY(-6px) scale(1.03); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* 잔잔히 정착 */
 @keyframes settle {
-  0%   { transform: translateY(0) scale(1); }
-  40%  { transform: translateY(3px) scale(0.998); }
-  100% { transform: translateY(0) scale(1); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  40% {
+    transform: translateY(3px) scale(0.998);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* 모션 최소화 환경 */
 @media (prefers-reduced-motion: reduce) {
+
   .wave-card,
   .wave-play .wave-item .wave-card {
     animation: none !important;

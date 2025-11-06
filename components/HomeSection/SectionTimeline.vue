@@ -8,150 +8,100 @@
 
       <!-- ============ 모바일: 가로 탭 + 선택 연도 내용 ============ -->
       <div class="md:hidden">
-  <!-- 고정 상단 탭 바 -->
-  <div
-    class="sticky top-0 z-10 -mx-6 px-6 bg-background/90 backdrop-blur supports-[backdrop-filter]:backdrop-blur"
-  >
-    <nav
-      class="flex w-full divide-x divide-black/10 border-b-2 border-black/20"
-      role="tablist"
-      aria-label="연도 선택"
-    >
-      <button
-        v-for="y in yearsDescAll"
-        :key="y"
-        role="tab"
-        :aria-selected="activeYear === y"
-        @click="activeYear = y"
-        class="relative flex-1 px-1 pb-2 text-base font-semibold text-center transition-colors"
-        :class="activeYear === y ? 'text-blue-500' : 'text-black/60'"
-      >
-        {{ y }}
-      </button>
-    </nav>
-  </div>
+        <!-- 고정 상단 탭 바 -->
+        <div
+          class="sticky top-0 z-10 -mx-6 px-6 bg-background/90 backdrop-blur supports-[backdrop-filter]:backdrop-blur">
+          <nav class="flex w-full divide-x divide-black/10 border-b-2 border-black/20" role="tablist"
+            aria-label="연도 선택">
+            <button v-for="y in yearsDescAll" :key="y" role="tab" :aria-selected="activeYear === y"
+              @click="activeYear = y"
+              class="relative flex-1 px-1 pb-2 text-base font-semibold text-center transition-colors"
+              :class="activeYear === y ? 'text-blue-500' : 'text-black/60'">
+              {{ y }}
+            </button>
+          </nav>
+        </div>
 
-  <!-- 선택된 연도 내용 -->
-  <div class="mt-6 space-y-6">
-  <section v-if="yearBlocks[activeYear]" :aria-labelledby="`y-mobile-${activeYear}`">
-    <h3 :id="`y-mobile-${activeYear}`" class="sr-only">{{ activeYear }}</h3>
+        <!-- 선택된 연도 내용 -->
+        <div class="mt-6 space-y-6">
+          <section v-if="yearBlocks[activeYear]" :aria-labelledby="`y-mobile-${activeYear}`">
+            <h3 :id="`y-mobile-${activeYear}`" class="sr-only">{{ activeYear }}</h3>
 
-    <div class="space-y-6">
-      <div
-        v-for="(m, idx) in yearBlocks[activeYear]"
-        :key="idx"
-        class="rounded-xl border border-black/10 p-4 bg-white shadow-sm"
-      >
-        <!-- ✅ 연도/월 한 단계 더 굵게 변경 -->
-        <p class="mb-2 text-base font-bold text-black">
-          {{ activeYear }}.<span class="font-bold">{{ m.month }}</span>
-        </p>
+            <div class="space-y-6">
+              <div v-for="(m, idx) in yearBlocks[activeYear]" :key="idx"
+                class="rounded-xl border border-black/10 p-4 bg-white shadow-sm">
+                <!-- ✅ 연도/월 한 단계 더 굵게 변경 -->
+                <p class="mb-2 text-base font-bold text-black">
+                  {{ activeYear }}.<span class="font-bold">{{ m.month }}</span>
+                </p>
 
-        <ul class="space-y-2">
-          <li
-            v-for="(t, j) in m.titles"
-            :key="j"
-            class="text-[1.05rem] leading-relaxed"
-          >
-            {{ t }}
-          </li>
-        </ul>
+                <ul class="space-y-2">
+                  <li v-for="(t, j) in m.titles" :key="j" class="text-[1.05rem] leading-relaxed">
+                    {{ t }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <p v-else class="text-black/50">기록이 없습니다.</p>
+        </div>
       </div>
-    </div>
-  </section>
-  <p v-else class="text-black/50">기록이 없습니다.</p>
-</div>
-</div>
       <!-- ============ // 모바일 ============ -->
 
       <!-- ============ 데스크톱(기존 레이아웃 유지) ============ -->
-     <div
-  ref="timelineRef"
-  class="relative mt-12 hidden md:grid md:[grid-template-columns:13rem_1px_minmax(0,1fr)] md:gap-x-2"
->
-  <!-- Col 1: 연도(절대 포지셔닝) -->
-  <aside class="relative">
-    <!-- 연도 라벨 영역 전체 높이 -->
-    <div class="relative" :style="{ height: railHeight + 'px' }">
-      <div
-        v-for="y in yearsDescAll"
-        :key="y"
-        class="absolute right-0 flex items-center"
-        :style="{ top: (yearTopMap[y] ?? 0) + 'px' }"
-      >
-        <!-- 연도 라벨을 바쪽으로 '확' 붙임 -->
-        <a
-          :href="'#y' + y"
-          class="mr-1 font-semibold text-[1.1rem] leading-none"
-          :class="activeYear === y ? 'text-black' : 'text-black/60'"
-        >
-          {{ y }}
-        </a>
-      </div>
-    </div>
-  </aside>
+      <div ref="timelineRef"
+        class="relative mt-12 hidden md:grid md:[grid-template-columns:13rem_1px_minmax(0,1fr)] md:gap-x-2">
+        <!-- Col 1: 연도(절대 포지셔닝) -->
+        <aside class="relative">
+          <!-- 연도 라벨 영역 전체 높이 -->
+          <div class="relative" :style="{ height: railHeight + 'px' }">
+            <div v-for="y in yearsDescAll" :key="y" class="absolute right-0 flex items-center"
+              :style="{ top: (yearTopMap[y] ?? 0) + 'px' }">
+              <!-- 연도 라벨을 바쪽으로 '확' 붙임 -->
+              <a :href="'#y' + y" class="mr-1 font-semibold text-[1.1rem] leading-none"
+                :class="activeYear === y ? 'text-black' : 'text-black/60'">
+                {{ y }}
+              </a>
+            </div>
+          </div>
+        </aside>
 
-  <!-- Col 2: 중앙 바 + 동그라미 (높이 기준) -->
-  <div class="relative">
-    <!-- 세로 바 -->
-    <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-black/10"></div>
+        <!-- Col 2: 중앙 바 + 동그라미 (높이 기준) -->
+        <div class="relative">
+          <!-- 세로 바 -->
+          <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-black/10"></div>
 
-    <!-- 동그라미 (바 중앙에 정확히) -->
-    <div class="relative" :style="{ height: railHeight + 'px' }">
-      <div
-        v-for="y in yearsDescAll"
-        :key="'dot-'+y"
-        class="absolute left-1/2 -translate-x-1/2"
-        :style="{ top: (yearTopMap[y] ?? 0) + 'px' }"
-      >
-        <span
-          v-if="activeYear === y"
-          class="block h-4 w-4 rounded-full border-2 border-black/60 bg-white"
-          style="transform: translate(-50%, 0);"
-        ></span>
-        <span
-          v-else
-          class="block h-3 w-3 rounded-full bg-black/40"
-          style="transform: translate(-50%, 0);"
-        ></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Col 3: 본문(바쪽으로 '많이' 당김) -->
-  <main class="space-y-6 pl-2">
-    <section
-      v-for="y in yearsDescAll"
-      :key="y"
-      :id="'y' + y"
-      class="scroll-mt-24"
-      :data-year="y"
-      ref="yearSections"
-    >
-      <div class="space-y-3">
-        <div
-          v-for="(m, idx) in yearBlocks[y]"
-          :key="idx"
-          class="space-y-1 first-of-type:marker-year-start"
-          :data-year-first="idx === 0 ? '1' : undefined"
-        >
-          <p class="font-semibold text-black/70 text-[1.05rem] leading-none">
-            {{ y }}.<span>{{ m.month }}</span>
-          </p>
-          <ul class="space-y-1">
-            <li
-              v-for="(t, j) in m.titles"
-              :key="j"
-              class="text-[1.08rem] leading-relaxed"
-            >
-              {{ t }}
-            </li>
-          </ul>
+          <!-- 동그라미 (바 중앙에 정확히) -->
+          <div class="relative" :style="{ height: railHeight + 'px' }">
+            <div v-for="y in yearsDescAll" :key="'dot-' + y" class="absolute left-1/2 -translate-x-1/2"
+              :style="{ top: (yearTopMap[y] ?? 0) + 'px' }">
+              <span v-if="activeYear === y" class="block h-4 w-4 rounded-full border-2 border-black/60 bg-white"
+                style="transform: translate(-50%, 0);"></span>
+              <span v-else class="block h-3 w-3 rounded-full bg-black/40" style="transform: translate(-50%, 0);"></span>
+            </div>
+          </div>
         </div>
+
+        <!-- Col 3: 본문(바쪽으로 '많이' 당김) -->
+        <main class="space-y-6 pl-2">
+          <section v-for="y in yearsDescAll" :key="y" :id="'y' + y" class="scroll-mt-24" :data-year="y"
+            ref="yearSections">
+            <div class="space-y-3">
+              <div v-for="(m, idx) in yearBlocks[y]" :key="idx" class="space-y-1 first-of-type:marker-year-start"
+                :data-year-first="idx === 0 ? '1' : undefined">
+                <p class="font-semibold text-black/70 text-[1.05rem] leading-none">
+                  {{ y }}.<span>{{ m.month }}</span>
+                </p>
+                <ul class="space-y-1">
+                  <li v-for="(t, j) in m.titles" :key="j" class="text-[1.08rem] leading-relaxed">
+                    {{ t }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
-    </section>
-  </main>
-</div>
       <!-- ============ // 데스크톱 ============ -->
     </div>
   </section>

@@ -12,44 +12,25 @@
       </header>
 
       <!-- ✅ 열 단위 애니메이션 -->
-      <ul
-        ref="gridRef"
-        class="mt-16 md:mt-20 grid grid-cols-1 
+      <ul ref="gridRef" class="mt-16 md:mt-20 grid grid-cols-1 
               gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 
-              lg:gap-x-12 lg:gap-y-12 xl:gap-x-16 xl:gap-y-16"
-      >
-        <li
-          v-for="(item, i) in coreValuesWithIcons"
-          :key="i"
-          class="relative min-w-0 pt-0 text-center" 
-          v-motion
-          :initial="{ opacity: 0, y: 20 }"
-           :visibleOnce="{
-             opacity: 1,
-             y: 0,
-             transition: { duration: 1000, delay: getDelay(i) }
-           }"
-          :once="true"
-          :threshold="0.4"
-        >
+              lg:gap-x-12 lg:gap-y-12 xl:gap-x-16 xl:gap-y-16">
+        <li v-for="(item, i) in coreValuesWithIcons" :key="i" class="relative min-w-0 pt-0 text-center" v-motion
+          :initial="{ opacity: 0, y: 20 }" :visibleOnce="{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 1000, delay: getDelay(i) }
+          }" :once="true" :threshold="0.4">
           <!-- 아이콘 -->
-          <div
-            class="mx-auto mb-6 sm:mb-6 lg:mb-8 flex items-center justify-center 
+          <div class="mx-auto mb-6 sm:mb-6 lg:mb-8 flex items-center justify-center 
                   rounded-full shadow-xl transition-colors duration-300
-                  h-48 w-48 sm:h-56 sm:w-56 lg:h-52 lg:w-52 xl:h-64 xl:w-64 overflow-hidden"
-            :class="[
-              i === 0 ? 'bg-sky-100/80'
-              : i === 1 ? 'bg-fuchsia-50/80'
-              : i === 2 ? 'bg-white/40 backdrop-blur-md'
-              : 'bg-indigo-100/80'
-            ]"
-          >
-            <NuxtImg
-              :src="item.iconUrl"
-              :alt="item.title + ' 아이콘'"
-              class="h-full w-full object-cover"
-              loading="lazy"
-            />
+                  h-48 w-48 sm:h-56 sm:w-56 lg:h-52 lg:w-52 xl:h-64 xl:w-64 overflow-hidden" :class="[
+                    i === 0 ? 'bg-sky-100/80'
+                      : i === 1 ? 'bg-fuchsia-50/80'
+                        : i === 2 ? 'bg-white/40 backdrop-blur-md'
+                          : 'bg-indigo-100/80'
+                  ]">
+            <NuxtImg :src="item.iconUrl" :alt="item.title + ' 아이콘'" class="h-full w-full object-cover" loading="lazy" />
           </div>
 
           <!-- 타이틀 / 설명 -->
@@ -57,7 +38,8 @@
             {{ item.title }}
           </h3>
 
-          <p class="mx-auto max-w-[34ch] text-sm leading-relaxed text-gray-600 md:text-base lg:text-[0.98rem] xl:text-lg">
+          <p
+            class="mx-auto max-w-[34ch] text-sm leading-relaxed text-gray-600 md:text-base lg:text-[0.98rem] xl:text-lg">
             {{ item.desc }}
           </p>
         </li>

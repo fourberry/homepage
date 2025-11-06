@@ -12,38 +12,22 @@
       </header>
 
       <!-- 카드 그리드 (애니메이션: 최초 1회만 실행) -->
-      <ul
-        v-motion
-        :initial="{ opacity: 0, y: 20 }"
-        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, easing: 'ease-out' } }"
-        :delay="100"
-        :threshold="0.15"
-        class="transform-gpu will-change-transform
-               grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20"
-      >
-        <li
-          v-for="(item, i) in cultureItems"
-          :key="i"
-          class="flex flex-col"
-        >
+      <ul v-motion :initial="{ opacity: 0, y: 20 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, easing: 'ease-out' } }" :delay="100"
+        :threshold="0.15" class="transform-gpu will-change-transform
+               grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-10 lg:gap-x-16 gap-y-12 md:gap-y-20">
+        <li v-for="(item, i) in cultureItems" :key="i" class="flex flex-col">
           <!-- 이미지 -->
-          <div
-            :class="[
-              'w-full aspect-square overflow-hidden rounded-2xl shadow-sm flex items-center justify-center transition-colors duration-300',
-              item.title === '유연근무제'
-                ? 'bg-slate-300'
-                : item.title === '자기계발비 지원'
+          <div :class="[
+            'w-full aspect-square overflow-hidden rounded-2xl shadow-sm flex items-center justify-center transition-colors duration-300',
+            item.title === '유연근무제'
+              ? 'bg-slate-300'
+              : item.title === '자기계발비 지원'
                 ? 'bg-lime-50'
                 : 'bg-gray-100',
-            ]"
-          >
-            <NuxtImg
-              :src="item.img"
-              :alt="item.title + ' 이미지'"
-              loading="lazy"
-              class="w-full h-full object-center"
-              :class="item.title === '유연근무제' ? 'object-contain' : 'object-cover'"
-            />
+          ]">
+            <NuxtImg :src="item.img" :alt="item.title + ' 이미지'" loading="lazy" class="w-full h-full object-center"
+              :class="item.title === '유연근무제' ? 'object-contain' : 'object-cover'" />
           </div>
 
           <!-- 텍스트 영역 -->

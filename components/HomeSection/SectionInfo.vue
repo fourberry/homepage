@@ -1,16 +1,12 @@
 <template>
   <div id="about">
-    <section
-      ref="aboutSection"
-      class="relative isolate w-full bg-background px-6 py-28 text-center sm:px-8 sm:py-32 md:flex md:min-h-screen md:items-center md:justify-center md:px-10"
-    >
+    <section ref="aboutSection"
+      class="relative isolate w-full bg-background px-6 py-28 text-center sm:px-8 sm:py-32 md:flex md:min-h-screen md:items-center md:justify-center md:px-10">
       <div class="mx-auto max-w-5xl">
         <!-- 메인 헤드라인 -->
-        <h2
-          class="mb-8 text-balance font-extrabold tracking-tight text-gray-900
+        <h2 class="mb-8 text-balance font-extrabold tracking-tight text-gray-900
                  leading-[1.25] sm:leading-[1.2] md:leading-[1.15] lg:leading-[1.1]
-                 text-[clamp(1.6rem,8vw,5rem)]"
-        >
+                 text-[clamp(1.6rem,8vw,5rem)]">
           포베리는<br />
           <!-- ✅ 글자 위에 덮이는 하이라이트 / 순차 딜레이 (스크롤 진입 시 시작) -->
           <span class="underline-animate text-primary" style="--delay: 200ms;">사람 중심</span> 의 기술로<br />
@@ -18,22 +14,18 @@
         </h2>
 
         <!-- 서브 헤드라인 -->
-        <p
-          class="mb-8 font-semibold text-gray-800 text-pretty
+        <p class="mb-8 font-semibold text-gray-800 text-pretty
                  leading-snug sm:leading-snug md:leading-snug
-                 text-[clamp(0.95rem,3.8vw,1.75rem)]"
-        >
+                 text-[clamp(0.95rem,3.8vw,1.75rem)]">
           AICBM(AI + IoT + Cloud + Big Data + Mobile)을 기반으로<br />
           변화하는 시대에 맞춘 IT 솔루션을 제공합니다.
         </p>
 
         <!-- 설명 문단 -->
-        <p
-          class="mx-auto text-center text-gray-500 text-pretty
+        <p class="mx-auto text-center text-gray-500 text-pretty
                  leading-relaxed
                  max-w-[20rem] sm:max-w-[30rem] md:max-w-[42rem] lg:max-w-[56rem]
-                 text-[clamp(0.85rem,3.2vw,1.25rem)]"
-        >
+                 text-[clamp(0.85rem,3.2vw,1.25rem)]">
           포베리는 사람을 위한 기술, 신뢰를 쌓는 기술을 추구하는 IT 전문 기업입니다.
           <br class="hidden md:block" />
           <span class="hidden md:inline">
@@ -58,13 +50,13 @@ onMounted(() => {
   if (!sectionEl) return
 
   // 섹션이 화면에 절반 정도 들어오면 트리거
- observer = new IntersectionObserver(([entry]) => {
-  if (entry?.isIntersecting) {
-    sectionEl.querySelectorAll<HTMLElement>('.underline-animate')
-      .forEach(el => el.classList.add('play'))
-    observer?.disconnect()
-  }
-}, { threshold: 0.5 })
+  observer = new IntersectionObserver(([entry]) => {
+    if (entry?.isIntersecting) {
+      sectionEl.querySelectorAll<HTMLElement>('.underline-animate')
+        .forEach(el => el.classList.add('play'))
+      observer?.disconnect()
+    }
+  }, { threshold: 0.5 })
 
   observer.observe(sectionEl)
 })
@@ -87,14 +79,19 @@ onBeforeUnmount(() => {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;                 /* 텍스트 라인에 붙지만 레이아웃 영향 없음 */
+  bottom: 0;
+  /* 텍스트 라인에 붙지만 레이아웃 영향 없음 */
   width: 100%;
-  height: 0.48em;            /* 요청대로 조금 더 굵게 */
-  background: rgba(166, 225, 255, 0.45); /* 투명 하늘색 */
+  height: 0.48em;
+  /* 요청대로 조금 더 굵게 */
+  background: rgba(166, 225, 255, 0.45);
+  /* 투명 하늘색 */
   border-radius: 0.28em;
   pointer-events: none;
-  z-index: 2;                /* 텍스트 위로 덮이게 */
-  mix-blend-mode: multiply;  /* 잉크 덮이는 느낌 (원치 않으면 제거) */
+  z-index: 2;
+  /* 텍스트 위로 덮이게 */
+  mix-blend-mode: multiply;
+  /* 잉크 덮이는 느낌 (원치 않으면 제거) */
 
   transform: scaleX(0);
   transform-origin: left center;
@@ -102,12 +99,14 @@ onBeforeUnmount(() => {
 
 /* ▶ 섹션이 뷰포트에 닿으면 .play 가 붙어 애니메이션 시작 */
 .underline-animate.play::after {
-  animation: underlineSweep 2.2s cubic-bezier(.22,.8,.26,.99) forwards;
+  animation: underlineSweep 2.2s cubic-bezier(.22, .8, .26, .99) forwards;
   animation-delay: var(--delay, 0ms);
 }
 
 @keyframes underlineSweep {
-  to { transform: scaleX(1); }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* 모션 최소화 환경 배려 */

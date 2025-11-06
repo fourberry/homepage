@@ -15,30 +15,33 @@
 
         <!-- 카드 그리드 -->
         <div class="grid w-full grid-cols-1 gap-0 md:grid-cols-4">
-            <div v-for="(strength, index) in strengthItems" :key="index" class="card-container group relative overflow-hidden transition-all duration-500 ease-in-out">
+            <div v-for="(strength, index) in strengthItems" :key="index"
+                class="card-container group relative overflow-hidden transition-all duration-500 ease-in-out">
                 <!-- 배경 이미지 -->
-                <NuxtImg
-                    :src="strength.img"
-                    :alt="strength.title + ' 이미지'"
+                <NuxtImg :src="strength.img" :alt="strength.title + ' 이미지'"
                     class="h-auto w-full object-contain object-center opacity-70 transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                />
+                    loading="lazy" />
 
                 <!-- 어둡게 덮는 반투명 레이어 -->
-                <div class="absolute inset-0 bg-black bg-opacity-0 transition-colors duration-300 group-hover:bg-opacity-60"></div>
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-0 transition-colors duration-300 group-hover:bg-opacity-60">
+                </div>
 
                 <!-- 텍스트 콘텐츠 (가운데 정렬) -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white md:p-10">
+                <div
+                    class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white md:p-10">
                     <!-- 위에 얇은 라인 -->
                     <span class="mb-6 block h-px w-10 bg-white/50"></span>
 
                     <!-- 타이틀 -->
-                    <h3 class="mb-4 text-2xl font-extrabold leading-snug text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:text-3xl">
+                    <h3
+                        class="mb-4 text-2xl font-extrabold leading-snug text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:text-3xl">
                         {{ strength.title }}
                     </h3>
 
                     <!-- 설명 -->
-                    <div class="whitespace-pre-line text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:text-base">
+                    <div
+                        class="whitespace-pre-line text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:text-base">
                         {{ strength.desc }}
                     </div>
                 </div>
