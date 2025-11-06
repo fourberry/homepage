@@ -4,10 +4,10 @@
             <NuxtLink
                 id="header-logo-text"
                 to="/"
-                class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
+                class="flex items-center text-2xl font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80 desktop:h-14 desktop:text-3xl"
                 aria-label="FOURBERRY"
             >
-                <div class="h-full flex items-center" :class="logoImageClasses">
+                <div class="flex h-8 items-center md:h-8 desktop:h-full" :class="logoImageClasses">
                     <img src="/images/logo.png" class="h-full object-contain" />
                 </div>
                 <span class="logo-word" ref="logoEl">
@@ -60,15 +60,14 @@
         <!-- 모바일 메뉴(이미 hover 효과 없음) -->
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
-                <NuxtLink @click="isMobileMenuOpen = false" to="#about"    class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#about" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#projects" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SI/SM</NuxtLink>
                 <NuxtLink @click="isMobileMenuOpen = false" to="#services" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">SOLUTION</NuxtLink>
-                <NuxtLink @click="isMobileMenuOpen = false" to="#contact"  class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
+                <NuxtLink @click="isMobileMenuOpen = false" to="#contact" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">CONTACT</NuxtLink>
             </nav>
         </transition>
     </header>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
@@ -92,17 +91,15 @@ const toggleMobileMenu = () => {
 
 const logoImageClasses = computed(() => {
     // 홈이면서, 'light' 테마(스크롤 전)이고, 모바일 메뉴가 열리지 않았을 때
-    if (isHomePage.value && theme.value === 'light' && !isMobileMenuOpen.value) {
-        return 'opacity-0' // 이미지를 숨김
+    if ((isHomePage.value && theme.value === 'light' && !isMobileMenuOpen.value) || theme.value === 'transparent') {
+        return 'opacity-0 duration-300 ease-in-out' // 이미지를 숨김
     }
     // 그 외 모든 경우 (스크롤 후, 다른 페이지, 모바일 메뉴 열림)
     // 헤더의 transition과 동일하게 맞추기 위해 transition 속성 추가
     return 'opacity-100 transition-opacity duration-300 ease-in-out'
 })
 
-const lineClasses = computed(() => [
-    (isMobileMenuOpen.value || theme.value === 'dark') ? 'bg-gray-800' : 'bg-white',
-])
+const lineClasses = computed(() => [isMobileMenuOpen.value || theme.value === 'dark' ? 'bg-gray-800' : 'bg-white'])
 
 const headerClasses = computed(() => {
     const baseClasses = 'top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out'
@@ -170,14 +167,18 @@ const buildLogoTimeline = () => {
     gsap.set(letters, { y: 0 })
 
     // ✨ 핵심: 한 글자(올라감→내려옴)를 'keyframes'로 묶고, stagger로 겹치게 시작
-    logoTl.to(letters, {
-        keyframes: [
-            { y: -12, duration: 0.22, ease: 'power2.out' },      // 위로 콕
-            { y: 0,   duration: 0.28, ease: 'power2.inOut' },     // 자연스럽게 복귀
-        ],
-        // 다음 글자가 살짝 먼저 시작하게 하여 "연쇄"처럼 보이게 함
-        stagger: 0.06, // 더 촘촘: 0.04 ~ 0.05 / 더 느긋: 0.08 ~ 0.1
-    }, 0)
+    logoTl.to(
+        letters,
+        {
+            keyframes: [
+                { y: -12, duration: 0.22, ease: 'power2.out' }, // 위로 콕
+                { y: 0, duration: 0.28, ease: 'power2.inOut' }, // 자연스럽게 복귀
+            ],
+            // 다음 글자가 살짝 먼저 시작하게 하여 "연쇄"처럼 보이게 함
+            stagger: 0.06, // 더 촘촘: 0.04 ~ 0.05 / 더 느긋: 0.08 ~ 0.1
+        },
+        0
+    )
 }
 
 onMounted(() => {
@@ -215,7 +216,7 @@ onMounted(() => {
     )
 
     // 모바일 메뉴가 열린 동안에는 사용자가 메뉴에 집중할 수 있게 애니메이션 일시정지
-    watch(isMobileMenuOpen, (open) => {
+    watch(isMobileMenuOpen, open => {
         if (open) {
             logoTl?.pause()
         } else {
@@ -264,18 +265,35 @@ defineExpose({})
             transform 0.3s ease-in-out,
             opacity 0.3s ease-in-out;
     }
-    .menu-link .front { transform: translateY(0); opacity: 1; }
-    .menu-link .back  { transform: translateY(100%); opacity: 0; }
-    .menu-link:hover .front { transform: translateY(-100%); opacity: 0; }
-    .menu-link:hover .back  { transform: translateY(0); opacity: 1; color: rgb(37 99 235); }
+    .menu-link .front {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .menu-link .back {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    .menu-link:hover .front {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    .menu-link:hover .back {
+        transform: translateY(0);
+        opacity: 1;
+        color: rgb(37 99 235);
+    }
 }
 @media (hover: none) and (pointer: coarse) {
     .menu-link .front,
-    .menu-link .back { transition: none; }
+    .menu-link .back {
+        transition: none;
+    }
 }
 .slide-down-enter-active,
 .slide-down-leave-active {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+        transform 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
 }
 .slide-down-enter-from,
 .slide-down-leave-to {
@@ -283,4 +301,3 @@ defineExpose({})
     opacity: 0;
 }
 </style>
-
