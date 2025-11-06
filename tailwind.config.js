@@ -32,7 +32,6 @@ export default {
             // 2. 폰트 정의 (Font Family): 정의하신 폰트 스택을 유지합니다.
             fontFamily: {
                 sans: [
-                    'NanumSquareNeo',
                     'Pretendard Variable',
                     'Happiness Sans',
                     'Pretendard',
@@ -48,7 +47,8 @@ export default {
                     'sans-serif', // 마지막 fallback
                 ],
                 custom: ['VinaSans', ...defaultTheme.fontFamily.sans],
-                nanum: ['NanumSquareNeo', ...defaultTheme.fontFamily.sans],
+                poppins: ['poppins', ...defaultTheme.fontFamily.sans],
+                notoSans: ['notoSans', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)
