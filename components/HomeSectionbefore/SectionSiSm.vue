@@ -229,7 +229,7 @@ onMounted(() => {
                     })
 
                     const cards = gsap.utils.toArray(wrapper.querySelectorAll('.flex-panel-card'))
-                    const pushAmount = 120
+                    const pushAmount = 135
 
                     cards.forEach((card: any, index: number) => {
                         const cardContent = card.querySelector('.portfolio-item-replacement')
