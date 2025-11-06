@@ -35,8 +35,14 @@
                         <span ref="stage2Typing" class="typing inline-block min-w-[10ch] text-white"></span>
                     </h1>
 
-                    <p class="mt-[clamp(8px,1.5vw,16px)] text-[clamp(14px,1.8vw,22px)] font-semibold text-gray-300">고객
-                        만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.</p>
+                    <p
+                    class="mt-[clamp(px,1.5vw,16px)]
+                            text-[clamp(11px,3.0vw,18px)]   <!--  모바일일 때 작게 -->
+                            sm:text-[clamp(14px,1.8vw,22px)] <!--  sm(640px 이상)부터 기존 크기 -->
+                            font-semibold text-gray-300
+                            leading-snug tracking-tight">
+                    고객 만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.
+                    </p>
                 </div>
             </div>
         </section>
