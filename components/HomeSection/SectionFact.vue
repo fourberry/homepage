@@ -1,13 +1,14 @@
 <template>
   <section
-    class="bg-accent pt-12 pb-0 md:pt-20 md:pb-0 rounded-t-[3rem] md:rounded-t-[5rem] text-white"
-    v-motion
-    :initial="{ opacity: 0 }"
-    :visible="{
-      opacity: 1,
-      transition: { delay: 9, duration: 1000, easing: 'ease-in-out' }
-    }"
-    :once="true"
+    class="bg-accent pt-6 pb-0 md:pt-12 md:pb-0 
+         rounded-t-[2.5rem] md:rounded-t-[5rem] text-white"
+  v-motion
+  :initial="{ opacity: 0 }"
+  :visible="{
+    opacity: 1,
+    transition: { delay: 9, duration: 1000, easing: 'ease-in-out' }
+  }"
+  :once="true"
   >
     <div class="container-wide">
       <h2 class="sr-only">회사 기본 정보</h2>
@@ -82,7 +83,7 @@
             <i class="fa-solid fa-phone text-blue-100"></i>
           </span>
           <span>
-            <a href="tel:010-2755-6550" class="hover:text-yellow-200 transition">010-2755-6550</a>
+            <a href="tel:010-2755-6550" class="hover:text-yellow-200 transition">010-2755-0650</a>
           </span>
 
           <span class="flex items-center gap-1 text-sm md:text-base text-blue-100">
@@ -97,7 +98,7 @@
           </span>
           <span class="break-all text-white">
             <a href="mailto:damon@fourberry.co.kr" class="hover:text-yellow-200 transition">
-              damon@fourberry.co.kr
+              fourberry@fourberry.co.kr
             </a>
           </span>
         </div>
@@ -108,29 +109,30 @@
 </div>
       </div>
     </div>
-        <footer  class="bg-accent text-white pt-14 pb-8">
-        <div class="container-wide flex flex-col gap-2 text-center">
-            <div class="text-sm font-semibold">(주)포베리</div>
-            <div class="text-xs font-extralight">(07205) 서울특별시 영등포구 양평로 22길 21 1409호</div>
-            <div class="text-xs font-extralight flex justify-center gap-1">
-                <span>대표이사 : 우대식</span>
-                <span>|</span>
-                <span>사업자등록번호: 562-88-02654</span>
-            </div>
-            <div class="text-xs font-extralight flex justify-center gap-1">
-                <span>Tel: 010-2755-0650</span>
-                <span>|</span>
-                <span>Email: fourberry@fourberry.co.kr</span>
-            </div>
-            <div class="p-4 flex align-middle justify-center">
-                <div class="w-48">
-                    <img src="/images/logo_text_white_transparent.png" />
-                </div>
-            </div>
-            <!-- <p>&copy; 2025 FOURBERRY Inc. All rights reserved.</p>
-            <p>서울특별시 영등포구 양평로 22길 21 코오롱디지털타워 1409호</p> -->
-        </div>
-    </footer>
+    <div class="h-6 md:h-16 bg-accent"></div>
+        <footer class="bg-background text-black pt-3 pb-2 md:pt-5 md:pb-4 lg:pt-6 lg:pb-5">
+  <div class="container-wide flex flex-col gap-1.5 text-center">
+    <div class="text-sm font-semibold">(주)포베리</div>
+    <div class="text-xs font-extralight">(07205) 서울특별시 영등포구 양평로 22길 21 1409호</div>
+    <div class="text-xs font-extralight flex justify-center gap-1">
+      <span>대표이사 : 우대식</span>
+      <span>|</span>
+      <span>사업자등록번호: 562-88-02654</span>
+    </div>
+    <div class="text-xs font-extralight flex justify-center gap-1">
+      <span>Tel: 010-2755-0650</span>
+      <span>|</span>
+      <span>Email: fourberry@fourberry.co.kr</span>
+    </div>
+
+    <!-- 로고 영역 패딩 축소 -->
+    <div class="p-2 flex align-middle justify-center">
+      <div class="w-40">
+        <img src="/images/logo_text_white_transparent.png" />
+      </div>
+    </div>
+  </div>
+</footer>
   </section>
   
 </template>

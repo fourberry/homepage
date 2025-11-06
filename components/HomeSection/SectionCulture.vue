@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white py-32 md:py-40">
+  <section class="bg-white py-16 sm:py-20 md:py-24 lg:py-40">
     <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
       <!-- 헤더 영역 -->
       <header class="mx-auto mb-8 max-w-7xl px-4 text-center md:mb-12 md:px-8 lg:px-12">

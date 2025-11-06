@@ -1,6 +1,6 @@
 <template>
     <section class="bg-surface">
-        <div class="container mx-auto px-4 py-28 md:px-12 lg:px-20 xl:px-24">
+        <div class="container-wide py-28 md:py-32">
             <div class="grid min-w-0 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 xl:gap-24">
                 <!-- 왼쪽 정보 패널 -->
                 <aside class="hidden lg:col-span-4 lg:block">
@@ -21,7 +21,7 @@
 
                     <!-- 제목 영역 -->
                     <header class="mb-8 lg:mb-10">
-                        <!-- ✅ laptop-L(xl~)부터 글자 크기 살짝 축소 -->
+                        <!--  laptop-L(xl~)부터 글자 크기 살짝 축소 -->
                         <h2
                             class="whitespace-normal break-words text-[clamp(20px,6vw,48px)] font-extrabold leading-snug tracking-tight text-text lg:text-[clamp(24px,4vw,60px)] xl:text-[56px] 2xl:text-[64px]"
                         >
@@ -34,7 +34,7 @@
                         <div  class="prose prose-gray max-w-none text-[15px] text-gray-800
          leading-relaxed sm:text-base md:text-[17px] lg:text-[22px] lg:leading-loose xl:leading-[1.9]">
                             <p class="mb-8">
-                            주식회사 포베리는 2023년 창업 이래 IT 분야에서
+                            주식회사 포베리는 2023년 창업 이래 IT 분야에서  
                             <span class="font-semibold text-secondary">기본이 되자는 목적과 사명의식</span>
                             을 가지고 사업을 추진하고 있습니다.
                             </p>

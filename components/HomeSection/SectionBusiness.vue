@@ -45,7 +45,7 @@
             </h3>
 
             <p
-              class="mt-2 text-lg short:text-base md:text-xl leading-snug text-zinc-300 text-left px-3"
+              class="mt-2 text-lg short:text-base md:text-xl leading-snug text-white text-left px-3"
             >
               {{ item.desc }}
             </p>

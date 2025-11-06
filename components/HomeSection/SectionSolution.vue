@@ -1,6 +1,7 @@
 <template>
   <div id="services">
-    <section class="w-full overflow-hidden bg-white pt-48 md:pt-72">
+   <section class="w-full overflow-hidden bg-white pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-10 lg:pt-72 lg:pb-24">
+
       <!-- ===== Section Header (애니메이션 없음) ===== -->
       <header class="container-wide mb-8 text-center md:mb-14">
         <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-red-300">
@@ -51,28 +52,36 @@
               회원 정보를 효율적으로 관리할 수 있는 통합 환경을 제공합니다.
             </p>
 
-            <ul class="mb-10 space-y-2 text-slate-800 md:text-[15px]">
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-blue-700"></span>
-                통합 회원 관리 – 약관, 권한, 개인정보 동의 이력까지 한 화면에서 관리
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-blue-700"></span>
-                다양한 인증 수단 – 소셜 로그인과 휴대폰 인증으로 간편하게 접속
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-blue-700"></span>
-                콜백 이벤트 – 회원가입·로그인·정보 수정 시 자동 연동 기능 제공
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-blue-700"></span>
-                유연한 연동 – 다양한 서비스 구조에 맞게 손쉽게 도입 가능
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-blue-700"></span>
-                반응형 지원 – 모든 디바이스에서 최적화된 UX 제공
-              </li>
-            </ul>
+          <ul
+  class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-6 gap-x-6 sm:gap-x-10 
+         text-slate-800 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed"
+>
+  <li>
+    <p class="font-semibold text-slate-900">통합 회원 관리</p>
+    <p class="mt-1 text-slate-600">약관, 권한, 개인정보 동의 이력까지 한 화면에서 관리</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">다양한 인증 수단</p>
+    <p class="mt-1 text-slate-600">소셜 로그인과 휴대폰 인증으로 간편하게 접속</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">콜백 이벤트</p>
+    <p class="mt-1 text-slate-600">회원가입·로그인·정보 수정 시 자동 연동 기능 제공</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">유연한 연동</p>
+    <p class="mt-1 text-slate-600">다양한 서비스 구조에 맞게 손쉽게 도입 가능</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">반응형 지원</p>
+    <p class="mt-1 text-slate-600">모든 디바이스에서 최적화된 UX 제공</p>
+  </li>
+</ul>
+
           </div>
         </div>
       </div>
@@ -105,24 +114,36 @@
               입니다. 자체 개발한 엔진을 통해 복잡한 데이터 수집 과정을 안정적이고 효율적으로 수행합니다.
             </p>
 
-            <ul class="mb-10 space-y-2 text-slate-800 md:text-[15px]">
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-emerald-700"></span>
-                자체 엔진 기반 – 독자 개발 엔진(FBScript)으로 안정적인 자동화 제공
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-emerald-700"></span>
-                자동 수집 기능 – 검색 결과, 상품정보, 파일 등 다양한 데이터 추출
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-emerald-700"></span>
-                프로세스 자동화 – 로그인부터 다운로드까지 모든 단계 자동 실행
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="mt-2 h-2 w-2 rounded-full bg-emerald-700"></span>
-                다양한 활용 분야 – 쇼핑몰 모니터링, 경쟁사 분석 등 실무 자동화 지원
-              </li>
-            </ul>
+<ul
+  class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-6 gap-x-6 sm:gap-x-10 
+         text-slate-800 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed"
+>
+  <li>
+    <p class="font-semibold text-slate-900">자체 엔진 기반</p>
+    <p class="mt-1 text-slate-600">독자 개발 엔진(FBScript)으로 안정적인 자동화 제공</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">자동 수집 기능</p>
+    <p class="mt-1 text-slate-600">검색 결과, 상품정보, 파일 등 다양한 데이터 추출</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">프로세스 자동화</p>
+    <p class="mt-1 text-slate-600">로그인부터 다운로드까지 모든 단계 자동 실행</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">다양한 활용 분야</p>
+    <p class="mt-1 text-slate-600">쇼핑몰 모니터링, 경쟁사 분석 등 실무 자동화 지원</p>
+  </li>
+
+  <li>
+    <p class="font-semibold text-slate-900">안정적 성능</p>
+    <p class="mt-1 text-slate-600">대규모 데이터도 끊김 없이 처리</p>
+  </li>
+</ul>
+
           </div>
         </div>
 
