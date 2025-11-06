@@ -31,12 +31,12 @@
                         :class="['flex-panel-card', project.gradientClasses]"
                         class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
                     >
-                        <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[45rem] md:h-[45rem] xl:h-full">
-                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[35rem]">
-                                <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-cover opacity-80" :class="getImageClasses(project)" />
+                        <div class="portfolio-item-replacement relative z-10 flex h-[40rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[45rem] md:h-[45rem] xl:h-full">
+                            <div class="thumbnail relative z-10 mx-auto flex h-[30rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[30rem]">
+                                <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
                             </div>
-                            <div class="description relative z-10 flex min-h-[4.5em] w-full items-center justify-between px-6 text-gray-950">
-                                <div class="font-poppins text-left text-[1rem] font-bold opacity-90 sm:text-[1rem]">
+                            <div class="description relative z-10 mb-2 flex min-h-[4.5em] w-full items-center justify-between px-4 text-gray-950">
+                                <div class="text-left font-poppins text-[1rem] font-bold opacity-80 sm:text-[1rem]">
                                     <div v-for="(date, index) in project.dates" :key="index" class="kind">
                                         <template v-if="date.includes(' - ')">
                                             <p>{{ date.split(' - ')[0] }}</p>
@@ -47,12 +47,12 @@
                                         </template>
                                     </div>
                                 </div>
-                                <p class="title font-notoSans line-clamp-2 min-w-0 flex-1 whitespace-pre-line break-keep text-right text-[0.9rem] font-bold xl:line-clamp-none">
+                                <p class="title line-clamp-2 min-w-0 flex-1 whitespace-pre-line break-keep text-right font-notoSans text-[0.9rem] font-bold xl:line-clamp-none">
                                     {{ project.title }}
                                 </p>
                             </div>
                             <h3
-                                class="h3 font-poppins relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
+                                class="h3 relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center font-poppins text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
                                 :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
                             >
                                 {{ project.clientName }}
@@ -93,12 +93,12 @@ const siSmProjects = [
     {
         id: 'si_2',
         gradientClasses: 'bg-gradient-to-br from-[#12d6f0] to-[#12f093]',
-        imageSrc: '/images/homeSiSm/withfresh.png',
+        imageSrc: '/images/homeSiSm/withfresh_9.svg',
         imageAlt: 'Hanaro Project',
         dates: ['2024.01 - 2025.03'],
-        title: '브랜드몰 (하이브리드 앱) 및 SSO\n 구축',
+        title: '브랜드몰 (하이브리드 앱) 및 \n SSO 구축',
         clientName: 'WITH FRESH',
-        imageStyle: 'default',
+        imageStyle: 'withfresh',
         smallH3: true, // 긴 텍스트용 h3
     },
     {
@@ -152,30 +152,33 @@ const siSmProjects = [
  */
 const getImageClasses = (project: (typeof siSmProjects)[0]) => {
     // 모든 이미지에 공통으로 적용될 기본 클래스
-    const baseClasses = 'block opacity-80'
+    const baseClasses = ''
 
     let specificClasses = ''
 
     // imageStyle 값에 따라 스타일 분기
     switch (project.imageStyle) {
         case 'cuckoo':
-            specificClasses = 'w-full h-full'
+            specificClasses = 'w-full h-full object-cover'
             break
         case 'lotto':
             // 여기에 'lotto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'w-full h-full'
+            specificClasses = 'w-full h-full object-cover'
             break
         case 'auto':
             // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'w-full h-full object-top'
+            specificClasses = 'w-full h-full object-cover object-top'
             break
         case 'knsu':
             // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'w-full h-full'
+            specificClasses = 'w-full h-full object-cover '
+            break
+        case 'withfresh':
+            specificClasses = 'w-full h-full object-cover'
             break
         default:
             // 'default' 또는 정의되지 않은 경우
-            specificClasses = 'w-full h-full object-top'
+            specificClasses = 'w-full h-full object-cover object-top'
             break
     }
 
@@ -226,7 +229,7 @@ onMounted(() => {
                     })
 
                     const cards = gsap.utils.toArray(wrapper.querySelectorAll('.flex-panel-card'))
-                    const pushAmount = 120
+                    const pushAmount = 135
 
                     cards.forEach((card: any, index: number) => {
                         const cardContent = card.querySelector('.portfolio-item-replacement')

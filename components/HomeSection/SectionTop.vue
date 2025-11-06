@@ -113,7 +113,7 @@ function startUnifiedAnimation() {
         .to(
             stage1Title.value,
             {
-                duration: 2,
+                duration: 3,
                 y: 0,
                 autoAlpha: 1,
                 ease: 'power3.out',
@@ -125,7 +125,7 @@ function startUnifiedAnimation() {
         .to(
             stage1Subtitle.value,
             {
-                duration: 2,
+                duration: 3,
                 y: 0,
                 autoAlpha: 1,
                 ease: 'power3.out',
@@ -222,8 +222,6 @@ onMounted(() => {
     background-image: url('https://images.unsplash.com/photo-1504177847824-d075f5706770?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1548');
     z-index: 0;
 }
-
-
 
 .hero-content {
     position: relative;
