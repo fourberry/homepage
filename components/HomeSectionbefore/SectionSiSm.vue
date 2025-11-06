@@ -32,8 +32,8 @@
                         class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
                     >
                         <div class="portfolio-item-replacement relative z-10 flex h-[35rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[45rem] md:h-[45rem] xl:h-full">
-                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white px-8 shadow-inner shadow-black/30 sm:h-[35rem] md:h-[35rem]">
-                                <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-contain opacity-80" :class="getImageClasses(project)" />
+                            <div class="thumbnail relative z-10 mx-auto flex h-[25rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[35rem]">
+                                <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block object-cover opacity-80" :class="getImageClasses(project)" />
                             </div>
                             <div class="description relative z-10 flex min-h-[4.5em] w-full items-center justify-between px-6 text-gray-950">
                                 <div class="font-poppins text-left text-[1rem] font-bold opacity-90 sm:text-[1rem]">
@@ -47,12 +47,12 @@
                                         </template>
                                     </div>
                                 </div>
-                                <p class="title font-notoSans line-clamp-2 min-w-0 flex-1 whitespace-pre-line break-keep text-right text-[0.9rem] font-semibold xl:line-clamp-none">
+                                <p class="title font-notoSans line-clamp-2 min-w-0 flex-1 whitespace-pre-line break-keep text-right text-[0.9rem] font-bold xl:line-clamp-none">
                                     {{ project.title }}
                                 </p>
                             </div>
                             <h3
-                                class="h3 relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
+                                class="h3 font-poppins relative z-10 flex h-[3.5rem] items-center justify-center whitespace-nowrap text-center text-[3rem] font-black tracking-[-1.92px] text-white md:h-[80px] md:text-[2.5rem] xl:text-[4rem]"
                                 :class="project.smallH3 ? 'md:text-[2.5rem]' : ''"
                             >
                                 {{ project.clientName }}
@@ -82,7 +82,7 @@ const siSmProjects = [
         id: 'si_1',
         // 그라데이션 클래스를 직접 저장
         gradientClasses: 'bg-gradient-to-br from-[#ffa800] to-[#ff5d17]',
-        imageSrc: '/images/homeSiSm/cuckoo.svg',
+        imageSrc: '/images/homeSiSm/oms_2.webp',
         imageAlt: 'Cuckoo Project',
         dates: ['2021.11 - 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
         title: 'OMS 및 차세대\n영업관리 시스템 구축',
@@ -93,7 +93,7 @@ const siSmProjects = [
     {
         id: 'si_2',
         gradientClasses: 'bg-gradient-to-br from-[#12d6f0] to-[#12f093]',
-        imageSrc: '/images/homeSiSm/hanaro.svg',
+        imageSrc: '/images/homeSiSm/withfresh.png',
         imageAlt: 'Hanaro Project',
         dates: ['2024.01 - 2025.03'],
         title: '브랜드몰 (하이브리드 앱) 및 SSO\n 구축',
@@ -115,7 +115,7 @@ const siSmProjects = [
     {
         id: 'si_4',
         gradientClasses: 'bg-gradient-to-br from-[#eb3656] to-[#fea032]',
-        imageSrc: '/images/homeSiSm/lotto.svg',
+        imageSrc: '/images/homeSiSm/migration.png',
         imageAlt: 'Lotto Project',
         dates: ['2024.10 - 2025.10'],
         title: '인쇄복권 시스템 통합 및\n DB 전환',
@@ -126,7 +126,7 @@ const siSmProjects = [
     {
         id: 'si_5',
         gradientClasses: 'bg-gradient-to-br from-[#fff6a5] to-[#ffb1b1]',
-        imageSrc: '/images/homeSiSm/auto_crypt.svg',
+        imageSrc: '/images/homeSiSm/autocrypt_4.jpg',
         imageAlt: 'AutoCrypt Project',
         dates: ['2024.06 - 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
         title: '자동차 보안 대응 시스템(K-CSMS)\n 구축',
@@ -137,7 +137,7 @@ const siSmProjects = [
     {
         id: 'si_6',
         gradientClasses: 'bg-gradient-to-br from-[#0072ff] to-[#00c6ff]',
-        imageSrc: '/images/homeSiSm/sport_university.svg',
+        imageSrc: '/images/homeSiSm/sports_3.jpg',
         imageAlt: 'KNSU Project',
         dates: ['2022.08 - 2023.02'],
         title: '실시간 승부조작 위험성 경고 시스템 \n구축',
@@ -152,30 +152,30 @@ const siSmProjects = [
  */
 const getImageClasses = (project: (typeof siSmProjects)[0]) => {
     // 모든 이미지에 공통으로 적용될 기본 클래스
-    const baseClasses = 'block object-contain opacity-80'
+    const baseClasses = 'block opacity-80'
 
     let specificClasses = ''
 
     // imageStyle 값에 따라 스타일 분기
     switch (project.imageStyle) {
         case 'cuckoo':
-            specificClasses = 'max-h-[15rem] w-full'
+            specificClasses = 'w-full h-full'
             break
         case 'lotto':
             // 여기에 'lotto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'max-h-[6rem] w-auto max-w-[70%]'
+            specificClasses = 'w-full h-full'
             break
         case 'auto':
             // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'max-h-[10rem] w-auto max-w-[60%]'
+            specificClasses = 'w-full h-full object-top'
             break
         case 'knsu':
             // 여기에 'auto' 스타일에 맞는 클래스를 지정하세요. (예시)
-            specificClasses = 'max-h-[8rem] w-auto max-w-[60%]'
+            specificClasses = 'w-full h-full'
             break
         default:
             // 'default' 또는 정의되지 않은 경우
-            specificClasses = 'max-h-[10rem] w-auto max-w-[65%]'
+            specificClasses = 'w-full h-full object-top'
             break
     }
 
