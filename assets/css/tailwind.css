@@ -65,7 +65,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Black.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 900; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -73,7 +73,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Bold.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 700; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -81,7 +81,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 800; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -89,7 +89,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 200; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -97,7 +97,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Light.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 300; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -105,7 +105,7 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Medium.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 500; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -113,14 +113,6 @@
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
-    src: url('@/assets/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
     font-weight: 400; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
@@ -128,8 +120,16 @@
 
 @font-face {
     font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
+    src: url('@/assets/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600; /* 또는 'normal' */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'poppins'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/poppins/Poppins-Thin.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 100; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -137,7 +137,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-Black.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 900; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -153,7 +153,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-ExtraBold.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 800; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -161,7 +161,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-ExtraLight.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 200; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -169,7 +169,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-Light.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 300; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -177,7 +177,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-Medium.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 500; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -185,7 +185,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-Regular.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 400; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -193,7 +193,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-SemiBold.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 600; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
@@ -201,7 +201,7 @@
 @font-face {
     font-family: 'notoSans'; /* 👈 앞으로 사용할 폰트 이름 */
     src: url('@/assets/fonts/notoSans/NotoSansKR-Thin.ttf') format('truetype');
-    font-weight: normal; /* 또는 'normal' */
+    font-weight: 100; /* 또는 'normal' */
     font-style: normal;
     font-display: swap;
 }
