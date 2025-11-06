@@ -31,7 +31,7 @@
                         :class="['flex-panel-card', project.gradientClasses]"
                         class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
                     >
-                        <div class="portfolio-item-replacement relative z-10 flex h-[40rem] w-full flex-col overflow-hidden py-[30px] text-center sm:h-[45rem] md:h-[45rem] xl:h-full">
+                        <div class="portfolio-item-replacement relative z-10 flex h-[45rem] w-full flex-col overflow-hidden py-[30px] sm:h-[50rem] md:h-[50rem] xl:h-full">
                             <div class="thumbnail relative z-10 mx-auto flex h-[30rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[30rem]">
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
                             </div>
