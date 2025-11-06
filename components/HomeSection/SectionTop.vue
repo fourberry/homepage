@@ -9,21 +9,16 @@
                     <br />
                     고객의 경험과 가치를 우선합니다.
                 </h1>
-                <p ref="stage1Subtitle"
-                    class="hero-subtitle mt-4 break-keep text-[clamp(0.9rem,3vw,1.2rem)] opacity-80">making sweet and
-                    sour software</p>
+                <p ref="stage1Subtitle" class="hero-subtitle mt-4 break-keep text-[clamp(0.9rem,3vw,1.2rem)] opacity-80">making sweet and sour software</p>
             </div>
         </section>
 
         <!-- Stage 2 -->
         <section ref="stage2" class="absolute inset-0 h-screen min-h-[560px]">
             <div ref="stage2BgWrapper" class="absolute inset-0 overflow-hidden">
-                <img src="/images/aboutMain.jpg" alt="FOURBERRY background"
-                    class="h-full w-full object-cover object-[50%_40%]" />
+                <img src="/images/aboutMain.jpg" alt="FOURBERRY background" class="h-full w-full object-cover object-[50%_40%]" />
                 <div class="absolute inset-0 bg-black/45"></div>
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20">
-                </div>
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
             </div>
 
             <!-- ✅ 좌하단 고정 앵커 (같은 시작 세로선 유지) -->
@@ -35,8 +30,7 @@
                         <span ref="stage2Typing" class="typing inline-block min-w-[10ch] text-white"></span>
                     </h1>
 
-                    <p class="mt-[clamp(8px,1.5vw,16px)] text-[clamp(14px,1.8vw,22px)] font-semibold text-gray-300">고객
-                        만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.</p>
+                    <p class="mt-[clamp(8px,1.5vw,16px)] text-[clamp(14px,1.8vw,22px)] font-semibold text-gray-300">고객 만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.</p>
                 </div>
             </div>
         </section>
@@ -107,7 +101,7 @@ function startUnifiedAnimation() {
         .to(
             stage1Title.value,
             {
-                duration: 2,
+                duration: 3,
                 y: 0,
                 autoAlpha: 1,
                 ease: 'power3.out',
@@ -119,7 +113,7 @@ function startUnifiedAnimation() {
         .to(
             stage1Subtitle.value,
             {
-                duration: 2,
+                duration: 3,
                 y: 0,
                 autoAlpha: 1,
                 ease: 'power3.out',
@@ -216,8 +210,6 @@ onMounted(() => {
     background-image: url('https://images.unsplash.com/photo-1504177847824-d075f5706770?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1548');
     z-index: 0;
 }
-
-
 
 .hero-content {
     position: relative;
