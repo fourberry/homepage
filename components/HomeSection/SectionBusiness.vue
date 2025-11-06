@@ -9,7 +9,7 @@
           <span class="hidden xl:inline">&nbsp;</span>혁신으로 성장합니다.
         </h2>
 
-        <p class="mt-6 text-lg leading-relaxed text-zinc-300 md:text-xl lg:text-2xl max-w-6xl mx-auto">
+        <p class="mt-6 text-base leading-relaxed text-zinc-300 md:text-lg lg:text-2xl max-w-6xl mx-auto">
           {{ subtitle }}
         </p>
       </header>
@@ -28,12 +28,12 @@
                    shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)]
                    transition-transform duration-300 group-hover:-translate-y-1.5 wave-card">
             <h3 class="absolute left-8 md:left-10 -top-6 md:-top-7 short:-top-5
-                     rounded-full bg-white px-6 py-2
-                     text-black text-lg short:text-base md:text-xl font-semibold tracking-tight shadow-md">
+         rounded-full bg-white px-6 py-2
+         text-black text-base short:text-sm md:text-lg font-semibold tracking-tight shadow-md">
               {{ item.title }}
             </h3>
 
-            <p class="mt-2 text-lg short:text-base md:text-xl leading-snug text-white text-left px-3">
+            <p class="mt-2 text-sm short:text-[13px] md:text-xl leading-snug text-white text-left px-3">
               {{ item.desc }}
             </p>
           </div>
