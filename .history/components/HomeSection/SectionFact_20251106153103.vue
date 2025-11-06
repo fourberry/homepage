@@ -1,6 +1,6 @@
 <template>
- <section class="bg-accent pt-6 pb-0 md:pt-12 md:pb-0 
-         rounded-t-[2.5rem] md:rounded-t-[5rem] text-white">
+  <section class="bg-accent pt-6 pb-0 md:pt-12 md:pb-0 
+         rounded-t-[2.5rem] md:rounded-t-[5rem] text-white" >
     <div class="container-wide">
       <h2 class="sr-only">회사 기본 정보</h2>
 
@@ -38,7 +38,7 @@
               <dt class="sr-only">회사명</dt>
               <dd class="col-span-6">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-building text-blue-100 translate-x-[12px]"></i>
                   </span>
@@ -55,7 +55,7 @@
               <dt class="sr-only">설립일</dt>
               <dd class="col-span-6">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-calendar-days text-blue-100 translate-x-[12px]"></i>
                   </span>
@@ -72,7 +72,7 @@
               <dd
                 class="col-span-6 text-base text-white md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-phone text-blue-100 translate-x-[12px]"></i>
                   </span>

@@ -33,12 +33,16 @@
           <dl class="divide-y divide-white/30">
 
             <!-- 회사명 (아이콘 + 내용) -->
-            <div class="grid grid-cols-1 gap-1 py-4 md:grid-cols-6 md:py-4">
+            <div class="grid 
+         grid-cols-[4rem_1fr]  <!-- ✅ 모바일에서 아이콘과 텍스트 간격 좁힘 -->
+         sm:grid-cols-[6rem_1fr] 
+         md:grid-cols-[6.5rem_1fr] 
+         gap-x-1 sm:gap-x-2 gap-y-[2px]">
               <!-- 접근성: 용어는 화면에서 숨기고 의미만 남김 -->
               <dt class="sr-only">회사명</dt>
               <dd class="col-span-6">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-building text-blue-100 translate-x-[12px]"></i>
                   </span>
@@ -55,7 +59,7 @@
               <dt class="sr-only">설립일</dt>
               <dd class="col-span-6">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-calendar-days text-blue-100 translate-x-[12px]"></i>
                   </span>
@@ -72,7 +76,7 @@
               <dd
                 class="col-span-6 text-base text-white md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-phone text-blue-100 translate-x-[12px]"></i>
                   </span>

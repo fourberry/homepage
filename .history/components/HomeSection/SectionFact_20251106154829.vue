@@ -72,7 +72,7 @@
               <dd
                 class="col-span-6 text-base text-white md:pl-0 md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug">
                 <div
-                  class="grid grid-cols-[5rem_1fr] gap-x-1 sm:gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
+                  class="grid grid-cols-[5rem_1fr] gap-x-2 gap-y-[2px] sm:grid-cols-[6rem_1fr] md:grid-cols-[6.5rem_1fr]">
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
                     <i class="fa-solid fa-phone text-blue-100 translate-x-[12px]"></i>
                   </span>
