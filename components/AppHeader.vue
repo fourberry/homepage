@@ -7,6 +7,9 @@
                 class="flex items-center text-2xl desktop:text-3xl desktop:h-14 font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80"
                 aria-label="FOURBERRY"
             >
+                <div class="h-full flex items-center">
+                    <img src="/images/logo.png" class="h-full object-contain" />
+                </div>
                 <span class="logo-word" ref="logoEl">
                     <span v-for="(ch, idx) in logoLetters" :key="idx" class="logo-ch">{{ ch }}</span>
                 </span>
