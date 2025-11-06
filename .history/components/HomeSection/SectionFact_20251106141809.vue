@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-building text-blue-100 translate-x-[12px]"></i>
                   </span>
                   <span
-                    class="text-base text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
+                     class="text-[0.9rem] text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
                     포베리주식회사
                   </span>
                 </div>
@@ -63,7 +63,7 @@
                     <i class="fa-solid fa-calendar-days text-blue-100 translate-x-[12px]"></i>
                   </span>
                   <span
-                    class="text-base text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
+                    class="text-[0.9rem] text-white md:text-[1rem] lg:text-[1.05rem] xl:text-xl leading-snug break-keep">
                     2023년 10월 30일
                   </span>
                 </div>

@@ -33,7 +33,7 @@
   <span>
     다양한 산업 분야의 시스템 자동화와 기술을 통해
     <span class="hidden sm:inline">통합 솔루션, R&amp;D, AI 빅데이터 </span>
-    <br class="hidden sm:block" />
+
     고객 중심의 가치를 실현하고 있습니다.
   </span>
 </p>

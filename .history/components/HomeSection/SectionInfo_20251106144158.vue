@@ -22,18 +22,18 @@
         </p>
 
         <!-- 설명 문단 -->
-        <p
-  class="explain-text mx-auto text-center text-gray-500
-         break-keep hyphens-none whitespace-normal
+<p
+  class="mx-auto text-gray-500 text-center sm:text-left
+         break-normal hyphens-none whitespace-normal
          leading-relaxed
-         max-w-none sm:max-w-[30rem] md:max-w-[42rem] lg:max-w-[56rem]
+         w-full max-w-[min(90%,600px)]
          text-[10px] sm:text-[clamp(0.55rem,2vw,1.1rem)] md:text-[clamp(0.6rem,1.8vw,1.2rem)]">
   포베리는 사람을 위한 기술, 신뢰를 쌓는 기술을 추구하는 IT 전문 기업입니다.
   <br class="hidden md:block" />
   <span>
     다양한 산업 분야의 시스템 자동화와 기술을 통해
     <span class="hidden sm:inline">통합 솔루션, R&amp;D, AI 빅데이터 </span>
-    <br class="hidden sm:block" />
+    <br />
     고객 중심의 가치를 실현하고 있습니다.
   </span>
 </p>
@@ -118,12 +118,5 @@ onBeforeUnmount(() => {
     animation: none !important;
     transform: scaleX(1) !important;
   }
-}
-
-.explain-text {
-  /* 한글을 띄어쓰기(단어) 단위로만 줄바꿈하도록 설정 */
-  word-break: keep-all; 
-  /* 기존 설정 중 break-keep는 제거하거나,
-     이 설정이 overwrite 되도록 .explain-text가 나중에 위치하도록 합니다. */
 }
 </style>

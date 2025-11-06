@@ -107,7 +107,7 @@
       </div>
     </div>
     <div class="h-6 md:h-16 bg-accent"></div>
-    <footer class="bg-accent text-white pt-3 pb-2 md:pt-5 md:pb-4 lg:pt-6 lg:pb-5">
+    <footer class="bg-accent text-black pt-3 pb-2 md:pt-5 md:pb-4 lg:pt-6 lg:pb-5">
       <div class="container-wide flex flex-col gap-1.5 text-center">
         <div class="text-sm font-semibold">(주)포베리</div>
         <div class="text-xs font-extralight">(07205) 서울특별시 영등포구 양평로 22길 21 1409호</div>
