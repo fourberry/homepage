@@ -229,7 +229,7 @@ onMounted(() => {
                     })
 
                     const cards = gsap.utils.toArray(wrapper.querySelectorAll('.flex-panel-card'))
-                    const pushAmount = 135
+                    const scaleFactor = 1.2
 
                     cards.forEach((card: any, index: number) => {
                         const cardContent = card.querySelector('.portfolio-item-replacement')
@@ -237,8 +237,12 @@ onMounted(() => {
 
                         if (cardContent) {
                             card.addEventListener('mouseenter', () => {
+                                // 2. 카드의 현재 너비를 기반으로 pushAmount를 동적으로 계산
+                                const cardWidth = card.offsetWidth
+                                const pushAmount = cardWidth * (scaleFactor - 1) // (너비 * 0.2)
+
                                 gsap.to(card, {
-                                    scale: 1.2,
+                                    scale: scaleFactor, // 3. 상수 사용
                                     zIndex: 10,
                                     duration: 0.3,
                                     ease: 'power1.out',
@@ -249,7 +253,7 @@ onMounted(() => {
                                     ease: 'power1.out',
                                 })
                                 gsap.to(cards.slice(index + 1), {
-                                    x: pushAmount,
+                                    x: pushAmount, // 4. 동적으로 계산된 값 적용
                                     duration: 0.3,
                                     ease: 'power1.out',
                                 })
