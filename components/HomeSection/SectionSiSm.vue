@@ -187,7 +187,7 @@ const siSmProjects: Project[] = [
         details: {
             client: '동행복권',
             title: '인쇄복권 시스템 통합 및 DB 전환',
-            period: '2024.10 - 2025.10 (예정)',
+            period: '2024.10 - 2025.10',
             overview: `이원화되어 운영 중인 인쇄복권 시스템(PTMS/PLMS)을 통합하고, 시스템 안정성 확보를 위해 데이터베이스를 전환하는 대규모 프로젝트입니다.
             \n약 200여 개의 시스템 메뉴를 변환하며, 50억 건에 달하는 대용량 데이터를 Mysql에서 Oracle로 안정적으로 이관하는 작업을 포함합니다.`,
             images: [
@@ -209,7 +209,7 @@ const siSmProjects: Project[] = [
         smallH3: true,
         details: {
             client: '아우토크립트 (AUTOCRYPT)',
-            title: '자동차 보안 대응 시스템(K-CSMS) 구축',
+            title: '자동차 보안 대응 시스템 \n(K-CSMS) 구축',
             period: '1차: 2024.06 - 2024.10 / 2차: 2025.06 - 2025.09',
             overview: `IT 보안 취약점 중 특히 자동차 보안 분야의 취약점 정보를 공유하고 대응하기 위한 커뮤니티 및 데이터베이스 사이트(K-CSMS)를 구축했습니다.
             \n대시보드를 통해 CVE(보안 취약점) 현황, CWE(보안 약점) 유형, CVSS(위험도) 등을 시각화하여 제공하며, 코드 기반 SW 자동 점검 기능 등을 포함합니다.`,

@@ -15,7 +15,7 @@
                         <p class="mb-2 text-sm font-bold uppercase tracking-widest opacity-80">
                             {{ project.details.client }}
                         </p>
-                        <h2 class="mb-2 break-keep text-3xl font-bold md:text-4xl">
+                        <h2 class="mb-2 whitespace-pre-line break-keep text-3xl font-bold md:text-4xl">
                             {{ project.details.title }}
                         </h2>
                         <p class="text-lg font-medium opacity-90">
