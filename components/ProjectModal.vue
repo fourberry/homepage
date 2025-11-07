@@ -25,7 +25,7 @@
                     <div class="mt-6 aspect-video w-full overflow-hidden rounded-lg md:mt-0 md:w-2/5">
                         <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
                             <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
-                                <NuxtImg :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
+                                <img :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
                             </SwiperSlide>
                         </Swiper>
                     </div>
