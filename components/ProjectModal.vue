@@ -65,7 +65,11 @@ import 'swiper/css/pagination'
 
 const swiperModules = [Navigation, Pagination]
 
-const closeIconPath = process.env.NODE_ENV === 'production' ? '/home/images/homeSiSm/x.svg' : '/images/homeSiSm/x.svg'
+const isProduction = process.env.NODE_ENV === 'production'
+const basePath = isProduction ? '/home' : ''
+
+// ✅ [수정] closeIconPath도 basePath를 사용하도록 리팩토링 (더 깔끔합니다)
+const closeIconPath = basePath + '/images/homeSiSm/x.svg'
 
 const props = defineProps<{
     project: Project | null
@@ -74,19 +78,19 @@ const props = defineProps<{
 
 const emit = defineEmits(['close'])
 
-// ✅ [추가] Swiper 이미지 경로를 처리하는 computed 속성
+// ✅ [수정] Swiper 이미지 경로를 처리하는 computed 속성
 const processedImages = computed(() => {
-    // project가 없으면 빈 배열 반환
-    if (!props.project) {
+    // 1. props.project나 하위 속성이 없으면 빈 배열 반환
+    if (!props.project || !props.project.details || !props.project.details.images) {
         return []
     }
 
-    // closeIconPath와 동일한 로직 적용
-    const prefix = process.env.NODE_ENV === 'production' ? '/home' : ''
-
-    // 원본 이미지 경로 배열을 순회하며 'prefix'를 붙인 새 배열 생성
-    return props.project.details.images.map(relativePath => {
-        return `${prefix}${relativePath}`
+    // 2. .map()을 사용하여 각 이미지 경로에 basePath를 추가
+    return props.project.details.images.map(imagePath => {
+        // imagePath는 '/images/...'로 시작합니다.
+        // production: '/home' + '/images/...' -> '/home/images/...'
+        // development: '' + '/images/...' -> '/images/...'
+        return basePath + imagePath
     })
 })
 
