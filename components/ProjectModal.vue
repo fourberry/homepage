@@ -1,24 +1,24 @@
 <template>
-    <div ref="modalOverlayRef" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4" @click.self="close">
+    <div ref="modalOverlayRef" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-2 sm:p-4" @click.self="close">
         <div ref="modalContentRef" class="relative w-full max-w-4xl rounded-lg shadow-xl" :style="{ backgroundColor: projectBgColor }" style="max-height: 90vh">
             <button
                 @click="close"
-                class="h-13 w-13 absolute right-1 top-1 z-10 flex items-center justify-center text-3xl font-black text-white transition-all duration-200 ease-in-out"
+                class="md:h-13 md:w-13 absolute right-1 top-1 z-10 flex h-10 w-10 items-center justify-center text-3xl font-black text-white transition-all duration-200 ease-in-out"
                 aria-label="닫기"
             >
-                <img :src="closeIconPath" alt="닫기" class="h-10 w-10 brightness-0 invert" />
+                <img :src="closeIconPath" alt="닫기" class="h-6 w-6 brightness-0 invert md:h-10 md:w-10" />
             </button>
 
             <div v-if="project" class="overflow-y-auto rounded-lg" style="max-height: 90vh">
-                <header :class="project.gradientClasses" class="flex flex-col items-center justify-center p-8 pt-12 text-center text-white md:flex-row md:justify-between md:text-left">
+                <header :class="project.gradientClasses" class="flex flex-col items-center justify-center p-4 pt-10 text-center text-white md:flex-row md:justify-between md:p-8 md:pt-12 md:text-left">
                     <div class="md:w-3/5">
-                        <p class="mb-2 text-sm font-bold uppercase tracking-widest opacity-80">
+                        <p class="break-keep text-sm font-bold uppercase tracking-widest opacity-80 md:mb-2">
                             {{ project.details.client }}
                         </p>
-                        <h2 class="mb-2 whitespace-pre-line break-keep text-3xl font-bold md:text-4xl">
+                        <h2 class="whitespace-pre-line break-keep text-xl font-bold md:mb-2 md:text-4xl">
                             {{ project.details.title }}
                         </h2>
-                        <p class="text-lg font-medium opacity-90">
+                        <p class="break-keep text-sm font-medium opacity-90 md:text-lg">
                             {{ project.details.period }}
                         </p>
                     </div>
@@ -27,21 +27,20 @@
                     </div>
                 </header>
 
-                <section class="bg-white p-8 text-gray-900">
-                    <h3 class="mb-4 text-xl font-bold">Project Overview</h3>
-                    <p class="whitespace-pre-line text-base leading-relaxed text-gray-600">
-                        {{ project.details.overview }}
-                    </p>
-                </section>
+                <section class="bg-white p-4 text-gray-900 md:p-8">
+                    <h3 class="mb-4 text-lg font-bold md:text-xl">Project Overview</h3>
 
-                <!--                <section v-if="project.details.images?.length" class="bg-gray-50 p-8">-->
-                <!--                    <h3 class="mb-4 text-xl font-bold text-gray-900">Screenshots</h3>-->
-                <!--                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">-->
-                <!--                        <div v-for="(imgSrc, index) in project.details.images" :key="index" class="overflow-hidden rounded-lg border border-gray-200">-->
-                <!--                            <img :src="imgSrc" alt="Project screenshot" class="h-full w-full object-cover" />-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </section>-->
+                    <div class="text-sm leading-relaxed text-gray-600 md:text-base">
+                        <p
+                            v-for="(paragraph, index) in project.details.overview.split('\n\n')"
+                            :key="index"
+                            class="whitespace-pre-line break-keep"
+                            :class="{ 'mb-3': index < project.details.overview.split(' ').length - 1 }"
+                        >
+                            {{ paragraph }}
+                        </p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -97,4 +96,20 @@ defineExpose({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+/* ✅ [수정]
+    modalContentRef 내부의 'overflow-y-auto' 클래스를 가진
+    실제 스크롤 요소의 스크롤바를 숨깁니다.
+*/
+[ref='modalContentRef'] .overflow-y-auto::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* ✅ [수정]
+    Firefox 및 IE/Edge를 위한 설정
+*/
+[ref='modalContentRef'] .overflow-y-auto {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+</style>
