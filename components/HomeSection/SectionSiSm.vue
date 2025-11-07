@@ -77,6 +77,8 @@ import { useHeaderTheme } from '~/composables/useHeaderTheme'
 import ProjectModal from '~/components/ProjectModal.vue' // ✅ 모달 컴포넌트 Import
 import type { Project } from '~/types/project' // ✅ 공통 타입 Import
 
+gsap.registerPlugin(ScrollTrigger)
+
 const { setHeaderTheme } = useHeaderTheme()
 
 // --- 모달 상태 관리 ---
@@ -269,7 +271,6 @@ const flexContainer = ref<HTMLElement | null>(null)
 const ctx = ref<gsap.Context | null>(null)
 
 onMounted(() => {
-    gsap.registerPlugin(ScrollTrigger)
     if (!sectionRef.value || !flexContainer.value) return
 
     ctx.value = gsap.context(() => {
