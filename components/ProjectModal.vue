@@ -49,20 +49,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router' // ✅ 1. useRouter 훅을 import
 import type { Project } from '~/types/project'
 
-// ✅ 2. Nuxt 라우터 인스턴스를 가져옵니다.
-const router = useRouter()
-
-// ✅ 3. 라우터 옵션에서 base 경로를 읽어옵니다.
-// (개발 환경에서는 '/', 프로덕션(GH Pages)에서는 '/your-repo-name/')
-const basePath = router.options.history.base
-const imagePath = 'images/homeSiSm/x.svg' // (슬래시 없이)
-
-// ✅ 4. URL 객체를 사용하여 두 경로를 안전하게 조합합니다.
-// (이렇게 하면 '/' 또는 '/repo-name/' 뒤에 'images/...'가 올바르게 붙습니다.)
-const closeIconPath = new URL(imagePath, `http://dummy${basePath}`).pathname
+const closeIconPath = process.env.NODE_ENV === 'production' ? '/home/images/homeSiSm/x.svg' : '/images/homeSiSm/x.svg'
 
 // ✅ defineProps 수정
 const props = defineProps<{
