@@ -81,7 +81,7 @@ const siSmProjects = [
     {
         id: 'si_1',
         // 그라데이션 클래스를 직접 저장
-        gradientClasses: 'bg-gradient-to-br from-[#ffa800] to-[#ff5d17]',
+        gradientClasses: 'bg-gradient-to-br from-[#ffa800] via-[#ffc94b] to-[#ff5d17]',
         imageSrc: '/images/homeSiSm/oms_2.webp',
         imageAlt: 'Cuckoo Project',
         dates: ['2021.11 - 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
@@ -92,7 +92,7 @@ const siSmProjects = [
     },
     {
         id: 'si_2',
-        gradientClasses: 'bg-gradient-to-br from-[#12d6f0] to-[#12f093]',
+        gradientClasses: 'bg-gradient-to-br from-[#12d6f0] via-[#50fce0] to-[#12f093]',
         imageSrc: '/images/homeSiSm/withfresh_9.svg',
         imageAlt: 'Hanaro Project',
         dates: ['2024.01 - 2025.03'],
@@ -103,7 +103,7 @@ const siSmProjects = [
     },
     {
         id: 'si_3',
-        gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] to-[#a912f0]',
+        gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] via-[#a912f0] to-[#f012b0]',
         imageSrc: '/images/homeSiSm/kobc_1.svg',
         imageAlt: 'KOBC Project',
         dates: ['2024.10 - 2025.01'],
@@ -114,7 +114,7 @@ const siSmProjects = [
     },
     {
         id: 'si_4',
-        gradientClasses: 'bg-gradient-to-br from-[#eb3656] to-[#fea032]',
+        gradientClasses: 'bg-gradient-to-br from-[#eb3656] via-[#ff8050] to-[#fea032]',
         imageSrc: '/images/homeSiSm/migration.png',
         imageAlt: 'Lotto Project',
         dates: ['2024.10 - 2025.10'],
@@ -125,7 +125,7 @@ const siSmProjects = [
     },
     {
         id: 'si_5',
-        gradientClasses: 'bg-gradient-to-br from-[#fff6a5] to-[#ffb1b1]',
+        gradientClasses: 'bg-gradient-to-br from-[#fff6a5] via-[#ffc090] to-[#ffb1b1]',
         imageSrc: '/images/homeSiSm/autocrypt_4.jpg',
         imageAlt: 'AutoCrypt Project',
         dates: ['2024.06 - 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
@@ -136,7 +136,7 @@ const siSmProjects = [
     },
     {
         id: 'si_6',
-        gradientClasses: 'bg-gradient-to-br from-[#0072ff] to-[#00c6ff]',
+        gradientClasses: 'bg-gradient-to-br from-[#0072ff] via-[#00a0ff] to-[#00c6ff]',
         imageSrc: '/images/homeSiSm/sports_3.jpg',
         imageAlt: 'KNSU Project',
         dates: ['2022.08 - 2023.02'],
