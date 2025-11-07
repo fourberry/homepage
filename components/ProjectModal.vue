@@ -23,8 +23,8 @@
                         </p>
                     </div>
                     <div class="mt-6 aspect-video w-full overflow-hidden rounded-lg md:mt-0 md:w-2/5">
-                        <Swiper :modules="swiperModules" :navigation="true" :loop="project.details.images.length > 1" class="h-full w-full">
-                            <SwiperSlide v-for="(imageSrc, index) in project.details.images" :key="index">
+                        <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
+                            <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
                                 <NuxtImg :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
                             </SwiperSlide>
                         </Swiper>
@@ -51,20 +51,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watchEffect } from 'vue' // ✅ onMounted, watchEffect, onUnmounted 임포트 확인
+// ✅ [수정] computed 임포트 추가
+import { ref, onMounted, onUnmounted, watchEffect, computed } from 'vue'
 import type { Project } from '~/types/project'
-import { useScrollLock } from '@vueuse/core' // ✅ useScrollLock 임포트 확인
+import { useScrollLock } from '@vueuse/core'
 
-// ✅ [추가] Swiper 관련 임포트
+// Swiper 관련 임포트
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination } from 'swiper/modules'
-
-// ✅ [추가] Swiper CSS 임포트
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-// ✅ [추가] Swiper 모듈 등록
 const swiperModules = [Navigation, Pagination]
 
 const closeIconPath = process.env.NODE_ENV === 'production' ? '/home/images/homeSiSm/x.svg' : '/images/homeSiSm/x.svg'
@@ -75,6 +73,22 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['close'])
+
+// ✅ [추가] Swiper 이미지 경로를 처리하는 computed 속성
+const processedImages = computed(() => {
+    // project가 없으면 빈 배열 반환
+    if (!props.project) {
+        return []
+    }
+
+    // closeIconPath와 동일한 로직 적용
+    const prefix = process.env.NODE_ENV === 'production' ? '/home' : ''
+
+    // 원본 이미지 경로 배열을 순회하며 'prefix'를 붙인 새 배열 생성
+    return props.project.details.images.map(relativePath => {
+        return `${prefix}${relativePath}`
+    })
+})
 
 const modalOverlayRef = ref<HTMLElement | null>(null)
 const modalContentRef = ref<HTMLElement | null>(null)
@@ -99,10 +113,6 @@ const close = () => {
     emit('close')
 }
 
-// ✅ getImageClasses 함수는 이제 Swiper 내부에서 사용되지 않으므로
-//    여기서 제거하거나, 혹은 다른 곳에서 사용된다면 유지합니다.
-//    (Swiper 내부의 NuxtImg는 object-cover로 고정 스타일을 적용했습니다.)
-
 defineExpose({
     modalOverlayRef,
     modalContentRef,
@@ -110,25 +120,17 @@ defineExpose({
 </script>
 
 <style scoped>
-/* ✅ [수정]
-    modalContentRef 내부의 'overflow-y-auto' 클래스를 가진
-    실제 스크롤 요소의 스크롤바를 숨깁니다.
-*/
+/* (스타일 태그 내용은 변경 없음) */
 [ref='modalContentRef'] .overflow-y-auto::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
 }
-
-/* ✅ [수정]
-    Firefox 및 IE/Edge를 위한 설정
-*/
 [ref='modalContentRef'] .overflow-y-auto {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-/* 네비게이션 버튼 (화살표) 기본 스타일 */
 :deep(.swiper-button-prev),
 :deep(.swiper-button-next) {
-    color: #ffffff; /* 아이콘 색상 (흰색) */
+    color: #ffffff;
     opacity: 0.7;
     transition: opacity 0.2s;
 }
@@ -136,10 +138,8 @@ defineExpose({
 :deep(.swiper-button-next:hover) {
     opacity: 1;
 }
-
-/* ⭐️ 네비게이션 "아이콘 크기" 조절 */
 :deep(.swiper-button-prev::after),
 :deep(.swiper-button-next::after) {
-    font-size: 1.5rem; /* 👈 이 값을 원하는 크기로 조절하세요 (예: 24px) */
+    font-size: 1.5rem;
 }
 </style>
