@@ -23,7 +23,11 @@
                         </p>
                     </div>
                     <div class="mt-6 aspect-video w-full overflow-hidden rounded-lg md:mt-0 md:w-2/5">
-                        <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
+                        <Swiper :modules="swiperModules" :navigation="true" :loop="project.details.images.length > 1" class="h-full w-full">
+                            <SwiperSlide v-for="(imageSrc, index) in project.details.images" :key="index">
+                                <NuxtImg :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
+                            </SwiperSlide>
+                        </Swiper>
                     </div>
                 </header>
 
@@ -47,12 +51,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted, watchEffect } from 'vue' // ✅ onMounted, watchEffect, onUnmounted 임포트 확인
 import type { Project } from '~/types/project'
+import { useScrollLock } from '@vueuse/core' // ✅ useScrollLock 임포트 확인
+
+// ✅ [추가] Swiper 관련 임포트
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination } from 'swiper/modules'
+
+// ✅ [추가] Swiper CSS 임포트
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+// ✅ [추가] Swiper 모듈 등록
+const swiperModules = [Navigation, Pagination]
 
 const closeIconPath = process.env.NODE_ENV === 'production' ? '/home/images/homeSiSm/x.svg' : '/images/homeSiSm/x.svg'
 
-// ✅ defineProps 수정
 const props = defineProps<{
     project: Project | null
     projectBgColor: string
@@ -63,7 +79,7 @@ const emit = defineEmits(['close'])
 const modalOverlayRef = ref<HTMLElement | null>(null)
 const modalContentRef = ref<HTMLElement | null>(null)
 
-// --- ✅ [추가] 스크롤 잠금 로직 ---
+// --- 스크롤 잠금 로직 ---
 const htmlEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(htmlEl)
 
@@ -72,11 +88,9 @@ onMounted(() => {
 })
 
 watchEffect(() => {
-    // ⭐️ 중요: props.show 대신 props.project가 null이 아닌지 확인
     isLocked.value = props.project !== null
 })
 
-// (선택사항) 컴포넌트가 v-if로 제거될 때 스크롤 잠금을 확실히 해제
 onUnmounted(() => {
     isLocked.value = false
 })
@@ -85,28 +99,9 @@ const close = () => {
     emit('close')
 }
 
-// ✅ Project 타입이 null일 수 있으므로, project가 있을 때만 호출되도록 보장
-const getImageClasses = (project: Project) => {
-    switch (project.imageStyle) {
-        case 'cuckoo':
-            return 'w-full h-full object-cover'
-        case 'lotto':
-            return 'w-full h-full object-cover'
-        case 'auto':
-            return 'w-full h-full object-cover object-top'
-        case 'knsu':
-            return 'w-full h-full object-cover'
-        case 'withfresh':
-            return 'w-full h-full object-cover'
-        default:
-            return 'w-full h-full object-cover object-top'
-    }
-}
-
-// 모달이 열릴 때 애니메이션 (부모 컴포넌트에서 제어할 수도 있음)
-// 여기서는 부모가 v-if로 제어하므로 이 컴포넌트 자체의 onMounted는 사용하지 않음.
-// GSAP 애니메이션을 추가하려면 v-if 대신 v-show를 사용하고 watch를 사용해야 합니다.
-// (제공해주신 코드에는 애니메이션 로직이 없으므로 일단 생략합니다.)
+// ✅ getImageClasses 함수는 이제 Swiper 내부에서 사용되지 않으므로
+//    여기서 제거하거나, 혹은 다른 곳에서 사용된다면 유지합니다.
+//    (Swiper 내부의 NuxtImg는 object-cover로 고정 스타일을 적용했습니다.)
 
 defineExpose({
     modalOverlayRef,
@@ -129,5 +124,22 @@ defineExpose({
 [ref='modalContentRef'] .overflow-y-auto {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+}
+/* 네비게이션 버튼 (화살표) 기본 스타일 */
+:deep(.swiper-button-prev),
+:deep(.swiper-button-next) {
+    color: #ffffff; /* 아이콘 색상 (흰색) */
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+:deep(.swiper-button-prev:hover),
+:deep(.swiper-button-next:hover) {
+    opacity: 1;
+}
+
+/* ⭐️ 네비게이션 "아이콘 크기" 조절 */
+:deep(.swiper-button-prev::after),
+:deep(.swiper-button-next::after) {
+    font-size: 1.5rem; /* 👈 이 값을 원하는 크기로 조절하세요 (예: 24px) */
 }
 </style>
