@@ -210,13 +210,13 @@ onMounted(() => {
                     const endPadding = 200
 
                     gsap.to(wrapper, {
-                        x: () => -(wrapper.scrollWidth - document.documentElement.clientWidth + endPadding) + 'px',
+                        x: () => -(wrapper.scrollWidth - document.documentElement.clientWidth) + 'px',
                         ease: 'none',
                         scrollTrigger: {
                             trigger: sectionRef.value,
                             pin: true,
                             scrub: 1,
-                            end: () => '+=' + (wrapper.scrollWidth - document.documentElement.clientWidth + endPadding),
+                            end: () => '+=' + (wrapper.scrollWidth - document.documentElement.clientWidth),
                             invalidateOnRefresh: true,
                             onToggle: self => {
                                 if (self.isActive) {
@@ -234,6 +234,9 @@ onMounted(() => {
                     cards.forEach((card: any, index: number) => {
                         const cardContent = card.querySelector('.portfolio-item-replacement')
                         const unifiedOverlay = card.querySelector('.unified-overlay')
+                        const isLastCard = index === cards.length - 1
+                        const isLastSecondCard = index === cards.length - 2
+                        const isLastThirdCard = index === cards.length - 3
 
                         if (cardContent) {
                             card.addEventListener('mouseenter', () => {
@@ -241,8 +244,11 @@ onMounted(() => {
                                 const cardWidth = card.offsetWidth
                                 const pushAmount = cardWidth * (scaleFactor - 1) // (너비 * 0.2)
 
+                                const origin = isLastCard || isLastSecondCard || isLastThirdCard ? 'right top' : 'left top'
+
                                 gsap.to(card, {
                                     scale: scaleFactor, // 3. 상수 사용
+                                    transformOrigin: origin,
                                     zIndex: 10,
                                     duration: 0.3,
                                     ease: 'power1.out',
@@ -252,16 +258,29 @@ onMounted(() => {
                                     duration: 0.3,
                                     ease: 'power1.out',
                                 })
-                                gsap.to(cards.slice(index + 1), {
-                                    x: pushAmount, // 4. 동적으로 계산된 값 적용
-                                    duration: 0.3,
-                                    ease: 'power1.out',
-                                })
+                                if (isLastCard || isLastSecondCard || isLastThirdCard) {
+                                    // 마지막 카드: 자신(index)을 제외한 이전 카드들(0 ~ index-1)을 왼쪽으로 민다.
+                                    gsap.to(cards.slice(0, index), {
+                                        x: -pushAmount, // ✅ 마이너스 값으로 왼쪽으로 이동
+                                        duration: 0.3,
+                                        ease: 'power1.out',
+                                    })
+                                } else {
+                                    // 마지막 카드가 아님: 자신(index) 다음 카드들(index+1 ~ 끝)을 오른쪽으로 민다.
+                                    gsap.to(cards.slice(index + 1), {
+                                        x: pushAmount,
+                                        duration: 0.3,
+                                        ease: 'power1.out',
+                                    })
+                                }
                             })
 
                             card.addEventListener('mouseleave', () => {
+                                const origin = isLastCard || isLastSecondCard || isLastThirdCard ? 'right top' : 'left top'
+
                                 gsap.to(card, {
                                     scale: 1.0,
+                                    transformOrigin: origin,
                                     zIndex: 1,
                                     duration: 0.3,
                                     ease: 'power1.out',
