@@ -50,4 +50,12 @@ export default defineNuxtConfig({
             ],
         },
     },
+    // Nuxt Image 설정
+    image: {
+        // ✅ [수정] provider를 'static'으로 변경합니다.
+        // 이렇게 하면 _ipx 같은 동적 최적화 서버 없이
+        // GitHub Pages 같은 정적 호스팅에서 이미지가 올바르게 작동합니다.
+        // <NuxtImg>가 기본 <img> 태그처럼 정적 경로를 사용하게 됩니다.
+        provider: 'static',
+    },
 })

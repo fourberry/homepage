@@ -65,7 +65,7 @@ import 'swiper/css/pagination'
 
 const swiperModules = [Navigation, Pagination]
 
-const closeIconPath = process.env.NODE_ENV === 'production' ? '/home/images/homeSiSm/x.svg' : '/images/homeSiSm/x.svg'
+const closeIconPath = '/images/homeSiSm/x.svg'
 
 const props = defineProps<{
     project: Project | null
@@ -74,19 +74,18 @@ const props = defineProps<{
 
 const emit = defineEmits(['close'])
 
-// ✅ [추가] Swiper 이미지 경로를 처리하는 computed 속성
+// ✅ [수정] processedImages에서 prefix 로직을 완전히 제거
 const processedImages = computed(() => {
-    // project가 없으면 빈 배열 반환
     if (!props.project) {
         return []
     }
 
-    // closeIconPath와 동일한 로직 적용
-    const prefix = process.env.NODE_ENV === 'production' ? '/home' : ''
+    // ✅ [제거] const prefix = ... 이 부분 전체 삭제
 
-    // 원본 이미지 경로 배열을 순회하며 'prefix'를 붙인 새 배열 생성
+    // NuxtImg가 baseURL 기준으로 절대 경로를 올바르게 해석합니다.
     return props.project.details.images.map(relativePath => {
-        return `${prefix}${relativePath}`
+        // relativePath가 이미 '/images/...'로 시작하므로 그대로 반환
+        return relativePath
     })
 })
 
