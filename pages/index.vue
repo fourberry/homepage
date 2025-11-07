@@ -5,7 +5,7 @@
         <HomeSectionBusiness />
         <HomeSectionValues />
         <HomeSectionCEO />
-        <HomeSectionbeforeSectionSiSm />
+        <HomeSectionSiSm />
         <HomeSectionSolution />
         <HomeSectionCulture />
         <SectionContact />
