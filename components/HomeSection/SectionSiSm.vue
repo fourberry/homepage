@@ -29,7 +29,8 @@
                         v-for="project in siSmProjects"
                         :key="project.id"
                         :class="['flex-panel-card', project.gradientClasses]"
-                        class="relative flex h-auto w-full flex-shrink-0 items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
+                        class="relative flex h-auto w-full flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
+                        @click="openModal(project)"
                     >
                         <div class="portfolio-item-replacement relative z-10 flex h-[45rem] w-full flex-col overflow-hidden py-[30px] sm:h-[50rem] md:h-[50rem] xl:h-full">
                             <div class="thumbnail relative z-10 mx-auto flex h-[30rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[30rem]">
@@ -63,6 +64,8 @@
                 </div>
             </div>
         </section>
+
+        <ProjectModal v-if="isModalOpen" :project="selectedProject" :project-bg-color="selectedProject?.bgColor || '#ffffff'" @close="closeModal" />
     </div>
 </template>
 
@@ -71,39 +74,85 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
+import ProjectModal from '~/components/ProjectModal.vue' // ✅ 모달 컴포넌트 Import
+import type { Project } from '~/types/project' // ✅ 공통 타입 Import
 
 gsap.registerPlugin(ScrollTrigger)
 
 const { setHeaderTheme } = useHeaderTheme()
 
-// ✅ 여기에 프로젝트 데이터 배열을 추가합니다.
-const siSmProjects = [
+// --- 모달 상태 관리 ---
+const isModalOpen = ref(false)
+const selectedProject = ref<Project | null>(null)
+
+const openModal = (project: Project) => {
+    selectedProject.value = project
+    isModalOpen.value = true
+}
+
+const closeModal = () => {
+    isModalOpen.value = false
+    // 애니메이션을 위해 잠시 기다렸다가 null로 설정할 수 있습니다.
+    // 여기서는 즉시 닫습니다.
+    selectedProject.value = null
+}
+// ---
+
+// ✅ 프로젝트 데이터 배열 (bgColor 및 details 추가됨)
+const siSmProjects: Project[] = [
     {
         id: 'si_1',
-        // 그라데이션 클래스를 직접 저장
         gradientClasses: 'bg-gradient-to-br from-[#ffa800] via-[#ffc94b] to-[#ff5d17]',
+        bgColor: '#ff5d17', // 대표 색상 (그라디언트 끝 색)
         imageSrc: '/images/homeSiSm/oms_2.webp',
         imageAlt: 'Cuckoo Project',
-        dates: ['2021.11 - 2022.09'], // 날짜가 여러 개인 경우를 대비해 배열로 관리
+        dates: ['2021.11 - 2022.09'],
         title: 'OMS 및 차세대\n영업관리 시스템 구축',
         clientName: 'CUCKOO',
-        imageStyle: 'cuckoo', // Cuckoo 로고만 특별 스타일 적용
+        imageStyle: 'cuckoo',
         smallH3: false,
+        details: {
+            client: '쿠쿠홀딩스 (CUCKOO)',
+            title: 'OMS 및 차세대 영업관리 시스템 구축',
+            period: '2021.11 - 2022.09 (OMS) / 2019.05 - 2019.12 (영업관리)',
+            overview: `쿠쿠의 통합 쇼핑몰 관리 시스템(OMS)과 차세대 영업관리 시스템(POS & WEB)을 구축한 프로젝트입니다.
+            \n\nOMS는 78개에 달하는 홈쇼핑, 쇼핑몰, 폐쇄몰 등 다양한 영업채널의 주문, 배송, 재고 관리를 통합 관리합니다.
+            \n차세대 영업관리 시스템은 업무 중심의 판매 관리(POS/WEB), 정산, 재고, 매출, 영업 분석 및 고객 정보 관리를 포함하는 유통 관점의 실시간 데이터 관리 시스템입니다.`,
+            images: [
+                '/images/modal/cuckoo_1.png', // PPT 13p (개선방향)
+                '/images/modal/cuckoo_2.png', // PPT 15p (쿠쿠스토어)
+            ],
+        },
     },
     {
         id: 'si_2',
         gradientClasses: 'bg-gradient-to-br from-[#12d6f0] via-[#50fce0] to-[#12f093]',
+        bgColor: '#12f093',
         imageSrc: '/images/homeSiSm/withfresh_9.svg',
         imageAlt: 'Hanaro Project',
         dates: ['2024.01 - 2025.03'],
         title: '브랜드몰 (하이브리드 앱) 및 \n SSO 구축',
         clientName: 'WITH FRESH',
         imageStyle: 'withfresh',
-        smallH3: true, // 긴 텍스트용 h3
+        smallH3: true,
+        details: {
+            client: '영등포농협 (WITH FRESH)',
+            title: '온라인 브랜드 쇼핑몰 및 SSO 시스템 구축',
+            period: '2024.01 - 2025.03 (쇼핑몰) / 2024.08 - 2024.12 (SSO)',
+            overview: `영등포농협의 자체 브랜드몰 'Always withFresh'를 구축한 프로젝트입니다.
+            \nHybrid 모바일 앱, 온라인 쇼핑몰, 관리자 사이트 및 관리자 앱을 포함하며, 상품, 전시, CMS, 프로모션(행사, 쿠폰), 통계 등 약 100여 건의 관리자 메뉴를 구현했습니다.
+            \n\n또한, 2개의 관리 사이트와 신규 브랜드몰의 회원을 통합 관리하기 위한 SSO(Single Sign-On) 시스템을 구축했습니다.
+             휴대폰 및 소셜(카카오, 네이버, 애플) 인증을 통한 간편 가입/로그인 기능을 제공합니다.`,
+            images: [
+                '/images/modal/withfresh_1.png', // PPT 11p (앱 화면)
+                '/images/modal/withfresh_2.png', // PPT 20p (SSO 화면)
+            ],
+        },
     },
     {
         id: 'si_3',
         gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] via-[#a912f0] to-[#f012b0]',
+        bgColor: '#a912f0',
         imageSrc: '/images/homeSiSm/kobc_1.svg',
         imageAlt: 'KOBC Project',
         dates: ['2024.10 - 2025.01'],
@@ -111,32 +160,69 @@ const siSmProjects = [
         clientName: 'KOBC',
         imageStyle: 'default',
         smallH3: false,
+        details: {
+            client: '한국해양공사 (KOBC)',
+            title: '매연 저감 게이미피케이션 캠페인 (Green Sailing)',
+            period: '2024.10 - 2025.01',
+            overview: `한국해양공사(KOBC)의 선박 매연 저감 캠페인을 홍보하기 위해 '부루마블' 형식의 게이미피케이션을 접목한 PC/모바일 웹 게임을 구축했습니다.
+            \n주사위를 굴려 전 세계 주요 항구를 순회하며 매연 발생을 최소화하는 것이 목표입니다.
+             저사양 모바일 기기에서도 원활하게 구동될 수 있도록 최적화 작업을 진행했습니다.`,
+            images: [
+                '/images/modal/kobc_1.png', // PPT 19p (PC)
+                '/images/modal/kobc_2.png', // PPT 19p (모바일)
+            ],
+        },
     },
     {
         id: 'si_4',
         gradientClasses: 'bg-gradient-to-br from-[#eb3656] via-[#ff8050] to-[#fea032]',
+        bgColor: '#fea032',
         imageSrc: '/images/homeSiSm/migration.png',
         imageAlt: 'Lotto Project',
         dates: ['2024.10 - 2025.10'],
         title: '인쇄복권 시스템 통합 및\n DB 전환',
         clientName: 'DONGHANG',
         imageStyle: 'lotto',
-        smallH3: true, // 긴 텍스트용 h3
+        smallH3: true,
+        details: {
+            client: '동행복권',
+            title: '인쇄복권 시스템 통합 및 DB 전환',
+            period: '2024.10 - 2025.10 (예정)',
+            overview: `이원화되어 운영 중인 인쇄복권 시스템(PTMS/PLMS)을 통합하고, 시스템 안정성 확보를 위해 데이터베이스를 전환하는 대규모 프로젝트입니다.
+            \n약 200여 개의 시스템 메뉴를 변환하며, 50억 건에 달하는 대용량 데이터를 Mysql에서 Oracle로 안정적으로 이관하는 작업을 포함합니다.`,
+            images: [
+                '/images/modal/donghang_1.png', // PPT 9p (전환 현황)
+                '/images/modal/donghang_2.png', // PPT 9p (ETL 툴)
+            ],
+        },
     },
     {
         id: 'si_5',
         gradientClasses: 'bg-gradient-to-br from-[#fff6a5] via-[#ffc090] to-[#ffb1b1]',
+        bgColor: '#ffb1b1',
         imageSrc: '/images/homeSiSm/autocrypt_4.jpg',
         imageAlt: 'AutoCrypt Project',
-        dates: ['2024.06 - 2024.10'], // AUTOCRYPT처럼 날짜가 2개인 경우
+        dates: ['2024.06 - 2024.10'],
         title: '자동차 보안 대응 시스템(K-CSMS)\n 구축',
         clientName: 'AUTOCRYPT',
         imageStyle: 'auto',
-        smallH3: true, // 긴 텍스트용 h3
+        smallH3: true,
+        details: {
+            client: '아우토크립트 (AUTOCRYPT)',
+            title: '자동차 보안 대응 시스템(K-CSMS) 구축',
+            period: '1차: 2024.06 - 2024.10 / 2차: 2025.06 - 2025.09',
+            overview: `IT 보안 취약점 중 특히 자동차 보안 분야의 취약점 정보를 공유하고 대응하기 위한 커뮤니티 및 데이터베이스 사이트(K-CSMS)를 구축했습니다.
+            \n대시보드를 통해 CVE(보안 취약점) 현황, CWE(보안 약점) 유형, CVSS(위험도) 등을 시각화하여 제공하며, 코드 기반 SW 자동 점검 기능 등을 포함합니다.`,
+            images: [
+                '/images/modal/autocrypt_1.png', // PPT 17p (대시보드1)
+                '/images/modal/autocrypt_2.png', // PPT 17p (대시보드2)
+            ],
+        },
     },
     {
         id: 'si_6',
         gradientClasses: 'bg-gradient-to-br from-[#0072ff] via-[#00a0ff] to-[#00c6ff]',
+        bgColor: '#00c6ff',
         imageSrc: '/images/homeSiSm/sports_3.jpg',
         imageAlt: 'KNSU Project',
         dates: ['2022.08 - 2023.02'],
@@ -144,6 +230,18 @@ const siSmProjects = [
         clientName: 'KNSU',
         imageStyle: 'knsu',
         smallH3: false,
+        details: {
+            client: '한국체육대학교 (KNSU)',
+            title: 'AI 기반 실시간 승부조작 위험성 경고 시스템',
+            period: '2022.08 - 2023.02',
+            overview: `스포츠 경기의 승부조작을 탐지하기 위한 AI 기반 시스템을 구축했습니다.
+            \n실시간으로 다양한 경기 데이터를 수집하고, 5가지 고유의 알고리즘 모델을 구현하여 경기 패턴을 분석합니다.
+             이를 통해 비정상적인 경기로 판단될 경우 '주의', '경계' 등의 경고를 표시합니다.`,
+            images: [
+                '/images/modal/knsu_1.png', // PPT 23p (경기 결과)
+                '/images/modal/knsu_2.png', // PPT 23p (그래프)
+            ],
+        },
     },
 ]
 
