@@ -63,6 +63,24 @@ const emit = defineEmits(['close'])
 const modalOverlayRef = ref<HTMLElement | null>(null)
 const modalContentRef = ref<HTMLElement | null>(null)
 
+// --- ✅ [추가] 스크롤 잠금 로직 ---
+const htmlEl = ref<HTMLElement | null>(null)
+const isLocked = useScrollLock(htmlEl)
+
+onMounted(() => {
+    htmlEl.value = document.documentElement
+})
+
+watchEffect(() => {
+    // ⭐️ 중요: props.show 대신 props.project가 null이 아닌지 확인
+    isLocked.value = props.project !== null
+})
+
+// (선택사항) 컴포넌트가 v-if로 제거될 때 스크롤 잠금을 확실히 해제
+onUnmounted(() => {
+    isLocked.value = false
+})
+
 const close = () => {
     emit('close')
 }
