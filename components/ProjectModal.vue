@@ -6,7 +6,7 @@
                 class="h-13 w-13 absolute right-1 top-1 z-10 flex items-center justify-center text-3xl font-black text-white transition-all duration-200 ease-in-out"
                 aria-label="닫기"
             >
-                <NuxtImg :src="closeIconPath" alt="닫기" class="h-10 w-10 brightness-0 invert" />
+                <img :src="closeIconPath" alt="닫기" class="h-10 w-10 brightness-0 invert" />
             </button>
 
             <div v-if="project" class="overflow-y-auto rounded-lg" style="max-height: 90vh">
