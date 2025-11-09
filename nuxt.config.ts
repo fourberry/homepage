@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     devtools: { enabled: false },
 
     // ✅ 사용 모듈들 (nuxt/image 옵션 인라인)
-    modules: ['@nuxtjs/tailwindcss', ['@nuxt/image', { format: ['webp', 'avif'] }], '@vueuse/nuxt', 'unplugin-icons/nuxt', '@vueuse/motion/nuxt'],
+    modules: ['@nuxtjs/tailwindcss', 'nuxt-swiper', ['@nuxt/image', { format: ['webp', 'avif'] }], '@vueuse/nuxt', 'unplugin-icons/nuxt', '@vueuse/motion/nuxt'],
 
     // ✅ 전역 CSS 등록 (Tailwind + 공통 SCSS)
     css: ['~/assets/css/tailwind.css', '~/assets/scss/common.scss'],
