@@ -77,7 +77,7 @@
                     <i class="fa-solid fa-phone text-blue-100 translate-x-[12px]"></i>
                   </span>
                   <span>
-                    <a href="tel:010-2755-6550" class="hover:text-yellow-200 transition">010-2755-0650</a>
+                    <a href="tel:010-2755-0650" class="hover:text-yellow-200 transition">010-2755-0650</a>
                   </span>
 
                   <span class="flex items-center gap-[2px] text-sm md:text-base text-blue-100">
@@ -91,7 +91,7 @@
                     <i class="fa-solid fa-envelope text-blue-100 translate-x-[12px]"></i>
                   </span>
                   <span class="break-all text-white">
-                    <a href="mailto:damon@fourberry.co.kr" class="hover:text-yellow-200 transition">
+                    <a href="mailto:fourberry@fourberry.co.kr" class="hover:text-yellow-200 transition">
                       fourberry@fourberry.co.kr
                     </a>
                   </span>
