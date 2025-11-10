@@ -40,10 +40,24 @@
                     </div>
                 </header>
 
-                <div class="aspect-video w-full overflow-hidden">
+                <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                     <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
                         <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
-                            <img :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
+                            <div class="relative h-full w-full">
+                                <div v-if="!imageLoadStatus[imageSrc]" class="absolute inset-0 z-10 flex h-full w-full items-center justify-center">
+                                    <div class="h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-gray-300 border-t-gray-900 dark:border-gray-600 dark:border-t-gray-100"></div>
+                                </div>
+
+                                <img
+                                    :src="imageSrc"
+                                    :alt="`${project.details.title} 이미지 ${index + 1}`"
+                                    class="relative z-0 block h-full w-full object-cover transition-opacity duration-300"
+                                    :class="imageLoadStatus[imageSrc] ? 'opacity-100' : 'opacity-0'"
+                                    @load="imageLoadStatus[imageSrc] = true"
+                                    @error="imageLoadStatus[imageSrc] = true"
+                                    loading="lazy"
+                                />
+                            </div>
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -69,7 +83,7 @@
 
 <script setup lang="ts">
 // ✅ [수정] computed 임포트 추가
-import { ref, onMounted, onUnmounted, watchEffect, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watchEffect, computed, watch } from 'vue'
 import type { Project } from '~/types/project'
 import { useScrollLock } from '@vueuse/core'
 
@@ -129,6 +143,20 @@ watchEffect(() => {
 onUnmounted(() => {
     isLocked.value = false
 })
+
+// 각 이미지 소스(src)를 key로, 로드 완료 여부(boolean)를 value로 가짐
+const imageLoadStatus = ref<Record<string, boolean>>({})
+
+// ✅ project prop이 변경될 때 (즉, 모달이 새로 열릴 때)
+// 저장된 로딩 상태를 모두 초기화합니다.
+watch(
+    () => props.project,
+    newProject => {
+        if (newProject) {
+            imageLoadStatus.value = {}
+        }
+    }
+)
 
 const close = () => {
     emit('close')
