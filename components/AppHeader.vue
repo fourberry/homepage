@@ -77,8 +77,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
 
-const isProduction = process.env.NODE_ENV === 'production'
-const basePath = isProduction ? '/home' : ''
+// ✅ [수정] basePath를 ref로 변경하고 기본값 '/'로 설정
+const basePath = ref('/')
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -86,19 +86,18 @@ const handleLogoClick = () => {
     // 1. 현재 페이지의 경로(pathname)가 basePath와 정확히 일치하고,
     // 2. 해시(#)가 없는 경우
     //    (즉, .../home/ 이고 .../home/#about이 아닌 경우)
-    if (window.location.pathname === basePath && !window.location.hash) {
+    if (window.location.pathname === basePath.value && !window.location.hash) {
         // 이미 루트이므로, 강제 새로고침
         window.location.reload()
     } else {
         // 해시가 있거나 다른 페이지에 있다면, 루트 경로로 이동
         // (브라우저가 페이지를 새로 불러옵니다)
-        window.location.href = basePath
+        window.location.href = basePath.value
     }
 }
 
 const route = useRoute()
-const isHomePage = computed(() => route.path === '/')
-let scrollTriggerInstance: ScrollTrigger | null = null
+const isHomePage = computed(() => route.path === basePath.value)
 
 const { theme, setHeaderTheme } = useHeaderTheme()
 
@@ -125,6 +124,7 @@ const headerClasses = computed(() => {
         return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
     if (!isHomePage.value) {
+        console.log('this?')
         return [baseClasses, 'fixed bg-white text-gray-800 shadow-sm']
     }
     switch (theme.value) {
@@ -137,23 +137,6 @@ const headerClasses = computed(() => {
             return [baseClasses, 'absolute bg-transparent text-transparent']
     }
 })
-
-const setupScrollTrigger = () => {
-    scrollTriggerInstance?.kill()
-    if (isHomePage.value) {
-        scrollTriggerInstance = ScrollTrigger.create({
-            trigger: 'body',
-            start: 'top top',
-            end: '+=10',
-            onUpdate: self => {
-                const scrolled = self.scroll() > 10
-                if (theme.value !== 'transparent') {
-                    setHeaderTheme(scrolled ? 'dark' : 'light')
-                }
-            },
-        })
-    }
-}
 
 /* ---------- [로고 애니메이션 추가] ---------- */
 const logoText = 'FOURBERRY'
@@ -200,13 +183,22 @@ const buildLogoTimeline = () => {
 }
 
 onMounted(() => {
-    if (isHomePage.value) {
-        const scrolled = window.scrollY > 10
-        if (theme.value !== 'transparent') {
-            setHeaderTheme(scrolled ? 'dark' : 'light')
-        }
-        setupScrollTrigger()
+    const isProduction = process.env.NODE_ENV === 'production'
+    const hostname = window.location.hostname
+    if (isProduction && hostname === 'fourberry.github.io') {
+        basePath.value = '/home'
     } else {
+        basePath.value = '/'
+    }
+
+    // ✅ [수정] 스크롤 트리거 생성 로직을 제거하고,
+    // 홈 페이지일 경우 'light' 테마를 설정하는 로직만 남깁니다.
+    if (isHomePage.value) {
+        // 인트로 애니메이션이 실행 중이므로 헤더를 숨기기 위해 'light'로 설정
+        console.log('light')
+        setHeaderTheme('light')
+    } else {
+        console.log('dark')
         setHeaderTheme('dark')
     }
 
@@ -219,15 +211,14 @@ onMounted(() => {
         newPath => {
             isMobileMenuOpen.value = false
 
-            if (newPath === '/') {
-                const scrolled = window.scrollY > 10
-                setHeaderTheme(scrolled ? 'dark' : 'light')
-                setupScrollTrigger()
+            // ✅ [수정] setupScrollTrigger() 호출 제거
+            if (isHomePage.value) {
+                // 페이지가 전환되었으므로 스크롤이 0임. 'light'로 설정
+                setHeaderTheme('light')
                 buildLogoTimeline()
             } else {
+                console.log('dark')
                 setHeaderTheme('dark')
-                scrollTriggerInstance?.disable()
-                // 다른 페이지에서는 과도한 움직임 방지를 위해 일단 정지
                 logoTl?.pause(0)
             }
         }
@@ -244,7 +235,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-    scrollTriggerInstance?.kill()
     logoTl?.kill()
 })
 /* ---------- [로고 애니메이션 추가 끝] ---------- */

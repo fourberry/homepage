@@ -9,21 +9,16 @@
                     <br />
                     고객의 경험과 가치를 우선합니다.
                 </h1>
-                <p ref="stage1Subtitle"
-                    class="hero-subtitle mt-4 break-keep text-[clamp(0.9rem,3vw,1.2rem)] opacity-80">making sweet and
-                    sour software</p>
+                <p ref="stage1Subtitle" class="hero-subtitle mt-4 break-keep text-[clamp(0.9rem,3vw,1.2rem)] opacity-80">making sweet and sour software</p>
             </div>
         </section>
 
         <!-- Stage 2 -->
         <section ref="stage2" class="absolute inset-0 h-screen min-h-[560px]">
             <div ref="stage2BgWrapper" class="absolute inset-0 overflow-hidden">
-                <img src="/images/aboutMain.jpg" alt="FOURBERRY background"
-                    class="h-full w-full object-cover object-[50%_40%]" />
+                <img src="/images/aboutMain.jpg" alt="FOURBERRY background" class="h-full w-full object-cover object-[50%_40%]" />
                 <div class="absolute inset-0 bg-black/45"></div>
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20">
-                </div>
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
             </div>
 
             <!-- ✅ 좌하단 고정 앵커 (같은 시작 세로선 유지) -->
@@ -36,12 +31,9 @@
                     </h1>
 
                     <p
-                    class="mt-[clamp(px,1.5vw,16px)]
-                            text-[clamp(11px,3.0vw,18px)]   <!--  모바일일 때 작게 -->
-                            sm:text-[clamp(14px,1.8vw,22px)] <!--  sm(640px 이상)부터 기존 크기 -->
-                            font-semibold text-gray-300
-                            leading-snug tracking-tight">
-                    고객 만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.
+                        class="<!-- 모바일일 때 작게 --> <!-- sm(640px 이상)부터 기존 크기 --> mt-[clamp(px,1.5vw,16px)] text-[clamp(11px,3.0vw,18px)] font-semibold leading-snug tracking-tight text-gray-300 sm:text-[clamp(14px,1.8vw,22px)]"
+                    >
+                        고객 만족을 넘어 고객 감동을 제공하는 IT 최고의 기업이 되겠습니다.
                     </p>
                 </div>
             </div>
@@ -50,7 +42,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 
 // Stage 1 refs
@@ -65,6 +57,9 @@ const stage2 = ref(null)
 const stage2BgWrapper = ref(null)
 const stage2TextWrapper = ref(null)
 const stage2Typing = ref(null)
+
+// ✅ [추가] emit 정의
+const emit = defineEmits(['animationComplete'])
 
 const text = 'FOURBERRY.'
 
@@ -94,7 +89,12 @@ function typeAndDelete(el, text, speed = 250, delay = 3000) {
 }
 
 function startUnifiedAnimation() {
-    const masterTl = gsap.timeline()
+    const masterTl = gsap.timeline({
+        // ✅ [추가] 타임라인 전체가 완료되면 스크롤 잠금 해제
+        onComplete: () => {
+            emit('animationComplete')
+        },
+    })
 
     // === Stage 1 (0~4s)
     masterTl
@@ -207,6 +207,8 @@ onMounted(() => {
     // 통합 애니메이션 시작
     startUnifiedAnimation()
 })
+
+onUnmounted(() => {})
 </script>
 
 <style scoped>
