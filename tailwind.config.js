@@ -49,6 +49,7 @@ export default {
                 custom: ['VinaSans', ...defaultTheme.fontFamily.sans],
                 poppins: ['poppins', ...defaultTheme.fontFamily.sans],
                 notoSans: ['notoSans', ...defaultTheme.fontFamily.sans],
+                pretendard: ['Pretendard', 'sans-serif'],
             },
             maxWidth: {
                 '8xl': '1440px', // 1440px 너비 (이름은 자유롭게)

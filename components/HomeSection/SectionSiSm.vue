@@ -37,7 +37,7 @@
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
                             </div>
                             <div class="description relative z-10 mb-2 flex min-h-[4.5em] w-full items-center justify-between px-4 text-gray-950">
-                                <div class="text-left font-poppins text-[1rem] font-bold opacity-80 sm:text-[1rem]">
+                                <div class="text-left font-poppins text-[1rem] font-bold tabular-nums opacity-80 sm:text-[1rem]">
                                     <div v-for="(date, index) in project.dates" :key="index" class="kind">
                                         <template v-if="date.includes(' - ')">
                                             <p>{{ date.split(' - ')[0] }}</p>
