@@ -78,7 +78,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
 
 const isProduction = process.env.NODE_ENV === 'production'
-const basePath = isProduction ? '/home' : '/'
+const basePath = isProduction ? '/home' : ''
 
 gsap.registerPlugin(ScrollTrigger)
 
