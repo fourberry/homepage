@@ -163,7 +163,7 @@ const siSmProjects: Project[] = [
             overview: `한국해양공사(KOBC)의 선박 매연 저감 캠페인을 홍보하기 위해 '부루마블' 형식의 게이미피케이션을 접목한 PC/모바일 웹 게임을 구축했습니다.
             \n주사위를 굴려 전 세계 주요 항구를 순회하며 매연 발생을 최소화하는 것이 목표입니다.
              저사양 모바일 기기에서도 원활하게 구동될 수 있도록 최적화 작업을 진행했습니다.`,
-            images: ['/images/homeSiSm/kobc_1.png', '/images/homeSiSm/kobc_2.png', '/images/homeSiSm/kobc_3.png', '/images/homeSiSm/kobc_4.png'],
+            images: ['/images/homeSiSm/kobc_12.jpg', '/images/homeSiSm/kobc_10.jpg', '/images/homeSiSm/kobc_11.jpg'],
         },
     },
     {

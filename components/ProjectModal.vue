@@ -225,7 +225,7 @@ const getImageObjectFitClass = (projectId: string, imageIndex: number) => {
         // KOBC 프로젝트의 ID가 'si_3'일 때
         // 2, 3, 4번째 이미지 (0부터 시작하므로 인덱스는 1, 2, 3)
         if (imageIndex >= 1 && imageIndex <= 3) {
-            return 'object-fill'
+            return 'object-cover object-top'
         }
     }
     if (projectId === 'si_5') {
