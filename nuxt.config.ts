@@ -30,7 +30,7 @@ export default defineNuxtConfig({
 
     // ✅ 전역 head/SEO
     app: {
-        baseURL: '/home/',
+        baseURL: '/',
         head: {
             titleTemplate: '%s (주)포베리',
             meta: [
