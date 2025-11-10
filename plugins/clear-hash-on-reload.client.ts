@@ -16,16 +16,26 @@ export default defineNuxtPlugin((nuxtApp) => {
             navEntry?.type === 'reload' ||
             (performance as any)?.navigation?.type === 1;
 
+        console.log('isReload : ', isReload);
+
         // 조건: 홈(/) + 해시 존재 + 새로고침
         if (isReload && route.path === '/' && route.hash) {
             // 해시 제거(히스토리 추가 없음)
             await router.replace({ path: '/', hash: undefined });
 
+            console.log(`1`);
             // 홈 최상단으로 이동
-            window.scrollTo(0, 0);
+            setTimeout(() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+            }, 50);
 
             // 필요 시 디버그 로그
             // console.info('새로고침 감지: 해시 제거 후 홈 상단으로 이동');
+        } else if(isReload) {
+            console.log(`2`);
+            setTimeout(() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+            }, 50);
         }
     });
 });

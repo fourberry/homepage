@@ -7,9 +7,9 @@ html,
 body {
     height: 100%;
 } //페이지의 최소 높이를 뷰포트 전체로 설정
-html {
-    scroll-behavior: smooth;
-} //앵커 링크 클릭 시 부드럽게 스크롤되도록 설정
+// html {
+//     scroll-behavior: smooth;
+// } //앵커 링크 클릭 시 부드럽게 스크롤되도록 설정
 
 /* 스킵 링크(접근성) */
 .sr-only {
