@@ -32,11 +32,11 @@
                         class="relative flex h-auto w-full flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden xl:h-full xl:w-[33vw] xl:origin-top-left xl:items-start xl:pt-10"
                         @click="openModal(project)"
                     >
-                        <div class="portfolio-item-replacement relative z-10 flex h-[45rem] w-full flex-col overflow-hidden py-[30px] sm:h-[50rem] md:h-[50rem] xl:h-full">
+                        <div class="portfolio-item-replacement relative z-10 flex h-[50rem] w-full flex-col overflow-hidden py-[30px] sm:h-[50rem] md:h-[50rem] xl:h-full">
                             <div class="thumbnail relative z-10 mx-auto flex h-[30rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[30rem]">
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
                             </div>
-                            <div class="description relative z-10 mb-24 flex min-h-[4.5em] w-full items-center justify-between px-4 text-white">
+                            <div class="description relative z-10 mb-12 flex min-h-[4.5em] w-full items-center justify-between px-4 text-white sm:mb-24 md:mb-24 lg:mb-24 xl:mb-24">
                                 <div class="text-left font-sans text-[1rem] font-extrabold tabular-nums sm:text-[1.5rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.5rem]">
                                     <div v-for="(date, index) in project.dates" :key="index" class="kind">
                                         <template v-if="date.includes(' - ')">
