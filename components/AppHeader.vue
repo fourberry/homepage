@@ -3,7 +3,7 @@
         <div class="container-wide relative mx-auto flex items-center justify-between px-4 py-4 md:px-8">
             <NuxtLink
                 id="header-logo-text"
-                to="/"
+                :to="basePath"
                 external
                 class="flex items-center text-2xl font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80 desktop:h-14 desktop:text-3xl"
                 aria-label="FOURBERRY"
@@ -76,6 +76,9 @@ import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useHeaderTheme } from '~/composables/useHeaderTheme'
+
+const isProduction = process.env.NODE_ENV === 'production'
+const basePath = isProduction ? '/home' : '/'
 
 gsap.registerPlugin(ScrollTrigger)
 
