@@ -114,7 +114,7 @@ const siSmProjects: Project[] = [
         details: {
             client: '쿠쿠홀딩스 (CUCKOO)',
             title: 'OMS 및 차세대 영업관리 시스템 구축',
-            period: '2021.11 - 2022.09 (OMS) / 2019.05 - 2019.12 (영업관리)',
+            period: '2021.11 - 2022.09 (OMS) / | 2019.05 - 2019.12 (영업관리)',
             overview: `쿠쿠의 통합 쇼핑몰 관리 시스템(OMS)과 차세대 영업관리 시스템(POS & WEB)을 구축한 프로젝트입니다.
             \n\nOMS는 78개에 달하는 홈쇼핑, 쇼핑몰, 폐쇄몰 등 다양한 영업채널의 주문, 배송, 재고 관리를 통합 관리합니다.
             \n차세대 영업관리 시스템은 업무 중심의 판매 관리(POS/WEB), 정산, 재고, 매출, 영업 분석 및 고객 정보 관리를 포함하는 유통 관점의 실시간 데이터 관리 시스템입니다.`,
@@ -135,7 +135,7 @@ const siSmProjects: Project[] = [
         details: {
             client: '영등포농협 (WITH FRESH)',
             title: '온라인 브랜드 쇼핑몰 및 SSO 시스템 구축',
-            period: '2024.01 - 2025.03 (쇼핑몰) / 2024.08 - 2024.12 (SSO)',
+            period: '2024.01 - 2025.03 (쇼핑몰) / | 2024.08 - 2024.12 (SSO)',
             overview: `영등포농협의 자체 브랜드몰 'Always withFresh'를 구축한 프로젝트입니다.
             \nHybrid 모바일 앱, 온라인 쇼핑몰, 관리자 사이트 및 관리자 앱을 포함하며, 상품, 전시, CMS, 프로모션(행사, 쿠폰), 통계 등 약 100여 건의 관리자 메뉴를 구현했습니다.
             \n또한, 2개의 관리 사이트와 신규 브랜드몰의 회원을 통합 관리하기 위한 SSO(Single Sign-On) 시스템을 구축했습니다.
@@ -156,7 +156,7 @@ const siSmProjects: Project[] = [
         smallH3: false,
         details: {
             client: '한국해양공사 (KOBC)',
-            title: '매연 저감 게이미피케이션 캠페인 (Green Sailing)',
+            title: '매연 저감 게이미피케이션 캠페인|(Green Sailing)',
             period: '2024.10 - 2025.01',
             overview: `한국해양공사(KOBC)의 선박 매연 저감 캠페인을 홍보하기 위해 '부루마블' 형식의 게이미피케이션을 접목한 PC/모바일 웹 게임을 구축했습니다.
             \n주사위를 굴려 전 세계 주요 항구를 순회하며 매연 발생을 최소화하는 것이 목표입니다.
@@ -197,8 +197,8 @@ const siSmProjects: Project[] = [
         smallH3: true,
         details: {
             client: '아우토크립트 (AUTOCRYPT)',
-            title: '자동차 보안 대응 시스템 \n(K-CSMS) 구축',
-            period: '1차: 2024.06 - 2024.10 / 2차: 2025.06 - 2025.09',
+            title: '자동차 보안 대응 시스템 (K-CSMS) 구축',
+            period: '1차: 2024.06 - 2024.10 | 2차: 2025.06 - 2025.09',
             overview: `IT 보안 취약점 중 특히 자동차 보안 분야의 취약점 정보를 공유하고 대응하기 위한 커뮤니티 및 데이터베이스 사이트(K-CSMS)를 구축했습니다.
             \n대시보드를 통해 CVE(보안 취약점) 현황, CWE(보안 약점) 유형, CVSS(위험도) 등을 시각화하여 제공하며, 코드 기반 SW 자동 점검 기능 등을 포함합니다.`,
             images: ['/images/homeSiSm/autocrypt_4.jpg'],

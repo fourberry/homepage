@@ -11,25 +11,42 @@
 
             <div v-if="project" class="overflow-y-auto rounded-lg" style="max-height: 90vh">
                 <header :class="project.gradientClasses" class="flex flex-col items-center justify-center p-4 pt-10 text-center text-white md:flex-row md:justify-between md:p-8 md:pt-12 md:text-left">
-                    <div class="md:w-3/5">
+                    <div>
                         <p class="break-keep text-sm font-bold uppercase tracking-widest opacity-80 md:mb-2">
                             {{ project.details.client }}
                         </p>
-                        <h2 class="whitespace-pre-line break-keep text-xl font-bold md:mb-2 md:text-4xl">
-                            {{ project.details.title }}
+                        <h2 class="whitespace-pre-line break-keep text-lg font-bold md:mb-2 md:text-4xl">
+                            <template v-if="project.details.title.includes('|')">
+                                {{ project.details.title.split('|')[0] }}
+
+                                <span class="block md:ml-1 md:inline">{{ project.details.title.split('|')[1] }}</span>
+                            </template>
+
+                            <template v-else>
+                                {{ project.details.title }}
+                            </template>
                         </h2>
                         <p class="break-keep text-sm font-medium opacity-90 md:text-lg">
-                            {{ project.details.period }}
+                            <template v-if="project.details.period.includes('|')">
+                                {{ project.details.period.split('|')[0] }}
+
+                                <span class="block md:ml-1 md:inline">{{ project.details.period.split('|')[1] }}</span>
+                            </template>
+
+                            <template v-else>
+                                {{ project.details.period }}
+                            </template>
                         </p>
                     </div>
-                    <div class="mt-6 aspect-video w-full overflow-hidden rounded-lg md:mt-0 md:w-2/5">
-                        <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
-                            <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
-                                <img :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
-                            </SwiperSlide>
-                        </Swiper>
-                    </div>
                 </header>
+
+                <div class="aspect-video w-full overflow-hidden">
+                    <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
+                        <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
+                            <img :src="imageSrc" :alt="`${project.details.title} 이미지 ${index + 1}`" class="block h-full w-full object-cover" />
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
 
                 <section class="bg-white p-4 text-gray-900 md:p-8">
                     <h3 class="mb-4 text-lg font-bold md:text-xl">Project Overview</h3>
