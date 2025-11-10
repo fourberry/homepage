@@ -96,11 +96,11 @@ import 'swiper/css/pagination'
 
 const swiperModules = [Navigation, Pagination]
 
-const isProduction = process.env.NODE_ENV === 'production'
-const basePath = isProduction ? '/home' : ''
+// ✅ [수정] basePath를 ref로 변경하고 기본값 '/'로 설정
+const basePath = ref('/')
 
-// ✅ [수정] closeIconPath도 basePath를 사용하도록 리팩토링 (더 깔끔합니다)
-const closeIconPath = basePath + '/images/homeSiSm/x.svg'
+// ✅ [수정] closeIconPath를 computed 속성으로 변경
+const closeIconPath = computed(() => basePath.value + '/images/homeSiSm/x.svg')
 
 const props = defineProps<{
     project: Project | null
@@ -111,17 +111,13 @@ const emit = defineEmits(['close'])
 
 // ✅ [수정] Swiper 이미지 경로를 처리하는 computed 속성
 const processedImages = computed(() => {
-    // 1. props.project나 하위 속성이 없으면 빈 배열 반환
     if (!props.project || !props.project.details || !props.project.details.images) {
         return []
     }
 
-    // 2. .map()을 사용하여 각 이미지 경로에 basePath를 추가
+    // [수정] .map()에서 ref인 basePath.value를 사용하도록 변경
     return props.project.details.images.map(imagePath => {
-        // imagePath는 '/images/...'로 시작합니다.
-        // production: '/home' + '/images/...' -> '/home/images/...'
-        // development: '' + '/images/...' -> '/images/...'
-        return basePath + imagePath
+        return basePath.value + imagePath
     })
 })
 
@@ -133,9 +129,23 @@ const htmlEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(htmlEl)
 
 onMounted(() => {
+    // ✅ [신규] 컴포넌트가 마운트(실행)된 브라우저 환경에서
+    //      현재 호스트네임을 기준으로 basePath를 설정
+    const isProduction = process.env.NODE_ENV === 'production'
+    const hostname = window.location.hostname
+
+    // 1. 프로덕션 빌드이면서 (NODE_ENV === 'production')
+    // 2. 깃허브 페이지 호스트에서 실행될 때만
+    if (isProduction && hostname === 'fourberry.github.io') {
+        basePath.value = '/home'
+    } else {
+        // 로컬(development) 또는 커스텀 도메인(www.fourberry.co.kr)
+        basePath.value = ''
+    }
+
+    // 기존 스크롤 잠금 로직
     htmlEl.value = document.documentElement
 })
-
 watchEffect(() => {
     isLocked.value = props.project !== null
 })
