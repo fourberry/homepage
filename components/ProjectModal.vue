@@ -41,7 +41,7 @@
                 </header>
 
                 <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                    <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full">
+                    <Swiper :modules="swiperModules" :navigation="true" :loop="processedImages.length > 1" class="h-full w-full" @slideChange="onSlideChange" :style="swiperArrowStyle">
                         <SwiperSlide v-for="(imageSrc, index) in processedImages" :key="index">
                             <div class="relative h-full w-full">
                                 <div v-if="!imageLoadStatus[imageSrc]" class="absolute inset-0 z-10 flex h-full w-full items-center justify-center">
@@ -52,7 +52,10 @@
                                     :src="imageSrc"
                                     :alt="`${project.details.title} 이미지 ${index + 1}`"
                                     class="relative z-0 block h-full w-full object-cover transition-opacity duration-300"
-                                    :class="imageLoadStatus[imageSrc] ? 'opacity-100' : 'opacity-0'"
+                                    :class="[
+                                        imageLoadStatus[imageSrc] ? 'opacity-100' : 'opacity-0',
+                                        getImageObjectFitClass(project.id, index), // ✅ 이 부분을 추가합니다.
+                                    ]"
                                     @load="imageLoadStatus[imageSrc] = true"
                                     @error="imageLoadStatus[imageSrc] = true"
                                     loading="lazy"
@@ -164,9 +167,77 @@ watch(
     newProject => {
         if (newProject) {
             imageLoadStatus.value = {}
+
+            activeSlideIndex.value = 0
         }
     }
 )
+
+// ✅ [신규] 현재 활성화된 Swiper 슬라이드의 인덱스
+const activeSlideIndex = ref(0)
+
+// ✅ [신규] Swiper 슬라이드 변경 시 호출될 함수
+const onSlideChange = (swiper: any) => {
+    activeSlideIndex.value = swiper.realIndex // loop 모드일 경우 realIndex 사용
+}
+
+// ✅ [신규] Swiper 화살표 테마를 위한 computed 속성
+const swiperArrowThemeClass = computed(() => {
+    if (!props.project) return 'swiper-button-white' // 기본값
+
+    const projectId = props.project.id
+    const index = activeSlideIndex.value // 현재 활성화된 인덱스 사용
+
+    if (projectId === 'si_3') {
+        // KOBC 프로젝트
+        // 2, 3, 4번째 이미지 (인덱스 1, 2, 3)
+
+        if (index >= 1 && index <= 3) {
+            console.log('black')
+            return 'swiper-button-black' // 검은색 화살표 테마
+        }
+    }
+
+    return 'swiper-button-white' // 그 외 모든 경우 (기본값)
+})
+
+// ✅ [대안] CSS 변수를 사용한 스타일 바인딩
+const swiperArrowStyle = computed(() => {
+    if (!props.project) {
+        return { '--swiper-navigation-color': '#ffffff' } // 기본값 흰색
+    }
+
+    const projectId = props.project.id
+    const index = activeSlideIndex.value
+
+    if ((projectId === 'si_3' || projectId === 'si_5') && index >= 1 && index <= 3) {
+        // KOBC 프로젝트의 특정 이미지
+        return { '--swiper-navigation-color': '#0c0a09' } // 어두운 색
+    }
+
+    // 그 외 모든 경우
+    return { '--swiper-navigation-color': '#ffffff' } // 흰색
+})
+
+// ✅ [신규 함수] 이미지 인덱스에 따라 object-fit 클래스를 반환하는 함수
+const getImageObjectFitClass = (projectId: string, imageIndex: number) => {
+    if (projectId === 'si_3') {
+        // KOBC 프로젝트의 ID가 'si_3'일 때
+        // 2, 3, 4번째 이미지 (0부터 시작하므로 인덱스는 1, 2, 3)
+        if (imageIndex >= 1 && imageIndex <= 3) {
+            return 'object-fill'
+        }
+    }
+    if (projectId === 'si_5') {
+        // KOBC 프로젝트의 ID가 'si_3'일 때
+        // 2, 3, 4번째 이미지 (0부터 시작하므로 인덱스는 1, 2, 3)
+        if (imageIndex >= 1 && imageIndex <= 3) {
+            return 'object-cover object-top'
+        }
+    }
+    // 기본값 또는 다른 프로젝트의 경우 object-cover
+    return 'object-cover'
+}
 
 const close = () => {
     emit('close')
@@ -187,9 +258,21 @@ defineExpose({
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+/* ✅ 검은색/어두운색 화살표 스타일 (::after에 적용) */
+:deep(.swiper-button-black .swiper-button-prev::after),
+:deep(.swiper-button-black .swiper-button-next::after) {
+    color: #071e2e; /* 어두운 색 */
+}
+
+/* ✅ 흰색/밝은색 화살표 스타일 (::after에 적용) */
+:deep(.swiper-button-white .swiper-button-prev::after),
+:deep(.swiper-button-white .swiper-button-next::after) {
+    color: #ffffff; /* 밝은 색 */
+}
+
 :deep(.swiper-button-prev),
 :deep(.swiper-button-next) {
-    color: #ffffff;
+    /* 기본 opacity 및 transition 유지 */
     opacity: 0.7;
     transition: opacity 0.2s;
 }
