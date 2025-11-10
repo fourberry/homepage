@@ -16,8 +16,10 @@
                 </span>
             </a>
 
-            <!-- 데스크탑 메뉴 -->
-            <div class="hidden items-center gap-3 md:flex desktop:gap-5">
+            <div
+                :class="desktopMenuClasses"
+                class="hidden items-center gap-3 md:flex desktop:gap-5"
+            >
                 <NuxtLink to="#about" class="menu-link group relative min-w-[6rem] overflow-hidden text-center text-base font-bold no-underline desktop:text-lg">
                     <span class="front block">ABOUT</span>
                     <span class="back absolute inset-0 block">소개</span>
@@ -39,7 +41,6 @@
                 </NuxtLink>
             </div>
 
-            <!-- 햄버거 버튼 등 기존 그대로 -->
             <button @click="toggleMobileMenu" class="relative z-50 flex h-8 w-8 items-center justify-center md:hidden" aria-label="메뉴 토글">
                 <div class="relative h-4 w-6">
                     <span
@@ -58,7 +59,6 @@
             </button>
         </div>
 
-        <!-- 모바일 메뉴(이미 hover 효과 없음) -->
         <transition name="slide-down">
             <nav v-if="isMobileMenuOpen" class="absolute left-0 top-full flex w-full flex-col border-t border-gray-200 bg-white shadow-lg md:hidden">
                 <NuxtLink @click="isMobileMenuOpen = false" to="#about" class="px-6 py-3 font-medium text-gray-800 no-underline hover:bg-gray-50">ABOUT</NuxtLink>
@@ -85,7 +85,7 @@ gsap.registerPlugin(ScrollTrigger)
 const handleLogoClick = () => {
     // 1. 현재 페이지의 경로(pathname)가 basePath와 정확히 일치하고,
     // 2. 해시(#)가 없는 경우
-    //    (즉, .../home/ 이고 .../home/#about이 아닌 경우)
+    //    (즉, .../home/ 이고 .../home/#about이 아닌 경우)
     if (window.location.pathname === basePath && !window.location.hash) {
         // 이미 루트이므로, 강제 새로고침
         window.location.reload()
@@ -136,6 +136,20 @@ const headerClasses = computed(() => {
         default:
             return [baseClasses, 'absolute bg-transparent text-transparent']
     }
+})
+
+const desktopMenuClasses = computed(() => {
+    const baseTransition = 'transition-opacity duration-300 ease-in-out'
+
+    // 홈 페이지이고, 모바일 메뉴가 닫혀있고, 테마가 'light' 또는 'transparent' (즉, 상단 투명 상태)일 때
+    if (isHomePage.value && !isMobileMenuOpen.value && (theme.value === 'light' || theme.value === 'transparent')) {
+        // 메뉴를 숨기고 마우스 이벤트를 비활성화
+        return [baseTransition, 'opacity-0', 'pointer-events-none']
+    }
+    
+    // 그 외 모든 경우 (스크롤 내렸을 때, 다른 페이지일 때, 모바일 메뉴가 열렸을 때)
+    // 메뉴를 보이고 마우스 이벤트를 활성화
+    return [baseTransition, 'opacity-100', 'pointer-events-auto']
 })
 
 const setupScrollTrigger = () => {
