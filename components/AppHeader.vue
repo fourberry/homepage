@@ -1,10 +1,10 @@
 <template>
     <header :class="headerClasses">
         <div class="container-wide relative mx-auto flex items-center justify-between px-4 py-4 md:px-8">
-            <NuxtLink
+            <a
                 id="header-logo-text"
-                :to="basePath"
-                external
+                :href="basePath"
+                @click.prevent="handleLogoClick"
                 class="flex items-center text-2xl font-extrabold no-underline transition-opacity duration-300 ease-in-out hover:opacity-80 desktop:h-14 desktop:text-3xl"
                 aria-label="FOURBERRY"
             >
@@ -14,7 +14,7 @@
                 <span class="logo-word" ref="logoEl">
                     <span v-for="(ch, idx) in logoLetters" :key="idx" class="logo-ch">{{ ch }}</span>
                 </span>
-            </NuxtLink>
+            </a>
 
             <!-- 데스크탑 메뉴 -->
             <div class="hidden items-center gap-3 md:flex desktop:gap-5">
@@ -81,6 +81,20 @@ const isProduction = process.env.NODE_ENV === 'production'
 const basePath = isProduction ? '/home' : ''
 
 gsap.registerPlugin(ScrollTrigger)
+
+const handleLogoClick = () => {
+    // 1. 현재 페이지의 경로(pathname)가 basePath와 정확히 일치하고,
+    // 2. 해시(#)가 없는 경우
+    //    (즉, .../home/ 이고 .../home/#about이 아닌 경우)
+    if (window.location.pathname === basePath && !window.location.hash) {
+        // 이미 루트이므로, 강제 새로고침
+        window.location.reload()
+    } else {
+        // 해시가 있거나 다른 페이지에 있다면, 루트 경로로 이동
+        // (브라우저가 페이지를 새로 불러옵니다)
+        window.location.href = basePath
+    }
+}
 
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
