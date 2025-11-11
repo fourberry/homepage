@@ -26,7 +26,7 @@
                                 {{ project.details.title }}
                             </template>
                         </h2>
-                        <p class="break-keep text-sm font-medium opacity-90 md:text-lg">
+                        <p class="font-pretendard break-keep text-sm font-medium tabular-nums opacity-90 md:text-lg">
                             <template v-if="project.details.period.includes('|')">
                                 {{ project.details.period.split('|')[0] }}
 
@@ -131,6 +131,17 @@ const modalContentRef = ref<HTMLElement | null>(null)
 const htmlEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(htmlEl)
 
+/**
+ * 브라우저 '뒤로가기' (popstate) 이벤트를 감지하여 모달을 닫습니다.
+ */
+const handlePopState = (event: PopStateEvent) => {
+    // popstate 이벤트가 발생하면 (뒤로가기 버튼 클릭)
+    // 부모(HomeSectionSiSm)에게 'close' 이벤트를 전달합니다.
+    // 부모는 isModalOpen.value = false로 설정하여
+    // 이 모달 컴포넌트를 v-if에 의해 unmount시킬 것입니다.
+    emit('close')
+}
+
 onMounted(() => {
     // ✅ [신규] 컴포넌트가 마운트(실행)된 브라우저 환경에서
     //      현재 호스트네임을 기준으로 basePath를 설정
@@ -148,6 +159,14 @@ onMounted(() => {
 
     // 기존 스크롤 잠금 로직
     htmlEl.value = document.documentElement
+
+    // --- ✅ [추가] 뒤로가기 버튼 로직 ---
+    // 1. 모달이 열릴 때 (마운트될 때), 브라우저 히스토리에 "가짜" 상태를 추가합니다.
+    //    (URL은 변경하지 않고, state 객체만 추가)
+    history.pushState({ modal: 'projectModalOpen' }, '', window.location.href)
+
+    // 2. 'popstate' 이벤트 (사용자가 '뒤로가기' 버튼을 누름)를 감지하는 리스너를 추가합니다.
+    window.addEventListener('popstate', handlePopState)
 })
 watchEffect(() => {
     isLocked.value = props.project !== null
@@ -155,6 +174,21 @@ watchEffect(() => {
 
 onUnmounted(() => {
     isLocked.value = false
+
+    // --- ✅ [추가] 뒤로가기 버튼 로직 ---
+    // 1. 컴포넌트가 사라질 때 (언마운트될 때) 'popstate' 리스너를 깨끗하게 제거합니다.
+    window.removeEventListener('popstate', handlePopState)
+
+    // 2. 모달이 닫히는 이유를 확인합니다.
+    //    만약 'X' 버튼을 눌러 닫힌 경우(즉, popstate가 아닌 다른 이유),
+    //    우리가 추가했던 'projectModalOpen' 상태가 히스토리에 여전히 남아있으므로,
+    //    'history.back()'을 수동으로 호출하여 이 "가짜" 히스토리 상태를 제거합니다.
+    //
+    //    만약 '뒤로가기' 버튼을 눌러 닫힌 경우, handlePopState가 먼저 실행되고
+    //    popstate 이벤트가 이미 발생했으므로 history.state.modal 값이 다릅니다.
+    if (history.state && history.state.modal === 'projectModalOpen') {
+        history.back()
+    }
 })
 
 // 각 이미지 소스(src)를 key로, 로드 완료 여부(boolean)를 value로 가짐
