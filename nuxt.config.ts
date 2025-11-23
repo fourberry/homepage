@@ -64,7 +64,7 @@ export default defineNuxtConfig({
                 { property: 'og:site_name', content: '(주)포베리' },
                 { property: 'og:title', content: 'AI 솔루션 & SI 전문 기업 (주)포베리' },
                 { property: 'og:description', content: '혁신적인 AI 기술과 안정적인 IT 서비스로 비즈니스의 성공을 돕습니다.' },
-                { property: 'og:image', content: 'https://www.fourberry.co.kr/og/cover.png' },
+                { property: 'og:image', content: 'https://www.fourberry.co.kr/og/cover.jpg' },
                 { property: 'og:url', content: 'https://www.fourberry.co.kr' },
             ],
             link: [
