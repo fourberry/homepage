@@ -1,2 +1,4 @@
-ser-Agent: *
-Disallow:
+User-Agent: *
+Allow: /
+
+Sitemap: https://www.fourberry.co.kr/sitemap.xml
