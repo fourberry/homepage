@@ -58,6 +58,7 @@ export default defineNuxtConfig({
                     name: 'keywords', 
                     content: '포베리, Fourberry, AI, 인공지능, AI 솔루션, AI 개발, 딥러닝, 머신러닝, SI, SM, 시스템 통합, IT 컨설팅, 웹 개발' 
                 },
+                { name: 'naver-site-verification', content: 'dbb8fecd579367cf06f6d9c76589b36d6f59738a' },
                 { property: 'og:type', content: 'website' },
                 { property: 'og:site_name', content: '(주)포베리' },
                 { property: 'og:title', content: 'AI 솔루션 & SI 전문 기업 (주)포베리' },
