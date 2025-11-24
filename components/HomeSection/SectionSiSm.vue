@@ -36,7 +36,7 @@
                             <div class="thumbnail relative z-10 mx-auto flex h-[30rem] w-full items-center justify-center bg-white sm:h-[35rem] md:h-[30rem]">
                                 <NuxtImg :src="project.imageSrc" :alt="project.imageAlt" class="block" :class="getImageClasses(project)" />
                             </div>
-                            <div class="description relative z-10 mb-12 flex min-h-[4.5em] w-full items-center justify-between px-4 text-white sm:mb-24 md:mb-24 lg:mb-24 xl:mb-24">
+                            <div class="description relative z-10 mb-12 flex min-h-[9.0em] w-full items-start justify-between px-4 text-white sm:mb-24 md:mb-24 lg:mb-24 xl:mb-24">
                                 <div class="text-left font-sans text-[1rem] font-extrabold tabular-nums sm:text-[1.5rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.5rem]">
                                     <div v-for="(date, index) in project.dates" :key="index" class="kind">
                                         <template v-if="date.includes(' - ')">
@@ -108,8 +108,8 @@ const siSmProjects: Project[] = [
         bgColor: '#ff5d17', // 대표 색상 (그라디언트 끝 색)
         imageSrc: '/images/homeSiSm/oms_2.webp',
         imageAlt: 'Cuckoo Project',
-        dates: ['2021.11 - 2022.09'],
-        title: 'OMS 및 차세대\n영업관리 시스템 구축',
+        dates: ['2021.11 - 2022.09', '2025.01 ~'],
+        title: 'OMS 및 차세대\n영업관리 시스템 구축 \n 시스템 운영 및 고도화',
         clientName: 'CUCKOO',
         imageStyle: 'cuckoo',
         smallH3: false,
@@ -129,8 +129,8 @@ const siSmProjects: Project[] = [
         bgColor: '#12f093',
         imageSrc: '/images/homeSiSm/withfresh_9.png',
         imageAlt: 'Hanaro Project',
-        dates: ['2024.01 - 2025.03'],
-        title: '브랜드몰 (하이브리드 앱) 및 \n SSO 구축',
+        dates: ['2024.01 - 2025.03', '2025.04 ~'],
+        title: '브랜드몰 (하이브리드 앱) 및 \n SSO 구축 \n 시스템 운영 및 고도화',
         clientName: 'WITH FRESH',
         imageStyle: 'withfresh',
         smallH3: true,
@@ -147,27 +147,6 @@ const siSmProjects: Project[] = [
     },
     {
         id: 'si_3',
-        gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] via-[#a912f0] to-[#f012b0]',
-        bgColor: '#a912f0',
-        imageSrc: '/images/homeSiSm/kobc_1.png',
-        imageAlt: 'KOBC Project',
-        dates: ['2024.10 - 2025.01'],
-        title: '게이미피케이션 접목 캠페인\n (PC/모바일)',
-        clientName: 'KOBC',
-        imageStyle: 'default',
-        smallH3: false,
-        details: {
-            client: '한국해양공사 (KOBC)',
-            title: '매연 저감 게이미피케이션 캠페인|(Green Sailing)',
-            period: '2024.10 - 2025.01',
-            overview: `한국해양공사(KOBC)의 선박 매연 저감 캠페인을 홍보하기 위해 '부루마블' 형식의 게이미피케이션을 접목한 PC/모바일 웹 게임을 구축했습니다.
-            \n주사위를 굴려 전 세계 주요 항구를 순회하며 매연 발생을 최소화하는 것이 목표입니다.
-             저사양 모바일 기기에서도 원활하게 구동될 수 있도록 최적화 작업을 진행했습니다.`,
-            images: ['/images/homeSiSm/kobc_12.jpg', '/images/homeSiSm/kobc_10.jpg', '/images/homeSiSm/kobc_11.jpg'],
-        },
-    },
-    {
-        id: 'si_4',
         gradientClasses: 'bg-gradient-to-br from-[#eb3656] via-[#ff8050] to-[#fea032]',
         bgColor: '#fea032',
         imageSrc: '/images/homeSiSm/migration.png',
@@ -187,12 +166,12 @@ const siSmProjects: Project[] = [
         },
     },
     {
-        id: 'si_5',
+        id: 'si_4',
         gradientClasses: 'bg-gradient-to-br from-[#fff6a5] via-[#ffc090] to-[#ffb1b1]',
         bgColor: '#ffb1b1',
         imageSrc: '/images/homeSiSm/autocrypt_4.jpg',
         imageAlt: 'AutoCrypt Project',
-        dates: ['2024.06 - 2024.10'],
+        dates: ['2024.06 - 2024.10', '2025.06 - 2025.09'],
         title: '자동차 보안 대응 시스템(K-CSMS)\n 구축',
         clientName: 'AUTOCRYPT',
         imageStyle: 'auto',
@@ -204,6 +183,27 @@ const siSmProjects: Project[] = [
             overview: `IT 보안 취약점 중 특히 자동차 보안 분야의 취약점 정보를 공유하고 대응하기 위한 커뮤니티 및 데이터베이스 사이트(K-CSMS)를 구축했습니다.
             \n대시보드를 통해 CVE(보안 취약점) 현황, CWE(보안 약점) 유형, CVSS(위험도) 등을 시각화하여 제공하며, 코드 기반 SW 자동 점검 기능 등을 포함합니다.`,
             images: ['/images/homeSiSm/autocrypt_4.jpg', '/images/homeSiSm/autocrypt_5.png', '/images/homeSiSm/autocrypt_6.png', '/images/homeSiSm/autocrypt_7.png'],
+        },
+    },
+    {
+        id: 'si_5',
+        gradientClasses: 'bg-gradient-to-br from-[#3f1ca0] via-[#a912f0] to-[#f012b0]',
+        bgColor: '#a912f0',
+        imageSrc: '/images/homeSiSm/kobc_1.png',
+        imageAlt: 'KOBC Project',
+        dates: ['2024.10 - 2025.01'],
+        title: '게이미피케이션 접목 캠페인\n (PC/모바일)',
+        clientName: 'KOBC',
+        imageStyle: 'default',
+        smallH3: false,
+        details: {
+            client: '한국해양공사 (KOBC)',
+            title: '매연 저감 게이미피케이션 캠페인|(Green Sailing)',
+            period: '2024.10 - 2025.01',
+            overview: `한국해양공사(KOBC)의 선박 매연 저감 캠페인을 홍보하기 위해 '부루마블' 형식의 게이미피케이션을 접목한 PC/모바일 웹 게임을 구축했습니다.
+            \n주사위를 굴려 전 세계 주요 항구를 순회하며 매연 발생을 최소화하는 것이 목표입니다.
+             저사양 모바일 기기에서도 원활하게 구동될 수 있도록 최적화 작업을 진행했습니다.`,
+            images: ['/images/homeSiSm/kobc_12.jpg', '/images/homeSiSm/kobc_10.jpg', '/images/homeSiSm/kobc_11.jpg'],
         },
     },
     {
