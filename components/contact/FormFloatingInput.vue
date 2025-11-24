@@ -3,7 +3,7 @@
         <input
             :type="type"
             :id="id"
-            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-primary focus:outline-none focus:ring-0 md:text-base dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-primary focus:outline-none focus:ring-0 md:text-base dark:border-gray-600 dark:focus:border-blue-500"
             :class="[isValid ? 'border-gray-300 focus:border-primary' : 'border-red-600 focus:border-red-600']"
             placeholder=" "
             :value="modelValue"
