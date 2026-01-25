@@ -474,7 +474,7 @@ const handleSubmit = async () => {
         };
 
         // 5. API 호출
-        await $fetch('https://briskly0714.cafe24.com/lime-v2/api/v1/messages/send', {
+        await $fetch('https://briskly0714.cafe24.com/lime-v2/external-api/v1/messages/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
